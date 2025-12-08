@@ -2,16 +2,20 @@ import { useState } from "react";
 import { TiShoppingCart } from "react-icons/ti";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { NavLink } from "react-router-dom";
+import { IoPerson } from "react-icons/io5";
+
 
 const Navbar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const links = [
+    { label: "SV/EN", href: "" },
     { label: "Home", href: "/" },
     { label: "Dishes", href: "/dishes/soups" },
     { label: "About Us", href: "/about-us" },
     { label: "Events", href: "/events" },
     { label: "Delivery", href: "/delivery/order" },
+    { label: <IoPerson className="text-[24px]" />, href: "/login" }
   ];
 
   const linkClasses = ({ isActive }) =>
