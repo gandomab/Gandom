@@ -7,8 +7,6 @@ const HealthySection = () => {
 
   return (
     <section className="bg-beigebg text-center mt-0 md:mt-4">
-
-
       {/* Heading */}
       <h2 className="font-santa font-normal text-primary text-[40px] md:text-[52px] lg:text-[64px] mb-12">
        Browse Our Healthy Lifestyle
