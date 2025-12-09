@@ -13,9 +13,12 @@ const Navbar = () => {
     { label: "Home", href: "/" },
     { label: "Dishes", href: "/dishes/soups" },
     { label: "About Us", href: "/about-us" },
+    { label: "Gym", href: "/gym" },
     { label: "Events", href: "/events" },
     { label: "Delivery", href: "/delivery/order" },
-    { label: <IoPerson className="text-[24px]" />, href: "/login" }
+    { label: <TiShoppingCart className="text-[24px] width-[27px]  height-[24px]"  />, href: "/cart" },
+    { label: <IoPerson className="text-[24px] width-[19px]  height-[24px]" />, href: "/login" }
+   
   ];
 
   const linkClasses = ({ isActive }) =>
@@ -37,9 +40,7 @@ const Navbar = () => {
             {link.label}
           </NavLink>
         ))}
-        <button className="p-2 rounded hover:text-primary">
-          <TiShoppingCart className="w-[27px] h-[24px]" />
-        </button>
+        
       </div>
 
       {/* Tablet & Mobile Hamburger + Cart */}
@@ -47,11 +48,15 @@ const Navbar = () => {
         <button className="p-2 rounded hover:text-primary">
           <TiShoppingCart className="w-[27px] h-[24px]" />
         </button>
+        <button className="p-2 rounded hover:text-primary">
+          <IoPerson className="w-[19px] h-[24px]" />
+        </button>
+
         <button
           className="p-2 rounded hover:text-primary"
           onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}
         >
-          <RxHamburgerMenu className="w-[27px] h-[27px]" />
+          <RxHamburgerMenu className="w-[24px] h-[24px]" />
         </button>
       </div>
 
