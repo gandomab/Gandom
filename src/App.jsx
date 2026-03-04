@@ -22,6 +22,7 @@ import EventsPage from "./pages/EventsPage/page.jsx";
 import { Routes, Route } from "react-router-dom";
 import Pay from "./pages/Pay/PayPage";
 import HomeCard from "./components/HomeCard/Card.jsx";
+import ProductsPage from "./pages/ProductsPage/ProductsPage.jsx";
 
 function App() {
   return (
@@ -50,10 +51,11 @@ function App() {
 
 
           {/* Dishes pages */}
-          <Route path="/dishes/soups" element={<SoupsPage />} />
+          <Route path="/productsPage" element={<ProductsPage />} />
+          {/* <Route path="/dishes/soups" element={<SoupsPage />} />
           <Route path="/dishes/desserts" element={<DessertsPage />} />
           <Route path="/dishes/waffles" element={<WafflesPage />} />
-          <Route path="/dishes/sidedishes" element={<SidedishesPage />} />
+          <Route path="/dishes/sidedishes" element={<SidedishesPage />} /> */}
 
           {/* Delivery pages */}
           <Route path="/delivery/order" element={<DeliveryOrderPage />} />
