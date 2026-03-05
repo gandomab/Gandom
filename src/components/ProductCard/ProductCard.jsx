@@ -7,14 +7,14 @@ const ProductCard = ({ productdish }) => {
         <img 
             src={productdish.image} 
             alt={productdish.title} 
-            className="w-full min-h-64 object-cover" />
+            className="w-full h-full object-cover" />
         </div>
 
         {/* Bottom Section: Details */}
         <div className="p-4 min-h-20 flex justify-between items-end">
             {/* Left Column: Name and Price */}
             <div className="flex flex-col">
-                <h3 className="font-inter font-semibold text-2xl leading-[130%]">{productdish.title}</h3>
+                <h3 className="font-inter font-semibold text-2xl leading-[130%] line-clamp-1">{productdish.title}</h3>
                 <p className="text-[#426B1F] font-semibold h-[26px] text-[20px] leading-[130%]">{productdish.price} SEK</p>
             </div>
 
