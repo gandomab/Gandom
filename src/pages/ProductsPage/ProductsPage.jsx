@@ -6,9 +6,9 @@ const ProductsPage = () => {
       <main className="max-w-[1264px] mx-auto px-4 mt-[100px]">
       {/* Dynamic Section Generator */}
       {Object.entries(productData).map(([category, productdishes]) => (
-        <section key={category} id={category} className="mb-20 pt-10">
+        <section key={category} id={category} className="mb-20 pt-1">
           <div className="flex items-center w-full h-[52px] top-[202px] mx-auto mb-8 gap-4">
-            <div className="w-20 border-t-8 border-[#DEA401]"></div>
+            <div className="w-40 border-t-8 border-[#DEA401]"></div>
             <h2 className="font-santa font-normal text-3xl md:text-4xl lg:text-5xl text-[#DEA401] text-center leading-tight mx-4 capitalize">{category}</h2>
             <div className="grow border-t-8 border-[#DEA401]"></div>
           </div>
