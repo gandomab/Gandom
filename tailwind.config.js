@@ -10,6 +10,7 @@ export default {
         lexend: ['Lexend', 'sans-serif'],
         roboto: ['Roboto', 'sans-serif'],
         santa: ['Santa Catalina', 'cursive'],
+        inter: ['Inter', 'sans-serif'],
       },
       colors: {
         // Primary colors
