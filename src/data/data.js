@@ -7,22 +7,22 @@ export const items = [
   {
     name: "Soups",
     img: SoupsImg,
-    path: "/dishes/soups", 
+    linkId: "soups",
   },
   {
     name: "Desserts",
     img: DessertsImg,
-    path: "/dishes/desserts", 
+    linkId: "desserts",
   },
   {
     name: "Waffles",
     img: WafflesImg,
-    path: "/dishes/waffles",
+    linkId: "waffles",
   },
   {
     name: "Side Dishes",
     subName: "Pickles and Snacks",
     img: SideDishesImg,
-    path: "/dishes/sidedishes",
+    linkId: "sideDishes",
   },
 ];
