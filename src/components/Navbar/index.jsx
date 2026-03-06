@@ -8,7 +8,7 @@ const Navbar = () => {
 
   const links = [
     { label: "Home", href: "/" },
-    { label: "Dishes", href: "/dishes/soups" },
+    { label: "Dishes", href: "/productsPage" },
     { label: "About Us", href: "/about-us" },
     { label: "Events", href: "/events" },
     { label: "Delivery", href: "/delivery/order" },
