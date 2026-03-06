@@ -10,6 +10,10 @@ import HerbalDelightWaffle from "../assets/Images/2.Dishes/Waffle - Herbal Delig
 import WaffleBeetroot from "../assets/Images/2.Dishes/Waffle - Beetroot.png";
 import WaffleCarrot from "../assets/Images/2.Dishes/Waffle - Carrots.png";
 import WaffleMatcha from "../assets/Images/2.Dishes/Waffle - Matcha.png";
+import FermentedLemon from "../assets/Images/2.Dishes/Fermented Lemon.png";
+import HerbedMarinatedOlives from "../assets/Images/2.Dishes/sidedish2.png";
+import CustomFermentedVegetables from "../assets/Images/2.Dishes/sidedish3.png";
+
 // this file contains the data for the products, which will be used to populate the product sections on the ProductsPage. 
 // Each category (starters, mains, desserts) has an array of product dishes, each with an id, title, price, and image.
 export const productData = {
@@ -31,9 +35,9 @@ export const productData = {
     { id: 305, title: "Carrot Waffle", price: "7", ratingnum: "4.5", image: WaffleCarrot },
     { id: 306, title: "Matcha Waffle", price: "6", ratingnum: "4.5", image: WaffleMatcha },
   ],
-  sidedishes: [
-    { id: 401, title: "Caesar Salad", price: "8", ratingnum: "4.5", image: "/img/side1.jpg" },
-    { id: 402, title: "Garlic Bread", price: "5", ratingnum: "4.5", image: "/img/side2.jpg" },
-    { id: 403, title: "French Fries", price: "6", ratingnum: "4.5", image: "/img/side3.jpg" },
+  sideDishes: [
+    { id: 401, title: "Fermented Lemon", price: "8", ratingnum: "4.5", image: FermentedLemon },
+    { id: 402, title: "Herbed Marinated Olives", price: "5", ratingnum: "4.5", image: HerbedMarinatedOlives },
+    { id: 403, title: "Custom Fermented Vegetables", price: "6", ratingnum: "4.5", image: CustomFermentedVegetables },
   ]
 };
