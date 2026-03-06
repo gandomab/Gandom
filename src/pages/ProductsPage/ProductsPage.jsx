@@ -3,7 +3,7 @@ import { productData } from "../../data/productData.js";
 import ProductCard from "../../components/ProductCard/ProductCard.jsx";
 const ProductsPage = () => {
     return (
-      <main className="max-w-[1264px] mx-auto px-4 mt-[100px]">
+      <main className="w-full mx-auto px-4 mt-[100px]">
       {/* Dynamic Section Generator */}
       {Object.entries(productData).map(([category, productdishes]) => (
         <section key={category} id={category} className="mb-20 pt-1">
