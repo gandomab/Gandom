@@ -1,3 +1,4 @@
+// This component represents a single product card, displaying the product's image, name, price, and rating. It also includes a "View" button for more details.
 const ProductCard = ({ productdish }) => {
   return (
     <div className="bg-[#FFFFFF] border rounded-xl overflow-hidden w-full h-[331.46px] shadow-[4.73px_4.73px_16.9px_0.68px_rgba(0,0,0,0.25)]">

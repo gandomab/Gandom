@@ -1,9 +1,32 @@
-// import ProductSoupSection from "../../components/ProductSoupSection/ProductSoupSection.jsx"
 import { productData } from "../../data/productData.js";
 import ProductCard from "../../components/ProductCard/ProductCard.jsx";
 import { HashLink } from "react-router-hash-link";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+
+// This page is the main products page, which will display all the products in different sections (soups, desserts, waffles, side dishes). Each section will have a heading and a grid of product cards.
+//  The product data is imported from the productData file, which contains arrays of products for each category.
+//  The page also includes a mobile category navigation at the top, which allows users to quickly jump to different sections of the page.
+
 const ProductsPage = () => {
   const category = Object.keys(productData);
+  const { hash } = useLocation();
+  // Handle the jump from the Home Page cards
+  useEffect(() => {
+    if (hash) {
+    // Small timeout gives the data a split second to render
+      setTimeout(() => {
+        const id = hash.replace("#", ""); // Remove the '#' from the hash to get the id
+        const element = document.getElementById(id); // Find the element with the corresponding id
+        // Scroll to the element smoothly
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100); 
+    }
+  }, [hash]); // Runs whenever the URL hash changes
+    
+
     return (
       <main className="w-full mx-auto px-4 mt-[100px]">
 
