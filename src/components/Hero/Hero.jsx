@@ -17,7 +17,7 @@ const Hero = () => {
 
                 <div className="relative z-10 text-right text-white flex flex-col items-end">
                     <img src={logo} alt="GANDOM Logo" className="w-[150px] md:w-[238px] lg:w-[501px] mb-4" />
-                    <p className="text-xl font-lexend">
+                    <p className="text-[10px] md:text-sm lg:text-xl font-lexend">
                         Wholesome flavors, redefined.
                     </p>
                 </div>
