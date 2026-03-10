@@ -1,14 +1,14 @@
 import React from "react";
-import coverImg from "../../assets/Images/1.Home Page/_Cover.png";
+import coverImg from "../../assets/Images/1.Home Page/Cover1.png";
 import logo from "../../assets/Logo Gandom/Logo white.png";
 
 
 const Hero = () => {
     return (
-        <div className="w-full bg-[#FFF7EC]">
+        <div className="w-full">
 
             <section
-                className="relative w-full h-[90vh] bg-cover bg-center flex items-center justify-end pr-16"
+                className="relative w-full h-[450px] md:h-[508px] lg:h-[731px] bg-cover bg-center flex items-center justify-end pr-16 top-4"
                 style={{ backgroundImage: `url(${coverImg})` }}
             >
 
@@ -16,7 +16,7 @@ const Hero = () => {
 
 
                 <div className="relative z-10 text-right text-white flex flex-col items-end">
-                    <img src={logo} alt="GANDOM Logo" className="w-64 mb-4" />
+                    <img src={logo} alt="GANDOM Logo" className="w-[150px] md:w-[238px] lg:w-[501px] mb-4" />
                     <p className="text-xl font-lexend">
                         Wholesome flavors, redefined.
                     </p>
