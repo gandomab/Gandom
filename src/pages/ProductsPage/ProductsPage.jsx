@@ -14,7 +14,7 @@ const ProductsPage = () => {
   // Handle the jump from the Home Page cards
   useEffect(() => {
     if (hash) {
-    // Small timeout gives the data a split second to render
+      // Small timeout gives the data a split second to render
       setTimeout(() => {
         const id = hash.replace("#", ""); // Remove the '#' from the hash to get the id
         const element = document.getElementById(id); // Find the element with the corresponding id
@@ -22,15 +22,15 @@ const ProductsPage = () => {
         if (element) {
           element.scrollIntoView({ behavior: "smooth" });
         }
-      }, 100); 
+      }, 100);
     }
   }, [hash]); // Runs whenever the URL hash changes
-    
 
-    return (
-      <main className="w-full mx-auto px-4 mt-[100px]">
 
-        {/* Mobile Category Nav */}
+  return (
+    <main className="w-full px-4 mt-[100px] max-w-[1440px] mx-auto">
+
+      {/* Mobile Category Nav */}
       <nav className="sticky top-[100px] z-30 justify-items-center  lg:hidden md:hidden ">
         <div className="flex gap-4 overflow-hidden no-scrollbar">
           {category.map((cate) => (
@@ -38,7 +38,7 @@ const ProductsPage = () => {
               key={cate}
               smooth
               to={`#${cate}`}
-              className="font-inter w-[77.33px] h-[28.74px] text-[11px] grid place-items-center text-center text-[#FAFAF5] font-inter font-medium p-4 py-2 rounded-full bg-[#DEA401]  hover:bg-transparent hover:border hover:border-[#DEA401] hover:text-[#DEA401] transition-colors whitespace-nowrap"
+              className="font-inter w-[77.33px] h-[28.74px] text-[11px] grid place-items-center text-center text-[#FAFAF5] font-medium p-4 py-2 rounded-full bg-[#DEA401]  hover:bg-transparent hover:border hover:border-[#DEA401] hover:text-[#DEA401] transition-colors whitespace-nowrap"
             >
               {cate.charAt(0).toUpperCase() + cate.slice(1)}
             </HashLink>
@@ -48,9 +48,9 @@ const ProductsPage = () => {
 
       {/* Dynamic Section Generator */}
       {Object.entries(productData).map(([category, productdishes]) => (
-        <section 
-          key={category} 
-          id={category} 
+        <section
+          key={category}
+          id={category}
           className="mb-20 mt-6 pt-1 scroll-mt-[160px]">
           {/* Section Header with Decorative Lines */}
           <div className="flex items-center w-full mb-8 gap-4">
@@ -68,7 +68,7 @@ const ProductsPage = () => {
       ))}
     </main>
 
-    );
+  );
 };
 
 export default ProductsPage;

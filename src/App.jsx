@@ -29,7 +29,7 @@ function App() {
     <div className="flex flex-col min-h-screen w-full bg-beigebg">
       <Header />
 
-      <main className="bg-beigebg flex-grow w-full max-w-[1440px] mx-auto">
+      <main className="bg-beigebg flex-grow w-full">
         <Routes>
 
           {/* Home page */}
@@ -67,7 +67,7 @@ function App() {
           <Route path="/your-cart" element={<YourCart />} />
           <Route path="/events" element={<EventsPage />} />
           <Route path="/gym" element={<GymPage />} />
-          
+
 
         </Routes>
       </main>
