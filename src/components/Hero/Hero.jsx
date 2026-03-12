@@ -8,14 +8,20 @@ const Hero = () => {
         <div className="w-full">
 
             <section
-                className="relative w-full h-[450px] md:h-[508px] lg:h-[731px] bg-cover bg-center flex items-center justify-end pr-16 top-4"
+                className="relative w-full h-[450px] md:h-[508px] lg:h-[731px] bg-cover bg-center 
+                            flex flex-col md:flex-row 
+                            items-end md:items-center 
+                            justify-end 
+                            pb-2 md:pb-0 md:pr-16 
+                            top-4"
                 style={{ backgroundImage: `url(${coverImg})` }}
             >
 
                 <div className="absolute inset-0 bg-black/20" />
 
 
-                <div className="relative z-10 text-right text-white flex flex-col items-end">
+                <div className="relative z-10 text-center md:text-right text-white 
+                                flex flex-col items-center md:items-end w-full md:w-auto px-4 md:px-0">
                     <img src={logo} alt="GANDOM Logo" className="w-[150px] md:w-[238px] lg:w-[501px] mb-4" />
                     <p className="text-[10px] md:text-sm lg:text-xl font-lexend">
                         Wholesome flavors, redefined.
