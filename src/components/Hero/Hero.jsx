@@ -29,7 +29,7 @@ const Hero = () => {
                 </div>
             </section>
 
-            <section className="w-full bg-[#FFF7EC] py-10 flex flex-col items-center">
+            <section className="w-full py-10 flex flex-col items-center">
 
                 <p className="font-lexend text-[20px] font-bold text-[#F5C242] text-center leading-relaxed max-w-[900px]">
                     Gandom provides healthy, high-protein, high-fiber meals rooted in tradition.
