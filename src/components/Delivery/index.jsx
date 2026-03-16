@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import Gandom from "../../assets/Images/1.Home Page/Gandom.png"
-import FoodoraLogo from "../../assets/Images/1.Home Page/Foodora Logo.png"; 
+import FoodoraLogo from "../../assets/Images/1.Home Page/Foodora Logo.png";
 
 
 const Delivery = () => {

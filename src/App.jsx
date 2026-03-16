@@ -23,6 +23,7 @@ import { Routes, Route } from "react-router-dom";
 import Pay from "./pages/Pay/PayPage";
 import HomeCard from "./components/HomeCard/Card.jsx";
 import ProductsPage from "./pages/ProductsPage/ProductsPage.jsx";
+import SubscribeSection from "./components/SubscribeSection/SubscribeSection.jsx";
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
                 <HealthySection />
                 <HomeEvents />
                 <GymHealthy />
+                <SubscribeSection />
                 <Delivery />
                 <AboutUsSection />
                 <HomeCard />
