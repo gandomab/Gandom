@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import Gandom from "../../assets/Images/1.Home Page/Gandom.png"
+import GandomLogo from "../../assets/Images/1.Home Page/Gandom Logo.png"
 import FoodoraLogo from "../../assets/Images/1.Home Page/Foodora Logo.png";
 
 
@@ -16,7 +16,7 @@ const Delivery = () => {
       <h1
         className="
           font-santa font-normal
-          text-[40px] sm:text-[48px] md:text-[56px] lg:text-[64px]
+          text-[28px] md:text-[60px] lg:text-[70px]
           leading-[150%] tracking-[-0.023em]
           text-primary mb-4 text-center whitespace-nowrap align-middle
         "
@@ -44,41 +44,49 @@ const Delivery = () => {
       </div>
 
       {/* Images */}
-      <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-8 sm:gap-10 lg:gap-12">
+      <div className="flex flex-row flex-wrap items-center justify-center gap-6 sm:gap-8 lg:gap-10">
 
-        <img
-          src={Gandom}
-          alt="Gandom"
-          className="
-            cursor-pointer hover:scale-105 transition-transform duration-300
-            rounded-[20px]
-            w-[200px] h-[200px]
-            sm:w-[220px] sm:h-[220px]
-            md:w-[230px] md:h-[230px]
-            lg:w-[243px] lg:h-[243px]
-            object-cover
-          "
-          onClick={() => navigate('/delivery/order')}
-        />
+        <div className="flex flex-col items-center gap-3">
+          <img
+            src={GandomLogo}
+            alt="Gandom Logo"
+            className="
+              cursor-pointer hover:scale-105 transition-transform duration-300
+              rounded-[10px]
+              w-[165px] h-[66px]
+              md:w-[340px] md:h-[136px]
+              lg:w-[501px] lg:h-[201px]
+              object-cover shadow-md
+            "
+            onClick={() => navigate('/delivery/order')}
+          />
+          <p className="font-inter font-medium text-[11px] md:text-[13px] lg:text-[16px]">
+            Place your Gandom order for 5+ dishes or catering <br /> starting at 10 dishes.
+          </p>
+        </div>
 
-        <img
-          src={FoodoraLogo}
-          alt="Foodora Logo"
-          className="
-            cursor-pointer hover:scale-105 transition-transform duration-300
-            rounded-[20px]
-            w-[200px] h-[200px]
-            sm:w-[220px] sm:h-[220px]
-            md:w-[230px] md:h-[230px]
-            lg:w-[243px] lg:h-[243px]
-            object-cover shadow-md
-          "
-          onClick={() =>
-            window.open('https://www.foodora.se/en/restaurant/cph5/gandom','_blank')
-     }
-    />
-    </div>
-  </section>
+        <div className="flex flex-col items-center gap-3">
+          <img
+            src={FoodoraLogo}
+            alt="Foodora Logo"
+            className="
+              cursor-pointer hover:scale-105 transition-transform duration-300
+              rounded-[10px]
+              w-[165px] h-[66px]
+              md:w-[340px] md:h-[136px]
+              lg:w-[501px] lg:h-[201px]
+              object-cover shadow-md
+            "
+            onClick={() =>
+              window.open('https://www.foodora.se/en/restaurant/cph5/gandom', '_blank')
+            }
+          />
+          <p className="font-inter font-medium text-[11px] md:text-[13px] lg:text-[16px]">
+            For single orders (under 5 items) <br /> please order via Foodora.
+          </p>
+        </div>
+      </div>
+    </section>
   );
 };
 export default Delivery;
