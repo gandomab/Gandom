@@ -44,9 +44,9 @@ const Delivery = () => {
       </div>
 
       {/* Images */}
-      <div className="flex flex-row flex-wrap items-center justify-center gap-6 sm:gap-8 lg:gap-10">
+      <div className="flex flex-row items-start justify-center gap-6 sm:gap-8 lg:gap-10 ">
 
-        <div className="flex flex-col items-center gap-3">
+        <div className="flex flex-col items-center gap-3 text-left w-full sm:w-auto">
           <img
             src={GandomLogo}
             alt="Gandom Logo"
@@ -60,12 +60,12 @@ const Delivery = () => {
             "
             onClick={() => navigate('/delivery/order')}
           />
-          <p className="font-inter font-medium text-[11px] md:text-[13px] lg:text-[16px]">
-            Place your Gandom order for 5+ dishes or catering <br /> starting at 10 dishes.
+          <p className="font-inter font-medium leading-[130%] text-center justify-center items-center text-[8px] sm:text-[11px] md:text-[13px] lg:text-[16px]">
+            Place your Gandom order for 5+ dishes or <br /> catering starting at 10 dishes.
           </p>
         </div>
 
-        <div className="flex flex-col items-center gap-3">
+        <div className="flex flex-col items-center gap-3 text-left w-full sm:w-auto">
           <img
             src={FoodoraLogo}
             alt="Foodora Logo"
@@ -81,7 +81,7 @@ const Delivery = () => {
               window.open('https://www.foodora.se/en/restaurant/cph5/gandom', '_blank')
             }
           />
-          <p className="font-inter font-medium text-[11px] md:text-[13px] lg:text-[16px]">
+          <p className="font-inter font-medium leading-[130%] text-center justify-center items-center text-[8px] sm:text-[11px] md:text-[13px] lg:text-[16px]">
             For single orders (under 5 items) <br /> please order via Foodora.
           </p>
         </div>
