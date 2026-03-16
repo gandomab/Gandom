@@ -1,5 +1,7 @@
 import React from "react";
-import coverImg from "../../assets/Images/1.Home Page/Cover1.png";
+import Cover1 from "../../assets/Images/1.Home Page/Cover1.png";
+import Covermob from "../../assets/Images/1.Home Page/Covermob.png";
+import Covertab from "../../assets/Images/1.Home Page/Covertab.png";
 import logo from "../../assets/Logo Gandom/Logo white.png";
 
 
@@ -13,8 +15,13 @@ const Hero = () => {
                             items-end md:items-center 
                             justify-end 
                             pb-2 md:pb-0 md:pr-16 
-                            top-4"
-                style={{ backgroundImage: `url(${coverImg})` }}
+                            top-4
+                            bg-[image:var(--bg-mobile)] md:bg-[image:var(--bg-tablet)] lg:bg-[image:var(--bg-desktop)]"
+                style={{
+                    '--bg-mobile': `url(${Covermob})`,
+                    '--bg-tablet': `url(${Covertab})`,
+                    '--bg-desktop': `url(${Cover1})`
+                }}
             >
 
                 <div className="absolute inset-0 bg-black/20" />
