@@ -10,7 +10,7 @@ const SubscribeSection = () => {
     // };
 
     return (
-        <section className="w-full flex h-[208px] md:h-[326px] lg:h-[532px] mt-16">
+        <section className="w-full flex h-[208px] md:h-[326px] lg:h-[463px] mt-16">
             <div className="relative w-full overflow-hidden">
 
                 {/* Background + Gradient */}
