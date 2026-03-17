@@ -18,7 +18,7 @@ const Delivery = () => {
           font-santa font-normal
           text-[28px] md:text-[60px] lg:text-[70px]
           leading-[150%] tracking-[-0.023em]
-          text-primary mb-4 text-center whitespace-nowrap align-middle
+          text-[#E6B220] mb-4 text-center whitespace-nowrap align-middle
         "
       >
         Order it Here
