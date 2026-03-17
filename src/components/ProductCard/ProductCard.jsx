@@ -26,12 +26,18 @@ const ProductCard = ({ productdish }) => {
 
                 {/* Right Column: Rating and View Button */}
                 <div className="flex flex-col items-end h-full justify-between gap-1">
-                    {/* Rating - using a hardcoded star for now, or use an icon library */}
+                    {/* Rating */}
                     <div className="flex items-center gap-2 text-lg font-bold">
-                        {/* <div className="text-[#FFC94B] mb-1 w-[36px] h-[16px] inline-flex items-center justify-center">★</div> */}
+                        {/* star rating container */}
                         <div className="mb-1 w-[36px] h-[16px] inline-flex items-center justify-center">
+                            {/* backround star */}
                             <div className="relative"><FaStar className="text-gray-300" />
-                                <div className="absolute top-0 left-0 overflow-hidden" style={{ width: `${fillPercentage}%` }}><FaStar className="text-[#FFC94B]" /></div>
+                                {/* fill star */}
+                                <div
+                                    className="absolute top-0 left-0 overflow-hidden"
+                                    style={{ width: `${fillPercentage}%` }}>
+                                    <FaStar className="text-[#FFC94B]" />
+                                </div>
                             </div>
                         </div>
                         <div className="font-inter font-semibold text-[16px] leading-[1.3]">{productdish.ratingnum}</div>
