@@ -72,7 +72,7 @@ const Cards = () => {
                 {reviews.map((review) => (
                     <article
                         key={review.id}
-                        className="px-10 py-12 flex flex-col justify-between w-[85vw] md:w-[450px] shrink-0 snap-center">
+                        className="px-10 py-12 flex flex-col justify-between w-[85vw] md:w-[450px] lg:w-[609px] shrink-0 snap-center">
                         {/* this is the div that contains the stars */}
                         <div>
                             <div className="flex gap-1 text-[16px] md:text-[20px] lg:text-[24px] text-[#FFC94B] justify-center mb-6">
@@ -88,16 +88,16 @@ const Cards = () => {
                                     }
                                 })}
                             </div>
-
-                            <div className="flex items-start gap-4">
-                                <span className="text-[44px] leading-none">“</span>
-                                <p className="text-[8px] md:text-[14px] lg:text-[24px] text-[#1E1E1E] font-medium leading-[1.7]">
+                            {/* this is the div that contains the review text */}
+                            <div className="relative flex items-start gap-4">
+                                <span className="absolute -top-3 -left-1 md:-top-5 md:-left-3 lg:-top-10 lg:-left-6 text-[25px] md:text-[68px] lg:text-[112px] leading-none font-merriweather font-normal text-[#1E1E1E]">“</span>
+                                <p className="text-[8px] py-2 md:py-4 lg:py-6 md:text-[14px] lg:text-[24px] text-[#1E1E1E] font-medium leading-[1.7]">
                                     {review.text}
                                 </p>
-                                <span className="text-[44px] leading-none">”</span>
+                                <span className="absolute -bottom-1 -right-1 md:-bottom-5 md:-right-3 lg:-bottom-10 lg:-right-6 text-[25px] md:text-[68px] lg:text-[112px] leading-none font-merriweather font-normal text-[#1E1E1E]">”</span>
                             </div>
                         </div>
-
+                        {/* this is the div that contains the author name */}
                         <p className="mt-10 text-center text-[8px] md:text-[14px] lg:text-[24px] text-[#1E1E1E] font-medium">
                             {review.author}
                         </p>

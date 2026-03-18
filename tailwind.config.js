@@ -11,13 +11,14 @@ export default {
         roboto: ['Roboto', 'sans-serif'],
         santa: ['Santa Catalina', 'cursive'],
         inter: ['Inter', 'sans-serif'],
+        merriweather: ['Merriweather', 'serif'],
       },
       colors: {
         // Primary colors
-        primary: "#E6B220",        
-        primaryHover: "#DEA401",   
-        secondary: "#6A8358",      
-        green: "#426B1F", 
+        primary: "#E6B220",
+        primaryHover: "#DEA401",
+        secondary: "#6A8358",
+        green: "#426B1F",
 
         // Accent colors
         accentYellow: "#FFC943",
@@ -33,7 +34,7 @@ export default {
         grayMedium: "#D9D9D9",
         grayDark: "#1E1E1E",
         grayBorder: "#E6E6E6",
-        beigebg: "#F7F3EB", 
+        beigebg: "#F7F3EB",
         orangeHome: "#E6B220",
 
         // Button colors
