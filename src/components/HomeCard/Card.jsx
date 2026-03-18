@@ -76,7 +76,7 @@ const Cards = () => {
                             </div>
                         </div>
                         {/* this is the div that contains the author name */}
-                        <p className="mt-10 text-center text-[8px] md:text-[14px] lg:text-[24px] text-[#1E1E1E] font-medium">
+                        <p className="mt-6 text-center text-[8px] md:text-[14px] lg:text-[24px] text-[#1E1E1E] font-medium">
                             {review.author}
                         </p>
                     </article>
