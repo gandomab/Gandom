@@ -1,32 +1,8 @@
 import React, { useRef, useState } from "react";
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
+import { reviews } from "../../data/customerreviewData";
 
-const reviews = [
-    {
-        id: 1,
-        stars: 5,
-        text: "Maten är fantastisk och det kommer att bli min nya favoriträtt",
-        author: "Gandoms customer",
-    },
-    {
-        id: 2,
-        stars: 4,
-        text: "The food arrived hot. Yogurt dishes are often good, and I thought it was pretty good with noodles. Also, being vegetarian is really important to me. Thanks.",
-        author: "Gandoms customer",
-    },
-    {
-        id: 3,
-        stars: 3.5,
-        text: "The food arrived hot. Yogurt dishes are often good, and I thought it was pretty good with noodles. Also, being vegetarian is really important to me. Thanks.",
-        author: "Gandoms customer",
-    },
-    {
-        id: 4,
-        stars: 4.5,
-        text: "The food arrived hot. Yogurt dishes are often good, and I thought it was pretty good with noodles. Also, being vegetarian is really important to me. Thanks.",
-        author: "Gandoms customer",
-    },
-];
+
 
 const Cards = () => {
     const scrollRef = useRef(null);
@@ -65,14 +41,14 @@ const Cards = () => {
             <div
                 ref={scrollRef}
                 onScroll={handleScroll}
-                className="w-full max-w-6xl flex overflow-x-auto gap-4 md:gap-10 px-6 pb-8 snap-x snap-mandatory hide-scrollbar"
+                className="w-full max-w-6xl flex overflow-x-auto gap-4 md:gap-10 px-6 pb-2 snap-x snap-mandatory hide-scrollbar"
                 style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             >
                 {/* this is the map function that maps through the reviews array and returns a card for each review */}
                 {reviews.map((review) => (
                     <article
                         key={review.id}
-                        className="px-10 py-12 flex flex-col justify-between w-[85vw] md:w-[450px] lg:w-[609px] shrink-0 snap-center">
+                        className="px-10 py-10 flex flex-col justify-between w-[85vw] md:w-[450px] lg:w-[609px] shrink-0 snap-center">
                         {/* this is the div that contains the stars */}
                         <div>
                             <div className="flex gap-1 text-[16px] md:text-[20px] lg:text-[24px] text-[#FFC94B] justify-center mb-6">
@@ -90,11 +66,13 @@ const Cards = () => {
                             </div>
                             {/* this is the div that contains the review text */}
                             <div className="relative flex items-start gap-4">
-                                <span className="absolute -top-3 -left-1 md:-top-5 md:-left-3 lg:-top-10 lg:-left-6 text-[25px] md:text-[68px] lg:text-[112px] leading-none font-merriweather font-normal text-[#1E1E1E]">“</span>
+                                <span className="absolute -top-3 -left-1 md:-top-5 md:-left-3 lg:-top-10 lg:-left-6 
+                                        text-[25px] md:text-[68px] lg:text-[112px] leading-none font-merriweather font-normal text-[#1E1E1E]">“</span>
                                 <p className="text-[8px] py-2 md:py-4 lg:py-6 md:text-[14px] lg:text-[24px] text-[#1E1E1E] font-medium leading-[1.7]">
                                     {review.text}
                                 </p>
-                                <span className="absolute -bottom-1 -right-1 md:-bottom-5 md:-right-3 lg:-bottom-10 lg:-right-6 text-[25px] md:text-[68px] lg:text-[112px] leading-none font-merriweather font-normal text-[#1E1E1E]">”</span>
+                                <span className="absolute -bottom-1 -right-1 md:-bottom-5 md:-right-3 lg:-bottom-10 lg:-right-6 
+                                        text-[25px] md:text-[68px] lg:text-[112px] leading-none font-merriweather font-normal text-[#1E1E1E]">”</span>
                             </div>
                         </div>
                         {/* this is the div that contains the author name */}
@@ -106,7 +84,7 @@ const Cards = () => {
             </div>
 
             {/* Pagination Dots */}
-            <div className="flex justify-center items-center gap-3 mt-4">
+            <div className="flex justify-center items-center gap-3 mt-2">
                 {reviews.map((_, index) => (
                     <button
                         key={index}
