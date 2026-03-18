@@ -53,27 +53,30 @@ const Cards = () => {
     return (
         <section className="w-full py-20 flex flex-col items-center">
 
-            <h2 className="font-santa font-normal text-[#E6B220] mb-16 text-center
-            text-[24px] md:text-[60px] lg:text-[70px]
+            <h1 className="font-santa font-normal
+                text-[28px] md:text-[60px] lg:text-[70px]
+                leading-[150%] tracking-[-0.023em]
+                text-[#E6B220] mb-4 text-center whitespace-nowrap align-middle
             ">
                 What our Customers say
-            </h2>
+            </h1>
 
-
+            {/* this is the scrollable container for the cards */}
             <div
                 ref={scrollRef}
                 onScroll={handleScroll}
-                className="w-full max-w-6xl flex overflow-x-auto gap-6 md:gap-10 px-6 pb-8 snap-x snap-mandatory hide-scrollbar"
+                className="w-full max-w-6xl flex overflow-x-auto gap-4 md:gap-10 px-6 pb-8 snap-x snap-mandatory hide-scrollbar"
                 style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             >
-
+                {/* this is the map function that maps through the reviews array and returns a card for each review */}
                 {reviews.map((review) => (
                     <article
                         key={review.id}
-                        className="bg-white rounded-[30px] shadow-md px-10 py-12 flex flex-col justify-between w-[85vw] md:w-[450px] shrink-0 snap-center">
-
+                        className="px-10 py-12 flex flex-col justify-between w-[85vw] md:w-[450px] shrink-0 snap-center">
+                        {/* this is the div that contains the stars */}
                         <div>
-                            <div className="flex gap-1 text-[26px] text-[#FFC94B] justify-center mb-6">
+                            <div className="flex gap-1 text-[16px] md:text-[20px] lg:text-[24px] text-[#FFC94B] justify-center mb-6">
+                                {/* this is the map function that maps through the stars array and returns a star for each star */}
                                 {[...Array(5)].map((_, i) => {
                                     const starValue = i + 1;
                                     if (review.stars >= starValue) {
@@ -86,17 +89,16 @@ const Cards = () => {
                                 })}
                             </div>
 
-
                             <div className="flex items-start gap-4">
                                 <span className="text-[44px] leading-none">“</span>
-                                <p className="text-[17px] text-[#333] font-medium leading-[1.7]">
+                                <p className="text-[8px] md:text-[14px] lg:text-[24px] text-[#1E1E1E] font-medium leading-[1.7]">
                                     {review.text}
                                 </p>
                                 <span className="text-[44px] leading-none">”</span>
                             </div>
                         </div>
 
-                        <p className="mt-10 text-center text-[15px] text-[#444] font-medium">
+                        <p className="mt-10 text-center text-[8px] md:text-[14px] lg:text-[24px] text-[#1E1E1E] font-medium">
                             {review.author}
                         </p>
                     </article>
@@ -110,7 +112,7 @@ const Cards = () => {
                         key={index}
                         onClick={() => scrollTo(index)}
                         className={`transition-all duration-300 rounded-full ${activeIndex === index
-                            ? "w-3 h-3 bg-[#E6B220]"
+                            ? "w-3 h-3 bg-gray-500"
                             : "w-3 h-3 bg-gray-300"
                             }`}
                     />
