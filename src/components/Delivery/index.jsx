@@ -10,7 +10,7 @@ const Delivery = () => {
     "https://l.instagram.com/?u=https%3A%2F%2Fwww.foodora.se%2Fen%2Frestaurant%2Fcph5%2Fgandom%3Futm_source%3Dig%26utm_medium%3Dsocial%26utm_content%3Dlink_in_bio";
 
   return (
-    <section className="w-full py-20 flex flex-col items-center px-4">
+    <section className="w-full py-10 md:py-20 flex flex-col items-center px-4">
 
       {/* Heading */}
       <h1
