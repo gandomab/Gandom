@@ -3,6 +3,8 @@ import background from "../../assets/Images/6.Footer/Slide9.png";
 import { FaSquareInstagram } from "react-icons/fa6";
 import { FaFacebookSquare } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa6";
+import { FiPhoneForwarded } from "react-icons/fi";
+import { BsEnvelope } from "react-icons/bs";
 
 const Footer = () => {
   return (
@@ -57,25 +59,40 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Instagram */}
-          <div className="lg:mt-[141px]">
-            <h3 className="font-inter font-bold text-[18px] md:text-[20px] lg:text-[24px] mb-3 whitespace-nowrap">
-              Follow Us On Instagram
-            </h3>
-            <div className="flex flex-col">
+          {/* Social Media & Contact Us */}
+          <div className="space-y-5 md:space-y-8 lg:space-y-10">
+            <div className="flex flex-col lg:mt-[141px]">
+              <h3 className="font-inter font-bold text-[18px] md:text-[20px] lg:text-[24px] mb-3 whitespace-nowrap">
+                Follow Us On..
+              </h3>
               <div className="flex items-center gap-2">
-                <FaSquareInstagram className="w-[24px] h-[24px] md:w-[25px] md:h-[25px] lg:w-[30px] lg:h-[30px]" />
+                <FaSquareInstagram className="w-[20px] h-[20px] md:w-[25px] md:h-[25px] lg:w-[30px] lg:h-[30px]" />
                 <p className="text-[8px] md:text-[10px] lg:text-[19px]">Instagram</p>
               </div>
               <div className="flex items-center gap-2">
-                <FaFacebookSquare className="w-[24px] h-[24px] md:w-[25px] md:h-[25px] lg:w-[30px] lg:h-[30px]" />
+                <FaFacebookSquare className="w-[20px] h-[20px] md:w-[25px] md:h-[25px] lg:w-[30px] lg:h-[30px]" />
                 <p className="text-[8px] md:text-[10px] lg:text-[19px]">Facebook</p>
               </div>
               <div className="flex items-center gap-2">
-                <FaLinkedin className="w-[24px] h-[24px] md:w-[25px] md:h-[25px] lg:w-[30px] lg:h-[30px]" />
+                <FaLinkedin className="w-[20px] h-[20px] md:w-[25px] md:h-[25px] lg:w-[30px] lg:h-[30px]" />
                 <p className="text-[8px] md:text-[10px] lg:text-[19px]">Linkedin</p>
               </div>
             </div>
+
+            <div className="flex flex-col">
+              <h3 className="font-inter font-bold text-[18px] md:text-[20px] lg:text-[24px] mb-3 whitespace-nowrap">
+                Contact Us on..
+              </h3>
+              <div className="flex items-center gap-2">
+                <FiPhoneForwarded className="w-[20px] h-[20px] md:w-[25px] md:h-[25px] lg:w-[30px] lg:h-[30px]" />
+                <p className="text-[8px] md:text-[10px] lg:text-[19px]">: 0703382691 </p>
+              </div>
+              <div className="flex items-center gap-2">
+                <BsEnvelope className="w-[20px] h-[20px] md:w-[25px] md:h-[25px] lg:w-[30px] lg:h-[30px]" />
+                <p className="text-[8px] md:text-[10px] lg:text-[19px]">customer@gandom.se</p>
+              </div>
+            </div>
+
           </div>
 
         </div>
