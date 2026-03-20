@@ -30,24 +30,20 @@ const Footer = () => {
             />
             <div className="w-full md:w-[249px] lg:w-[326px] h-auto grid grid-cols-2 md:grid-cols-1 gap-4 md:gap-0">
               <div className="md:mb-4">
-                <h3 className="font-inter font-bold leading-[150%] tracking-[-1.1%] text-[8px] md:text-[13px] lg:text-[14px] whitespace-nowrap">We Are xxxxxxxx</h3>
+                <h3 className="font-inter font-bold leading-[150%] tracking-[-1.1%] text-[8px] md:text-[13px] lg:text-[14px] whitespace-nowrap">We Are Gandom</h3>
                 <div className="text-inter font-normal leading-[150%] tracking-[-1.9%] text-[8px] md:text-[13px] lg:text-[14px] break-words">
-                  <p>xxxxxxxxxxxxxxxxxxxxxxxxxx
-                    xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-                    xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.</p>
-                  <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-                    xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-                    xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.</p>
+                  <p>We make homemade, naturally protein, and special dishes using 100% organic and completely fresh ingredients.</p>
+                  <p>Each recipe is crafted with care to bring you healthy, authentic flavors from around the world, a true balance of tradition and joy in every bite.</p>
                 </div>
               </div>
 
               <div>
-                <h3 className="font-inter font-bold leading-[150%] tracking-[-1.1%] text-[8px] md:text-[13px] lg:text-[14px] whitespace-nowrap">xxxxxxxx AB</h3>
+                <h3 className="font-inter font-bold leading-[150%] tracking-[-1.1%] text-[8px] md:text-[13px] lg:text-[14px] whitespace-nowrap">Gandom AB</h3>
                 <p className="text-inter font-normal leading-[150%] tracking-[-1.9%] text-[8px] md:text-[13px] lg:text-[14px] break-words">
-                  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-                  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-                  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-                  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+                  Org. nr: 559430-0781 VAT & F-skatt registered
+                  Registered with Stockholm Stad and Livsmedelsverket
+                  GS1 certified for barcode registration
+                  Based in Stockholm, Sweden
                 </p>
               </div>
             </div>
