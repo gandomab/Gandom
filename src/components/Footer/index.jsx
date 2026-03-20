@@ -28,23 +28,23 @@ const Footer = () => {
               alt="Gandom Logo"
               className="w-[84px] md:w-[165px] lg:w-[309px] object-contain"
             />
-            <div className="lg:w-[326px] lg:h-[332px]">
+            <div className="w-[162px] md:w-[249px] lg:w-[326px] h-auto ">
               <h3 className="font-inter font-bold leading-[150%] tracking-[-1.1%] text-[8px] md:text-[13px] lg:text-[14px] whitespace-nowrap">We Are Gandom</h3>
-              <p className="text-inter font-normal leading-[150%] tracking-[-1.9%] text-[8px] md:text-[13px] lg:text-[14px]">
-                We make homemade, naturally protein, and special<br />
-                dishes using 100% organic and completely fresh<br />
-                ingredients.<br />
-                Each recipe is crafted with care to bring you healthy,<br />
-                authentic flavors from around the world, a true<br />
-                balance of tradition and joy in every bite.
-              </p>
+              <div className="text-inter font-normal leading-[150%] tracking-[-1.9%] text-[8px] md:text-[13px] lg:text-[14px] break-words">
+                <p>We make homemade, naturally protein, and special
+                  dishes using 100% organic and completely fresh
+                  ingredients.</p>
+                <p>Each recipe is crafted with care to bring you healthy,
+                  authentic flavors from around the world, a true
+                  balance of tradition and joy in every bite.</p>
+              </div>
               <br />
               <h3 className="font-inter font-bold leading-[150%] tracking-[-1.1%] text-[8px] md:text-[13px] lg:text-[14px] whitespace-nowrap">Gandom AB</h3>
-              <p className="text-inter font-normal leading-[150%] tracking-[-1.9%] text-[8px] md:text-[13px] lg:text-[14px]">
-                Org. nr: 559430-0781 VAT & F-skatt registered<br />
-                Registered with Stockholm Stad and<br />
-                Livsmedelsverket<br />
-                GS1 certified for barcode registration<br />
+              <p className="text-inter font-normal leading-[150%] tracking-[-1.9%] text-[8px] md:text-[13px] lg:text-[14px] break-words">
+                Org. nr: 559430-0781 VAT & F-skatt registered
+                Registered with Stockholm Stad and
+                Livsmedelsverket
+                GS1 certified for barcode registration
                 Based in Stockholm, Sweden
               </p>
             </div>
@@ -66,7 +66,7 @@ const Footer = () => {
           </div>
 
           {/* Utility Pages */}
-          <div className="space-y-1 lg:mt-[141px]">
+          <div className="space-y-1 lg:mt-[141px] ">
             <h3 className="font-inter font-bold text-[18px] md:text-[20px] lg:text-[24px] whitespace-nowrap">
               Utility Pages
             </h3>
