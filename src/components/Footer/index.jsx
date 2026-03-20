@@ -16,7 +16,7 @@ const Footer = () => {
         {/* Responsive wrapper */}
         <div className="
           grid grid-cols-3 
-          md:grid-cols-[auto_1fr_1fr_1fr] 
+          md:grid-cols-[auto_1fr_1fr_auto] 
           items-start justify-between 
           gap-y-10 lg:gap-y-0 gap-x-2 md:gap-x-4 lg:gap-x-8
         ">
@@ -107,13 +107,13 @@ const Footer = () => {
               <h3 className="font-inter font-bold text-[8px] md:text-[13px] lg:text-[14px] mb-3 whitespace-nowrap">
                 Contact Us on..
               </h3>
-              <div className="flex items-center gap-2">
-                <FiPhoneForwarded className="w-[12px] h-[12px] md:w-[24px] md:h-[24px] lg:w-[30px] lg:h-[30px]" />
-                <p className="text-[8px] md:text-[13px] lg:text-[14px]">:  xxxxxxxxxxxxx </p>
+              <div className="flex flex-row items-center gap-2">
+                <FiPhoneForwarded className="flex-shrink-0 w-[12px] h-[12px] md:w-[24px] md:h-[24px] lg:w-[30px] lg:h-[30px]" />
+                <p className="whitespace-nowrap text-[8px] md:text-[13px] lg:text-[14px]">:  xxxxxxxxxxxxx </p>
               </div>
-              <div className="flex items-center gap-2">
-                <BsEnvelope className="w-[12px] h-[12px] md:w-[24px] md:h-[24px] lg:w-[30px] lg:h-[30px]" />
-                <p className="text-[8px] md:text-[13px] lg:text-[14px]">:  xxxxxxxx@xxxxx.se</p>
+              <div className="flex flex-row items-center gap-2">
+                <BsEnvelope className="flex-shrink-0 w-[12px] h-[12px] md:w-[24px] md:h-[24px] lg:w-[30px] lg:h-[30px]" />
+                <p className="whitespace-nowrap text-[8px] md:text-[13px] lg:text-[14px]">:  xxxxxxxx@xxxxx.se</p>
               </div>
             </div>
           </div>
