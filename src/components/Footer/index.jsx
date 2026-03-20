@@ -54,10 +54,10 @@ const Footer = () => {
 
           {/* Pages */}
           <div className="space-y-2 md:mt-[100px] lg:mt-[141px] ">
-            <h3 className="font-inter font-bold leading-[150%] tracking-[-1.9%] text-[8px] md:text-[13px] lg:text-[14px] whitespace-nowrap">
+            <h3 className="font-inter font-bold leading-[150%] tracking-[-1.9%] text-[8px] md:text-[13px] lg:text-[21px] whitespace-nowrap">
               Pages
             </h3>
-            <ul className="space-y-1 font-inter font-normal leading-[150%] tracking-[-1.9%] text-[8px] md:text-[13px] lg:text-[14px]">
+            <ul className="space-y-1 font-inter font-normal leading-[150%] tracking-[-1.9%] text-[8px] md:text-[13px] lg:text-[20px]">
               <li><a href="#">Home</a></li>
               <li><a href="#">Dishes</a></li>
               <li><a href="#">About Us</a></li>
@@ -69,10 +69,10 @@ const Footer = () => {
 
           {/* Utility Pages */}
           <div className="space-y-1 md:mt-[100px] lg:mt-[141px] ">
-            <h3 className="font-inter font-bold text-[8px] md:text-[13px] lg:text-[14px] whitespace-nowrap">
+            <h3 className="font-inter font-bold text-[8px] md:text-[13px] lg:text-[21px] whitespace-nowrap">
               Utility Pages
             </h3>
-            <ul className="space-y-1 font-inter font-normal leading-[150%] tracking-[-1.9%] text-[8px] md:text-[13px] lg:text-[14px]">
+            <ul className="space-y-1 font-inter font-normal leading-[150%] tracking-[-1.9%] text-[8px] md:text-[13px] lg:text-[20px]">
               <li><a href="#">Pay</a></li>
               <li><a href="#">Your Cart</a></li>
               <li><a href="#">Login</a></li>
@@ -84,36 +84,36 @@ const Footer = () => {
           {/* Social Media & Contact Us */}
           <div className="space-y-5 md:space-y-8 lg:space-y-10 md:mt-[100px] lg:mt-[141px]">
             <div className="flex flex-col">
-              <h3 className="font-inter font-bold text-[8px] md:text-[13px] lg:text-[14px] mb-3 whitespace-nowrap">
+              <h3 className="font-inter font-bold text-[8px] md:text-[13px] lg:text-[24px] mb-3 whitespace-nowrap">
                 Follow Us On..
               </h3>
               <div className="flex flex-row md:flex-col gap-2 md:gap-1">
                 <div className="flex items-center gap-2">
-                  <FaSquareInstagram className="w-[20px] h-[20px] md:w-[25px] md:h-[25px] lg:w-[30px] lg:h-[30px]" />
-                  <p className="hidden md:block md:text-[13px] lg:text-[14px]">Instagram</p>
+                  <FaSquareInstagram className="w-[20px] h-[20px] md:w-[25px] md:h-[25px] lg:w-[33px] lg:h-[33px]" />
+                  <p className="hidden md:block md:text-[13px] lg:text-[20px]">Instagram</p>
                 </div>
                 <div className="flex items-center gap-2">
-                  <FaFacebookSquare className="w-[20px] h-[20px] md:w-[25px] md:h-[25px] lg:w-[30px] lg:h-[30px]" />
-                  <p className="hidden md:block md:text-[13px] lg:text-[14px]">Facebook</p>
+                  <FaFacebookSquare className="w-[20px] h-[20px] md:w-[25px] md:h-[25px] lg:w-[33px] lg:h-[33px]" />
+                  <p className="hidden md:block md:text-[13px] lg:text-[20px]">Facebook</p>
                 </div>
                 <div className="flex items-center gap-2">
-                  <FaLinkedin className="w-[20px] h-[20px] md:w-[25px] md:h-[25px] lg:w-[30px] lg:h-[30px]" />
-                  <p className="hidden md:block md:text-[13px] lg:text-[14px]">Linkedin</p>
+                  <FaLinkedin className="w-[20px] h-[20px] md:w-[25px] md:h-[25px] lg:w-[33px] lg:h-[33px]" />
+                  <p className="hidden md:block md:text-[13px] lg:text-[20px]">Linkedin</p>
                 </div>
               </div>
             </div>
 
             <div className="flex flex-col">
-              <h3 className="font-inter font-bold text-[8px] md:text-[13px] lg:text-[14px] mb-3 whitespace-nowrap">
+              <h3 className="font-inter font-bold text-[8px] md:text-[13px] lg:text-[24px] mb-3 whitespace-nowrap">
                 Contact Us on..
               </h3>
               <div className="flex flex-row items-center gap-2">
                 <FiPhoneForwarded className="flex-shrink-0 w-[12px] h-[12px] md:w-[24px] md:h-[24px] lg:w-[30px] lg:h-[30px]" />
-                <p className="whitespace-nowrap text-[8px] md:text-[13px] lg:text-[14px]">:  xxxxxxxxxxxxx </p>
+                <p className="whitespace-nowrap text-[8px] md:text-[13px] lg:text-[20px]">:  xxxxxxxxxxxxx </p>
               </div>
               <div className="flex flex-row items-center gap-2">
                 <BsEnvelope className="flex-shrink-0 w-[12px] h-[12px] md:w-[24px] md:h-[24px] lg:w-[30px] lg:h-[30px]" />
-                <p className="whitespace-nowrap text-[8px] md:text-[13px] lg:text-[14px]">:  xxxxxxxx@xxxxx.se</p>
+                <p className="whitespace-nowrap text-[8px] md:text-[13px] lg:text-[20px]">:  xxxxxxxx@xxxxx.se</p>
               </div>
             </div>
           </div>
