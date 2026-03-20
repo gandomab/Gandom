@@ -16,7 +16,7 @@ const Footer = () => {
         {/* Responsive wrapper */}
         <div className="
           grid grid-cols-3 
-          md:grid-cols-4 
+          md:grid-cols-[auto_1fr_1fr_1fr] 
           items-start justify-between 
           gap-y-10 lg:gap-y-0 gap-x-2 md:gap-x-4 lg:gap-x-8
         ">
@@ -29,25 +29,24 @@ const Footer = () => {
             />
             <div className="w-full md:w-[249px] lg:w-[326px] h-auto grid grid-cols-2 md:grid-cols-1 gap-4 md:gap-0">
               <div className="md:mb-4">
-                <h3 className="font-inter font-bold leading-[150%] tracking-[-1.1%] text-[8px] md:text-[13px] lg:text-[14px] whitespace-nowrap">We Are Gandom</h3>
+                <h3 className="font-inter font-bold leading-[150%] tracking-[-1.1%] text-[8px] md:text-[13px] lg:text-[14px] whitespace-nowrap">We Are xxxxxxxx</h3>
                 <div className="text-inter font-normal leading-[150%] tracking-[-1.9%] text-[8px] md:text-[13px] lg:text-[14px] break-words">
-                  <p>We make homemade, naturally protein, and special
-                    dishes using 100% organic and completely fresh
-                    ingredients.</p>
-                  <p>Each recipe is crafted with care to bring you healthy,
-                    authentic flavors from around the world, a true
-                    balance of tradition and joy in every bite.</p>
+                  <p>xxxxxxxxxxxxxxxxxxxxxxxxxx
+                    xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+                    xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.</p>
+                  <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+                    xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+                    xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.</p>
                 </div>
               </div>
 
               <div>
-                <h3 className="font-inter font-bold leading-[150%] tracking-[-1.1%] text-[8px] md:text-[13px] lg:text-[14px] whitespace-nowrap">Gandom AB</h3>
+                <h3 className="font-inter font-bold leading-[150%] tracking-[-1.1%] text-[8px] md:text-[13px] lg:text-[14px] whitespace-nowrap">xxxxxxxx AB</h3>
                 <p className="text-inter font-normal leading-[150%] tracking-[-1.9%] text-[8px] md:text-[13px] lg:text-[14px] break-words">
-                  Org. nr: 559430-0781 VAT & F-skatt registered
-                  Registered with Stockholm Stad and
-                  Livsmedelsverket
-                  GS1 certified for barcode registration
-                  Based in Stockholm, Sweden
+                  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+                  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+                  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+                  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
                 </p>
               </div>
             </div>
@@ -88,17 +87,19 @@ const Footer = () => {
               <h3 className="font-inter font-bold text-[8px] md:text-[13px] lg:text-[14px] mb-3 whitespace-nowrap">
                 Follow Us On..
               </h3>
-              <div className="flex items-center gap-2">
-                <FaSquareInstagram className="w-[20px] h-[20px] md:w-[25px] md:h-[25px] lg:w-[30px] lg:h-[30px]" />
-                <p className="text-[8px] md:text-[13px] lg:text-[14px]">Instagram</p>
-              </div>
-              <div className="flex items-center gap-2">
-                <FaFacebookSquare className="w-[20px] h-[20px] md:w-[25px] md:h-[25px] lg:w-[30px] lg:h-[30px]" />
-                <p className="text-[8px] md:text-[13px] lg:text-[14px]">Facebook</p>
-              </div>
-              <div className="flex items-center gap-2">
-                <FaLinkedin className="w-[20px] h-[20px] md:w-[25px] md:h-[25px] lg:w-[30px] lg:h-[30px]" />
-                <p className="text-[8px] md:text-[13px] lg:text-[14px]">Linkedin</p>
+              <div className="flex flex-row md:flex-col gap-2 md:gap-1">
+                <div className="flex items-center gap-2">
+                  <FaSquareInstagram className="w-[20px] h-[20px] md:w-[25px] md:h-[25px] lg:w-[30px] lg:h-[30px]" />
+                  <p className="hidden md:block md:text-[13px] lg:text-[14px]">Instagram</p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <FaFacebookSquare className="w-[20px] h-[20px] md:w-[25px] md:h-[25px] lg:w-[30px] lg:h-[30px]" />
+                  <p className="hidden md:block md:text-[13px] lg:text-[14px]">Facebook</p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <FaLinkedin className="w-[20px] h-[20px] md:w-[25px] md:h-[25px] lg:w-[30px] lg:h-[30px]" />
+                  <p className="hidden md:block md:text-[13px] lg:text-[14px]">Linkedin</p>
+                </div>
               </div>
             </div>
 
@@ -108,14 +109,13 @@ const Footer = () => {
               </h3>
               <div className="flex items-center gap-2">
                 <FiPhoneForwarded className="w-[12px] h-[12px] md:w-[24px] md:h-[24px] lg:w-[30px] lg:h-[30px]" />
-                <p className="text-[8px] md:text-[13px] lg:text-[14px]">:  0703382691 </p>
+                <p className="text-[8px] md:text-[13px] lg:text-[14px]">:  xxxxxxxxxxxxx </p>
               </div>
               <div className="flex items-center gap-2">
                 <BsEnvelope className="w-[12px] h-[12px] md:w-[24px] md:h-[24px] lg:w-[30px] lg:h-[30px]" />
-                <p className="text-[8px] md:text-[13px] lg:text-[14px]">:  customer@gandom.se</p>
+                <p className="text-[8px] md:text-[13px] lg:text-[14px]">:  xxxxxxxx@xxxxx.se</p>
               </div>
             </div>
-
           </div>
 
         </div>
