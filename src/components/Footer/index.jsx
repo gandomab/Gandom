@@ -9,19 +9,20 @@ import { BsEnvelope } from "react-icons/bs";
 const Footer = () => {
   return (
     <footer
-      className="relative w-full bg-cover bg-center bg-no-repeat text-[#F2EDE0] pt-12 pb-4 md:pt-16 md:pb-4 "
+      className="relative w-full bg-cover bg-center bg-no-repeat text-[#F2EDE0] pt-12 pb-4 md:pt-14 md:pb-4 "
       style={{ backgroundImage: `url(${background})` }}
     >
-      <div className="max-w-[1440px] mx-auto px-4 md:px-8 lg:px-20 ">
+      <div className="px-4 md:px-8 lg:px-40 ">
         {/* Responsive wrapper */}
         <div className="
           grid grid-cols-3 
           md:grid-cols-[auto_1fr_1fr_auto] 
+          lg:grid-cols-[1fr_1fr_1fr_1fr] 
           items-start justify-between 
-          gap-y-10 lg:gap-y-0 gap-x-2 md:gap-x-4 lg:gap-x-8
+          gap-y-6 gap-x-2 md:gap-x-4 lg:gap-x-14
         ">
           {/* Logo */}
-          <div className="col-span-3 md:col-span-1 space-y-10 flex-shrink-0 lg:mt-[87px]">
+          <div className="col-span-3 md:col-span-1 space-y-10 flex-shrink-0 lg:pt-[87px]">
             <img
               src={logowhitegandom}
               alt="Gandom Logo"
@@ -53,7 +54,7 @@ const Footer = () => {
           </div>
 
           {/* Pages */}
-          <div className="space-y-2 md:mt-[100px] lg:mt-[141px]">
+          <div className="space-y-2 md:mt-[100px] lg:mt-[141px] lg:pl-12">
             <h3 className="font-inter font-bold leading-[150%] tracking-[-1.9%] text-[8px] md:text-[13px] lg:text-[24px] whitespace-nowrap">
               Pages
             </h3>
@@ -107,13 +108,15 @@ const Footer = () => {
               <h3 className="font-inter font-bold leading-[150%] tracking-[-1.9%] text-[8px] md:text-[13px] lg:text-[24px] mb-3 whitespace-nowrap">
                 Contact Us on..
               </h3>
-              <div className="flex flex-row items-center gap-2">
-                <FiPhoneForwarded className="flex-shrink-0 w-[12px] h-[12px] md:w-[24px] md:h-[24px] lg:w-[30px] lg:h-[30px]" />
-                <p className="whitespace-nowrap text-[8px] md:text-[13px] lg:text-[20px]">:  xxxxxxxxxxxxx </p>
-              </div>
-              <div className="flex flex-row items-center gap-2">
-                <BsEnvelope className="flex-shrink-0 w-[12px] h-[12px] md:w-[24px] md:h-[24px] lg:w-[30px] lg:h-[30px]" />
-                <p className="whitespace-nowrap text-[8px] md:text-[13px] lg:text-[20px]">:  xxxxxxxx@xxxxx.se</p>
+              <div className="space-y-2">
+                <div className="flex flex-row items-center gap-2">
+                  <FiPhoneForwarded className="flex-shrink-0 w-[12px] h-[12px] md:w-[24px] md:h-[24px] lg:w-[30px] lg:h-[30px]" />
+                  <p className="whitespace-nowrap text-[8px] md:text-[13px] lg:text-[20px]">:  xxxxxxxxxxxxx </p>
+                </div>
+                <div className="flex flex-row items-center gap-2">
+                  <BsEnvelope className="flex-shrink-0 w-[12px] h-[12px] md:w-[24px] md:h-[24px] lg:w-[30px] lg:h-[30px]" />
+                  <p className="whitespace-nowrap text-[8px] md:text-[13px] lg:text-[20px]">:  xxxxxxxx@xxxxx.se</p>
+                </div>
               </div>
             </div>
           </div>
