@@ -22,12 +22,32 @@ const Footer = () => {
         ">
 
           {/* Logo */}
-          <div className="flex-shrink-0 lg:mt-[87px]">
+          <div className="space-y-10 flex-shrink-0 lg:mt-[87px]">
             <img
               src={logowhitegandom}
               alt="Gandom Logo"
               className="w-[84px] md:w-[165px] lg:w-[309px] object-contain"
             />
+            <div className="lg:w-[326px] lg:h-[332px]">
+              <h3 className="font-inter font-bold leading-[150%] tracking-[-1.1%] text-[8px] md:text-[13px] lg:text-[14px] whitespace-nowrap">We Are Gandom</h3>
+              <p className="text-inter font-normal leading-[150%] tracking-[-1.9%] text-[8px] md:text-[13px] lg:text-[14px]">
+                We make homemade, naturally protein, and special<br />
+                dishes using 100% organic and completely fresh<br />
+                ingredients.<br />
+                Each recipe is crafted with care to bring you healthy,<br />
+                authentic flavors from around the world, a true<br />
+                balance of tradition and joy in every bite.
+              </p>
+              <br />
+              <h3 className="font-inter font-bold leading-[150%] tracking-[-1.1%] text-[8px] md:text-[13px] lg:text-[14px] whitespace-nowrap">Gandom AB</h3>
+              <p className="text-inter font-normal leading-[150%] tracking-[-1.9%] text-[8px] md:text-[13px] lg:text-[14px]">
+                Org. nr: 559430-0781 VAT & F-skatt registered<br />
+                Registered with Stockholm Stad and<br />
+                Livsmedelsverket<br />
+                GS1 certified for barcode registration<br />
+                Based in Stockholm, Sweden
+              </p>
+            </div>
           </div>
 
           {/* Pages */}
@@ -85,11 +105,11 @@ const Footer = () => {
               </h3>
               <div className="flex items-center gap-2">
                 <FiPhoneForwarded className="w-[20px] h-[20px] md:w-[25px] md:h-[25px] lg:w-[30px] lg:h-[30px]" />
-                <p className="text-[8px] md:text-[10px] lg:text-[19px]">: 0703382691 </p>
+                <p className="text-[8px] md:text-[10px] lg:text-[19px]">:  0703382691 </p>
               </div>
               <div className="flex items-center gap-2">
                 <BsEnvelope className="w-[20px] h-[20px] md:w-[25px] md:h-[25px] lg:w-[30px] lg:h-[30px]" />
-                <p className="text-[8px] md:text-[10px] lg:text-[19px]">customer@gandom.se</p>
+                <p className="text-[8px] md:text-[10px] lg:text-[19px]">:  customer@gandom.se</p>
               </div>
             </div>
 
