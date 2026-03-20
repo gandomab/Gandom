@@ -9,10 +9,10 @@ import { BsEnvelope } from "react-icons/bs";
 const Footer = () => {
   return (
     <footer
-      className="relative w-full bg-cover bg-center bg-no-repeat text-[#F2EDE0] py-12 md:py-16"
+      className="relative w-full bg-cover bg-center bg-no-repeat text-[#F2EDE0] pt-12 pb-4 md:pt-16 md:pb-4 "
       style={{ backgroundImage: `url(${background})` }}
     >
-      <div className="max-w-[1440px] mx-auto px-4 md:px-8 lg:px-20">
+      <div className="max-w-[1440px] mx-auto px-4 md:px-8 lg:px-20 ">
         {/* Responsive wrapper */}
         <div className="
           grid grid-cols-3 
@@ -53,7 +53,7 @@ const Footer = () => {
           </div>
 
           {/* Pages */}
-          <div className="space-y-2 md:mt-[100px] lg:mt-[141px] ">
+          <div className="space-y-2 md:mt-[100px] lg:mt-[141px]">
             <h3 className="font-inter font-bold leading-[150%] tracking-[-1.9%] text-[8px] md:text-[13px] lg:text-[21px] whitespace-nowrap">
               Pages
             </h3>
@@ -68,7 +68,7 @@ const Footer = () => {
           </div>
 
           {/* Utility Pages */}
-          <div className="space-y-1 md:mt-[100px] lg:mt-[141px] ">
+          <div className="space-y-1 md:mt-[100px] lg:mt-[141px]">
             <h3 className="font-inter font-bold text-[8px] md:text-[13px] lg:text-[21px] whitespace-nowrap">
               Utility Pages
             </h3>
@@ -118,6 +118,11 @@ const Footer = () => {
             </div>
           </div>
 
+        </div>
+
+        {/* Copyright */}
+        <div className="text-center pt-6  ">
+          <p className="font-inter font-normal leading-[150%] tracking-[-1.9%] text-[8px] md:text-[11px] lg:text-[14px]">Copyright © 2026 Company Gandom. All Rights Reserved.</p>
         </div>
       </div>
     </footer>
