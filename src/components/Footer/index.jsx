@@ -16,7 +16,7 @@ const Footer = () => {
         {/* Responsive wrapper */}
         <div className="
           flex flex-col 
-          lg:flex-row lg:flex-nowrap 
+          md:flex-row 
           items-start justify-between 
           gap-y-10 lg:gap-y-0 lg:gap-x-8
         ">
@@ -28,7 +28,7 @@ const Footer = () => {
               alt="Gandom Logo"
               className="w-[84px] md:w-[165px] lg:w-[309px] object-contain"
             />
-            <div className="w-[162px] md:w-[249px] lg:w-[326px] h-auto ">
+            <div className="w-[162px] md:w-[249px] lg:w-[326px] h-auto">
               <h3 className="font-inter font-bold leading-[150%] tracking-[-1.1%] text-[8px] md:text-[13px] lg:text-[14px] whitespace-nowrap">We Are Gandom</h3>
               <div className="text-inter font-normal leading-[150%] tracking-[-1.9%] text-[8px] md:text-[13px] lg:text-[14px] break-words">
                 <p>We make homemade, naturally protein, and special
@@ -51,7 +51,7 @@ const Footer = () => {
           </div>
 
           {/* Pages */}
-          <div className="space-y-2 lg:mt-[141px] ">
+          <div className="space-y-2 md:mt-[100px] lg:mt-[141px] ">
             <h3 className="font-inter font-bold leading-[150%] tracking-[-1.9%] text-[18px] md:text-[20px] lg:text-[24px] whitespace-nowrap">
               Pages
             </h3>
@@ -66,7 +66,7 @@ const Footer = () => {
           </div>
 
           {/* Utility Pages */}
-          <div className="space-y-1 lg:mt-[141px] ">
+          <div className="space-y-1 md:mt-[100px] lg:mt-[141px] ">
             <h3 className="font-inter font-bold text-[18px] md:text-[20px] lg:text-[24px] whitespace-nowrap">
               Utility Pages
             </h3>
@@ -80,8 +80,8 @@ const Footer = () => {
           </div>
 
           {/* Social Media & Contact Us */}
-          <div className="space-y-5 md:space-y-8 lg:space-y-10">
-            <div className="flex flex-col lg:mt-[141px]">
+          <div className="space-y-5 md:space-y-8 lg:space-y-10 md:mt-[100px] lg:mt-[141px]">
+            <div className="flex flex-col">
               <h3 className="font-inter font-bold text-[18px] md:text-[20px] lg:text-[24px] mb-3 whitespace-nowrap">
                 Follow Us On..
               </h3>
