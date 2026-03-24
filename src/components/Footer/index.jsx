@@ -12,14 +12,14 @@ const Footer = () => {
       className="relative w-full bg-cover bg-center bg-no-repeat text-[#F2EDE0] pt-12 pb-4 md:pt-14 md:pb-4 "
       style={{ backgroundImage: `url(${background})` }}
     >
-      <div className="px-4 md:px-8 lg:px-40 ">
+      <div className="px-4 md:px-8 lg:px-12 xl:px-40 ">
         {/* Responsive wrapper */}
         <div className="
           grid grid-cols-3 
           md:grid-cols-[auto_1fr_1fr_auto] 
           lg:grid-cols-[1fr_1fr_1fr_1fr] 
           items-start justify-between 
-          gap-y-6 gap-x-2 md:gap-x-4 lg:gap-x-14
+          gap-y-6 gap-x-2 md:gap-x-4 lg:gap-x-6 xl:gap-x-14
         ">
           {/* Logo */}
           <div className="col-span-3 md:col-span-1 space-y-10 flex-shrink-0 lg:pt-[87px]">
@@ -107,11 +107,11 @@ const Footer = () => {
               <div className="space-y-2">
                 <div className="flex flex-row items-center gap-2">
                   <FiPhoneForwarded className="flex-shrink-0 w-[12px] h-[12px] md:w-[24px] md:h-[24px] lg:w-[30px] lg:h-[30px]" />
-                  <p className="whitespace-nowrap text-[8px] md:text-[13px] lg:text-[20px]">:  xxxxxxxxxxxxx </p>
+                  <p className="whitespace-nowrap text-[8px] md:text-[13px] lg:text-[20px]">: 0703382691 </p>
                 </div>
                 <div className="flex flex-row items-center gap-2">
                   <BsEnvelope className="flex-shrink-0 w-[12px] h-[12px] md:w-[24px] md:h-[24px] lg:w-[30px] lg:h-[30px]" />
-                  <p className="whitespace-nowrap text-[8px] md:text-[13px] lg:text-[20px]">:  xxxxxxxx@xxxxx.se</p>
+                  <p className="whitespace-nowrap text-[8px] md:text-[13px] lg:text-[20px]">: customer@gandom.se</p>
                 </div>
               </div>
             </div>
