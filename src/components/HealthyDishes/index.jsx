@@ -19,7 +19,7 @@ const HealthySection = () => {
           <div
             key={index}
             onClick={() => navigate(`/productsPage#${item.linkId}`)}
-            className="relative cursor-pointer"
+            className="relative cursor-pointer hover:opacity-70"
           >
 
             <img
