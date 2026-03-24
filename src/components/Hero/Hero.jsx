@@ -24,7 +24,7 @@ const Hero = () => {
                 }}
             >
 
-                <div className="absolute inset-0 bg-black/20" />
+                {/* <div className="absolute inset-0 bg-black/20" /> */}
 
 
                 <div className="relative z-10 text-center md:text-right text-white 
