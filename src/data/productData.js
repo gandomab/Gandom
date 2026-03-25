@@ -1,7 +1,7 @@
 import AsheReshteh1 from "../assets/Images/2.Dishes/Ashe Reshteh 1.png";
 import AsheAnar1 from "../assets/Images/2.Dishes/Ashe Anar 1.png";
 import AsheDoogh1 from "../assets/Images/2.Dishes/Ashe Doogh 1.png";
-import Abhgoosht from "../assets/Images/2.Dishes/Abgoosht.png";
+import Abhgoosht from "../assets/Images/2.Dishes/Abgoosht1.png";
 import Halim from "../assets/Images/2.Dishes/Halim.png";
 import SholeZard1 from "../assets/Images/2.Dishes/Shole Zard 1.png";
 import SoyWaffle from "../assets/Images/2.Dishes/Soy Waffle.png";
