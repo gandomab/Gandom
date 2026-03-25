@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import AboutImg from "../../assets/Images/1.Home Page/_CoverAboutUs1.png";
 import DiscoverMoreButton from "../DiscoverMoreButton/DiscoverMoreButton";
 
+// this component is for the about us section on the home page
 const AboutUsSection = () => {
   const navigate = useNavigate();
 
