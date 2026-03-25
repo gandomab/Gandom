@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import CoverImg from "../../assets/Images/4.Events/CoversCatering.png";
 import DiscoverMoreButton from "../DiscoverMoreButton/DiscoverMoreButton";
 
+// this component is for the events section on the home page
 const EventsSection = () => {
   const navigate = useNavigate();
 

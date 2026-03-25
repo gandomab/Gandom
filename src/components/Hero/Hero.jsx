@@ -4,7 +4,7 @@ import Covermob from "../../assets/Images/1.Home Page/Covermob.png";
 import Covertab from "../../assets/Images/1.Home Page/Covertab.png";
 import logo from "../../assets/Logo Gandom/Logo white.png";
 
-
+// this component is for the hero section on the home page
 const Hero = () => {
     return (
         <div className="w-full">

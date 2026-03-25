@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import coverGymHealthy from "../../assets/Images/7.Gym/coverhealthygymhome.png";
 import DiscoverMoreButton from "../DiscoverMoreButton/DiscoverMoreButton";
 
+// this component is for the gym healthy section on the home page
 const GymHealthy = () => {
     const navigate = useNavigate();
 

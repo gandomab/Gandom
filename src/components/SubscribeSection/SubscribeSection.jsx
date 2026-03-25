@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import CoverSubscribe from "../../assets/Images/8.Subscription/CoverSubscribe.png";
 import DiscoverMoreButton from "../DiscoverMoreButton/DiscoverMoreButton";
 
+// this component is for the subscribe section on the home page
 const SubscribeSection = () => {
     //const navigate = useNavigate();
 

@@ -4,6 +4,7 @@ import { reviews } from "../../data/customerreviewData";
 
 
 
+// this component is for the customer reviews section on the home page
 const Cards = () => {
     const scrollRef = useRef(null);
     const [activeIndex, setActiveIndex] = useState(0);

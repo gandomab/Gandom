@@ -1,6 +1,7 @@
 import { items } from "../../data/data"
 import { useNavigate } from "react-router-dom";
 
+// this component is for the healthy dishes card section on the home page
 const HealthySection = () => {
   const navigate = useNavigate();
 

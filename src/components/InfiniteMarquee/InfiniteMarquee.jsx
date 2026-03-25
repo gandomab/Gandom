@@ -1,3 +1,4 @@
+// this component is for the infinite marquee of the offers on the home page
 const InfiniteMarquee = () => {
     const baseItems = ["10% special discount", "20% off on first purchase", "25% Black Friday discount"];
     const items = [...baseItems, ...baseItems]; // Duplicate to ensure it spans the full screen width smoothly

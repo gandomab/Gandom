@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import GandomLogo from "../../assets/Images/1.Home Page/Gandom Logo.png"
 import FoodoraLogo from "../../assets/Images/1.Home Page/Foodora Logo.png";
 
-
+// this component is for the delivery section on the home page
 const Delivery = () => {
   const navigate = useNavigate();
 
