@@ -23,7 +23,7 @@ const Hero = () => {
                     '--bg-desktop': `url(${Cover1})`
                 }}
             >
-
+                <div className="absolute bottom-0 h-1/2 w-full bg-gradient-to-t from-[#E6B220]/65 via-[#E6B220]/10 to-transparent sm:hidden" />
                 {/* <div className="absolute inset-0 bg-black/20" /> */}
 
 
