@@ -24,6 +24,7 @@ import Pay from "./pages/Pay/PayPage";
 import HomeCard from "./components/HomeCard/Card.jsx";
 import ProductsPage from "./pages/ProductsPage/ProductsPage.jsx";
 import SubscribeSection from "./components/SubscribeSection/SubscribeSection.jsx";
+import InfiniteMarquee from "./components/InfiniteMarquee/InfiniteMarquee.jsx";
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
               <>
                 <Hero />
                 <HealthySection />
+                <InfiniteMarquee />
                 <HomeEvents />
                 <GymHealthy />
                 <SubscribeSection />
