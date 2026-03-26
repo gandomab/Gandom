@@ -1,5 +1,5 @@
-import SoupsImg from "../assets/Images/1.Home Page/Soups.png";
-import DessertsImg from "../assets/Images/1.Home Page/Desserts.png";
+import SoupsImg from "../assets/Images/1.Home Page/Soups1.png";
+import DessertsImg from "../assets/Images/1.Home Page/Dessert.png";
 import WafflesImg from "../assets/Images/1.Home Page/Waffles.png";
 import SideDishesImg from "../assets/Images/1.Home Page/SideDishes.png";
 

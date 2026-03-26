@@ -23,13 +23,15 @@ import { Routes, Route } from "react-router-dom";
 import Pay from "./pages/Pay/PayPage";
 import HomeCard from "./components/HomeCard/Card.jsx";
 import ProductsPage from "./pages/ProductsPage/ProductsPage.jsx";
+import SubscribeSection from "./components/SubscribeSection/SubscribeSection.jsx";
+import InfiniteMarquee from "./components/InfiniteMarquee/InfiniteMarquee.jsx";
 
 function App() {
   return (
     <div className="flex flex-col min-h-screen w-full bg-beigebg">
       <Header />
 
-      <main className="bg-beigebg flex-grow w-full max-w-[1440px] mx-auto">
+      <main className="bg-beigebg flex-grow w-full">
         <Routes>
 
           {/* Home page */}
@@ -40,8 +42,10 @@ function App() {
               <>
                 <Hero />
                 <HealthySection />
+                <InfiniteMarquee />
                 <HomeEvents />
                 <GymHealthy />
+                <SubscribeSection />
                 <Delivery />
                 <AboutUsSection />
                 <HomeCard />
@@ -67,7 +71,7 @@ function App() {
           <Route path="/your-cart" element={<YourCart />} />
           <Route path="/events" element={<EventsPage />} />
           <Route path="/gym" element={<GymPage />} />
-          
+
 
         </Routes>
       </main>

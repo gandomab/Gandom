@@ -10,6 +10,7 @@ const Navbar = () => {
     { label: "Home", href: "/" },
     { label: "Dishes", href: "/productsPage" },
     { label: "About Us", href: "/about-us" },
+    { label: "Gym", href: "/gym" },
     { label: "Events", href: "/events" },
     { label: "Delivery", href: "/delivery/order" },
   ];
@@ -18,10 +19,9 @@ const Navbar = () => {
     `font-inter text-[16px] ${isActive ? "text-primary font-bold" : "text-black hover:text-black hover:font-bold"}`;
 
   const mobileLinkClasses = ({ isActive }) =>
-    `font-inter text-[18px] w-full text-center py-2 rounded ${
-      isActive
-        ? "text-primary font-bold underline"
-        : "text-black hover:text-primary "
+    `font-inter text-[18px] w-full text-center py-2 rounded ${isActive
+      ? "text-primary font-bold underline"
+      : "text-black hover:text-primary "
     }`;
 
   return (

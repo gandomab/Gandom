@@ -1,7 +1,7 @@
 import AsheReshteh1 from "../assets/Images/2.Dishes/Ashe Reshteh 1.png";
 import AsheAnar1 from "../assets/Images/2.Dishes/Ashe Anar 1.png";
 import AsheDoogh1 from "../assets/Images/2.Dishes/Ashe Doogh 1.png";
-import Abhgoosht from "../assets/Images/2.Dishes/Abgoosht.png";
+import Abhgoosht from "../assets/Images/2.Dishes/Abgoosht1.png";
 import Halim from "../assets/Images/2.Dishes/Halim.png";
 import SholeZard1 from "../assets/Images/2.Dishes/Shole Zard 1.png";
 import SoyWaffle from "../assets/Images/2.Dishes/Soy Waffle.png";
@@ -19,10 +19,10 @@ import CustomFermentedVegetables from "../assets/Images/2.Dishes/sidedish3.png";
 export const productData = {
   soups: [
     { id: 101, title: "Ashe Reshteh", price: "62.50", ratingnum: "4.5", image: AsheReshteh1 },
-    { id: 102, title: "Ashe Anar", price: "15", ratingnum: "4.5", image: AsheAnar1 },
-    { id: 103, title: "Ashe Doogh", price: "18", ratingnum: "4.5", image: AsheDoogh1 },
-    { id: 104, title: "Abhgoosht", price: "15", ratingnum: "4.5", image: Abhgoosht },
-    { id: 105, title: "Halim", price: "12", ratingnum: "4.5", image: Halim },
+    { id: 102, title: "Ashe Anar", price: "15", ratingnum: "3.5", image: AsheAnar1 },
+    { id: 103, title: "Ashe Doogh", price: "18", ratingnum: "5", image: AsheDoogh1 },
+    { id: 104, title: "Abhgoosht", price: "15", ratingnum: "4.2", image: Abhgoosht },
+    { id: 105, title: "Halim", price: "12", ratingnum: "3.1", image: Halim },
   ],
   desserts: [
     { id: 201, title: "Shole Zard", price: "32", ratingnum: "4.5", image: SholeZard1 },
