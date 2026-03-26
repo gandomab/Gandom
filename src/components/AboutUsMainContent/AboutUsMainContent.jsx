@@ -32,15 +32,15 @@ const AboutUsMainContent = () => {
 
     return (
         <section>
-            <div className="relative px-10 md:px-32">
-                <h2 className="text-[20px] md:text-[30px] lg:text-[40px] font-bold text-[#DEA401] text-center leading-[160%]">
+            <div className="relative px-10 md:px-11 lg:px-32">
+                <h2 className="text-[20px] md:text-[30px] lg:text-[40px] font-bold text-[#DEA401] text-center leading-[160%] mb-6">
                     A journey of passion, family, and wholesome food.
                 </h2>
 
                 {sections.map((section, index) => (
                     <div
                         key={index}
-                        className={`flex flex-col md:flex-row items-center gap-14 py-14 ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''
+                        className={`flex flex-col md:flex-row items-center gap-14 my-20 ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''
                             }`}
                     >
                         {/* The Image Box with the title */}
@@ -56,8 +56,8 @@ const AboutUsMainContent = () => {
                         </div>
 
                         {/* The Text Content */}
-                        <div className="flex-1 lg:w-[492px] lg:h-[374px] relative -top-6 md:-top-10 lg:-top-16">
-                            <div className="font-inter font-semibold lg:text-[24px] lg:leading-[175%]">{section.text}</div>
+                        <div className="flex-1 md:w-[364px] md:h-[287px] lg:w-[492px] lg:h-[374px] relative -top-6 md:-top-10 lg:-top-16">
+                            <div className="font-inter font-semibold md:text-[16px] lg:text-[24px] lg:leading-[175%]">{section.text}</div>
                         </div>
                     </div>
                 ))}
