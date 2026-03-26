@@ -51,7 +51,6 @@ const Delivery = () => {
             src={GandomLogo}
             alt="Gandom Logo"
             className="
-              cursor-pointer hover:scale-105 transition-transform duration-300
               rounded-[10px]
               w-[165px] h-[66px]
               md:w-[340px] md:h-[136px]
@@ -70,7 +69,6 @@ const Delivery = () => {
             src={FoodoraLogo}
             alt="Foodora Logo"
             className="
-              cursor-pointer hover:scale-105 transition-transform duration-300
               rounded-[10px]
               w-[165px] h-[66px]
               md:w-[340px] md:h-[136px]

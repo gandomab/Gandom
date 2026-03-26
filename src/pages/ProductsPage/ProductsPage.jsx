@@ -51,7 +51,7 @@ const ProductsPage = () => {
         <section
           key={category}
           id={category}
-          className="mb-20 mt-6 pt-1 scroll-mt-[160px]">
+          className="mb-20 mt-6 lg:px-4 pt-1 scroll-mt-[160px]">
           {/* Section Header with Decorative Lines */}
           <div className="flex items-center w-full mb-8 gap-4">
             <div className="w-20 border-t-8 border-[#DEA401]"></div>
