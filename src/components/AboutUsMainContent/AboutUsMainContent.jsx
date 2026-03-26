@@ -56,8 +56,8 @@ const AboutUsMainContent = () => {
                         </div>
 
                         {/* The Text Content */}
-                        <div className="flex-1 md:w-[364px] md:h-[287px] lg:w-[492px] lg:h-[374px] relative -top-6 md:-top-10 lg:-top-16">
-                            <div className="font-inter font-semibold md:text-[16px] lg:text-[24px] lg:leading-[175%]">{section.text}</div>
+                        <div className="flex-1 md:w-[364px] md:h-[287px] lg:w-[492px] lg:h-[374px] relative -top-6 md:-top-4 lg:-top-16">
+                            <div className="font-inter font-semibold md:text-[16px] lg:text-[24px] md:leading-[150%] lg:leading-[175%]">{section.text}</div>
                         </div>
                     </div>
                 ))}
