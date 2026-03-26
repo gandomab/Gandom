@@ -1,8 +1,4 @@
 import React from "react";
-
-import img1 from "../../assets/Images/3.About Us/Sakineh 1.png";
-import img2 from "../../assets/Images/3.About Us/Sakineh 2.png";
-import img3 from "../../assets/Images/3.About Us/Sakineh 3.png";
 import iranFlag from "../../assets/Images/3.About Us/Flags/Captura de pantalla 2025-09-24 a la(s) 13.32.40.png";
 import turkeyFlag from "../../assets/Images/3.About Us/Flags/Captura de pantalla 2025-09-24 a la(s) 13.30.42.png";
 import georgiaFlag from "../../assets/Images/3.About Us/Flags/Captura de pantalla 2025-09-24 a la(s) 13.31.13.png";
@@ -14,6 +10,7 @@ import vietnamFlag from "../../assets/Images/3.About Us/Flags/Captura de pantall
 import kenyaFlag from "../../assets/Images/3.About Us/Flags/Captura de pantalla 2025-09-24 a la(s) 13.32.23.png";
 import africa from "../../assets/Images/3.About Us/Flags/Captura de pantalla 2025-09-24 a la(s) 13.32.39.png";
 import AboutUsHeroSection from "../../components/AboutUsHeroSection/AboutUsHeroSection";
+import AboutUsMainContent from "../../components/AboutUsMainContent/AboutUsMainContent";
 
 const flags = [
     iranFlag,
@@ -34,7 +31,10 @@ const AboutUsPage = () => {
             <section className="mt-4">
                 <AboutUsHeroSection />
             </section>
-            <div className="relative max-w-[1100px] mx-auto px-6 md:px-10 pt-14 pb-20">
+            <section className="mt-4">
+                <AboutUsMainContent />
+            </section>
+            {/* <div className="relative max-w-[1100px] mx-auto px-6 md:px-10 pt-14 pb-20">
 
                 <div className="py-8 text-center">
                     <h2 className="font-santa font-normal text-primary text-[40px] md:text-[52px] lg:text-[64px] mb-12">
@@ -56,9 +56,9 @@ const AboutUsPage = () => {
                     src={img3}
                     alt="Sakineh"
                     className="hidden lg:block absolute top-56 -right-6 w-[230px] rounded-xl shadow-lg rotate-[5deg]"
-                />
+                /> */}
 
-                {/* متن اصلی */}
+            {/* متن اصلی
                 <div className="mx-auto max-w-[620px] text-center">
                     <p className="text-[#111] text-[15px] leading-7 mb-4 text-left md:text-center">
                         Our co-founder, Sakineh, has always been deeply passionate about
@@ -90,20 +90,20 @@ const AboutUsPage = () => {
                     <p className="text-sm text-gray-700 mb-4 text-left md:text-center">
                         Countries through which she traveled learning the secrets of each
                         cuisine.
-                    </p>
+                    </p> */}
 
-                    <div className="flex flex-wrap items-center justify-center gap-2">
-                        {flags.map((flag, idx) => (
-                            <img
-                                key={idx}
-                                src={flag}
-                                alt={`flag-${idx}`}
-                                className="h-7 w-auto rounded-sm border border-[#ddd] bg-white"
-                            />
-                        ))}
-                    </div>
-                </div>
+            <div className="flex flex-wrap items-center justify-center gap-2">
+                {flags.map((flag, idx) => (
+                    <img
+                        key={idx}
+                        src={flag}
+                        alt={`flag-${idx}`}
+                        className="h-7 w-auto rounded-sm border border-[#ddd] bg-white"
+                    />
+                ))}
             </div>
+            {/* </div> */}
+            {/* </div> */}
         </div>
     );
 };
