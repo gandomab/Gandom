@@ -29,14 +29,14 @@ const AboutUsMainContent = () => {
                     >
                         {/* The Image Box with the title */}
                         <div className={`md:w-[288px] md:h-[324px] lg:w-[509px] lg:h-[573px] 
-                            p-4 flex flex-col items-center justify-center relative
+                            p-4 pb-12 flex flex-col items-center justify-center relative
                             shadow-[0px_4px_4px_0px_#00000040] border-2 border-[#E6E6E6] bg-[#FAFAF5] 
                             transition-transform ${index % 2 !== 0 ? 'rotate-[3.82deg]' : 'rotate-[-4.7deg]'
                             }`}>
                             <div className="md:w-[252px] md:h-[252px] lg:w-[445px] lg:h-[445px] flex items-center justify-center">
                                 <img src={section.img} alt="imgs" />
                             </div>
-                            <h2 className="md:text-[36px] lg:text-[64px] font-santa font-normal text-[#DEA401] leading-[150%] tracking-[-2.3%]">{section.title}</h2>
+                            <h2 className="absolute bottom-1 z-10 md:text-[36px] lg:text-[64px] font-santa font-normal text-[#DEA401] leading-[150%] tracking-[-2.3%]">{section.title}</h2>
                         </div>
 
                         {/* The Text Content */}
