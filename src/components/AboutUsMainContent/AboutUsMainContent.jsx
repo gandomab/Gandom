@@ -56,7 +56,7 @@ const AboutUsMainContent = () => {
                         </div>
 
                         {/* The Text Content */}
-                        <div className="flex-1 pt-0 lg:w-[492px] lg:h-[374px]">
+                        <div className="flex-1 lg:w-[492px] lg:h-[374px] relative -top-6 md:-top-10 lg:-top-16">
                             <div className="font-inter font-semibold lg:text-[24px] lg:leading-[175%]">{section.text}</div>
                         </div>
                     </div>
