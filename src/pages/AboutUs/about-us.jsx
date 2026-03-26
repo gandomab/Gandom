@@ -13,6 +13,7 @@ import cambodiaFlag from "../../assets/Images/3.About Us/Flags/Captura de pantal
 import vietnamFlag from "../../assets/Images/3.About Us/Flags/Captura de pantalla 2025-09-24 a la(s) 13.32.12.png";
 import kenyaFlag from "../../assets/Images/3.About Us/Flags/Captura de pantalla 2025-09-24 a la(s) 13.32.23.png";
 import africa from "../../assets/Images/3.About Us/Flags/Captura de pantalla 2025-09-24 a la(s) 13.32.39.png";
+import AboutUsHeroSection from "../../components/AboutUsHeroSection/AboutUsHeroSection";
 
 const flags = [
     iranFlag,
@@ -29,7 +30,10 @@ const flags = [
 
 const AboutUsPage = () => {
     return (
-        <div className="w-full bg-[#F7F4EF]">
+        <div className="w-full">
+            <section className="mt-4">
+                <AboutUsHeroSection />
+            </section>
             <div className="relative max-w-[1100px] mx-auto px-6 md:px-10 pt-14 pb-20">
 
                 <div className="py-8 text-center">
