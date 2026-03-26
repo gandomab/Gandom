@@ -8,10 +8,26 @@ import img4 from "../../assets/Images/3.About Us/Sakineh 4.png";
 const AboutUsMainContent = () => {
 
     const sections = [
-        { title: 'Studies', text: 'xxxxxxx xxxxxxxx xxxxxxxx xxxxxxxx xxxxxxxx xxxxxxxx.', img: img1 },
-        { title: 'Travels', text: 'xxxxxxx xxxxxxxx xxxxxxxx xxxxxxxx xxxxxxxx xxxxxxxx.', img: img2 },
-        { title: 'Volunteer', text: 'xxxxxxx xxxxxxxx xxxxxxxx xxxxxxxx xxxxxxxx xxxxxxxx.', img: img3 },
-        { title: 'Creation', text: 'xxxxxxx xxxxxxxx xxxxxxxx xxxxxxxx xxxxxxxx xxxxxxxx.', img: img4 },
+        {
+            title: 'Studies',
+            text: 'The story of how “Gandom” came to life is a heartfelt journey, born from the love and shared dreams of a mother and her two daughters. The mother has always had a deep passion for foods that are not only delicious but also nutritionally rich and steeped in history. She aimed to craft meals for her daughters that fuelled their daily school routines, brought them joy in eating, and expressed her love, while also allowing her to follow her own passion for cooking',
+            img: img1
+        },
+        {
+            title: 'Travels',
+            text: 'She attended culinary classes, studied nutrition, and actively participated in cooking workshops. She traveled around the world and did volunteer work in well known traditional kitchens to learn recipe secrets and gather inspiration from different cultures. Driven by her passion, she volunteered in kitchens around the world, collecting traditional recipes. She blended these timeless recipes with the rich flavors of her Persian culture to create dishes that are both traditional and modern, nutrient dense, preservative free, organic, and made with fresh ingredients.',
+            img: img2
+        },
+        {
+            title: 'Volunteer',
+            text: 'Her daughters, both combining engineering expertise with an entrepreneurial mindset, decided to turn this family passion into a business. They remember the joy, love, and distinct taste of these healthy meals and want to share that experience. They aim to bring meals to everyone’s table that are rooted in history, balanced in health, and full of joy and energy. With all their heart, the company strives to offer meals made with fresh, eco friendly oils and natural ingredients, rich in protein, for its consumers.',
+            img: img3
+        },
+        {
+            title: 'Creation',
+            text: 'The name “Gandom” is deeply meaningful in Persian culture. It stands for nourishment, blessing, and everyday sustenance. The golden color of wheat fields brings to mind happiness, health, and abundance. We warmly invite you to a table full of wholesome and delicious food, where “Gandom” brings moments of pure enjoyment and well being.',
+            img: img4
+        },
     ];
 
     return (
@@ -24,7 +40,7 @@ const AboutUsMainContent = () => {
                 {sections.map((section, index) => (
                     <div
                         key={index}
-                        className={`flex flex-col md:flex-row items-center gap-12 py-20 ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''
+                        className={`flex flex-col md:flex-row items-center gap-14 py-14 ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''
                             }`}
                     >
                         {/* The Image Box with the title */}
@@ -40,11 +56,8 @@ const AboutUsMainContent = () => {
                         </div>
 
                         {/* The Text Content */}
-                        <div className="flex-1 space-y-4">
-                            <div className="h-2">{section.text}</div>
-                            <div className="h-2">{section.text}</div>
-                            <div className="h-2">{section.text}</div>
-                            <div className="h-2">{section.text}</div>
+                        <div className="flex-1 pt-0 lg:w-[492px] lg:h-[374px]">
+                            <div className="font-inter font-semibold lg:text-[24px] lg:leading-[175%]">{section.text}</div>
                         </div>
                     </div>
                 ))}
