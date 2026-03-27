@@ -44,15 +44,15 @@ const AboutUsMainContent = () => {
                             }`}
                     >
                         {/* The Image Box with the title */}
-                        <div className={`md:w-[288px] md:h-[324px] xl:w-[509px] xl:h-[573px] 
-                            p-2 md:pb-10 xl:pb-12 flex flex-col items-center justify-center relative shrink-0
+                        <div className={`w-[164px] h-[184px] md:w-[288px] md:h-[324px] xl:w-[509px] xl:h-[573px] 
+                            p-2 pb-5 md:pb-10 xl:pb-12 flex flex-col items-center justify-center relative shrink-0
                             shadow-[0px_4px_4px_0px_#00000040] border-2 border-[#E6E6E6] bg-[#FAFAF5] 
                             transition-transform ${index % 2 !== 0 ? 'rotate-[3.82deg]' : 'rotate-[-4.7deg]'
                             }`}>
-                            <div className="md:w-[252px] md:h-[252px] xl:w-[445px] xl:h-[445px] flex items-center justify-center">
+                            <div className="w-[143px] h-[143px] md:w-[252px] md:h-[252px] xl:w-[445px] xl:h-[445px] flex items-center justify-center">
                                 <img src={section.img} alt="imgs" />
                             </div>
-                            <h2 className="absolute bottom-1 z-10 md:text-[36px] xl:text-[64px] font-santa font-normal text-[#DEA401] leading-[150%] tracking-[-2.3%]">{section.title}</h2>
+                            <h2 className="absolute bottom-1 z-10 text-[16px] md:text-[36px] xl:text-[64px] font-santa font-normal text-[#DEA401] leading-[150%] tracking-[-2.3%]">{section.title}</h2>
                         </div>
 
                         {/* The Text Content */}
