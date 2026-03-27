@@ -35,7 +35,7 @@ const AboutUsPage = () => {
                 <AboutUsMainContent />
             </section>
             <section className="my-4">
-                <p className="font-inter font-semibold text-[12px] md:text-[16px] xl:text-[24px] leading-[160%] text-center mb-2">Countries through which she traveled learning the secrets of each cuisine.</p>
+                <p className="font-inter font-semibold text-[12px] md:text-[16px] xl:text-[24px] leading-[160%] text-center mb-3">Countries through which she traveled learning the secrets of each cuisine.</p>
                 <div className="flex flex-wrap items-center justify-center gap-2 w-[271px] h-[75px] md:w-[550px] md:h-[32px] xl:w-[752px] xl:h-[45px] mx-auto ">
                     {flags.map((flag, idx) => (
                         <img
