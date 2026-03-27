@@ -33,7 +33,7 @@ const AboutUsMainContent = () => {
     return (
         <section>
             <div className="relative px-10 md:px-11 lg:px-20 xl:px-32">
-                <h2 className="text-[20px] md:text-[30px] xl:text-[40px] font-bold text-[#DEA401] text-center leading-[160%] mb-6">
+                <h2 className="text-[20px] md:text-[25px] xl:text-[40px] font-bold text-[#DEA401] text-center leading-[160%] mb-6">
                     A journey of passion, family, and wholesome food.
                 </h2>
 

@@ -21,9 +21,9 @@ const AboutUsHeroSection = () => {
                 </div>
 
                 {/* Text + Button */}
-                <div className="relative z-10 flex h-full items-center pl-10 md:pl-20 lg:pl-60">
+                <div className="relative z-10 flex h-full items-center pl-10 md:pl-20 lg:pl-30 xl:pl-60">
                     <h2 className="font-santa font-normal text-center text-[#E6B220] 
-                                    text-[30px] md:text-[50px] lg:text-[70px] leading-[150%] tracking-[-2.3%]">
+                                    text-[30px] md:text-[50px] lg:text-[70px]  leading-[150%] tracking-[-2.3%]">
                         The Story Of <br />
                         Gandom
                     </h2>

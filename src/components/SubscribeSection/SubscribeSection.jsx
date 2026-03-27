@@ -27,7 +27,7 @@ const SubscribeSection = () => {
                 </div>
 
                 {/* Text + Button */}
-                <div className="relative z-10 flex h-full items-center justify-end pr-10 md:pr-20 lg:pr-60">
+                <div className="relative z-10 flex h-full items-center justify-end pr-10 md:pr-20 lg:pr-30 xl:pr-60">
                     <div className="space-y-4 text-center">
 
                         <h2 className="font-inter font-bold text-[#E6B220] 

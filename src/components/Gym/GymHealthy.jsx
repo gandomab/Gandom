@@ -27,7 +27,7 @@ const GymHealthy = () => {
                 </div>
 
                 {/* Text + Button */}
-                <div className="relative z-10 flex h-full items-center pl-10 md:pl-20 lg:pl-60">
+                <div className="relative z-10 flex h-full items-center pl-10 md:pl-20 lg:pl-30 xl:pl-60">
                     <div className="space-y-4 text-center">
 
                         <h2 className="font-inter font-bold text-[#3b6f22] 
