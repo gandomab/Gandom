@@ -10,7 +10,7 @@ const AboutUsMainContent = () => {
     const sections = [
         {
             title: 'Studies',
-            text: 'The story of how “Gandom” came to life is a heartfelt journey, born from the love and shared dreams of a mother and her two daughters. The mother has always had a deep passion for foods that are not only delicious but also nutritionally rich and steeped in history. She aimed to craft meals for her daughters that fuelled their daily school routines, brought them joy in eating, and expressed her love, while also allowing her to follow her own passion for cooking',
+            text: 'The story of how “Gandom” came to life is a heartfelt journey, born from the love and shared dreams of a mother and her two daughters. The mother has always had a deep passion for foods that are not only delicious but also nutritionally rich and steeped in history. She aimed to craft meals for her daughters that fuelled their daily school routines, brought them joy in eating, and expressed her love, while also allowing her to follow her own passion for cooking.',
             img: img1
         },
         {
@@ -47,7 +47,7 @@ const AboutUsMainContent = () => {
                         <div className={`w-[164px] h-[184px] md:w-[288px] md:h-[324px] xl:w-[509px] xl:h-[573px] 
                             p-2 pb-5 md:pb-10 xl:pb-12 flex flex-col items-center justify-center relative shrink-0
                             shadow-[0px_4px_4px_0px_#00000040] border-2 border-[#E6E6E6] bg-[#FAFAF5] 
-                            transition-transform ${index % 2 !== 0 ? 'rotate-[3.82deg]' : 'rotate-[-4.7deg]'
+                            transition-transform ${index % 2 !== 0 ? 'md:rotate-[3.82deg]' : 'md:rotate-[-4.7deg]'
                             }`}>
                             <div className="w-[143px] h-[143px] md:w-[252px] md:h-[252px] xl:w-[445px] xl:h-[445px] flex items-center justify-center">
                                 <img src={section.img} alt="imgs" />
@@ -56,8 +56,8 @@ const AboutUsMainContent = () => {
                         </div>
 
                         {/* The Text Content */}
-                        <div className="flex-1 md:w-[364px] md:h-auto xl:w-[492px] xl:h-[374px] relative -top-6 md:-top-4 xl:-top-16">
-                            <div className="font-inter font-semibold md:text-[16px] xl:text-[24px] md:leading-[150%] xl:leading-[175%]">{section.text}</div>
+                        <div className="flex-1 w-[179px] h-[304px] md:w-[364px] md:h-auto xl:w-[492px] xl:h-[374px] relative -top-6 md:-top-4 xl:-top-16">
+                            <div className="font-inter font-semibold text-[12px] md:text-[16px] xl:text-[24px] leading-[130%] md:leading-[150%] xl:leading-[175%]">{section.text}</div>
                         </div>
                     </div>
                 ))}
