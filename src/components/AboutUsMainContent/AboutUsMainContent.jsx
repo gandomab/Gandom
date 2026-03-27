@@ -33,14 +33,14 @@ const AboutUsMainContent = () => {
     return (
         <section>
             <div className="relative px-10 md:px-11 lg:px-20 xl:px-32">
-                <h2 className="text-[20px] md:text-[25px] xl:text-[40px] font-bold text-[#DEA401] text-center leading-[160%] mb-6">
+                <h2 className="text-[20px] md:text-[25px] xl:text-[40px] font-bold text-[#DEA401] text-center leading-[160%] mb-12 md:mb-6 ">
                     A journey of passion, family, and wholesome food.
                 </h2>
 
                 {sections.map((section, index) => (
                     <div
                         key={index}
-                        className={`flex flex-col md:flex-row items-center justify-center gap-14 my-20 ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''
+                        className={`flex flex-row items-center justify-center gap-2 md:gap-14 my-8 md:my-20 ${index % 2 !== 0 ? 'flex-row-reverse' : ''
                             }`}
                     >
                         {/* The Image Box with the title */}
