@@ -32,7 +32,7 @@ const AboutUsMainContent = () => {
 
     return (
         <section>
-            <div className="relative px-10 md:px-11 lg:px-20 xl:px-32">
+            <div className="relative px-4 md:px-11 lg:px-20 xl:px-32">
                 <h2 className="text-[20px] md:text-[25px] xl:text-[40px] font-bold text-[#DEA401] text-center leading-[160%] mb-12 md:mb-6 ">
                     A journey of passion, family, and wholesome food.
                 </h2>
@@ -52,11 +52,11 @@ const AboutUsMainContent = () => {
                             <div className="w-[143px] h-[143px] md:w-[252px] md:h-[252px] xl:w-[445px] xl:h-[445px] flex items-center justify-center">
                                 <img src={section.img} alt="imgs" />
                             </div>
-                            <h2 className="absolute bottom-1 z-10 text-[16px] md:text-[36px] xl:text-[64px] font-santa font-normal text-[#DEA401] leading-[150%] tracking-[-2.3%]">{section.title}</h2>
+                            <h2 className="absolute bottom-0 md:bottom-1 z-10 text-[16px] md:text-[36px] xl:text-[64px] font-santa font-normal text-[#DEA401] leading-[150%] tracking-[-2.3%]">{section.title}</h2>
                         </div>
 
                         {/* The Text Content */}
-                        <div className="flex-1 w-[179px] h-[304px] md:w-[364px] md:h-auto xl:w-[492px] xl:h-[374px] relative -top-6 md:-top-4 xl:-top-16">
+                        <div className="flex-1 w-[179px] h-auto md:w-[364px] xl:w-[492px] xl:h-[374px] relative md:-top-4 xl:-top-16">
                             <div className="font-inter font-semibold text-[12px] md:text-[16px] xl:text-[24px] leading-[130%] md:leading-[150%] xl:leading-[175%]">{section.text}</div>
                         </div>
                     </div>
