@@ -32,32 +32,32 @@ const AboutUsMainContent = () => {
 
     return (
         <section>
-            <div className="relative px-10 md:px-11 lg:px-32">
-                <h2 className="text-[20px] md:text-[30px] lg:text-[40px] font-bold text-[#DEA401] text-center leading-[160%] mb-6">
+            <div className="relative px-10 md:px-11 lg:px-20 xl:px-32">
+                <h2 className="text-[20px] md:text-[30px] xl:text-[40px] font-bold text-[#DEA401] text-center leading-[160%] mb-6">
                     A journey of passion, family, and wholesome food.
                 </h2>
 
                 {sections.map((section, index) => (
                     <div
                         key={index}
-                        className={`flex flex-col md:flex-row items-center gap-14 my-20 ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''
+                        className={`flex flex-col md:flex-row items-center justify-center gap-14 my-20 ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''
                             }`}
                     >
                         {/* The Image Box with the title */}
-                        <div className={`md:w-[288px] md:h-[324px] lg:w-[509px] lg:h-[573px] 
-                            p-2 md:pb-10 lg:pb-12 flex flex-col items-center justify-center relative
+                        <div className={`md:w-[288px] md:h-[324px] xl:w-[509px] xl:h-[573px] 
+                            p-2 md:pb-10 xl:pb-12 flex flex-col items-center justify-center relative shrink-0
                             shadow-[0px_4px_4px_0px_#00000040] border-2 border-[#E6E6E6] bg-[#FAFAF5] 
                             transition-transform ${index % 2 !== 0 ? 'rotate-[3.82deg]' : 'rotate-[-4.7deg]'
                             }`}>
-                            <div className="md:w-[252px] md:h-[252px] lg:w-[445px] lg:h-[445px] flex items-center justify-center">
+                            <div className="md:w-[252px] md:h-[252px] xl:w-[445px] xl:h-[445px] flex items-center justify-center">
                                 <img src={section.img} alt="imgs" />
                             </div>
-                            <h2 className="absolute bottom-1 z-10 md:text-[36px] lg:text-[64px] font-santa font-normal text-[#DEA401] leading-[150%] tracking-[-2.3%]">{section.title}</h2>
+                            <h2 className="absolute bottom-1 z-10 md:text-[36px] xl:text-[64px] font-santa font-normal text-[#DEA401] leading-[150%] tracking-[-2.3%]">{section.title}</h2>
                         </div>
 
                         {/* The Text Content */}
-                        <div className="flex-1 md:w-[364px] md:h-[287px] lg:w-[492px] lg:h-[374px] relative -top-6 md:-top-4 lg:-top-16">
-                            <div className="font-inter font-semibold md:text-[16px] lg:text-[24px] md:leading-[150%] lg:leading-[175%]">{section.text}</div>
+                        <div className="flex-1 md:w-[364px] md:h-auto xl:w-[492px] xl:h-[374px] relative -top-6 md:-top-4 xl:-top-16">
+                            <div className="font-inter font-semibold md:text-[16px] xl:text-[24px] md:leading-[150%] xl:leading-[175%]">{section.text}</div>
                         </div>
                     </div>
                 ))}
