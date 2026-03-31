@@ -8,6 +8,7 @@ const SubscribeSection = () => {
 
     // const handleClick = () => {
     //     navigate("/subscription");
+    //     window.scrollTo(0, 0);
     // };
 
     return (

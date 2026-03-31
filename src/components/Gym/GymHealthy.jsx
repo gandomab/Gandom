@@ -8,6 +8,7 @@ const GymHealthy = () => {
 
     const handleClick = () => {
         navigate("/gym");
+        window.scrollTo(0, 0);
     };
 
     return (

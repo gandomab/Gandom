@@ -9,6 +9,7 @@ const EventsSection = () => {
 
   const handleClick = () => {
     navigate("/events");
+    window.scrollTo(0, 0);
   };
 
   return (

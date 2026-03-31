@@ -9,6 +9,7 @@ const AboutUsSection = () => {
 
   const handleClick = () => {
     navigate("/about-us");
+    window.scrollTo(0, 0);
   };
 
   return (
