@@ -27,13 +27,17 @@ const HomeIconSection = () => {
                 </p>
             </div>
 
-            <div className="grid grid-rows-2 grid-cols-3 items-center justify-center 
-                            gap-x-10 md:gap-x-30 lg:gap-x-40 xl:gap-x-48 gap-y-2 md:gap-y-8 xl:gap-y-16
-                            mx-4">
+            <div className="grid grid-rows-2 grid-cols-3  items-start justify-center 
+                            gap-x-4 sm:gap-x-4 md:gap-x-12 xl:gap-x-24 
+                            gap-y-6 sm:gap-y-8 md:gap-y-12 xl:gap-y-16
+                            mt-6 md:mt-8 xl:mt-10
+                            w-full px-4 md:px-0 max-w-[1246px] mx-auto">
                 {icons.map((icon, index) => (
                     <div key={index} className="flex flex-col items-center">
-                        <img src={icon.src} alt={icon.alt} className="w-[100px] h-[100px] md:w-[150px] md:h-[150px] xl:w-[230px] xl:h-[230px]" />
-                        <p className="text-inter font-semibold text-[#426B1F] text-[8px] md:text-[13px] xl:text-[20px] w-[154px] h-[60px]
+                        <img src={icon.src} alt={icon.alt}
+                            className="w-[80px] h-[80px] sm:w-[100px] sm:h-[100px] md:w-[150px] md:h-[150px] xl:w-[230px] xl:h-[230px] object-contain" />
+                        <p className="text-inter font-semibold text-[#426B1F] text-[8px] md:text-[13px] xl:text-[20px] 
+                            w-[66px] h-[26px] md:w-[100px] md:h-[40px] xl:w-[154px] xl:h-[60px]
                             leading-[150%] tracking-[-2.2%] 
                             text-center">
                             {icon.label}
@@ -44,11 +48,13 @@ const HomeIconSection = () => {
 
             <div className="w-[344px] h-[54px] md:w-[702px] md:h-[48px] xl:w-[1114px] xl:h-[163px] mx-auto">
                 <p className="font-inter font-bold text-[#DEA401] text-[14px] md:text-[20px] xl:text-[36px] 
-                            leading-[160%] tracking-[-2.3%] 
+                            leading-[160%] tracking-[-2.3%]
+                            mt-6 md:mt-8 xl:mt-10
                             text-center">
                     WHOLESOME FOOD INSPIRED BY AUTHENTIC RECIPES CRAFTED FOR TODAY’S GATHERING AND ENJOYMENT
                 </p>
             </div>
+            <div className="w-[345px] md:w-[705px] xl:w-[1246px] border-t-2 border-[#DEA401] mx-auto mt-14 md:mt-18 xl:mt-4"></div>
         </section>
 
     );
