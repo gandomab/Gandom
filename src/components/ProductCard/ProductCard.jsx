@@ -1,19 +1,30 @@
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
+import { useState } from "react";
 // This component represents a single product card, displaying the product's image, name, price, and rating. It also includes a "View" button for more details.
 const ProductCard = ({ productdish }) => {
 
     const rating = productdish.ratingnum;
     const fillPercentage = (rating / 5) * 100;
 
+    const [currentImage, setCurrentImage] = useState(productdish.image);
     return (
         <div className="bg-[#FFFFFF] border rounded-xl overflow-hidden w-full h-[331.46px] shadow-[4.73px_4.73px_16.9px_0.68px_rgba(0,0,0,0.25)]">
 
             {/* Top Section: Image */}
             <div className="h-60 overflow-hidden">
                 <img
-                    src={productdish.image}
+                    src={currentImage}
                     alt={productdish.title}
-                    className="w-full h-full object-cover" />
+                    className="w-full h-full object-cover"
+                    onMouseEnter={() => {
+                        if (window.innerWidth > 1024) {
+                            setCurrentImage(productdish.hoverimage);
+                        }
+                    }}
+                    onMouseLeave={() => {
+                        setCurrentImage(productdish.image);
+                    }}
+                />
             </div>
 
             {/* Bottom Section: Details */}
