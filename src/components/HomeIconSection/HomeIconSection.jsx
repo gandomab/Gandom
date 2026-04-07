@@ -49,12 +49,12 @@ const HomeIconSection = () => {
             <div className="w-[344px] h-[54px] md:w-[702px] md:h-[48px] xl:w-[1114px] xl:h-[163px] mx-auto">
                 <p className="font-inter font-bold text-[#DEA401] text-[14px] md:text-[20px] xl:text-[36px] 
                             leading-[160%] tracking-[-2.3%]
-                            mt-6 md:mt-8 xl:mt-10
+                            mt-6 md:mt-8 xl:mt-20
                             text-center">
                     WHOLESOME FOOD INSPIRED BY AUTHENTIC RECIPES CRAFTED FOR TODAY’S GATHERING AND ENJOYMENT
                 </p>
             </div>
-            <div className="w-[345px] md:w-[705px] xl:w-[1246px] border-t-2 border-[#DEA401] mx-auto mt-14 md:mt-20 xl:mt-4"></div>
+            <div className="w-[345px] md:w-[705px] xl:w-[1246px] border-t-2 border-[#DEA401] mx-auto mt-14 md:mt-20 xl:mt-10"></div>
         </section>
 
     );
