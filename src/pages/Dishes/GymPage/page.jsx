@@ -29,7 +29,7 @@ const GymPage = () => {
                             />
 
 
-                            <div className="absolute left-[0px] -bottom-32 rotate-[-3.24deg]">
+                            <div className="absolute md:left-[0px] md:-bottom-4 xl:left-[0px] xl:-bottom-32 rotate-[-3.24deg]">
                                 <div className="w-[140px] h-[154px] md:w-[166px] md:h-[183px] xl:w-[278px] xl:h-[313px] 
                                              p-2 pb-4 md:pb-8 xl:pb-10 flex flex-col items-center justify-center relative shrink-0
                                              shadow-[0px_4px_4px_0px_#00000040] border-2 border-[#E6E6E6] bg-[#FAFAF5] ">
@@ -42,7 +42,7 @@ const GymPage = () => {
                             </div>
 
 
-                            <div className="absolute left-[270px] -bottom-40 rotate-[3.82deg]">
+                            <div className="absolute md:left-[170px] md:-bottom-8 xl:left-[270px] xl:-bottom-40 rotate-[3.82deg]">
                                 <div className="w-[140px] h-[154px] md:w-[166px] md:h-[183px] xl:w-[278px] xl:h-[313px] 
                                              p-2 pb-4 md:pb-8 xl:pb-10 flex flex-col items-center justify-center relative shrink-0
                                              shadow-[0px_4px_4px_0px_#00000040] border-2 border-[#E6E6E6] bg-[#FAFAF5] ">
