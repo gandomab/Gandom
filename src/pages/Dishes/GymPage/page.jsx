@@ -20,7 +20,7 @@ const GymPage = () => {
                     <div className="flex flex-col md:flex-row items-center md:items-start gap-12 md:gap-4 xl:gap-24 pb-20 md:pb-32">
 
                         {/* The images container */}
-                        <div className="relative w-full md:w-1/2 lg:w-5/12 flex justify-center mt-0 md:mt-10">
+                        <div className="relative w-full md:w-1/2 xl:w-5/12 flex justify-center mt-0 md:mt-10">
                             <div className="relative z-10 w-fit">
                                 <img
                                     src={Image2}
@@ -29,7 +29,7 @@ const GymPage = () => {
                                 />
 
                                 {/* Tablet & Desktop: Image 3 */}
-                                <div className="hidden md:block absolute -left-4 -bottom-16 md:left-3 md:-bottom-40 xl:left-1 xl:-bottom-60 z-20 rotate-[-4deg]">
+                                <div className="hidden md:block absolute -left-4 -bottom-16 md:left-3 md:-bottom-40 xl:left-[-1px] xl:-bottom-[250px] z-20 rotate-[-4deg]">
                                     <div className="w-[166px] h-[183px] xl:w-[278px] xl:h-[313px] 
                                                  p-2 pb-8 xl:pb-10 flex flex-col items-center justify-center relative shrink-0
                                                  shadow-[0px_4px_4px_0px_#00000040] border-2 border-[#E6E6E6] bg-[#FAFAF5] ">
@@ -42,7 +42,7 @@ const GymPage = () => {
                                 </div>
 
                                 {/* Tablet & Desktop: Image 1 */}
-                                <div className="hidden md:block absolute left-24 -bottom-24 md:left-44 md:-bottom-44 xl:left-72 xl:-bottom-72 z-30 rotate-[4deg]">
+                                <div className="hidden md:block absolute left-24 -bottom-24 md:left-44 md:-bottom-44 xl:left-[270px] xl:-bottom-[290px] z-30 rotate-[4deg]">
                                     <div className="w-[166px] h-[183px] xl:w-[278px] xl:h-[313px] 
                                                  p-2 pb-8 xl:pb-10 flex flex-col items-center justify-center relative shrink-0
                                                  shadow-[0px_4px_4px_0px_#00000040] border-2 border-[#E6E6E6] bg-[#FAFAF5] ">
