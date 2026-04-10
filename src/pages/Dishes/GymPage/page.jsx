@@ -11,7 +11,7 @@ const GymPage = () => {
                 <GymPageHeroSection />
             </section>
             <section className="mt-10 mb-60">
-                <div className="relative mx-40 px-6 md:px-0">
+                <div className="relative px-20">
 
                     <h2 className="text-[15px] md:text-[25px] xl:text-[40px] font-bold text-[#DEA401] text-center leading-[160%] mb-12 md:mb-6 ">
                         The Perfect Partner for Every Workout
@@ -19,7 +19,7 @@ const GymPage = () => {
 
                     <div className="flex flex-row items-start">
 
-
+                        {/* The images container */}
                         <div className="relative w-full pb-[140px]">
 
                             <img
@@ -55,9 +55,10 @@ const GymPage = () => {
                             </div>
                         </div>
 
-
-                        <div className="w-[640px] h-[767px]">
-                            <p className="text-[#111111] text-[14px] leading-[1.9] mb-4">
+                        {/* The text container */}
+                        <div className="w-[336px] h-[513px] md:w-[336px] md:h-[588px] xl:w-[640px] xl:h-[767px] 
+                        ">
+                            <p className="text-inter text-[#000000] text-pretty font-normal text-[12px] md:text-[13px] xl:text-[20px] leading-[160%]">
                                 Your workout doesn’t start or end at the gym — it begins with what you eat.
                                 Proper nutrition before, during, and after exercise is key to performance and recovery.
                                 Before training, your body needs energy from complex carbohydrates and proteins to prepare
@@ -66,7 +67,7 @@ const GymPage = () => {
                                 muscle tissue and restore balance.
                             </p>
 
-                            <p className="text-[#111111] text-[14px] leading-[1.9] mb-4">
+                            <p className="text-inter text-[#000000] font-normal text-[12px] md:text-[13px] xl:text-[20px] leading-[160%]">
                                 Gandom meals and snacks are carefully crafted to support each of these stages.
                                 Our high-protein waffles make a great pre- or post-workout option, giving you quick
                                 energy without processed sugars. Our soups and porridges provide slow-release carbohydrates
@@ -75,7 +76,7 @@ const GymPage = () => {
                                 perform at your best — naturally.
                             </p>
 
-                            <p className="text-[#111111] text-[14px] leading-[1.9]">
+                            <p className="text-inter text-[#000000] font-normal text-[12px] md:text-[13px] xl:text-[20px] leading-[160%]">
                                 And now, enjoying your favorite Gandom products is easier than ever.
                                 Our vending machines will be available in gyms across the city, so you can grab a
                                 wholesome, protein-rich meal or snack right where you train. Whether you’re finishing
