@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { FaStar } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const ProductSectionOne = ({ productdish }) => {
     const rating = productdish.ratingnum;
     const fillPercentage = (rating / 5) * 100;
-
+    const navigate = useNavigate();
     const product = productdish || {};
 
     const [selectedOptions, setSelectedOptions] = useState(() => {
@@ -52,25 +53,29 @@ const ProductSectionOne = ({ productdish }) => {
                     <p className="text-2xl font-bold mt-2">(Include all taxes)</p>
 
                     {/* Dynamic Customization List */}
-                    {product.customizations?.length > 0 && (
-                        <div className="mt-6 p-4">
-                            <h3 className="font-bold text-lg mb-3">Customize your Dish</h3>
-                            <div className="space-y-3">
-                                {product.customizations.map((option) => (
-                                    <label key={option.id} className="flex items-center gap-3 cursor-pointer group">
-                                        <div
-                                            onClick={() => handleToggle(option.id)}
-                                            className={`w-6 h-6 rounded border-2 flex items-center justify-center transition-colors ${selectedOptions[option.id] ? "bg-[#DEA401] border-[#DEA401]" : "bg-gray-300 border-gray-300"
-                                                }`}
-                                        >
-                                            {selectedOptions[option.id] && <span className="text-xs">✓</span>}
-                                        </div>
-                                        <span className="text-black">{option.label}</span>
-                                    </label>
-                                ))}
-                            </div>
-                        </div>
-                    )}
+                    <div className="mt-6 p-4">
+                        {product.customizations?.length > 0 ? (
+                            <>
+                                <h3 className="font-bold text-lg mb-3">Customize your Dish</h3>
+                                <div className="space-y-3">
+                                    {product.customizations.map((option) => (
+                                        <label key={option.id} className="flex items-center gap-3 cursor-pointer group">
+                                            <div
+                                                onClick={() => handleToggle(option.id)}
+                                                className={`w-6 h-6 rounded border-2 flex items-center justify-center transition-colors ${selectedOptions[option.id] ? "bg-[#DEA401] border-[#DEA401]" : "bg-gray-300 border-gray-300"
+                                                    }`}
+                                            >
+                                                {selectedOptions[option.id] && <span className="text-xs">✓</span>}
+                                            </div>
+                                            <span className="text-black">{option.label}</span>
+                                        </label>
+                                    ))}
+                                </div>
+                            </>
+                        ) : (
+                            <p className="text-gray-500 italic font-inter text-base">No customization available</p>
+                        )}
+                    </div>
 
                     {/* Rating */}
                     <div className="flex items-center gap-2 text-lg font-bold mt-8">
@@ -95,7 +100,7 @@ const ProductSectionOne = ({ productdish }) => {
                             Add to Cart
                         </button>
                         <button
-                            onClick={() => navigate(-1)}
+                            onClick={() => navigate("/productsPage")}
                             className="text-[#E6B220] border border-gray-300 px-8 py-3 rounded-full"
                         >
                             Back to menu
