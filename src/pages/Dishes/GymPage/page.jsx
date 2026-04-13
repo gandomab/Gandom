@@ -21,7 +21,7 @@ const GymPage = () => {
             <section className="mt-10 md:mb-6 xl:mb-24 px-4 md:px-10 lg:px-20 xl:px-3">
                 <div className="max-w-7xl mx-auto">
 
-                    <h2 className="text-[15px] md:text-[25px] xl:text-[40px] font-bold text-[#DEA401] text-center leading-[160%] mb-12 md:mb-6 ">
+                    <h2 className="text-inter text-[15px] md:text-[24px] xl:text-[40px] font-bold text-[#DEA401] text-center leading-[160%] mb-12 md:mb-6 ">
                         The Perfect Partner for Every Workout
                     </h2>
 
