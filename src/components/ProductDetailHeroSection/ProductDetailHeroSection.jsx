@@ -1,6 +1,10 @@
 import React, { useState } from "react";
+import { FaStar } from "react-icons/fa";
 
 const ProductSectionOne = ({ productdish }) => {
+    const rating = productdish.ratingnum;
+    const fillPercentage = (rating / 5) * 100;
+
     const product = productdish || {};
 
     const [selectedOptions, setSelectedOptions] = useState(() => {
@@ -45,6 +49,7 @@ const ProductSectionOne = ({ productdish }) => {
                 <div className="w-full md:w-1/2 text-left">
                     <h1 className="text-4xl font-santa">{product.title}</h1>
                     <p className="text-2xl font-bold mt-2">{product.price} SEK</p>
+                    <p className="text-2xl font-bold mt-2">(Include all taxes)</p>
 
                     {/* Dynamic Customization List */}
                     {product.customizations?.length > 0 && (
@@ -55,7 +60,7 @@ const ProductSectionOne = ({ productdish }) => {
                                     <label key={option.id} className="flex items-center gap-3 cursor-pointer group">
                                         <div
                                             onClick={() => handleToggle(option.id)}
-                                            className={`w-6 h-6 rounded border-2 flex items-center justify-center transition-colors ${selectedOptions[option.id] ? "bg-[#DEA401] border-[#DEA401]" : "border-gray-300"
+                                            className={`w-6 h-6 rounded border-2 flex items-center justify-center transition-colors ${selectedOptions[option.id] ? "bg-[#DEA401] border-[#DEA401]" : "bg-gray-300 border-gray-300"
                                                 }`}
                                         >
                                             {selectedOptions[option.id] && <span className="text-xs">✓</span>}
@@ -67,12 +72,35 @@ const ProductSectionOne = ({ productdish }) => {
                         </div>
                     )}
 
-                    {/* Add to Cart Button */}
-                    <button
-                        className="mt-8 w-full bg-[#DEA401] text-white py-4 rounded-full font-bold hover:bg-[#DEA401] transition-colors"
-                    >
-                        Add to Cart
-                    </button>
+                    {/* Rating */}
+                    <div className="flex items-center gap-2 text-lg font-bold mt-8">
+                        {/* star rating container */}
+                        <div className="mb-1 w-[36px] h-[16px] inline-flex items-center justify-center">
+                            {/* backround star */}
+                            <div className="relative"><FaStar className="text-gray-300" />
+                                {/* fill star */}
+                                <div
+                                    className="absolute top-0 left-0 overflow-hidden"
+                                    style={{ width: `${fillPercentage}%` }}>
+                                    <FaStar className="text-[#FFC94B]" />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="font-inter font-semibold text-[16px] leading-[1.3]">{productdish.ratingnum}</div>
+                    </div>
+
+                    {/* Buttons */}
+                    <div className="mt-2 flex gap-4">
+                        <button className="bg-[#E6B220] text-white px-8 py-3 rounded-lg">
+                            Add to Cart
+                        </button>
+                        <button
+                            onClick={() => navigate(-1)}
+                            className="text-[#E6B220] border border-gray-300 px-8 py-3 rounded-full"
+                        >
+                            Back to menu
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>
