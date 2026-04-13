@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { TiShoppingCart } from "react-icons/ti";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   const links = [
     { label: "Home", href: "/" },
@@ -15,21 +16,27 @@ const Navbar = () => {
     { label: "Delivery", href: "/delivery/order" },
   ];
 
-  const linkClasses = ({ isActive }) =>
-    `font-inter text-[16px] ${isActive ? "text-primary font-bold" : "text-black hover:text-black hover:font-bold"}`;
+  const linkClasses = (href, isActive) => {
+    const isCustomActive = href === "/productsPage" && location.pathname.startsWith("/productdetail/");
+    const finalIsActive = isActive || isCustomActive;
+    return `font-inter text-[16px] ${finalIsActive ? "text-primary font-bold" : "text-black hover:text-black hover:font-bold"}`;
+  };
 
-  const mobileLinkClasses = ({ isActive }) =>
-    `font-inter text-[18px] w-full text-center py-2 rounded ${isActive
+  const mobileLinkClasses = (href, isActive) => {
+    const isCustomActive = href === "/productsPage" && location.pathname.startsWith("/productdetail/");
+    const finalIsActive = isActive || isCustomActive;
+    return `font-inter text-[18px] w-full text-center py-2 rounded ${finalIsActive
       ? "text-primary font-bold underline"
       : "text-black hover:text-primary "
-    }`;
+      }`;
+  };
 
   return (
     <div className="flex items-center justify-end gap-6 relative">
       {/* Desktop Navbar */}
       <div className="hidden lg:flex items-center gap-8">
         {links.map((link) => (
-          <NavLink key={link.href} to={link.href} className={linkClasses}>
+          <NavLink key={link.href} to={link.href} className={({ isActive }) => linkClasses(link.href, isActive)}>
             {link.label}
           </NavLink>
         ))}
@@ -59,7 +66,7 @@ const Navbar = () => {
               key={link.href}
               to={link.href}
               onClick={() => setMobileMenuOpen(false)}
-              className={mobileLinkClasses}
+              className={({ isActive }) => mobileLinkClasses(link.href, isActive)}
             >
               {link.label}
             </NavLink>

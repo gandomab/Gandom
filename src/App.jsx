@@ -23,6 +23,7 @@ import { Routes, Route } from "react-router-dom";
 import Pay from "./pages/Pay/PayPage";
 import HomeCard from "./components/HomeCard/Card.jsx";
 import ProductsPage from "./pages/ProductsPage/ProductsPage.jsx";
+import ProductDetailPage from "./pages/ProductDetailPage/page.jsx";
 import SubscribeSection from "./components/SubscribeSection/SubscribeSection.jsx";
 import InfiniteMarquee from "./components/InfiniteMarquee/InfiniteMarquee.jsx";
 import HomeIconSection from "./components/HomeIconSection/HomeIconSection.jsx";
@@ -58,6 +59,7 @@ function App() {
 
           {/* Dishes pages */}
           <Route path="/productsPage" element={<ProductsPage />} />
+          <Route path="/productdetail/:productTitle" element={<ProductDetailPage />} />
           {/* <Route path="/dishes/soups" element={<SoupsPage />} />
           <Route path="/dishes/desserts" element={<DessertsPage />} />
           <Route path="/dishes/waffles" element={<WafflesPage />} />
