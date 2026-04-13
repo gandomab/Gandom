@@ -11,6 +11,7 @@ import kenyaFlag from "../../assets/Images/3.About Us/Flags/Captura de pantalla 
 import africa from "../../assets/Images/3.About Us/Flags/Captura de pantalla 2025-09-24 a la(s) 13.32.39.png";
 import AboutUsHeroSection from "../../components/AboutUsHeroSection/AboutUsHeroSection";
 import AboutUsMainContent from "../../components/AboutUsMainContent/AboutUsMainContent";
+import { useNavigate } from "react-router-dom";
 
 const flags = [
     iranFlag,
@@ -26,6 +27,11 @@ const flags = [
 ];
 
 const AboutUsPage = () => {
+    const navigate = useNavigate();
+    const handleClick = () => {
+        navigate("/");
+        window.scrollTo(0, 0);
+    };
     return (
         <div className="w-full">
             <section className="mt-4">
@@ -46,7 +52,15 @@ const AboutUsPage = () => {
                         />
                     ))}
                 </div>
+                <div className="md:hidden mt-8 w-full flex justify-end pr-4">
+                    <button
+                        onClick={handleClick}
+                        className="w-[80px] h-[32px] bg-[#DEA401] flex justify-center items-center text-[#FFFFFF] text-[13px] font-semibold leading-[150%] tracking-[-1.1%] rounded-full">
+                        Home
+                    </button>
+                </div>
             </section>
+
         </div>
     );
 };
