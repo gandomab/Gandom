@@ -19,7 +19,14 @@ import MenuBox from "../assets/Images/2.Dishes/Menu Box.png";
 // Each category (starters, mains, desserts) has an array of product dishes, each with an id, title, price, and image.
 export const productData = {
   soups: [
-    { id: 101, title: "Ashe Reshteh", price: "62.50", ratingnum: "4.5", image: AsheReshteh1, hoverimage: MenuBox },
+    {
+      id: 101, title: "Ashe Reshteh", price: "62.50", ratingnum: "4.5", image: AsheReshteh1, hoverimage: MenuBox,
+      customizations: [
+        { label: "Garlic", id: "garlic" },
+        { label: "Onion", id: "onion" },
+        { label: "Lactose Free", id: "lactose" }
+      ]
+    },
     { id: 102, title: "Ashe Anar", price: "15", ratingnum: "3.5", image: AsheAnar1, hoverimage: MenuBox },
     { id: 103, title: "Ashe Doogh", price: "18", ratingnum: "5", image: AsheDoogh1, hoverimage: MenuBox },
     { id: 104, title: "Abhgoosht", price: "15", ratingnum: "4.2", image: Abhgoosht, hoverimage: MenuBox },
