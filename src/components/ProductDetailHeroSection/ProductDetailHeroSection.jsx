@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { FaStar } from "react-icons/fa";
+import { FaStar, FaHeart, FaShareAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-
+import BestSellerBadge from "../../assets/Images/2.Dishes/BestSellerBadge.svg";
 const ProductSectionOne = ({ productdish }) => {
     const rating = productdish.ratingnum;
     const fillPercentage = (rating / 5) * 100;
@@ -17,6 +17,7 @@ const ProductSectionOne = ({ productdish }) => {
     });
 
     const [added, setAdded] = useState(false);
+    const [isFavorite, setIsFavorite] = useState(false);
 
     const handleToggle = (id) => {
         setSelectedOptions((prev) => ({ ...prev, [id]: !prev[id] }));
@@ -39,19 +40,31 @@ const ProductSectionOne = ({ productdish }) => {
     // };
 
     return (
-        <section className="w-full flex flex-col items-center mt-12 mb-12 px-2 md:px-10 xl:px-20">
-            <div className="flex flex-col md:flex-row md:gap-12 xl:gap-24 p-6 space-y-5 md:space-y-0">
+        <section className="w-full flex flex-col items-center md:h-[271px] xl:h-[477px] mt-12 mb-12 px-2 md:px-5 xl:px-10">
+            <div className="flex flex-col md:flex-row md:gap-20 xl:gap-24 p-6 space-y-5 md:space-y-0">
                 {/* Image Section */}
-                <div className="w-full md:w-1/2">
-                    <img src={product.image} className="md:rounded-[20px] xl:rounded-[34px] w-full object-cover" alt={product.name || "product"} />
+                <div className="w-full shrink-0 md:w-[350px] md:h-[251px] xl:w-[615px] xl:h-[441px]">
+                    <img src={product.image} className="md:rounded-[20px] xl:rounded-[34px] w-full h-full object-cover" alt={product.name || "product"} />
                 </div>
 
                 {/* Info Section */}
-                <div className="w-full md:w-1/2 text-left">
-                    <div className="flex flex-col space-y-1">
-                        <h1 className="font-inter font-semibold text-[16px] md:text-[27px] xl:text-[48px] leading-[130%]">{product.title}</h1>
-                        <p className="font-inter font-semibold text-[#426B1F] text-[16px] md:text-[20px] xl:text-[36px] leading-[130%]">{product.price} SEK</p>
-                        <p className="font-inter font-normal text-[12px] md:text-[20px] xl:text-[36px] leading-[130%]">(Include all taxes)</p>
+                <div className="w-full flex-1 text-left">
+                    <div className="flex justify-between items-start w-full">
+                        <div className="flex flex-col space-y-1">
+                            <h1 className="font-inter font-semibold text-[16px] md:text-[27px] xl:text-[48px] leading-[130%]">{product.title}</h1>
+                            <p className="font-inter font-semibold text-[#426B1F] text-[16px] md:text-[20px] xl:text-[36px] leading-[130%]">{product.price} SEK</p>
+                            <p className="font-inter font-normal text-[12px] md:text-[20px] xl:text-[36px] leading-[130%]">(Include all taxes)</p>
+                        </div>
+                        {/* Right aligned icons */}
+                        <div className="flex flex-col items-center gap-2 md:gap-3 mt-1">
+                            <button
+                                onClick={() => setIsFavorite(!isFavorite)}
+                                className="w-8 h-8 md:w-12 md:h-12 bg-[#D9D9D9] rounded-full flex items-center justify-center hover:bg-[#c9c9c9] transition-colors"
+                            >
+                                <FaHeart className={`text-sm md:text-xl transition-colors ${isFavorite ? "text-red-500" : "text-[#9F9F9F]"}`} />
+                            </button>
+                            <img src={BestSellerBadge} alt="share" className="w-8 h-8 md:w-12 md:h-12 flex items-center justify-center" />
+                        </div>
                     </div>
 
                     {/* Dynamic Customization List */}
@@ -75,7 +88,7 @@ const ProductSectionOne = ({ productdish }) => {
                                 </div>
                             </>
                         ) : (
-                            <p className="text-gray-500 italic font-inter text-base">No customization available</p>
+                            <p className="font-inter font-semibold text-[13px] md:text-[14px] xl:text-[24px] leading-[130%]">No customization available</p>
                         )}
                     </div>
 
