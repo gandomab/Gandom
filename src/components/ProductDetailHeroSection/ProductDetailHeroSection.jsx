@@ -43,8 +43,8 @@ const ProductSectionOne = ({ productdish }) => {
         <section className="w-full flex flex-col items-center md:h-[271px] xl:h-[477px] mt-12 mb-12 px-2 md:px-5 xl:px-10">
             <div className="flex flex-col md:flex-row md:gap-20 xl:gap-24 p-6 space-y-5 md:space-y-0">
                 {/* Image Section */}
-                <div className="w-full shrink-0 md:w-[350px] md:h-[251px] xl:w-[615px] xl:h-[441px]">
-                    <img src={product.image} className="md:rounded-[20px] xl:rounded-[34px] w-full h-full object-cover" alt={product.name || "product"} />
+                <div className="shrink-0 w-[342px] h-[245px] md:w-[350px] md:h-[251px] xl:w-[615px] xl:h-[441px]">
+                    <img src={product.image} className="rounded-[14px] md:rounded-[20px] xl:rounded-[34px] w-full h-full object-cover" alt={product.name || "product"} />
                 </div>
 
                 {/* Info Section */}
@@ -111,14 +111,14 @@ const ProductSectionOne = ({ productdish }) => {
 
                     {/* Buttons */}
                     <div className="mt-2 flex gap-4">
-                        <button className="bg-[#E6B220] text-white font-inter font-bold text-[10px] md:text-[14px] xl:text-[36px] leading-[130%] 
-                            md:px-4 md:py-2 xl:px-8 xl:py-3 w-[74px] h-[33px] md:w-[123px] md:h-[38px]  xl:w-[271px] xl:h-[67px] rounded-[23px] md:rounded-[10px] xl:rounded-[20px]">
+                        <button className="bg-[#E6B220] text-white font-inter font-bold text-[10px] md:text-[14px] xl:text-[28px] leading-[130%] 
+                            md:px-4 md:py-2 xl:px-8 xl:py-3 w-[74px] h-[33px] md:w-[123px] md:h-[38px]  xl:w-[217px] xl:h-[67px] rounded-[23px] md:rounded-[10px] xl:rounded-[20px]">
                             Add to Cart
                         </button>
                         <button
                             onClick={() => navigate("/productsPage")}
                             className="text-[#E6B220] border border-gray-300 font-inter font-bold text-[9px] md:text-[13px] xl:text-[20px] leading-[130%]
-                            md:px-4 md:py-2 xl:px-8 xl:py-3 w-[74px] h-[33px] md:w-[123px] md:h-[38px]  xl:w-[271px] xl:h-[67px] rounded-[23px] md:rounded-[13px] xl:rounded-[20px]"
+                            md:px-4 md:py-2 xl:px-8 xl:py-3 w-[74px] h-[33px] md:w-[123px] md:h-[38px]  xl:w-[217px] xl:h-[67px] rounded-[23px] md:rounded-[13px] xl:rounded-[20px]"
                         >
                             Back to menu
                         </button>
