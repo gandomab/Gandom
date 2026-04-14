@@ -40,14 +40,14 @@ const ProductSectionOne = ({ productdish }) => {
 
     return (
         <section className="w-full flex flex-col items-center mt-12 mb-12 px-2 md:px-10 xl:px-20">
-            <div className="flex flex-col md:flex-row md:gap-12 xl:gap-24 p-6">
+            <div className="flex flex-col md:flex-row md:gap-12 xl:gap-24 p-6 space-y-5 md:space-y-0">
                 {/* Image Section */}
                 <div className="w-full md:w-1/2">
                     <img src={product.image} className="md:rounded-[20px] xl:rounded-[34px] w-full object-cover" alt={product.name || "product"} />
                 </div>
 
                 {/* Info Section */}
-                <div className="w-full md:w-1/2 text-left ">
+                <div className="w-full md:w-1/2 text-left">
                     <div className="flex flex-col space-y-1">
                         <h1 className="font-inter font-semibold text-[16px] md:text-[27px] xl:text-[48px] leading-[130%]">{product.title}</h1>
                         <p className="font-inter font-semibold text-[#426B1F] text-[16px] md:text-[20px] xl:text-[36px] leading-[130%]">{product.price} SEK</p>
@@ -104,7 +104,7 @@ const ProductSectionOne = ({ productdish }) => {
                         </button>
                         <button
                             onClick={() => navigate("/productsPage")}
-                            className="text-[#E6B220] border border-gray-300 font-inter font-bold text-[13px] xl:text-[20px] leading-[130%]
+                            className="text-[#E6B220] border border-gray-300 font-inter font-bold text-[9px] md:text-[13px] xl:text-[20px] leading-[130%]
                             md:px-4 md:py-2 xl:px-8 xl:py-3 w-[74px] h-[33px] md:w-[123px] md:h-[38px]  xl:w-[271px] xl:h-[67px] rounded-[23px] md:rounded-[13px] xl:rounded-[20px]"
                         >
                             Back to menu
