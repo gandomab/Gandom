@@ -41,14 +41,14 @@ const ProductSectionOne = ({ productdish }) => {
 
     return (
         <section className="w-full flex flex-col items-center mt-12 mb-12 px-2 md:px-5 xl:px-10">
-            <div className="flex flex-col md:flex-row md:gap-20 xl:gap-24 p-6 space-y-5 md:space-y-0 w-full max-w-7xl">
+            <div className="flex flex-col md:flex-row md:gap-10 xl:gap-24 p-6 space-y-5 md:space-y-0 w-full max-w-7xl md:items-center">
                 {/* Image Section */}
-                <div className="shrink-0 w-[342px] h-[245px] md:w-[350px] md:h-[251px] xl:w-[615px] xl:h-[441px]">
+                <div className="shrink-0 mx-auto md:mx-0 w-[342px] h-[245px] md:w-[350px] md:h-[251px] xl:w-[615px] xl:h-[441px]">
                     <img src={product.image} className="rounded-[14px] md:rounded-[20px] xl:rounded-[34px] w-full h-full object-cover" alt={product.name || "product"} />
                 </div>
 
                 {/* Info Section */}
-                <div className="w-full flex-1 text-left flex flex-col justify-between md:py-2">
+                <div className="w-full flex-1 text-left">
                     <div className="flex justify-between items-start w-full">
                         <div className="flex flex-col space-y-1">
                             <h1 className="font-inter font-semibold text-[16px] md:text-[27px] xl:text-[48px] leading-[130%]">{product.title}</h1>
@@ -56,7 +56,7 @@ const ProductSectionOne = ({ productdish }) => {
                             <p className="font-inter font-normal text-[12px] md:text-[20px] xl:text-[36px] leading-[130%]">(Include all taxes)</p>
                         </div>
                         {/* Right aligned icons */}
-                        <div className="flex flex-col items-center gap-2 md:gap-3 mt-1">
+                        <div className="flex flex-col items-center gap-2 md:gap-3 mt-1 space-y-2">
                             <button
                                 onClick={() => setIsFavorite(!isFavorite)}
                                 className="w-[28px] h-[28px] md:w-[33px] md:h-[33px] xl:w-[59px] xl:h-[59px] bg-[#D9D9D9] rounded-full flex items-center justify-center hover:bg-[#c9c9c9] transition-colors"
@@ -68,7 +68,7 @@ const ProductSectionOne = ({ productdish }) => {
                     </div>
 
                     {/* Dynamic Customization List */}
-                    <div className="mt-6">
+                    <div className="md:mt-4 xl:mt-6">
                         {product.customizations?.length > 0 ? (
                             <>
                                 <h3 className="font-inter font-semibold text-[13px] md:text-[15px] xl:text-[24px] leading-[130%] mb-3">Customize your Dish</h3>
@@ -93,7 +93,7 @@ const ProductSectionOne = ({ productdish }) => {
                     </div>
 
                     {/* Rating */}
-                    <div className="flex items-center gap-2 text-lg font-bold mt-8">
+                    <div className="flex items-center gap-2 text-lg font-bold mt-6 md:mt-4">
                         {/* star rating container */}
                         <div className="mb-1 text-[12px] md:text-[14px] xl:text-[22px] inline-flex items-center justify-center">
                             {/* backround star */}
