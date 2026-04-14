@@ -40,10 +40,10 @@ const ProductSectionOne = ({ productdish }) => {
     // };
 
     return (
-        <section className="w-full flex flex-col items-center mt-12 mb-12 px-2 md:px-5 xl:px-10">
-            <div className="flex flex-col md:flex-row md:gap-10 xl:gap-24 p-6 space-y-5 md:space-y-0 w-full max-w-7xl md:items-center">
+        <section className="w-full flex flex-col items-center mt-12 mb-12 px-2 md:px-5 lg:px-10 xl:px-10">
+            <div className="flex flex-col md:flex-row md:gap-10 lg:gap-24 xl:gap-24 p-6 space-y-5 md:space-y-0 w-full max-w-7xl md:items-center">
                 {/* Image Section */}
-                <div className="shrink-0 mx-auto md:mx-0 w-[342px] h-[245px] md:w-[350px] md:h-[251px] xl:w-[615px] xl:h-[441px]">
+                <div className="shrink-0 mx-auto md:mx-0 w-full max-w-[342px] aspect-[342/245] md:max-w-none md:w-[350px] md:h-[251px] md:aspect-auto xl:w-[615px] xl:h-[441px]">
                     <img src={product.image} className="rounded-[14px] md:rounded-[20px] xl:rounded-[34px] w-full h-full object-cover" alt={product.name || "product"} />
                 </div>
 
