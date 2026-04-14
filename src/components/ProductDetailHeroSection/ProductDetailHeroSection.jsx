@@ -61,7 +61,7 @@ const ProductSectionOne = ({ productdish }) => {
                                 onClick={() => setIsFavorite(!isFavorite)}
                                 className="w-[28px] h-[28px] md:w-[33px] md:h-[33px] xl:w-[59px] xl:h-[59px] bg-[#D9D9D9] rounded-full flex items-center justify-center hover:bg-[#c9c9c9] transition-colors"
                             >
-                                <FaHeart className={`text-sm md:text-xl transition-colors ${isFavorite ? "text-red-500" : "text-[#9F9F9F]"}`} />
+                                <FaHeart className={`text-sm md:text-xl xl:text-2xl transition-colors ${isFavorite ? "text-red-500" : "text-[#9F9F9F]"}`} />
                             </button>
                             <img src={BestSellerBadge} alt="share" className="w-[38px] h-[34px] md:w-[45px] md:h-[40px] xl:w-[80px] xl:h-[71px] flex items-center justify-center" />
                         </div>
