@@ -40,15 +40,15 @@ const ProductSectionOne = ({ productdish }) => {
     // };
 
     return (
-        <section className="w-full flex flex-col items-center md:h-[271px] xl:h-[477px] mt-12 mb-12 px-2 md:px-5 xl:px-10">
-            <div className="flex flex-col md:flex-row md:gap-20 xl:gap-24 p-6 space-y-5 md:space-y-0">
+        <section className="w-full flex flex-col items-center mt-12 mb-12 px-2 md:px-5 xl:px-10">
+            <div className="flex flex-col md:flex-row md:gap-20 xl:gap-24 p-6 space-y-5 md:space-y-0 w-full max-w-7xl">
                 {/* Image Section */}
                 <div className="shrink-0 w-[342px] h-[245px] md:w-[350px] md:h-[251px] xl:w-[615px] xl:h-[441px]">
                     <img src={product.image} className="rounded-[14px] md:rounded-[20px] xl:rounded-[34px] w-full h-full object-cover" alt={product.name || "product"} />
                 </div>
 
                 {/* Info Section */}
-                <div className="w-full flex-1 text-left">
+                <div className="w-full flex-1 text-left flex flex-col justify-between md:py-2">
                     <div className="flex justify-between items-start w-full">
                         <div className="flex flex-col space-y-1">
                             <h1 className="font-inter font-semibold text-[16px] md:text-[27px] xl:text-[48px] leading-[130%]">{product.title}</h1>
