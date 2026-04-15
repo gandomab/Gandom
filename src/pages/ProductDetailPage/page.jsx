@@ -19,8 +19,10 @@ const ProductDetailPage = () => {
     }
 
     return (
-        <main className="w-full">
-            <ProductDetailHeroSection productdish={productdish} />
+        <main className="w-full ">
+            <div className="max-w-[1440px] mx-auto">
+                <ProductDetailHeroSection productdish={productdish} />
+            </div>
 
         </main>
     );
