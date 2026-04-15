@@ -3,11 +3,14 @@ import AsheReshteh2 from "../assets/Images/2.Dishes/Foodora - Ashe Reshteh.png";
 import AsheReshteh3 from "../assets/Images/2.Dishes/Ashe Reshteh.png";
 import AsheReshteh4 from "../assets/Images/2.Dishes/Menu - Ashe Reshteh.png";
 import AsheAnar1 from "../assets/Images/2.Dishes/Ashe Anar 1.png";
+import AsheAnar2 from "../assets/Images/2.Dishes/Foodora - Ashe Anar.png";
+import AsheAnar3 from "../assets/Images/2.Dishes/Menu - Ashe Anar.png";
 import AsheDoogh1 from "../assets/Images/2.Dishes/Ashe Doogh 1.png";
 import Abhgoosht from "../assets/Images/2.Dishes/Abgoosht1.png";
 import Halim from "../assets/Images/2.Dishes/Halim.png";
 import SholeZard1 from "../assets/Images/2.Dishes/Shole Zard 1.png";
 import SoyWaffle from "../assets/Images/2.Dishes/Soy Waffle.png";
+import SoyWaffle2 from "../assets/Images/2.Dishes/Soy Waffle 2.png";
 import VegetarianHerb from "../assets/Images/2.Dishes/Waffle - Vegetarian Herb.png";
 import HerbalDelightWaffle from "../assets/Images/2.Dishes/Waffle - Herbal Delight.png";
 import WaffleBeetroot from "../assets/Images/2.Dishes/Waffle - Beetroot.png";
@@ -40,7 +43,7 @@ export const productData = {
       title: "Ashe Anar",
       price: "15",
       ratingnum: "3.5",
-      images: [AsheAnar1],
+      images: [AsheAnar1, AsheAnar2, AsheAnar3],
       hoverimage: MenuBox,
       customizations: [
         { label: "Vegetarian", id: "vegetarian" },
@@ -94,7 +97,7 @@ export const productData = {
       title: "Soy Waffle",
       price: "10",
       ratingnum: "4.5",
-      images: [SoyWaffle],
+      images: [SoyWaffle, SoyWaffle2],
       hoverimage: MenuBox,
     },
     {
