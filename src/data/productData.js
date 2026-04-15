@@ -20,32 +20,145 @@ import MenuBox from "../assets/Images/2.Dishes/Menu Box.png";
 export const productData = {
   soups: [
     {
-      id: 101, title: "Ashe Reshteh", price: "62.50", ratingnum: "4.5", image: AsheReshteh1, hoverimage: MenuBox,
+      id: 101,
+      title: "Ashe Reshteh",
+      price: "62.50",
+      ratingnum: "4.5",
+      image: AsheReshteh1,
+      hoverimage: MenuBox,
       customizations: [
         { label: "Garlic", id: "garlic" },
         { label: "Onion", id: "onion" },
         { label: "Lactose Free", id: "lactose" }
       ]
     },
-    { id: 102, title: "Ashe Anar", price: "15", ratingnum: "3.5", image: AsheAnar1, hoverimage: MenuBox },
-    { id: 103, title: "Ashe Doogh", price: "18", ratingnum: "5", image: AsheDoogh1, hoverimage: MenuBox },
-    { id: 104, title: "Abhgoosht", price: "15", ratingnum: "4.2", image: Abhgoosht, hoverimage: MenuBox },
-    { id: 105, title: "Halim", price: "12", ratingnum: "3.1", image: Halim, hoverimage: MenuBox },
+    {
+      id: 102,
+      title: "Ashe Anar",
+      price: "15",
+      ratingnum: "3.5",
+      image: AsheAnar1,
+      hoverimage: MenuBox,
+      customizations: [
+        { label: "Vegetarian", id: "vegetarian" },
+        { label: "Onion", id: "onion" }
+      ]
+    },
+    {
+      id: 103,
+      title: "Ashe Doogh",
+      price: "18",
+      ratingnum: "5",
+      image: AsheDoogh1,
+      hoverimage: MenuBox,
+      customizations: [
+        { label: "Lactose Free", id: "lactose" }
+      ]
+    },
+    {
+      id: 104,
+      title: "Abhgoosht",
+      price: "15",
+      ratingnum: "4.2",
+      image: Abhgoosht,
+      hoverimage: MenuBox
+    },
+    {
+      id: 105,
+      title: "Halim",
+      price: "12",
+      ratingnum: "3.1",
+      image: Halim,
+      hoverimage: MenuBox
+    },
   ],
   desserts: [
-    { id: 201, title: "Shole Zard", price: "32", ratingnum: "4.5", image: SholeZard1, hoverimage: MenuBox },
+    {
+      id: 201,
+      title: "Shole Zard",
+      price: "32",
+      ratingnum: "4.5",
+      image: SholeZard1,
+      hoverimage: MenuBox,
+      customizations: [
+        { label: "Vegan Version", id: "vegan" }
+      ]
+    },
   ],
   waffles: [
-    { id: 301, title: "Soy Waffle", price: "10", ratingnum: "4.5", image: SoyWaffle, hoverimage: MenuBox },
-    { id: 302, title: "Vegetarian Herb Waffle", price: "9", ratingnum: "4.5", image: VegetarianHerb, hoverimage: MenuBox },
-    { id: 303, title: "Herbal Delight Waffle", price: "11", ratingnum: "4.5", image: HerbalDelightWaffle, hoverimage: MenuBox },
-    { id: 304, title: "Beetroot Waffle", price: "8", ratingnum: "4.5", image: WaffleBeetroot, hoverimage: MenuBox },
-    { id: 305, title: "Carrot Waffle", price: "7", ratingnum: "4.5", image: WaffleCarrot, hoverimage: MenuBox },
-    { id: 306, title: "Matcha Waffle", price: "6", ratingnum: "4.5", image: WaffleMatcha, hoverimage: MenuBox },
+    {
+      id: 301,
+      title: "Soy Waffle",
+      price: "10",
+      ratingnum: "4.5",
+      image: SoyWaffle,
+      hoverimage: MenuBox,
+    },
+    {
+      id: 302,
+      title: "Vegetarian Herb Waffle",
+      price: "9",
+      ratingnum: "4.5",
+      image: VegetarianHerb,
+      hoverimage: MenuBox
+    },
+    {
+      id: 303,
+      title: "Herbal Delight Waffle",
+      price: "11",
+      ratingnum: "4.5",
+      image: HerbalDelightWaffle,
+      hoverimage: MenuBox
+    },
+    {
+      id: 304,
+      title: "Beetroot Waffle",
+      price: "8",
+      ratingnum: "4.5",
+      image: WaffleBeetroot,
+      hoverimage: MenuBox
+    },
+    {
+      id: 305,
+      title: "Carrot Waffle",
+      price: "7",
+      ratingnum: "4.5",
+      image: WaffleCarrot,
+      hoverimage: MenuBox
+    },
+    {
+      id: 306,
+      title: "Matcha Waffle",
+      price: "6",
+      ratingnum: "4.5",
+      image: WaffleMatcha,
+      hoverimage: MenuBox
+    },
   ],
   sideDishes: [
-    { id: 401, title: "Fermented Lemon", price: "8", ratingnum: "4.5", image: FermentedLemon, hoverimage: MenuBox },
-    { id: 402, title: "Herbed Marinated Olives", price: "5", ratingnum: "4.5", image: HerbedMarinatedOlives, hoverimage: MenuBox },
-    { id: 403, title: "Custom Fermented Vegetables", price: "6", ratingnum: "4.5", image: CustomFermentedVegetables, hoverimage: MenuBox },
+    {
+      id: 401,
+      title: "Fermented Lemon",
+      price: "8",
+      ratingnum: "4.5",
+      image: FermentedLemon,
+      hoverimage: MenuBox
+    },
+    {
+      id: 402,
+      title: "Herbed Marinated Olives",
+      price: "5",
+      ratingnum: "4.5",
+      image: HerbedMarinatedOlives,
+      hoverimage: MenuBox
+    },
+    {
+      id: 403,
+      title: "Custom Fermented Vegetables",
+      price: "6",
+      ratingnum: "4.5",
+      image: CustomFermentedVegetables,
+      hoverimage: MenuBox
+    },
   ]
 };

@@ -57,6 +57,7 @@ const ProductCard = ({ productdish }) => {
                     {/* View Button: to view more details about the product */}
                     <Link
                         to={`/productdetail/${productdish.title.replace(/\s+/g, '-')}`}
+                        onClick={() => window.scrollTo(0, 0)}
                         className="px-5 py-1 bg-[#F5C242] text-white font-semibold font-inter rounded-[10px] text-sm hover:opacity-90">
                         View
                     </Link>

@@ -48,7 +48,7 @@ const ProductSectionOne = ({ productdish }) => {
                 </div>
 
                 {/* Info Section */}
-                <div className="w-full flex-1 text-left flex flex-col justify-between md:py-1">
+                <div className="w-full flex-1 text-left flex flex-col justify-between md:py-0 xl:py-1">
                     <div className="flex justify-between items-start w-full">
                         <div className="flex flex-col space-y-1">
                             <h1 className="font-inter font-semibold text-[16px] md:text-[27px] xl:text-[48px] leading-[130%]">{product.title}</h1>
@@ -68,11 +68,11 @@ const ProductSectionOne = ({ productdish }) => {
                     </div>
 
                     {/* Dynamic Customization List */}
-                    <div className="md:mt-4 xl:mt-6">
+                    <div className="md:mt-1 xl:mt-2">
                         {product.customizations?.length > 0 ? (
                             <>
                                 <h3 className="font-inter font-semibold text-[13px] md:text-[15px] xl:text-[24px] leading-[130%] mb-3">Customize your Dish</h3>
-                                <div className="space-y-1">
+                                <div className="space-y-1 md:space-y-0.5 xl:space-y-1">
                                     {product.customizations.map((option) => (
                                         <label key={option.id} className="flex items-center justify-between w-[125px] md:w-[150px] xl:w-[200px] cursor-pointer group">
                                             <span className="font-inter font-normal text-[#6D6D6D] text-[12px] md:text-[14px] xl:text-[20px] leading-[150%]">{option.label}</span>
@@ -93,7 +93,7 @@ const ProductSectionOne = ({ productdish }) => {
                     </div>
 
                     {/* Rating */}
-                    <div className="flex items-center gap-2 text-lg font-bold mt-6 md:mt-4">
+                    <div className="flex items-center gap-2 text-lg font-bold mt-4 md:mt-1 xl:mt-2">
                         {/* star rating container */}
                         <div className="mb-1 text-[12px] md:text-[14px] xl:text-[22px] inline-flex items-center justify-center">
                             {/* backround star */}
@@ -110,10 +110,10 @@ const ProductSectionOne = ({ productdish }) => {
                     </div>
 
                     {/* Buttons */}
-                    <div className="mt-2 flex gap-4">
+                    <div className="mt-2 md:mt-1 xl:mt-2 flex gap-6">
                         <button className="bg-[#E6B220] text-white font-inter font-bold text-[10px] md:text-[14px] xl:text-[28px] leading-[130%] 
                             md:px-4 md:py-2 xl:px-8 xl:py-3 w-[74px] h-[33px] md:w-[123px] md:h-[38px]  xl:w-[259px] xl:h-[67px] rounded-[23px] md:rounded-[10px] xl:rounded-[20px]">
-                            Add to Cart
+                            Add to cart
                         </button>
                         <button
                             onClick={() => navigate("/productsPage")}
