@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaStar, FaHeart, FaShareAlt } from "react-icons/fa";
+import { FaStar, FaHeart, FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import BestSellerBadge from "../../assets/Images/2.Dishes/BestSellerBadge.svg";
 const ProductSectionOne = ({ productdish }) => {
@@ -23,6 +23,18 @@ const ProductSectionOne = ({ productdish }) => {
         setSelectedOptions((prev) => ({ ...prev, [id]: !prev[id] }));
     };
 
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    // Safety check: Fallback to an empty array if images don't exist
+    const images = product.images || [product.image];
+
+    const nextImage = () => {
+        setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+    };
+
+    const prevImage = () => {
+        setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+    };
     // const handleAddToCart = () => {
     //     const selected = Object.keys(selectedOptions).filter((id) => selectedOptions[id]);
     //     const cartItem = { ...product, selectedCustomizations: selected };
@@ -43,8 +55,24 @@ const ProductSectionOne = ({ productdish }) => {
         <section className="w-full flex flex-col items-center mt-12 mb-12 px-2 md:px-5">
             <div className="flex flex-col md:flex-row md:gap-10 lg:gap-24 xl:gap-24 p-6 space-y-5 md:space-y-0 w-full md:items-stretch">
                 {/* Image Section */}
-                <div className="shrink-0 mx-auto md:mx-0 w-full max-w-[342px] aspect-[342/245] md:max-w-none md:w-[350px] md:h-[251px] md:aspect-auto xl:w-[615px] xl:h-[441px]">
-                    <img src={product.image} className="rounded-[14px] md:rounded-[20px] xl:rounded-[34px] w-full h-full object-cover" alt={product.name || "product"} />
+                <div className="relative shrink-0 mx-auto md:mx-0 w-full max-w-[342px] aspect-[342/245] md:max-w-none md:w-[350px] md:h-[251px] md:aspect-auto xl:w-[615px] xl:h-[441px]">
+                    <img src={images[currentIndex]} className="rounded-[14px] md:rounded-[20px] xl:rounded-[34px] w-full h-full object-cover" alt={product.name || "product"} />
+                    {images.length > 1 && (
+                        <>
+                            {/* Left Icon (Previous) */}
+                            <button className="absolute left-3 xl:left-5 top-1/2 -translate-y-1/2 w-8 h-8 md:w-10 md:h-10 xl:w-12 xl:h-12 bg-black/20 text-white rounded-full flex items-center justify-center transition-colors backdrop-blur-sm">
+                                <FaArrowLeft
+                                    onClick={prevImage}
+                                    className="text-sm md:text-base xl:text-lg" />
+                            </button>
+                            {/* Right Icon (Next) */}
+                            <button className="absolute right-3 xl:right-5 top-1/2 -translate-y-1/2 w-8 h-8 md:w-10 md:h-10 xl:w-12 xl:h-12 bg-black/20 text-white rounded-full flex items-center justify-center transition-colors backdrop-blur-sm">
+                                <FaArrowRight
+                                    onClick={nextImage}
+                                    className="text-sm md:text-base xl:text-lg" />
+                            </button>
+                        </>
+                    )}
                 </div>
 
                 {/* Info Section */}

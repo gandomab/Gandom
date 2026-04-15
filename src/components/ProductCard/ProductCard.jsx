@@ -7,7 +7,8 @@ const ProductCard = ({ productdish }) => {
     const rating = productdish.ratingnum;
     const fillPercentage = (rating / 5) * 100;
 
-    const [currentImage, setCurrentImage] = useState(productdish.image);
+    const baseImage = productdish.images ? productdish.images[0] : productdish.image;
+    const [currentImage, setCurrentImage] = useState(baseImage);
     return (
         <div className="bg-[#FFFFFF] border rounded-xl overflow-hidden w-full h-[331.46px] shadow-[4.73px_4.73px_16.9px_0.68px_rgba(0,0,0,0.25)]">
 
@@ -23,7 +24,7 @@ const ProductCard = ({ productdish }) => {
                         }
                     }}
                     onMouseLeave={() => {
-                        setCurrentImage(productdish.image);
+                        setCurrentImage(baseImage);
                     }}
                 />
             </div>

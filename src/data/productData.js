@@ -1,4 +1,7 @@
 import AsheReshteh1 from "../assets/Images/2.Dishes/Ashe Reshteh 1.png";
+import AsheReshteh2 from "../assets/Images/2.Dishes/Foodora - Ashe Reshteh.png";
+import AsheReshteh3 from "../assets/Images/2.Dishes/Ashe Reshteh.png";
+import AsheReshteh4 from "../assets/Images/2.Dishes/Menu - Ashe Reshteh.png";
 import AsheAnar1 from "../assets/Images/2.Dishes/Ashe Anar 1.png";
 import AsheDoogh1 from "../assets/Images/2.Dishes/Ashe Doogh 1.png";
 import Abhgoosht from "../assets/Images/2.Dishes/Abgoosht1.png";
@@ -24,7 +27,7 @@ export const productData = {
       title: "Ashe Reshteh",
       price: "62.50",
       ratingnum: "4.5",
-      image: AsheReshteh1,
+      images: [AsheReshteh1, AsheReshteh2, AsheReshteh3, AsheReshteh4],
       hoverimage: MenuBox,
       customizations: [
         { label: "Garlic", id: "garlic" },
