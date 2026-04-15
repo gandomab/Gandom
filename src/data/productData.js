@@ -40,7 +40,7 @@ export const productData = {
       title: "Ashe Anar",
       price: "15",
       ratingnum: "3.5",
-      image: AsheAnar1,
+      images: [AsheAnar1],
       hoverimage: MenuBox,
       customizations: [
         { label: "Vegetarian", id: "vegetarian" },
@@ -52,7 +52,7 @@ export const productData = {
       title: "Ashe Doogh",
       price: "18",
       ratingnum: "5",
-      image: AsheDoogh1,
+      images: [AsheDoogh1],
       hoverimage: MenuBox,
       customizations: [
         { label: "Lactose Free", id: "lactose" }
@@ -63,7 +63,7 @@ export const productData = {
       title: "Abhgoosht",
       price: "15",
       ratingnum: "4.2",
-      image: Abhgoosht,
+      images: [Abhgoosht],
       hoverimage: MenuBox
     },
     {
@@ -71,7 +71,7 @@ export const productData = {
       title: "Halim",
       price: "12",
       ratingnum: "3.1",
-      image: Halim,
+      images: [Halim],
       hoverimage: MenuBox
     },
   ],
@@ -81,7 +81,7 @@ export const productData = {
       title: "Shole Zard",
       price: "32",
       ratingnum: "4.5",
-      image: SholeZard1,
+      images: [SholeZard1],
       hoverimage: MenuBox,
       customizations: [
         { label: "Vegan Version", id: "vegan" }
@@ -94,7 +94,7 @@ export const productData = {
       title: "Soy Waffle",
       price: "10",
       ratingnum: "4.5",
-      image: SoyWaffle,
+      images: [SoyWaffle],
       hoverimage: MenuBox,
     },
     {
@@ -102,7 +102,7 @@ export const productData = {
       title: "Vegetarian Herb Waffle",
       price: "9",
       ratingnum: "4.5",
-      image: VegetarianHerb,
+      images: [VegetarianHerb],
       hoverimage: MenuBox
     },
     {
@@ -110,7 +110,7 @@ export const productData = {
       title: "Herbal Delight Waffle",
       price: "11",
       ratingnum: "4.5",
-      image: HerbalDelightWaffle,
+      images: [HerbalDelightWaffle],
       hoverimage: MenuBox
     },
     {
@@ -118,7 +118,7 @@ export const productData = {
       title: "Beetroot Waffle",
       price: "8",
       ratingnum: "4.5",
-      image: WaffleBeetroot,
+      images: [WaffleBeetroot],
       hoverimage: MenuBox
     },
     {
@@ -126,7 +126,7 @@ export const productData = {
       title: "Carrot Waffle",
       price: "7",
       ratingnum: "4.5",
-      image: WaffleCarrot,
+      images: [WaffleCarrot],
       hoverimage: MenuBox
     },
     {
@@ -134,7 +134,7 @@ export const productData = {
       title: "Matcha Waffle",
       price: "6",
       ratingnum: "4.5",
-      image: WaffleMatcha,
+      images: [WaffleMatcha],
       hoverimage: MenuBox
     },
   ],
@@ -144,7 +144,7 @@ export const productData = {
       title: "Fermented Lemon",
       price: "8",
       ratingnum: "4.5",
-      image: FermentedLemon,
+      images: [FermentedLemon],
       hoverimage: MenuBox
     },
     {
@@ -152,7 +152,7 @@ export const productData = {
       title: "Herbed Marinated Olives",
       price: "5",
       ratingnum: "4.5",
-      image: HerbedMarinatedOlives,
+      images: [HerbedMarinatedOlives],
       hoverimage: MenuBox
     },
     {
@@ -160,7 +160,7 @@ export const productData = {
       title: "Custom Fermented Vegetables",
       price: "6",
       ratingnum: "4.5",
-      image: CustomFermentedVegetables,
+      images: [CustomFermentedVegetables],
       hoverimage: MenuBox
     },
   ]
