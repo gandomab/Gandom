@@ -98,41 +98,58 @@ const ProductSectionOne = ({ productdish }) => {
                             <p className="font-inter font-semibold text-[#426B1F] text-[16px] md:text-[20px] xl:text-[36px] leading-[130%]">{product.price} SEK</p>
                             <p className="font-inter font-normal text-[12px] md:text-[20px] xl:text-[36px] leading-[130%]">(Include all taxes)</p>
                         </div>
-                        {/* Right aligned icons */}
-                        <div className="flex flex-row md:flex-col items-center gap-2 md:gap-3 mt-0 md:mt-1">
-                            <button
-                                onClick={() => setIsFavorite(!isFavorite)}
-                                className="order-2 md:order-1 w-[28px] h-[28px] md:w-[33px] md:h-[33px] xl:w-[59px] xl:h-[59px] bg-[#D9D9D9] rounded-full flex items-center justify-center hover:bg-[#c9c9c9] transition-colors"
-                            >
-                                <FaHeart className={`text-sm md:text-xl xl:text-2xl transition-colors ${isFavorite ? "text-red-500" : "text-[#9F9F9F]"}`} />
-                            </button>
-                            <img src={BestSellerBadge} alt="share" className="order-1 md:order-2 w-[38px] h-[34px] md:w-[45px] md:h-[40px] xl:w-[80px] xl:h-[71px] flex items-center justify-center" />
+                        {/* Right aligned icons and mobile buttons */}
+                        <div className="flex flex-col items-center mt-0 md:mt-1">
+                            <div className="flex flex-row md:flex-col items-center gap-2 md:gap-3">
+                                <button
+                                    onClick={() => setIsFavorite(!isFavorite)}
+                                    className="order-2 md:order-1 w-[28px] h-[28px] md:w-[33px] md:h-[33px] xl:w-[59px] xl:h-[59px] bg-[#D9D9D9] rounded-full flex items-center justify-center hover:bg-[#c9c9c9] transition-colors"
+                                >
+                                    <FaHeart className={`text-sm md:text-xl xl:text-2xl transition-colors ${isFavorite ? "text-red-500" : "text-[#9F9F9F]"}`} />
+                                </button>
+                                <img src={BestSellerBadge} alt="share" className="order-1 md:order-2 w-[38px] h-[34px] md:w-[45px] md:h-[40px] xl:w-[80px] xl:h-[71px] flex items-center justify-center" />
+                            </div>
                         </div>
                     </div>
 
                     {/* Dynamic Customization List */}
-                    <div className="md:mt-1 xl:mt-2">
-                        {product.customizations?.length > 0 ? (
-                            <>
-                                <h3 className="font-inter font-semibold text-[13px] md:text-[15px] xl:text-[24px] leading-[130%] mb-3">Customize your Dish</h3>
-                                <div className="space-y-1 md:space-y-0.5 xl:space-y-1">
-                                    {product.customizations.map((option) => (
-                                        <label key={option.id} className="flex items-center justify-between w-[125px] md:w-[150px] xl:w-[200px] cursor-pointer group">
-                                            <span className="font-inter font-normal text-[#6D6D6D] text-[12px] md:text-[14px] xl:text-[20px] leading-[150%]">{option.label}</span>
-                                            <div
-                                                onClick={() => handleToggle(option.id)}
-                                                className={`w-[12px] h-[12px] md:w-[14px] md:h-[14px] xl:w-[16px] xl:h-[16px] border-2 flex items-center justify-center transition-colors ${selectedOptions[option.id] ? "bg-[#DEA401] border-[#DEA401]" : "bg-[#D9D9D9] border-[#D9D9D9]"
-                                                    }`}
-                                            >
-                                                {selectedOptions[option.id] && <span className="text-xs">✓</span>}
-                                            </div>
-                                        </label>
-                                    ))}
-                                </div>
-                            </>
-                        ) : (
-                            <p className="font-inter font-semibold text-[13px] md:text-[14px] xl:text-[24px] leading-[130%]">No customization available</p>
-                        )}
+                    <div className="flex justify-between items-end w-full mt-2 md:mt-1 xl:mt-2">
+                        <div className="w-auto">
+                            {product.customizations?.length > 0 ? (
+                                <>
+                                    <h3 className="font-inter font-semibold text-[13px] md:text-[15px] xl:text-[24px] leading-[130%] mb-3">Customize your Dish</h3>
+                                    <div className="space-y-1 md:space-y-0.5 xl:space-y-1">
+                                        {product.customizations.map((option) => (
+                                            <label key={option.id} className="flex items-center justify-between w-[125px] md:w-[150px] xl:w-[200px] cursor-pointer group">
+                                                <span className="font-inter font-normal text-[#6D6D6D] text-[12px] md:text-[14px] xl:text-[20px] leading-[150%]">{option.label}</span>
+                                                <div
+                                                    onClick={() => handleToggle(option.id)}
+                                                    className={`w-[12px] h-[12px] md:w-[14px] md:h-[14px] xl:w-[16px] xl:h-[16px] border-2 flex items-center justify-center transition-colors ${selectedOptions[option.id] ? "bg-[#DEA401] border-[#DEA401]" : "bg-[#D9D9D9] border-[#D9D9D9]"
+                                                        }`}
+                                                >
+                                                    {selectedOptions[option.id] && <span className="text-xs">✓</span>}
+                                                </div>
+                                            </label>
+                                        ))}
+                                    </div>
+                                </>
+                            ) : (
+                                <p className="font-inter font-semibold text-[13px] md:text-[14px] xl:text-[24px] leading-[130%]">No customization available</p>
+                            )}
+                        </div>
+
+                        {/* Mobile Buttons */}
+                        <div className="flex mb-3 md:hidden flex-col gap-3">
+                            <button className="bg-[#E6B220] text-white font-inter font-bold text-[10px] leading-[130%] w-[74px] h-[33px] rounded-[23px]">
+                                Add to cart
+                            </button>
+                            <button
+                                onClick={() => navigate("/productsPage")}
+                                className="text-[#E6B220] border border-gray-300 font-inter font-bold text-[9px] leading-[130%] w-[74px] h-[33px] rounded-[23px]"
+                            >
+                                Back to menu
+                            </button>
+                        </div>
                     </div>
 
                     {/* Rating */}
@@ -153,7 +170,7 @@ const ProductSectionOne = ({ productdish }) => {
                     </div>
 
                     {/* Buttons */}
-                    <div className="flex mt-2 md:mt-1 xl:mt-2 gap-6">
+                    <div className="hidden md:flex mt-2 md:mt-1 xl:mt-2 gap-6">
                         <button className="bg-[#E6B220] text-white font-inter font-bold text-[10px] md:text-[14px] xl:text-[28px] leading-[130%] 
                             md:px-4 md:py-2 xl:px-8 xl:py-3 w-[74px] h-[33px] md:w-[123px] md:h-[38px]  xl:w-[259px] xl:h-[67px] rounded-[23px] md:rounded-[10px] xl:rounded-[20px]">
                             Add to cart
