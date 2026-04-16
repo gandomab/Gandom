@@ -79,12 +79,27 @@ const ProductSectionOne = ({ productdish }) => {
                 <div className="w-full flex-1 text-left flex flex-col justify-between md:py-0 xl:py-1">
                     <div className="flex justify-between items-start w-full">
                         <div className="flex flex-col space-y-1">
-                            <h1 className="font-inter font-semibold text-[16px] md:text-[27px] xl:text-[48px] leading-[130%]">{product.title}</h1>
+                            <div className="flex items-center gap-2">
+                                <h1 className="font-inter font-semibold text-[16px] md:text-[27px] xl:text-[48px] leading-[130%]">{product.title}</h1>
+                                {/* Mobile Rating */}
+                                <div className="flex md:hidden items-center gap-1 text-lg font-bold mt-0.5">
+                                    <div className="mb-0.5 text-[12px] inline-flex items-center justify-center">
+                                        <div className="relative"><FaStar className="text-gray-300" />
+                                            <div
+                                                className="absolute top-0 left-0 overflow-hidden"
+                                                style={{ width: `${fillPercentage}%` }}>
+                                                <FaStar className="text-[#FFC94B]" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="font-inter font-semibold text-[13px] leading-[130%]">{productdish.ratingnum}</div>
+                                </div>
+                            </div>
                             <p className="font-inter font-semibold text-[#426B1F] text-[16px] md:text-[20px] xl:text-[36px] leading-[130%]">{product.price} SEK</p>
                             <p className="font-inter font-normal text-[12px] md:text-[20px] xl:text-[36px] leading-[130%]">(Include all taxes)</p>
                         </div>
                         {/* Right aligned icons */}
-                        <div className="flex flex-row md:flex-col items-center gap-3 md:gap-3 mt-1">
+                        <div className="flex flex-row md:flex-col items-center gap-2 md:gap-3 mt-0 md:mt-1">
                             <button
                                 onClick={() => setIsFavorite(!isFavorite)}
                                 className="order-2 md:order-1 w-[28px] h-[28px] md:w-[33px] md:h-[33px] xl:w-[59px] xl:h-[59px] bg-[#D9D9D9] rounded-full flex items-center justify-center hover:bg-[#c9c9c9] transition-colors"
@@ -121,9 +136,9 @@ const ProductSectionOne = ({ productdish }) => {
                     </div>
 
                     {/* Rating */}
-                    <div className="flex items-center gap-2 text-lg font-bold mt-4 md:mt-1 xl:mt-2">
+                    <div className="hidden md:flex items-center gap-2 text-lg font-bold md:mt-1 xl:mt-2">
                         {/* star rating container */}
-                        <div className="mb-1 text-[12px] md:text-[14px] xl:text-[22px] inline-flex items-center justify-center">
+                        <div className="mb-1 md:text-[14px] xl:text-[22px] inline-flex items-center justify-center">
                             {/* backround star */}
                             <div className="relative"><FaStar className="text-gray-300" />
                                 {/* fill star */}
@@ -134,7 +149,7 @@ const ProductSectionOne = ({ productdish }) => {
                                 </div>
                             </div>
                         </div>
-                        <div className="font-inter font-semibold text-[13px] md:text-[15px] xl:text-[20px] leading-[130%]">{productdish.ratingnum}</div>
+                        <div className="font-inter font-semibold md:text-[15px] xl:text-[20px] leading-[130%]">{productdish.ratingnum}</div>
                     </div>
 
                     {/* Buttons */}
