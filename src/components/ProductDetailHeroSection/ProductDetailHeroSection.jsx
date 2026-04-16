@@ -113,7 +113,7 @@ const ProductSectionOne = ({ productdish }) => {
                     </div>
 
                     {/* Dynamic Customization List */}
-                    <div className="flex justify-between items-end w-full mt-2 md:mt-1 xl:mt-2">
+                    <div className="flex justify-between items-start w-full mt-2 md:mt-1 xl:mt-2">
                         <div className="w-auto">
                             {product.customizations?.length > 0 ? (
                                 <>
@@ -139,7 +139,7 @@ const ProductSectionOne = ({ productdish }) => {
                         </div>
 
                         {/* Mobile Buttons */}
-                        <div className="flex mb-3 md:hidden flex-col gap-3">
+                        <div className="flex md:hidden flex-col gap-3">
                             <button className="bg-[#E6B220] text-white font-inter font-bold text-[10px] leading-[130%] w-[74px] h-[33px] rounded-[23px]">
                                 Add to cart
                             </button>
