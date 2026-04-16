@@ -153,7 +153,7 @@ const ProductSectionOne = ({ productdish }) => {
                     </div>
 
                     {/* Buttons */}
-                    <div className="mt-2 md:mt-1 xl:mt-2 flex gap-6">
+                    <div className="flex mt-2 md:mt-1 xl:mt-2 gap-6">
                         <button className="bg-[#E6B220] text-white font-inter font-bold text-[10px] md:text-[14px] xl:text-[28px] leading-[130%] 
                             md:px-4 md:py-2 xl:px-8 xl:py-3 w-[74px] h-[33px] md:w-[123px] md:h-[38px]  xl:w-[259px] xl:h-[67px] rounded-[23px] md:rounded-[10px] xl:rounded-[20px]">
                             Add to cart
