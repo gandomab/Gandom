@@ -124,10 +124,9 @@ const ProductSectionOne = ({ productdish }) => {
                                                 <span className="font-inter font-normal text-[#6D6D6D] text-[12px] md:text-[14px] xl:text-[20px] leading-[150%]">{option.label}</span>
                                                 <div
                                                     onClick={() => handleToggle(option.id)}
-                                                    className={`w-[12px] h-[12px] md:w-[14px] md:h-[14px] xl:w-[16px] xl:h-[16px] border-2 flex items-center justify-center transition-colors ${selectedOptions[option.id] ? "bg-[#DEA401] border-[#DEA401]" : "bg-[#D9D9D9] border-[#D9D9D9]"
-                                                        }`}
+                                                    className="w-[12px] h-[12px] md:w-[14px] md:h-[14px] xl:w-[16px] xl:h-[16px] bg-[#D9D9D9] flex items-center justify-center transition-colors shrink-0"
                                                 >
-                                                    {selectedOptions[option.id] && <span className="text-xs">✓</span>}
+                                                    {selectedOptions[option.id] && <span className="text-[16px] md:text-[20px] xl:text-[24px] text-[#00DD00] font-black pointer-events-none mb-1 ml-1">✓</span>}
                                                 </div>
                                             </label>
                                         ))}
