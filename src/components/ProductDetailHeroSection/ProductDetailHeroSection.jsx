@@ -84,14 +84,14 @@ const ProductSectionOne = ({ productdish }) => {
                             <p className="font-inter font-normal text-[12px] md:text-[20px] xl:text-[36px] leading-[130%]">(Include all taxes)</p>
                         </div>
                         {/* Right aligned icons */}
-                        <div className="flex flex-col items-center gap-2 md:gap-3 mt-1 space-y-2">
+                        <div className="flex flex-row md:flex-col items-center gap-3 md:gap-3 mt-1">
                             <button
                                 onClick={() => setIsFavorite(!isFavorite)}
-                                className="w-[28px] h-[28px] md:w-[33px] md:h-[33px] xl:w-[59px] xl:h-[59px] bg-[#D9D9D9] rounded-full flex items-center justify-center hover:bg-[#c9c9c9] transition-colors"
+                                className="order-2 md:order-1 w-[28px] h-[28px] md:w-[33px] md:h-[33px] xl:w-[59px] xl:h-[59px] bg-[#D9D9D9] rounded-full flex items-center justify-center hover:bg-[#c9c9c9] transition-colors"
                             >
                                 <FaHeart className={`text-sm md:text-xl xl:text-2xl transition-colors ${isFavorite ? "text-red-500" : "text-[#9F9F9F]"}`} />
                             </button>
-                            <img src={BestSellerBadge} alt="share" className="w-[38px] h-[34px] md:w-[45px] md:h-[40px] xl:w-[80px] xl:h-[71px] flex items-center justify-center" />
+                            <img src={BestSellerBadge} alt="share" className="order-1 md:order-2 w-[38px] h-[34px] md:w-[45px] md:h-[40px] xl:w-[80px] xl:h-[71px] flex items-center justify-center" />
                         </div>
                     </div>
 
