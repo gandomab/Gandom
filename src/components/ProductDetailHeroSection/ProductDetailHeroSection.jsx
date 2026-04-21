@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FaStar, FaHeart, FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import BestSellerBadge from "../../assets/Images/2.Dishes/BestSellerBadge.svg";
-const ProductSectionOne = ({ productdish }) => {
+const ProductDetailHeroSection = ({ productdish }) => {
     const rating = productdish.ratingnum;
     const fillPercentage = (rating / 5) * 100;
     const navigate = useNavigate();
@@ -188,4 +188,4 @@ const ProductSectionOne = ({ productdish }) => {
     );
 };
 
-export default ProductSectionOne;
+export default ProductDetailHeroSection;

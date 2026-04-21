@@ -1,6 +1,8 @@
 import { useParams } from "react-router-dom";
 import { productData } from "../../data/productData";
+//import { productdetails } from "../../data/productdetailsdata";
 import ProductDetailHeroSection from "../../components/ProductDetailHeroSection/ProductDetailHeroSection";
+import ProductDetails from "../../components/ProductDetails/ProductDetails";
 
 const ProductDetailPage = () => {
     const { productTitle } = useParams();
@@ -22,6 +24,9 @@ const ProductDetailPage = () => {
         <main className="w-full ">
             <div className="max-w-[1440px] mx-auto">
                 <ProductDetailHeroSection productdish={productdish} />
+            </div>
+            <div className="max-w-[1440px] mx-auto">
+                <ProductDetails productdish={productdish} />
             </div>
 
         </main>
