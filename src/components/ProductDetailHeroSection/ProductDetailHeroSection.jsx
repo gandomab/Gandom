@@ -93,6 +93,12 @@ const ProductDetailHeroSection = ({ productdish }) => {
                                         </div>
                                     </div>
                                     <div className="font-inter font-semibold text-[13px] leading-[130%]">{productdish.ratingnum}</div>
+                                    {productdish?.id === 403 && (
+                                        <div className="font-inter font-semibold text-[10px] leading-[110%] flex flex-col items-center ml-2">
+                                            <span>customize</span>
+                                            <span>and order ⇩</span>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                             <p className="font-inter font-semibold text-[#426B1F] text-[16px] md:text-[20px] xl:text-[36px] leading-[130%]">{product.price} SEK</p>
@@ -115,33 +121,39 @@ const ProductDetailHeroSection = ({ productdish }) => {
                     {/* Dynamic Customization List */}
                     <div className="flex justify-between items-start w-full mt-2 md:mt-1 xl:mt-2">
                         <div className="w-auto">
-                            {product.customizations?.length > 0 ? (
+                            {productdish?.id !== 403 && (
                                 <>
-                                    <h3 className="font-inter font-semibold text-[13px] md:text-[15px] xl:text-[24px] leading-[130%] mb-3">Customize your Dish</h3>
-                                    <div className="space-y-1 md:space-y-0.5 xl:space-y-1">
-                                        {product.customizations.map((option) => (
-                                            <label key={option.id} className="flex items-center justify-between w-[125px] md:w-[150px] xl:w-[200px] cursor-pointer group">
-                                                <span className="font-inter font-normal text-[#6D6D6D] text-[12px] md:text-[14px] xl:text-[20px] leading-[150%]">{option.label}</span>
-                                                <div
-                                                    onClick={() => handleToggle(option.id)}
-                                                    className="w-[12px] h-[12px] md:w-[14px] md:h-[14px] xl:w-[16px] xl:h-[16px] bg-[#D9D9D9] flex items-center justify-center transition-colors shrink-0"
-                                                >
-                                                    {selectedOptions[option.id] && <span className="text-[16px] md:text-[20px] xl:text-[24px] text-[#00DD00] font-black pointer-events-none mb-1 ml-1">✓</span>}
-                                                </div>
-                                            </label>
-                                        ))}
-                                    </div>
+                                    {product.customizations?.length > 0 ? (
+                                        <>
+                                            <h3 className="font-inter font-semibold text-[13px] md:text-[15px] xl:text-[24px] leading-[130%] mb-3">Customize your Dish</h3>
+                                            <div className="space-y-1 md:space-y-0.5 xl:space-y-1">
+                                                {product.customizations.map((option) => (
+                                                    <label key={option.id} className="flex items-center justify-between w-[125px] md:w-[150px] xl:w-[200px] cursor-pointer group">
+                                                        <span className="font-inter font-normal text-[#6D6D6D] text-[12px] md:text-[14px] xl:text-[20px] leading-[150%]">{option.label}</span>
+                                                        <div
+                                                            onClick={() => handleToggle(option.id)}
+                                                            className="w-[12px] h-[12px] md:w-[14px] md:h-[14px] xl:w-[16px] xl:h-[16px] bg-[#D9D9D9] flex items-center justify-center transition-colors shrink-0"
+                                                        >
+                                                            {selectedOptions[option.id] && <span className="text-[16px] md:text-[20px] xl:text-[24px] text-[#00DD00] font-black pointer-events-none mb-1 ml-1">✓</span>}
+                                                        </div>
+                                                    </label>
+                                                ))}
+                                            </div>
+                                        </>
+                                    ) : (
+                                        <p className="font-inter font-semibold text-[13px] md:text-[14px] xl:text-[24px] leading-[130%]">No customization available</p>
+                                    )}
                                 </>
-                            ) : (
-                                <p className="font-inter font-semibold text-[13px] md:text-[14px] xl:text-[24px] leading-[130%]">No customization available</p>
                             )}
                         </div>
 
                         {/* Mobile Buttons */}
                         <div className="flex md:hidden flex-col gap-3">
-                            <button className="bg-[#E6B220] text-white font-inter font-bold text-[10px] leading-[130%] w-[74px] h-[33px] rounded-[23px]">
-                                Add to cart
-                            </button>
+                            {productdish?.id !== 403 && (
+                                <button className="bg-[#E6B220] text-white font-inter font-bold text-[10px] leading-[130%] w-[74px] h-[33px] rounded-[23px]">
+                                    Add to cart
+                                </button>
+                            )}
                             <button
                                 onClick={() => navigate("/productsPage")}
                                 className="text-[#E6B220] border border-gray-300 font-inter font-bold text-[9px] leading-[130%] w-[74px] h-[33px] rounded-[23px]"
@@ -166,14 +178,22 @@ const ProductDetailHeroSection = ({ productdish }) => {
                             </div>
                         </div>
                         <div className="font-inter font-semibold md:text-[15px] xl:text-[20px] leading-[130%]">{productdish.ratingnum}</div>
+                        {productdish?.id === 403 && (
+                            <div className="font-inter font-semibold text-[10px] md:text-[14px] xl:text-[16px] leading-[110%] flex flex-col items-center ml-2 border-slate-300 rounded pb-1">
+                                <span>customize</span>
+                                <span>and order ⇩</span>
+                            </div>
+                        )}
                     </div>
 
                     {/* Buttons */}
                     <div className="hidden md:flex mt-2 md:mt-1 xl:mt-2 gap-6">
-                        <button className="bg-[#E6B220] text-white font-inter font-bold text-[10px] md:text-[14px] xl:text-[28px] leading-[130%] 
-                            md:px-4 md:py-2 xl:px-8 xl:py-3 w-[74px] h-[33px] md:w-[123px] md:h-[38px]  xl:w-[259px] xl:h-[67px] rounded-[23px] md:rounded-[10px] xl:rounded-[20px]">
-                            Add to cart
-                        </button>
+                        {productdish?.id !== 403 && (
+                            <button className="bg-[#E6B220] text-white font-inter font-bold text-[10px] md:text-[14px] xl:text-[28px] leading-[130%] 
+                                md:px-4 md:py-2 xl:px-8 xl:py-3 w-[74px] h-[33px] md:w-[123px] md:h-[38px]  xl:w-[259px] xl:h-[67px] rounded-[23px] md:rounded-[10px] xl:rounded-[20px]">
+                                Add to cart
+                            </button>
+                        )}
                         <button
                             onClick={() => navigate("/productsPage")}
                             className="text-[#E6B220] border border-gray-300 font-inter font-bold text-[9px] md:text-[13px] xl:text-[28px] leading-[130%]
