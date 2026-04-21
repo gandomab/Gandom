@@ -98,23 +98,6 @@ const ProductDetailHeroSection = ({ productdish }) => {
                             <p className="font-inter font-semibold text-[#426B1F] text-[16px] md:text-[20px] xl:text-[36px] leading-[130%]">{product.price} SEK</p>
                             <p className="font-inter font-normal text-[12px] md:text-[20px] xl:text-[36px] leading-[130%]">(Include all taxes)</p>
 
-                            {/* Mobile ID 403 customise block */}
-                            {productdish?.id === 403 && (
-                                <div className="flex md:hidden">
-                                    <div className="font-inter font-medium text-black text-[13px] flex items-center">
-                                        <span className="whitespace-nowrap">customise and order</span>
-                                        <div className="bg-[#D9D9D9] rounded-[4px] p-[2px] flex items-center justify-center">
-                                            <FaArrowDown className="text-[10px]" />
-                                        </div>
-                                    </div>
-                                    <button
-                                        onClick={() => navigate("/productsPage")}
-                                        className="text-[#E6B220] border border-[#E6B220] font-inter font-bold text-[11px] px-4 py-1.5 rounded-[20px] whitespace-nowrap"
-                                    >
-                                        Back to menu
-                                    </button>
-                                </div>
-                            )}
                         </div>
                         {/* Right aligned icons and mobile buttons */}
                         <div className="flex flex-col items-center mt-0 md:mt-1">
@@ -129,6 +112,24 @@ const ProductDetailHeroSection = ({ productdish }) => {
                             </div>
                         </div>
                     </div>
+
+                    {/* Mobile ID 403 customise block */}
+                    {productdish?.id === 403 && (
+                        <div className="flex md:hidden justify-between items-center w-full mt-2">
+                            <div className="font-inter font-medium text-black text-[13px] flex items-center gap-1.5">
+                                <span className="whitespace-nowrap">customise and order</span>
+                                <div className="bg-[#D9D9D9] rounded-[4px] p-[2px] flex items-center justify-center">
+                                    <FaArrowDown className="text-[10px]" />
+                                </div>
+                            </div>
+                            <button
+                                onClick={() => navigate("/productsPage")}
+                                className="text-[#E6B220] border border-[#E6B220] font-inter font-bold text-[11px] px-4 py-1.5 rounded-[20px] whitespace-nowrap"
+                            >
+                                Back to menu
+                            </button>
+                        </div>
+                    )}
 
                     {/* Dynamic Customization List */}
                     <div className="flex justify-between items-start w-full mt-2 md:mt-1 xl:mt-2">
