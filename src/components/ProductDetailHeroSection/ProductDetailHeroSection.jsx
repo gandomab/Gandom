@@ -79,7 +79,7 @@ const ProductDetailHeroSection = ({ productdish }) => {
                 <div className="w-full flex-1 text-left flex flex-col justify-between md:py-0 xl:py-1">
                     <div className="flex justify-between items-start w-full">
                         <div className="flex flex-col space-y-1">
-                            <div className="flex items-center gap-2">
+                            <div className="flex items-start gap-2">
                                 <h1 className="font-inter font-semibold text-[16px] md:text-[27px] xl:text-[48px] leading-[130%]">{product.title}</h1>
                                 {/* Mobile Rating */}
                                 <div className="flex md:hidden items-center gap-1 text-lg font-bold mt-0.5">
@@ -117,7 +117,7 @@ const ProductDetailHeroSection = ({ productdish }) => {
                     {productdish?.id === 403 && (
                         <div className="flex md:hidden justify-between items-center w-full mt-2">
                             <div className="font-inter font-medium text-black text-[13px] flex items-center gap-1.5">
-                                <span className="whitespace-nowrap">customise and order</span>
+                                <p className="font-inter font-medium text-black text-[12px] md:text-[13px] xl:text-[24px] whitespace-nowrap">customise and order</p>
                                 <div className="bg-[#D9D9D9] rounded-[4px] p-[2px] flex items-center justify-center">
                                     <FaArrowDown className="text-[10px]" />
                                 </div>
@@ -192,13 +192,10 @@ const ProductDetailHeroSection = ({ productdish }) => {
                                     </div>
                                     <div className="font-inter font-semibold md:text-[15px] xl:text-[20px] leading-[130%]">{productdish.ratingnum}</div>
                                 </div>
-                                <div className="font-inter font-medium text-black text-[12px] md:text-[14px] xl:text-[16px] leading-[120%] flex flex-col items-start ml-1">
-                                    <span>customise</span>
-                                    <div className="flex items-center gap-1.5">
-                                        <span>and order</span>
-                                        <div className="bg-[#D9D9D9] rounded-[4px] p-[2px] flex items-center justify-center">
-                                            <FaArrowDown className="text-[10px]" />
-                                        </div>
+                                <div className="font-inter font-medium text-black text-[12px] md:text-[14px] xl:text-[16px] leading-[130%] flex items-center gap-1.5 ml-1">
+                                    <span className="whitespace-nowrap">customise and order</span>
+                                    <div className="bg-[#D9D9D9] rounded-[4px] p-[2px] flex items-center justify-center">
+                                        <FaArrowDown className="text-[10px]" />
                                     </div>
                                 </div>
                             </div>
