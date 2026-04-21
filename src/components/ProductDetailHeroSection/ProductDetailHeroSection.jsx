@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaStar, FaHeart, FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { FaStar, FaHeart, FaArrowLeft, FaArrowRight, FaArrowDown } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import BestSellerBadge from "../../assets/Images/2.Dishes/BestSellerBadge.svg";
 const ProductDetailHeroSection = ({ productdish }) => {
@@ -93,16 +93,28 @@ const ProductDetailHeroSection = ({ productdish }) => {
                                         </div>
                                     </div>
                                     <div className="font-inter font-semibold text-[13px] leading-[130%]">{productdish.ratingnum}</div>
-                                    {productdish?.id === 403 && (
-                                        <div className="font-inter font-semibold text-[10px] leading-[110%] flex flex-col items-center ml-2">
-                                            <span>customize</span>
-                                            <span>and order ⇩</span>
-                                        </div>
-                                    )}
                                 </div>
                             </div>
                             <p className="font-inter font-semibold text-[#426B1F] text-[16px] md:text-[20px] xl:text-[36px] leading-[130%]">{product.price} SEK</p>
                             <p className="font-inter font-normal text-[12px] md:text-[20px] xl:text-[36px] leading-[130%]">(Include all taxes)</p>
+
+                            {/* Mobile ID 403 customise block */}
+                            {productdish?.id === 403 && (
+                                <div className="flex md:hidden">
+                                    <div className="font-inter font-medium text-black text-[13px] flex items-center">
+                                        <span className="whitespace-nowrap">customise and order</span>
+                                        <div className="bg-[#D9D9D9] rounded-[4px] p-[2px] flex items-center justify-center">
+                                            <FaArrowDown className="text-[10px]" />
+                                        </div>
+                                    </div>
+                                    <button
+                                        onClick={() => navigate("/productsPage")}
+                                        className="text-[#E6B220] border border-[#E6B220] font-inter font-bold text-[11px] px-4 py-1.5 rounded-[20px] whitespace-nowrap"
+                                    >
+                                        Back to menu
+                                    </button>
+                                </div>
+                            )}
                         </div>
                         {/* Right aligned icons and mobile buttons */}
                         <div className="flex flex-col items-center mt-0 md:mt-1">
@@ -148,60 +160,86 @@ const ProductDetailHeroSection = ({ productdish }) => {
                         </div>
 
                         {/* Mobile Buttons */}
-                        <div className="flex md:hidden flex-col gap-3">
-                            {productdish?.id !== 403 && (
+                        {productdish?.id !== 403 && (
+                            <div className="flex md:hidden flex-col gap-3">
                                 <button className="bg-[#E6B220] text-white font-inter font-bold text-[10px] leading-[130%] w-[74px] h-[33px] rounded-[23px]">
                                     Add to cart
                                 </button>
-                            )}
+                                <button
+                                    onClick={() => navigate("/productsPage")}
+                                    className="text-[#E6B220] border border-gray-300 font-inter font-bold text-[9px] leading-[130%] w-[74px] h-[33px] rounded-[23px]"
+                                >
+                                    Back to menu
+                                </button>
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Rating */}
+                    {productdish?.id === 403 ? (
+                        <div className="hidden md:flex items-end gap-10 xl:gap-16 md:mt-1 xl:mt-2">
+                            <div className="flex flex-col items-start gap-1">
+                                <div className="flex items-center gap-2 text-lg font-bold">
+                                    <div className="mb-1 md:text-[14px] xl:text-[22px] inline-flex items-center justify-center">
+                                        <div className="relative"><FaStar className="text-gray-300" />
+                                            <div
+                                                className="absolute top-0 left-0 overflow-hidden"
+                                                style={{ width: `${fillPercentage}%` }}>
+                                                <FaStar className="text-[#FFC94B]" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="font-inter font-semibold md:text-[15px] xl:text-[20px] leading-[130%]">{productdish.ratingnum}</div>
+                                </div>
+                                <div className="font-inter font-medium text-black text-[12px] md:text-[14px] xl:text-[16px] leading-[120%] flex flex-col items-start ml-1">
+                                    <span>customise</span>
+                                    <div className="flex items-center gap-1.5">
+                                        <span>and order</span>
+                                        <div className="bg-[#D9D9D9] rounded-[4px] p-[2px] flex items-center justify-center">
+                                            <FaArrowDown className="text-[10px]" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <button
                                 onClick={() => navigate("/productsPage")}
-                                className="text-[#E6B220] border border-gray-300 font-inter font-bold text-[9px] leading-[130%] w-[74px] h-[33px] rounded-[23px]"
+                                className="text-[#E6B220] border border-[#E6B220] font-inter font-bold text-[9px] md:text-[13px] xl:text-[28px] leading-[130%]
+                                md:px-4 md:py-2 xl:px-8 xl:py-3 w-[74px] h-[33px] md:w-[123px] md:h-[38px] xl:w-[259px] xl:h-[67px] rounded-[23px] md:rounded-[13px] xl:rounded-[20px]"
                             >
                                 Back to menu
                             </button>
                         </div>
-                    </div>
-
-                    {/* Rating */}
-                    <div className="hidden md:flex items-center gap-2 text-lg font-bold md:mt-1 xl:mt-2">
-                        {/* star rating container */}
-                        <div className="mb-1 md:text-[14px] xl:text-[22px] inline-flex items-center justify-center">
-                            {/* backround star */}
-                            <div className="relative"><FaStar className="text-gray-300" />
-                                {/* fill star */}
-                                <div
-                                    className="absolute top-0 left-0 overflow-hidden"
-                                    style={{ width: `${fillPercentage}%` }}>
-                                    <FaStar className="text-[#FFC94B]" />
+                    ) : (
+                        <div className="hidden md:flex items-center gap-2 text-lg font-bold md:mt-1 xl:mt-2">
+                            <div className="mb-1 md:text-[14px] xl:text-[22px] inline-flex items-center justify-center">
+                                <div className="relative"><FaStar className="text-gray-300" />
+                                    <div
+                                        className="absolute top-0 left-0 overflow-hidden"
+                                        style={{ width: `${fillPercentage}%` }}>
+                                        <FaStar className="text-[#FFC94B]" />
+                                    </div>
                                 </div>
                             </div>
+                            <div className="font-inter font-semibold md:text-[15px] xl:text-[20px] leading-[130%]">{productdish.ratingnum}</div>
                         </div>
-                        <div className="font-inter font-semibold md:text-[15px] xl:text-[20px] leading-[130%]">{productdish.ratingnum}</div>
-                        {productdish?.id === 403 && (
-                            <div className="font-inter font-semibold text-[10px] md:text-[14px] xl:text-[16px] leading-[110%] flex flex-col items-center ml-2 border-slate-300 rounded pb-1">
-                                <span>customize</span>
-                                <span>and order ⇩</span>
-                            </div>
-                        )}
-                    </div>
+                    )}
 
                     {/* Buttons */}
-                    <div className="hidden md:flex mt-2 md:mt-1 xl:mt-2 gap-6">
-                        {productdish?.id !== 403 && (
+                    {productdish?.id !== 403 && (
+                        <div className="hidden md:flex mt-2 md:mt-1 xl:mt-2 gap-6">
                             <button className="bg-[#E6B220] text-white font-inter font-bold text-[10px] md:text-[14px] xl:text-[28px] leading-[130%] 
                                 md:px-4 md:py-2 xl:px-8 xl:py-3 w-[74px] h-[33px] md:w-[123px] md:h-[38px]  xl:w-[259px] xl:h-[67px] rounded-[23px] md:rounded-[10px] xl:rounded-[20px]">
                                 Add to cart
                             </button>
-                        )}
-                        <button
-                            onClick={() => navigate("/productsPage")}
-                            className="text-[#E6B220] border border-gray-300 font-inter font-bold text-[9px] md:text-[13px] xl:text-[28px] leading-[130%]
-                            md:px-4 md:py-2 xl:px-8 xl:py-3 w-[74px] h-[33px] md:w-[123px] md:h-[38px]  xl:w-[259px] xl:h-[67px] rounded-[23px] md:rounded-[13px] xl:rounded-[20px]"
-                        >
-                            Back to menu
-                        </button>
-                    </div>
+                            <button
+                                onClick={() => navigate("/productsPage")}
+                                className="text-[#E6B220] border border-gray-300 font-inter font-bold text-[9px] md:text-[13px] xl:text-[28px] leading-[130%]
+                                md:px-4 md:py-2 xl:px-8 xl:py-3 w-[74px] h-[33px] md:w-[123px] md:h-[38px]  xl:w-[259px] xl:h-[67px] rounded-[23px] md:rounded-[13px] xl:rounded-[20px]"
+                            >
+                                Back to menu
+                            </button>
+                        </div>
+                    )}
                 </div>
             </div>
         </section>
