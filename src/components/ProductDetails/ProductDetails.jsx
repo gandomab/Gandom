@@ -9,7 +9,7 @@ const ProductDetails = ({ productdish }) => {
     if (!details) return null;
 
     return (
-        <section className="w-full flex flex-col items-center mt-12 mb-12 px-2 md:px-5">
+        <section className="w-full flex flex-col items-center mt-2 md:mt-6 xl:mt-12 mb-12 px-8 md:px-12">
             <div className="space-y-6">
                 {/* Section Title with Underline */}
                 <div className="border-b-4 border-black inline-block pb-1">
@@ -36,7 +36,7 @@ const ProductDetails = ({ productdish }) => {
 
                 {/* Dynamic Footnotes */}
                 {details.footnotes && details.footnotes.length > 0 && (
-                    <div className="pt-4 space-y-1">
+                    <div className="pt-0 md:pt-4 space-y-1">
                         {details.footnotes.map((note, index) => (
                             <p key={index} className="font-inter text-[12px] md:text-[18px] xl:text-[20px] font-normal leading-[130%]">
                                 {note}
@@ -47,9 +47,9 @@ const ProductDetails = ({ productdish }) => {
 
                 {/* Nutritional Table Image */}
                 {details.nutritionImage && (
-                    <div className="pt-4 space-y-6">
+                    <div className="pt-2 md:pt-4 space-y-6">
                         <h3 className="font-inter text-[14px] md:text-[20px] xl:text-[32px] font-bold leading-[130%]">Nutritional Information</h3>
-                        <div className="pt-6 w-full max-w-[1440px] mx-auto">
+                        <div className="pt-1 w-full max-w-[1440px] mx-auto">
                             <img
                                 src={details.nutritionImage}
                                 alt="Nutritional Information"
