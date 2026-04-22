@@ -77,12 +77,13 @@ const ProductDetailHeroSection = ({ productdish }) => {
 
                 {/* Info Section */}
                 <div className="w-full flex-1 text-left flex flex-col justify-between md:py-0 xl:py-1">
-                    <div className="flex justify-between items-start w-full">
-                        <div className="flex flex-col space-y-1">
-                            <div className="flex items-start gap-2">
-                                <h1 className="font-inter font-semibold text-[16px] md:text-[27px] xl:text-[48px] leading-[130%]">{product.title}</h1>
+                    <div className="flex justify-between items-start w-full gap-4">
+                        <div className="flex-1 flex flex-col space-y-1 min-w-0">
+                            <div className="inline-block md:block items-center gap-x-2">
+                                <h1 className="font-inter font-semibold text-[16px] md:text-[27px] xl:text-[48px] leading-[130%] inline word-break">{product.title}</h1>
+                                {" "}
                                 {/* Mobile Rating */}
-                                <div className="flex md:hidden items-center gap-1 text-lg font-bold mt-0.5">
+                                <div className="inline-flex md:hidden items-center gap-1 text-lg font-bold mt-0.5">
                                     <div className="mb-0.5 text-[12px] inline-flex items-center justify-center">
                                         <div className="relative"><FaStar className="text-gray-300" />
                                             <div
@@ -100,7 +101,7 @@ const ProductDetailHeroSection = ({ productdish }) => {
 
                         </div>
                         {/* Right aligned icons and mobile buttons */}
-                        <div className="flex flex-col items-center mt-0 md:mt-1">
+                        <div className="flex flex-col items-center flex-shrink-0 mt-0 md:mt-1">
                             <div className="flex flex-row md:flex-col items-center gap-2 md:gap-3">
                                 <button
                                     onClick={() => setIsFavorite(!isFavorite)}
