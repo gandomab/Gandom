@@ -9,23 +9,65 @@ const CustomFermentedVegetablesDetails = ({ productdish }) => {
 
     // Track selections for checkboxes
     const [selectedOptions, setSelectedOptions] = useState({});
+    const [suggestionTexts, setSuggestionTexts] = useState({});
+
     // this function is for toggle the checkboxes
     const handleToggle = (categoryId, optionIndex) => {
         const key = `${categoryId}-${optionIndex}`;
         setSelectedOptions((prev) => ({ ...prev, [key]: !prev[key] }));
     };
 
+    // this function is for toggle the suggestion checkboxes
+    const handleSuggestionToggle = (categoryId, suggKey) => {
+        const key = `${categoryId}-${suggKey}`;
+        // if the suggestion text is empty, do not check the checkbox
+        if (!suggestionTexts[key] || suggestionTexts[key].trim() === "") {
+            return; // do not check if empty
+        }
+        handleToggle(categoryId, suggKey);
+    };
+
+    // this function is for handle the suggestion inputs
+    const handleSuggestionChange = (categoryId, suggKey, text) => {
+        const key = `${categoryId}-${suggKey}`;
+        setSuggestionTexts(prev => ({ ...prev, [key]: text }));
+        // Auto-uncheck if the text is fully cleared
+        if (!text.trim()) {
+            setSelectedOptions(prev => prev[key] ? { ...prev, [key]: false } : prev);
+        }
+    };
+
     // sub-component for render the suggestion inputs
-    const renderSuggestions = () => (
+    const renderSuggestions = (categoryId) => (
         <div className="pt-4 space-y-2 pr-4 md:pr-10">
             <p className="font-inter text-[12px] md:text-[14px] xl:text-[16px]">Your suggestion:</p>
             <div className="flex items-center justify-between mt-2">
-                <input type="text" className="border-b border-gray-400 bg-transparent w-full mr-4 outline-none text-[14px]" />
-                <div className="w-[14px] h-[14px] md:w-[16px] md:h-[16px] bg-[#D9D9D9] shrink-0"></div>
+                <input
+                    type="text"
+                    value={suggestionTexts[`${categoryId}-sugg-1`] || ""}
+                    onChange={(e) => handleSuggestionChange(categoryId, 'sugg-1', e.target.value)}
+                    className="border-b border-gray-400 bg-transparent w-full mr-4 outline-none text-[14px]"
+                />
+                <div
+                    onClick={() => handleSuggestionToggle(categoryId, 'sugg-1')}
+                    className="w-[14px] h-[14px] md:w-[16px] md:h-[16px] bg-[#D9D9D9] flex items-center justify-center transition-colors shrink-0 outline-none cursor-pointer"
+                >
+                    {selectedOptions[`${categoryId}-sugg-1`] && <span className="text-[16px] md:text-[20px] text-[#00DD00] font-black pointer-events-none mb-1 ml-1 cursor-pointer">✓</span>}
+                </div>
             </div>
             <div className="flex items-center justify-between mt-2">
-                <input type="text" className="border-b border-gray-400 bg-transparent w-full mr-4 outline-none text-[14px]" />
-                <div className="w-[14px] h-[14px] md:w-[16px] md:h-[16px] bg-[#D9D9D9] shrink-0"></div>
+                <input
+                    type="text"
+                    value={suggestionTexts[`${categoryId}-sugg-2`] || ""}
+                    onChange={(e) => handleSuggestionChange(categoryId, 'sugg-2', e.target.value)}
+                    className="border-b border-gray-400 bg-transparent w-full mr-4 outline-none text-[14px]"
+                />
+                <div
+                    onClick={() => handleSuggestionToggle(categoryId, 'sugg-2')}
+                    className="w-[14px] h-[14px] md:w-[16px] md:h-[16px] bg-[#D9D9D9] flex items-center justify-center transition-colors shrink-0 outline-none cursor-pointer"
+                >
+                    {selectedOptions[`${categoryId}-sugg-2`] && <span className="text-[16px] md:text-[20px] text-[#00DD00] font-black pointer-events-none mb-1 ml-1 cursor-pointer">✓</span>}
+                </div>
             </div>
         </div>
     );
@@ -67,7 +109,7 @@ const CustomFermentedVegetablesDetails = ({ productdish }) => {
                             );
                         })}
                         {/* Suggestion inputs for Column 1 if not fullWidth + 2 columns */}
-                        {!(category.fullWidth && columns === 2) && renderSuggestions()}
+                        {!(category.fullWidth && columns === 2) && renderSuggestions(category.id)}
                     </div>
 
                     {/* Column 2 */}
@@ -90,7 +132,7 @@ const CustomFermentedVegetablesDetails = ({ productdish }) => {
                             })}
 
                             {/* Suggestion inputs for Column 2 if fullWidth + 2 columns */}
-                            {category.fullWidth && columns === 2 && renderSuggestions()}
+                            {category.fullWidth && columns === 2 && renderSuggestions(category.id)}
                         </div>
                     )}
                 </div>
