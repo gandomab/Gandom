@@ -141,7 +141,7 @@ const CustomFermentedVegetablesDetails = ({ productdish }) => {
     };
 
     return (
-        <section className="w-full max-w-[1440px] mx-auto px-8 md:px-12 py-12">
+        <section className="w-full max-w-[1440px] mx-auto px-8 md:px-12 py-6">
             <div className="space-y-10">
                 <h3 className="font-inter text-[20px] xl:text-[24px] font-bold">Customize your Dish</h3>
 
