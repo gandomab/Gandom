@@ -3,23 +3,38 @@ import { productdetailsdata } from "../../data/productdetailsdata";
 
 const CustomFermentedVegetablesDetails = ({ productdish }) => {
     if (!productdish || productdish.id !== 403) return null;
-
+    // find the product details from the productdetailsdata array by id
     const details = productdetailsdata.find((item) => item.id === 403);
     if (!details) return null;
 
     // Track selections for checkboxes
     const [selectedOptions, setSelectedOptions] = useState({});
-
+    // this function is for toggle the checkboxes
     const handleToggle = (categoryId, optionIndex) => {
         const key = `${categoryId}-${optionIndex}`;
         setSelectedOptions((prev) => ({ ...prev, [key]: !prev[key] }));
     };
 
-    // Helper to render a category's options in columns
+    // sub-component for render the suggestion inputs
+    const renderSuggestions = () => (
+        <div className="pt-4 space-y-2 pr-4 md:pr-10">
+            <p className="font-inter text-[12px] md:text-[14px] xl:text-[16px]">Your suggestion:</p>
+            <div className="flex items-center justify-between mt-2">
+                <input type="text" className="border-b border-gray-400 bg-transparent w-full mr-4 outline-none text-[14px]" />
+                <div className="w-[14px] h-[14px] md:w-[16px] md:h-[16px] bg-[#D9D9D9] shrink-0"></div>
+            </div>
+            <div className="flex items-center justify-between mt-2">
+                <input type="text" className="border-b border-gray-400 bg-transparent w-full mr-4 outline-none text-[14px]" />
+                <div className="w-[14px] h-[14px] md:w-[16px] md:h-[16px] bg-[#D9D9D9] shrink-0"></div>
+            </div>
+        </div>
+    );
+
+    // sub-component for render the category options in columns
     const renderCategory = (category, columns = 1) => {
         if (!category) return null;
 
-        // Compute half length for 2 columns
+        // Split options array in half for 2-column layouts
         const half = Math.ceil(category.options.length / 2);
         const col1 = columns === 2 ? category.options.slice(0, half) : category.options;
         const col2 = columns === 2 ? category.options.slice(half) : [];
@@ -51,18 +66,8 @@ const CustomFermentedVegetablesDetails = ({ productdish }) => {
                                 </label>
                             );
                         })}
-                        {/* Suggestion inputs for Column 1 */}
-                        <div className="pt-4 space-y-2 pr-4 md:pr-10">
-                            <p className="font-inter text-[12px] md:text-[14px] xl:text-[16px]">Your suggestion:</p>
-                            <div className="flex items-center justify-between">
-                                <input type="text" className="border-b border-gray-400 bg-transparent w-full mr-4 outline-none text-[14px]" />
-                                <div className="w-[14px] h-[14px] md:w-[16px] md:h-[16px] bg-[#D9D9D9] shrink-0"></div>
-                            </div>
-                            <div className="flex items-center justify-between">
-                                <input type="text" className="border-b border-gray-400 bg-transparent w-full mr-4 outline-none text-[14px]" />
-                                <div className="w-[14px] h-[14px] md:w-[16px] md:h-[16px] bg-[#D9D9D9] shrink-0"></div>
-                            </div>
-                        </div>
+                        {/* Suggestion inputs for Column 1 if not fullWidth + 2 columns */}
+                        {!(category.fullWidth && columns === 2) && renderSuggestions()}
                     </div>
 
                     {/* Column 2 */}
@@ -83,6 +88,9 @@ const CustomFermentedVegetablesDetails = ({ productdish }) => {
                                     </label>
                                 );
                             })}
+
+                            {/* Suggestion inputs for Column 2 if fullWidth + 2 columns */}
+                            {category.fullWidth && columns === 2 && renderSuggestions()}
                         </div>
                     )}
                 </div>
@@ -95,7 +103,7 @@ const CustomFermentedVegetablesDetails = ({ productdish }) => {
             <div className="space-y-10">
                 <h3 className="font-inter text-[20px] xl:text-[24px] font-bold">Customize your Dish</h3>
 
-                {/* We use a flex/grid wrapper that allows items to wrap.
+                {/* 
                    fullWidth: true categories take span 2.
                    fullWidth: false categories take span 1.
                 */}
