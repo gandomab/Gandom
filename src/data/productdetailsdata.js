@@ -52,21 +52,15 @@ export const productdetailsdata = [
                 title: "Vegetables & Fruits (Primary Options)",
                 note: "Note: Choose between 1 and 5 items. Each extra selection beyond 5 costs 10 SEK each.",
                 options: [
-                    "Cauliflower", "Beetroot",
-                    "Cucumber", "Lemon",
-                    "Celery", "Apricot",
-                    "Eggplant", "Peach",
-                    "Hot green chilli", "Okra",
-                    "Garlic", "Olive",
-                    "Onion", "Pomegranate",
-                    "Shallot", "Cherry",
-                    "White cabbage", "Mushroom",
-                    "red cabbage", "",
-                    "Green cabbage", "",
-                    "Beans", "",
-                    "Corn", "",
-                    "Firm tomato", ""
-                ]
+                    "Cauliflower", "Beetroot", "Cucumber", "Lemon",
+                    "Celery", "Apricot", "Eggplant", "Peach",
+                    "Hot green chilli", "Okra", "Garlic", "Olive",
+                    "Onion", "Pomegranate", "Shallot", "Cherry",
+                    "White cabbage", "Mushroom", "red cabbage",
+                    "Green cabbage", "Beans", "Corn", "Firm tomato"
+                ],
+                fullWidth: true,
+                columns: 2
             },
             {
                 id: "herbsFlavors",
@@ -74,7 +68,9 @@ export const productdetailsdata = [
                 note: "",
                 options: [
                     "Tarragon", "Savory", "Mint", "Dill", "Parsley", "Coriander", "Basil"
-                ]
+                ],
+                fullWidth: false,
+                columns: 1
             },
             {
                 id: "vinegars",
@@ -82,7 +78,9 @@ export const productdetailsdata = [
                 note: "Note: Choose between 1 and 3 items. Each extra selection beyond 3 costs 5 SEK each.",
                 options: [
                     "Vinegar", "Apple vinegar", "Grape vinegar", "Balsamic vinegar", "Honey", "Olive oil", "Pomegranate paste"
-                ]
+                ],
+                fullWidth: false,
+                columns: 1
             },
             {
                 id: "flavorBoosters",
@@ -95,12 +93,12 @@ export const productdetailsdata = [
                     "Coriander seeds", "Ginger",
                     "Cumin seed", "Fresh chilli",
                     "Fennel seeds", "Dried chilli",
-                    "Turmeric", "",
-                    "Paprika", "",
-                    "Garlic", "",
-                    "Lemon zest", ""
-                ]
+                    "Turmeric", "Paprika", "Garlic", "Lemon zest"
+                ],
+                fullWidth: true,
+                columns: 2
             }
+
         ]
     }
 ];

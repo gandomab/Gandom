@@ -91,73 +91,30 @@ const CustomFermentedVegetablesDetails = ({ productdish }) => {
     };
 
     return (
-        <section className="w-full flex flex-col items-center mt-2 md:mt-6 xl:mt-12 mb-12 px-8 md:px-12 max-w-[1440px] mx-auto">
-            <div className="space-y-8 w-full">
+        <section className="w-full max-w-[1440px] mx-auto px-8 md:px-12 py-12">
+            <div className="space-y-10">
+                <h3 className="font-inter text-[20px] xl:text-[24px] font-bold">Customize your Dish</h3>
 
-                {/* Header Section */}
-                <div className="space-y-6">
-                    <div className="border-b-4 border-black inline-block pb-1">
-                        <h3 className="font-inter text-[14px] md:text-[16px] lg:text-[18px] xl:text-[20px] font-bold leading-[130%]">{details.title}</h3>
-                    </div>
-
-                    <div className="space-y-4">
-                        <h4 className="font-inter text-[14px] md:text-[18px] xl:text-[20px] font-bold leading-[130%]">
-                            {details.heading}
-                        </h4>
-
-                        {/* Description paragraphs (split by newline) */}
-                        <div className="space-y-4">
-                            {details.description.split('\n\n').map((paragraph, idx) => (
-                                <p key={idx} className="font-inter text-[12px] md:text-[14px] xl:text-[18px] font-normal leading-[150%]">
-                                    {paragraph}
-                                </p>
-                            ))}
+                {/* We use a flex/grid wrapper that allows items to wrap.
+                   fullWidth: true categories take span 2.
+                   fullWidth: false categories take span 1.
+                */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
+                    {details.customizationCategories.map((category) => (
+                        <div
+                            key={category.id}
+                            className={`${category.fullWidth ? "md:col-span-2" : "md:col-span-1"}`}
+                        >
+                            {renderCategory(category, category.columns)}
                         </div>
-
-                        {/* Notes */}
-                        {details.notes && (
-                            <div className="pt-2">
-                                <p className="font-inter text-[12px] md:text-[14px] xl:text-[18px] font-normal pb-1">{details.notesLabel}</p>
-                                <ul className="list-disc pl-5 space-y-1">
-                                    {details.notes.map((note, idx) => (
-                                        <li key={idx} className="font-inter text-[12px] md:text-[14px] xl:text-[18px] font-normal leading-[150%]">
-                                            {note}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        )}
-                    </div>
+                    ))}
                 </div>
 
-                {/* Customizer Form Area */}
-                <div className="space-y-10 pt-4">
-                    <h3 className="font-inter text-[16px] md:text-[20px] xl:text-[24px] font-bold leading-[130%] mb-6">Customize your Dish</h3>
-
-                    {/* Vegetables & Fruits (2 columns) */}
-                    <div>
-                        {renderCategory(details.customizationCategories.find(c => c.id === 'vegFruits'), 2)}
-                    </div>
-
-                    {/* Side-by-side Herbs and Vinegars */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                        {renderCategory(details.customizationCategories.find(c => c.id === 'herbsFlavors'), 1)}
-                        {renderCategory(details.customizationCategories.find(c => c.id === 'vinegars'), 1)}
-                    </div>
-
-                    {/* Flavor Boosters (2 columns) */}
-                    <div>
-                        {renderCategory(details.customizationCategories.find(c => c.id === 'flavorBoosters'), 2)}
-                    </div>
-                </div>
-
-                {/* Bottom Add to Cart Button */}
                 <div className="flex justify-end pt-10">
-                    <button className="bg-[#E6B220] hover:bg-[#d4a01c] transition-colors text-white font-inter font-bold text-[14px] md:text-[18px] xl:text-[24px] leading-[130%] px-6 py-2 md:px-8 md:py-3 xl:px-10 xl:py-4 rounded-[30px] md:rounded-[15px]">
+                    <button className="bg-[#E6B220] text-white px-10 py-3 rounded-[30px] font-bold">
                         Add to cart
                     </button>
                 </div>
-
             </div>
         </section>
     );
