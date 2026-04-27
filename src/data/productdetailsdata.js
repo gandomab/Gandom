@@ -41,10 +41,10 @@ export const productdetailsdata = [
         title: "Product Details",
         heading: "Custom Fermented Vegetables",
         description: "Pick your favorite vegetables and we'll turn them into your own small-batch ferments naturally, traditionally, and with care. You choose what you love, and we handle the rest: salting, fermenting, and patiently waiting while the good bacteria do their work. The result is a custom jar of crunchy, tangy, probiotic-rich vegetables made just for you, with no additives or preservatives.\n\nOnce your batch is ready, we deliver it directly to you so you can enjoy fresh, healthy, gut-friendly goodness at home as a side dish, snack, or topping for your favorite meals.",
-        notesLabel: "Please note:",
-        notes: [
-            "This service is available by advance reservation only.",
-            "Preparation and fermentation time will vary depending on the vegetables you choose."
+        footnotes: [
+            "Please note:",
+            "- This service is available by advance reservation only.",
+            "- Preparation and fermentation time will vary depending on the vegetables you choose."
         ],
         customizationCategories: [
             {

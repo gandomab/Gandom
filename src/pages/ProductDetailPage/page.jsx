@@ -27,10 +27,9 @@ const ProductDetailPage = () => {
                 <ProductDetailHeroSection productdish={productdish} />
             </div>
             <div className="max-w-[1440px] mx-auto">
-                {productdish?.id === 403 ? (
+                <ProductDetails productdish={productdish} />
+                {productdish?.id === 403 && (
                     <CustomFermentedVegetablesDetails productdish={productdish} />
-                ) : (
-                    <ProductDetails productdish={productdish} />
                 )}
             </div>
 
