@@ -50,9 +50,9 @@ const CustomFermentedVegetablesDetails = ({ productdish }) => {
                 />
                 <div
                     onClick={() => handleSuggestionToggle(categoryId, 'sugg-1')}
-                    className="w-[14px] h-[14px] md:w-[16px] md:h-[16px] bg-[#D9D9D9] flex items-center justify-center transition-colors shrink-0 outline-none cursor-pointer"
+                    className="w-[12px] h-[12px] md:w-[14px] md:h-[14px] xl:w-[16px] xl:h-[16px] bg-[#D9D9D9] flex items-center justify-center transition-colors shrink-0"
                 >
-                    {selectedOptions[`${categoryId}-sugg-1`] && <span className="text-[16px] md:text-[20px] text-[#00DD00] font-black pointer-events-none mb-1 ml-1 cursor-pointer">✓</span>}
+                    {selectedOptions[`${categoryId}-sugg-1`] && <span className="text-[16px] md:text-[20px] xl:text-[24px] text-[#00DD00] font-black pointer-events-none mb-1 ml-1 cursor-pointer">✓</span>}
                 </div>
             </div>
             <div className="flex items-center justify-between mt-2">
@@ -64,9 +64,9 @@ const CustomFermentedVegetablesDetails = ({ productdish }) => {
                 />
                 <div
                     onClick={() => handleSuggestionToggle(categoryId, 'sugg-2')}
-                    className="w-[14px] h-[14px] md:w-[16px] md:h-[16px] bg-[#D9D9D9] flex items-center justify-center transition-colors shrink-0 outline-none cursor-pointer"
+                    className="w-[12px] h-[12px] md:w-[14px] md:h-[14px] xl:w-[16px] xl:h-[16px] bg-[#D9D9D9] flex items-center justify-center transition-colors shrink-0"
                 >
-                    {selectedOptions[`${categoryId}-sugg-2`] && <span className="text-[16px] md:text-[20px] text-[#00DD00] font-black pointer-events-none mb-1 ml-1 cursor-pointer">✓</span>}
+                    {selectedOptions[`${categoryId}-sugg-2`] && <span className="text-[16px] md:text-[20px] xl:text-[24px] text-[#00DD00] font-black pointer-events-none mb-1 ml-1 cursor-pointer">✓</span>}
                 </div>
             </div>
         </div>
@@ -102,9 +102,9 @@ const CustomFermentedVegetablesDetails = ({ productdish }) => {
                                     <span className="font-inter font-normal text-[12px] md:text-[14px] xl:text-[16px] leading-[150%]">{opt}</span>
                                     <div
                                         onClick={() => handleToggle(category.id, globalIndex)}
-                                        className="w-[14px] h-[14px] md:w-[16px] md:h-[16px] bg-[#D9D9D9] flex items-center justify-center transition-colors shrink-0 outline-none"
+                                        className="w-[12px] h-[12px] md:w-[14px] md:h-[14px] xl:w-[16px] xl:h-[16px] bg-[#D9D9D9] flex items-center justify-center transition-colors shrink-0"
                                     >
-                                        {selectedOptions[`${category.id}-${globalIndex}`] && <span className="text-[16px] md:text-[20px] text-[#00DD00] font-black pointer-events-none mb-1 ml-1 cursor-pointer">✓</span>}
+                                        {selectedOptions[`${category.id}-${globalIndex}`] && <span className="text-[16px] md:text-[20px] xl:text-[24px] text-[#00DD00] font-black pointer-events-none mb-1 ml-1 cursor-pointer">✓</span>}
                                     </div>
                                 </label>
                             );
@@ -169,7 +169,8 @@ const CustomFermentedVegetablesDetails = ({ productdish }) => {
                 </div>
 
                 <div className="flex justify-end pt-4 md:pt-8 xl:pt-10">
-                    <button className="bg-[#E6B220] text-white px-10 py-3 rounded-[30px] font-bold">
+                    <button className="bg-[#E6B220] text-white font-inter font-bold text-[10px] md:text-[14px] xl:text-[28px] leading-[130%] 
+                                md:px-4 md:py-2 xl:px-8 xl:py-3 w-[74px] h-[33px] md:w-[123px] md:h-[38px]  xl:w-[259px] xl:h-[67px] rounded-[23px] md:rounded-[10px] xl:rounded-[20px]">
                         Add to cart
                     </button>
                 </div>

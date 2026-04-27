@@ -89,7 +89,7 @@ export const productdetailsdata = [
                     "Fennel seeds", "Dried chilli",
                     "Turmeric", "Paprika", "Garlic", "Lemon zest"
                 ],
-            },
+            }
         ]
     }
 ];
