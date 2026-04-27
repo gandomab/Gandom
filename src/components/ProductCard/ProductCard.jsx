@@ -1,12 +1,14 @@
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 // This component represents a single product card, displaying the product's image, name, price, and rating. It also includes a "View" button for more details.
 const ProductCard = ({ productdish }) => {
 
     const rating = productdish.ratingnum;
     const fillPercentage = (rating / 5) * 100;
 
-    const [currentImage, setCurrentImage] = useState(productdish.image);
+    const baseImage = productdish.images[0];
+    const [currentImage, setCurrentImage] = useState(baseImage);
     return (
         <div className="bg-[#FFFFFF] border rounded-xl overflow-hidden w-full h-[331.46px] shadow-[4.73px_4.73px_16.9px_0.68px_rgba(0,0,0,0.25)]">
 
@@ -22,7 +24,7 @@ const ProductCard = ({ productdish }) => {
                         }
                     }}
                     onMouseLeave={() => {
-                        setCurrentImage(productdish.image);
+                        setCurrentImage(baseImage);
                     }}
                 />
             </div>
@@ -54,9 +56,12 @@ const ProductCard = ({ productdish }) => {
                         <div className="font-inter font-semibold text-[16px] leading-[1.3]">{productdish.ratingnum}</div>
                     </div>
                     {/* View Button: to view more details about the product */}
-                    <button className="px-5 py-1 bg-[#F5C242] text-white font-semibold font-inter rounded-[10px] text-sm hover:opacity-90">
+                    <Link
+                        to={`/productdetail/${productdish.title.replace(/\s+/g, '-')}`}
+                        onClick={() => window.scrollTo(0, 0)}
+                        className="px-5 py-1 bg-[#F5C242] text-white font-semibold font-inter rounded-[10px] text-sm hover:opacity-90">
                         View
-                    </button>
+                    </Link>
                 </div>
             </div>
 
