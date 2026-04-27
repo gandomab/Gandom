@@ -46,7 +46,7 @@ const CustomFermentedVegetablesDetails = ({ productdish }) => {
                     type="text"
                     value={suggestionTexts[`${categoryId}-sugg-1`] || ""}
                     onChange={(e) => handleSuggestionChange(categoryId, 'sugg-1', e.target.value)}
-                    className="border-b border-gray-400 bg-transparent w-full mr-4 outline-none text-[14px]"
+                    className="border border-[#000000] bg-transparent w-full mr-4 outline-none text-[16px] px-1"
                 />
                 <div
                     onClick={() => handleSuggestionToggle(categoryId, 'sugg-1')}
@@ -60,7 +60,7 @@ const CustomFermentedVegetablesDetails = ({ productdish }) => {
                     type="text"
                     value={suggestionTexts[`${categoryId}-sugg-2`] || ""}
                     onChange={(e) => handleSuggestionChange(categoryId, 'sugg-2', e.target.value)}
-                    className="border-b border-gray-400 bg-transparent w-full mr-4 outline-none text-[14px]"
+                    className="border border-[#000000] bg-transparent w-full mr-4 outline-none text-[16px] px-1"
                 />
                 <div
                     onClick={() => handleSuggestionToggle(categoryId, 'sugg-2')}
