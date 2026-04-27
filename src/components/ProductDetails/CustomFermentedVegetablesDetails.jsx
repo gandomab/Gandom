@@ -160,7 +160,7 @@ const CustomFermentedVegetablesDetails = ({ productdish }) => {
                     ))}
                 </div>
 
-                <div className="flex justify-end pt-10">
+                <div className="flex justify-end pt-4 md:pt-8 xl:pt-10">
                     <button className="bg-[#E6B220] text-white px-10 py-3 rounded-[30px] font-bold">
                         Add to cart
                     </button>
