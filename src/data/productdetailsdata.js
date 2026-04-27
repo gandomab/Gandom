@@ -59,8 +59,6 @@ export const productdetailsdata = [
                     "White cabbage", "Mushroom", "red cabbage",
                     "Green cabbage", "Beans", "Corn", "Firm tomato"
                 ],
-                fullWidth: true,
-                columns: 2
             },
             {
                 id: "herbsFlavors",
@@ -69,8 +67,6 @@ export const productdetailsdata = [
                 options: [
                     "Tarragon", "Savory", "Mint", "Dill", "Parsley", "Coriander", "Basil"
                 ],
-                fullWidth: false,
-                columns: 1
             },
             {
                 id: "vinegars",
@@ -79,8 +75,6 @@ export const productdetailsdata = [
                 options: [
                     "Vinegar", "Apple vinegar", "Grape vinegar", "Balsamic vinegar", "Honey", "Olive oil", "Pomegranate paste"
                 ],
-                fullWidth: false,
-                columns: 1
             },
             {
                 id: "flavorBoosters",
@@ -95,10 +89,7 @@ export const productdetailsdata = [
                     "Fennel seeds", "Dried chilli",
                     "Turmeric", "Paprika", "Garlic", "Lemon zest"
                 ],
-                fullWidth: true,
-                columns: 2
-            }
-
+            },
         ]
     }
 ];

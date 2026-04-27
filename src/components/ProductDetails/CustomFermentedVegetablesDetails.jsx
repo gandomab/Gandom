@@ -73,7 +73,8 @@ const CustomFermentedVegetablesDetails = ({ productdish }) => {
     );
 
     // sub-component for render the category options in columns
-    const renderCategory = (category, columns = 1) => {
+    // columns is for the number of columns to render the options in, isFullWidth is for the full width of the options
+    const renderCategory = (category, columns = 1, isFullWidth = false) => {
         if (!category) return null;
 
         // Split options array in half for 2-column layouts
@@ -109,7 +110,7 @@ const CustomFermentedVegetablesDetails = ({ productdish }) => {
                             );
                         })}
                         {/* Suggestion inputs for Column 1 if not fullWidth + 2 columns */}
-                        {!(category.fullWidth && columns === 2) && renderSuggestions(category.id)}
+                        {!(isFullWidth && columns === 2) && renderSuggestions(category.id)}
                     </div>
 
                     {/* Column 2 */}
@@ -132,7 +133,7 @@ const CustomFermentedVegetablesDetails = ({ productdish }) => {
                             })}
 
                             {/* Suggestion inputs for Column 2 if fullWidth + 2 columns */}
-                            {category.fullWidth && columns === 2 && renderSuggestions(category.id)}
+                            {isFullWidth && columns === 2 && renderSuggestions(category.id)}
                         </div>
                     )}
                 </div>
@@ -150,14 +151,21 @@ const CustomFermentedVegetablesDetails = ({ productdish }) => {
                    fullWidth: false categories take span 1.
                 */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
-                    {details.customizationCategories.map((category) => (
-                        <div
-                            key={category.id}
-                            className={`${category.fullWidth ? "md:col-span-2" : "md:col-span-1"}`}
-                        >
-                            {renderCategory(category, category.columns)}
-                        </div>
-                    ))}
+                    {details.customizationCategories.map((category) => {
+                        // Dynamically determine layout if backend doesn't provide it
+                        // e.g. > 10 options means we split into 2 columns and take full width
+                        const columns = category.columns !== undefined ? category.columns : (category.options.length > 10 ? 2 : 1);
+                        const isFullWidth = category.fullWidth !== undefined ? category.fullWidth : (columns === 2);
+
+                        return (
+                            <div
+                                key={category.id}
+                                className={`${isFullWidth ? "md:col-span-2" : "md:col-span-1"}`}
+                            >
+                                {renderCategory(category, columns, isFullWidth)}
+                            </div>
+                        );
+                    })}
                 </div>
 
                 <div className="flex justify-end pt-4 md:pt-8 xl:pt-10">
