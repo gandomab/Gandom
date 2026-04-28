@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { TiShoppingCart } from "react-icons/ti";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const links = [
     { label: "Home", href: "/" },
@@ -40,14 +41,22 @@ const Navbar = () => {
             {link.label}
           </NavLink>
         ))}
-        <button className="p-2 rounded hover:text-primary">
+        <button
+          onClick={() => navigate("/your-cart")}
+          className={`p-2 rounded hover:text-primary ${location.pathname === '/your-cart' ? 'text-[#E6B220]' : 'text-black'}`}>
           <TiShoppingCart className="w-[27px] h-[24px]" />
         </button>
       </div>
 
       {/* Tablet & Mobile Hamburger + Cart */}
       <div className="flex lg:hidden items-center gap-4">
-        <button className="p-2 rounded hover:text-primary">
+        <button 
+          onClick={() => {
+            navigate("/your-cart");
+            setMobileMenuOpen(false); // Close menu if open
+          }}
+          className={`p-2 rounded hover:text-primary ${location.pathname === '/your-cart' ? 'text-[#E6B220]' : 'text-black'}`}
+        >
           <TiShoppingCart className="w-[27px] h-[24px]" />
         </button>
         <button
