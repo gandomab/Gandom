@@ -1,4 +1,5 @@
 import { productdetailsdata } from "../../data/productdetailsdata";
+// this is product details of each product on product details page
 const ProductDetails = ({ productdish }) => {
     if (!productdish) return null;
 

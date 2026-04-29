@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { FaStar, FaHeart, FaArrowLeft, FaArrowRight, FaArrowDown } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import BestSellerBadge from "../../assets/Images/2.Dishes/BestSellerBadge.svg";
+
+// this is product detail page hero section
 const ProductDetailHeroSection = ({ productdish }) => {
     const rating = productdish.ratingnum;
     const fillPercentage = (rating / 5) * 100;

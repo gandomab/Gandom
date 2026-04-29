@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { productdetailsdata } from "../../data/productdetailsdata";
-
+// this is custom fermented vegetables details component with responsive checkbox and suggestion inputs on product details page
 const CustomFermentedVegetablesDetails = ({ productdish }) => {
     if (!productdish || productdish.id !== 403) return null;
     // find the product details from the productdetailsdata array by id
