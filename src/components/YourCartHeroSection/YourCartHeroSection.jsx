@@ -22,18 +22,17 @@ const YourCartHeroSection = () => {
                     <h1 className=" leading-tight text-left">
                         <span className="block font-inter font-bold text-[#DEA401] leading-[120%] tracking-[-2.2%] 
                                     w-[122px] h-[38px] md:w-[211px] md:h-[67px] xl:w-[335px] xl:h-[106px]
-                                    text-[40px] md:text-[50px] lg:text-[60px] xl:text-[88px]">
+                                    text-[40px] md:text-[50px] lg:text-[60px] xl:text-[88px] mt-2 md:mt-6 lg:mt-8xl:mt-10">
                             Your
                         </span>
                         <span className="block font-santa font-normal text-[#FFC943] leading-[132%] tracking-[-2%] 
                                     text-[40px] md:text-[50px] lg:text-[60px] xl:text-[94px]
                                     w-[67px] h-[42px] md:w-[212px] md:h-[78px] xl:w-[338px] xl:h-[124px]
-                                    mt-1 ml-20 md:ml-28 lg:ml-32 xl:ml-40 rotate-[3.62deg]">
+                                   -mt-2 md:-mt-6 lg:-mt-8 xl:-mt-10 ml-12 md:ml-16 lg:ml-24 xl:ml-32 rotate-[3.62deg]">
                             Cart
                         </span>
                     </h1>
                 </div>
-
             </div>
         </section>
     );
