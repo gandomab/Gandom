@@ -3,7 +3,7 @@ import { FaStar, FaHeart, FaArrowLeft, FaArrowRight, FaArrowDown } from "react-i
 import { useNavigate } from "react-router-dom";
 import BestSellerBadge from "../../assets/Images/2.Dishes/BestSellerBadge.svg";
 
-// this is product detail page hero section
+// this is product detail page hero section with responsive images
 const ProductDetailHeroSection = ({ productdish }) => {
     const rating = productdish.ratingnum;
     const fillPercentage = (rating / 5) * 100;
