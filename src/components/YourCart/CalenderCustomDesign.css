@@ -1,0 +1,125 @@
+/* Custom Calendar Overrides */
+.react-calendar {
+    width: 100% !important;
+    font-family: inherit;
+    border: none !important;
+    background: transparent !important;
+}
+
+/* Header Month Navigation */
+.react-calendar__navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto 2rem auto;
+    border: 1px solid #111;
+    border-radius: 12px;
+    padding: 4px 16px;
+    width: max-content;
+    min-width: 220px;
+}
+
+.react-calendar__navigation button {
+    font-weight: 600;
+    color: #111;
+    background: transparent;
+    border: none;
+    font-size: 1rem;
+    padding: 6px;
+    cursor: pointer;
+}
+
+.react-calendar__navigation button:disabled {
+    background-color: transparent;
+    color: #ccc;
+}
+
+.react-calendar__navigation button:enabled:hover,
+.react-calendar__navigation button:enabled:focus {
+    background-color: transparent;
+}
+
+/* Navigation label (Month Year) */
+.react-calendar__navigation__label {
+    flex-grow: 1;
+    text-align: center;
+}
+
+/* Weekdays */
+.react-calendar__month-view__weekdays {
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #111;
+    margin-bottom: 12px;
+}
+
+.react-calendar__month-view__weekdays__weekday {
+    padding: 0.5em;
+    display: flex;
+    justify-content: center;
+}
+
+.react-calendar__month-view__weekdays__weekday abbr {
+    text-decoration: none;
+    cursor: default;
+}
+
+/* Tiles / Days */
+.react-calendar__month-view__days__day {
+    padding: 14px 0;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #111;
+    background: transparent;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* Active Tile Highlight */
+.react-calendar__tile--active,
+.react-calendar__tile--active:enabled:hover,
+.react-calendar__tile--active:enabled:focus,
+.react-calendar__tile--hasActive,
+.react-calendar__tile--hasActive:enabled:hover,
+.react-calendar__tile--hasActive:enabled:focus {
+    background: #E6B22099 !important;
+    color: #000000 !important;
+    border-radius: 6px;
+}
+
+/* Active Tile Now Highlight */
+.react-calendar__tile--now {
+    background: transparent;
+    color: #111;
+}
+
+/* Hover over active days */
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus {
+    background-color: #f3f4f6;
+    border-radius: 6px;
+}
+
+/* Disabled past dates */
+.react-calendar__tile:disabled {
+    background-color: transparent !important;
+    color: #cbd5e1 !important;
+    cursor: not-allowed;
+}
+
+/* Neighboring month dates replaced with dashes */
+.react-calendar__month-view__days__day--neighboringMonth abbr {
+    display: none;
+}
+
+.react-calendar__month-view__days__day--neighboringMonth {
+    color: #cbd5e1 !important;
+}
+
+.react-calendar__month-view__days__day--neighboringMonth::after {
+    content: "–";
+}

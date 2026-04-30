@@ -1,6 +1,7 @@
 import React from "react";
 import YourCartHeroSection from "../../components/YourCartHeroSection/YourCartHeroSection";
 import CartItem from "../../components/YourCart/CartItem";
+import CalenderSection from "../../components/YourCart/CalenderSection";
 import { useCart } from "../../contexts/CartContext";
 
 const YourCart = () => {
@@ -25,6 +26,10 @@ const YourCart = () => {
                         ) : (
                             <p className="text-gray-500">Your cart is empty.</p>
                         )}
+                    </div>
+                    <div className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100">
+                        <h2 className="text-[#D4A017] text-2xl font-bold mb-6">Select Date & Time</h2>
+                        <CalenderSection />
                     </div>
                 </div>
                 {/* RIGHT COLUMN: Order Total */}
