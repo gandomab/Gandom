@@ -11,7 +11,7 @@ const ProductDetailHeroSection = ({ productdish }) => {
     const navigate = useNavigate();
     const { addToCart } = useCart();
     const product = productdish || {};
-
+    // track selected options for checkboxes
     const [selectedOptions, setSelectedOptions] = useState(() => {
         const init = {};
         (product.customizations || []).forEach((opt) => {
@@ -39,14 +39,13 @@ const ProductDetailHeroSection = ({ productdish }) => {
     const prevImage = () => {
         setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
     };
+    // this function is for adding the product to the cart
     const handleAddToCart = () => {
         const selected = Object.keys(selectedOptions).filter((id) => selectedOptions[id]);
         const cartItem = { ...product, selectedCustomizations: selected };
 
         addToCart(cartItem);
 
-        setAdded(true);
-        setTimeout(() => setAdded(false), 1800);
     };
 
     return (
