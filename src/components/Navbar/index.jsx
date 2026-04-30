@@ -2,11 +2,15 @@ import { useState } from "react";
 import { TiShoppingCart } from "react-icons/ti";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { useCart } from "../../contexts/CartContext";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const { cart } = useCart();
+  // this is for the total number of items in the cart
+  const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
 
   const links = [
     { label: "Home", href: "/" },
@@ -43,21 +47,31 @@ const Navbar = () => {
         ))}
         <button
           onClick={() => navigate("/your-cart")}
-          className={`p-2 rounded hover:text-primary ${location.pathname === '/your-cart' ? 'text-[#E6B220]' : 'text-black'}`}>
+          className={`relative p-2 rounded hover:text-primary ${location.pathname === '/your-cart' ? 'text-[#E6B220]' : 'text-black'}`}>
           <TiShoppingCart className="w-[27px] h-[24px]" />
+          {totalItems > 0 && (
+            <span className="absolute top-1 right-1 inline-flex items-center justify-center px-1.5 py-0.5 text-[10px] font-bold leading-none text-white transform translate-x-1/4 -translate-y-1/4 bg-[#E6B220] rounded-full">
+              {totalItems}
+            </span>
+          )}
         </button>
       </div>
 
       {/* Tablet & Mobile Hamburger + Cart */}
       <div className="flex lg:hidden items-center gap-4">
-        <button 
+        <button
           onClick={() => {
             navigate("/your-cart");
             setMobileMenuOpen(false); // Close menu if open
           }}
-          className={`p-2 rounded hover:text-primary ${location.pathname === '/your-cart' ? 'text-[#E6B220]' : 'text-black'}`}
+          className={`relative p-2 rounded hover:text-primary ${location.pathname === '/your-cart' ? 'text-[#E6B220]' : 'text-black'}`}
         >
           <TiShoppingCart className="w-[27px] h-[24px]" />
+          {totalItems > 0 && (
+            <span className="absolute top-1 right-1 inline-flex items-center justify-center px-1.5 py-0.5 text-[10px] font-bold leading-none text-white transform translate-x-1/4 -translate-y-1/4 bg-[#E6B220] rounded-full">
+              {totalItems}
+            </span>
+          )}
         </button>
         <button
           className="p-2 rounded hover:text-primary"

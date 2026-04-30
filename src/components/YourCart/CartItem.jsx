@@ -5,7 +5,7 @@ const CartItem = ({ productdish }) => {
     const { updateQuantity, removeFromCart } = useCart();
 
     return (
-        <div className="flex items-center justify-between bg-white p-4 rounded-xl mb-4 shadow-sm">
+        <div className="flex items-center justify-between bg-white p-4">
             <div className="flex items-center gap-4">
                 <img src={productdish.images?.[0]} className="w-[83px] h-[59px] md:w-[104px] md:h-[73px] xl:w-[180px] xl:h-[128px] rounded-lg object-cover" alt={productdish.title} />
                 <div>
