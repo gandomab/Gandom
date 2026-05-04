@@ -74,7 +74,7 @@ const CalendarSection = () => {
                                     className={`relative z-10 w-full py-3 px-4 rounded-full border border-[#111] transition-all font-medium text-[15px] text-center
                                         ${selectedSlotId === slot.id
                                             ? 'bg-[#E6B22099] text-[#111]'
-                                            : 'bg-transparent text-[#111] hover:bg-gray-50'
+                                            : 'bg-transparent text-[#111] hover:bg-[#f3f4f6]'
                                         }`}
                                 >
                                     {slot.label}
