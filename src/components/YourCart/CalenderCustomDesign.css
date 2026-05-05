@@ -1,4 +1,4 @@
-/* Custom Calendar Overrides */
+/* --- BASE CALENDAR STRUCTURE --- */
 .react-calendar {
     width: 100% !important;
     font-family: inherit;
@@ -6,7 +6,8 @@
     background: transparent !important;
 }
 
-/* Header Month Navigation */
+
+/* --- TOP NAVIGATION (Month/Year & Arrows) --- */
 .react-calendar__navigation {
     display: flex;
     justify-content: space-between;
@@ -19,6 +20,7 @@
     min-width: 220px;
 }
 
+/* Individual Navigation Buttons (<, >, Month Year) */
 .react-calendar__navigation button {
     font-weight: 600;
     color: #111;
@@ -29,23 +31,25 @@
     cursor: pointer;
 }
 
+/* Styles the navigation when buttons are inactive */
 .react-calendar__navigation button:disabled {
     background-color: transparent;
     color: #ccc;
 }
 
+/* Removes default background flicker/highlights when clicking nav buttons */
 .react-calendar__navigation button:enabled:hover,
 .react-calendar__navigation button:enabled:focus {
     background-color: transparent;
 }
 
-/* Navigation label (Month Year) */
+/* Ensures the Month/Year text stays centered between the arrows */
 .react-calendar__navigation__label {
     flex-grow: 1;
     text-align: center;
 }
 
-/* Weekdays */
+/* --- WEEKDAY LABELS (S, M, T, W...) --- */
 .react-calendar__month-view__weekdays {
     text-transform: uppercase;
     font-weight: 700;
@@ -60,12 +64,13 @@
     justify-content: center;
 }
 
+/* Removes the default dotted underline from the weekday abbreviations */
 .react-calendar__month-view__weekdays__weekday abbr {
     text-decoration: none;
     cursor: default;
 }
 
-/* Tiles / Days */
+/* --- DAY TILES (Individual Date Squares) --- */
 .react-calendar__month-view__days__day {
     padding: 14px 0;
     font-size: 1.05rem;
@@ -79,7 +84,7 @@
     cursor: pointer;
 }
 
-/* Active Tile Highlight */
+/* THE SELECTED DATE: Styles the date when a user clicks it */
 .react-calendar__tile--active,
 .react-calendar__tile--active:enabled:hover,
 .react-calendar__tile--active:enabled:focus,
@@ -91,7 +96,7 @@
     border-radius: 6px;
 }
 
-/* Active Tile Now Highlight */
+/* "TODAY" HIGHLIGHT: Removes default library circles from the current date */
 .react-calendar__tile--now {
     background: transparent;
     color: #111;
@@ -104,22 +109,77 @@
     border-radius: 6px;
 }
 
-/* Disabled past dates */
+/* DISABLED DATES: Styles dates blocked by the "3-day future" rule */
 .react-calendar__tile:disabled {
     background-color: transparent !important;
     color: #cbd5e1 !important;
     cursor: not-allowed;
 }
 
-/* Neighboring month dates replaced with dashes */
+/* --- NEIGHBORING MONTH LOGIC --- */
+/* Hides the numbers of dates belonging to the previous or next month */
 .react-calendar__month-view__days__day--neighboringMonth abbr {
     display: none;
 }
 
+/* Replaces the hidden numbers with a dash "–" to keep the grid clean */
 .react-calendar__month-view__days__day--neighboringMonth {
     color: #cbd5e1 !important;
 }
 
 .react-calendar__month-view__days__day--neighboringMonth::after {
     content: "–";
+}
+
+/* --- RESPONSIVENESS --- */
+
+/* Tablet (Medium screens) */
+@media (min-width: 481px) and (max-width: 1024px) {
+    .react-calendar__navigation {
+        min-width: 200px;
+        padding: 4px 12px;
+    }
+
+    .react-calendar__month-view__days__day {
+        padding: 12px 0;
+    }
+
+    .react-calendar__year-view__months__month,
+    .react-calendar__decade-view__years__year,
+    .react-calendar__century-view__decades__decade {
+        padding: 24px 0 !important;
+    }
+
+}
+
+/* Mobile (Small screens) */
+@media (max-width: 480px) {
+    .react-calendar__navigation {
+        min-width: 180px;
+        /* Narrower for small phones */
+        padding: 2px 8px;
+        margin-bottom: 1rem;
+    }
+
+    .react-calendar__navigation button {
+        font-size: 0.85rem;
+    }
+
+    .react-calendar__month-view__weekdays {
+        font-size: 0.75rem;
+        padding: 8px 0;
+        /* Smaller day labels (S, M, T...) */
+    }
+
+    .react-calendar__month-view__days__day {
+        padding: 8px 0;
+        font-size: 0.9rem;
+    }
+
+    .react-calendar__year-view__months__month,
+    .react-calendar__decade-view__years__year,
+    .react-calendar__century-view__decades__decade {
+        padding: 18px 0 !important;
+    }
+
 }
