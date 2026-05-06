@@ -13,7 +13,7 @@ const OrderSummary = () => {
     };
 
     return (
-        <div>
+        <div className="h-full flex flex-col">
             <div className="space-y-6">
                 <div className="flex justify-between font-inter font-semibold text-[12px] md:text-[14px] xl:text-[20px] leading-[130%]">
                     <span>Sub Total</span>
@@ -42,7 +42,7 @@ const OrderSummary = () => {
             </div>
 
             {/* Action Buttons */}
-            <div className="mt-auto pt-6 md:pt-20 md:pb-80">
+            <div className="mt-auto pt-6 md:pt-20 md:pb-20">
                 {/* Mobile View */}
                 <div className="flex justify-between items-start w-full md:hidden">
                     <button

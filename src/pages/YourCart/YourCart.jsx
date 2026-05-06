@@ -54,9 +54,11 @@ const YourCart = () => {
                 </div>
                 {/* RIGHT COLUMN: Order Total */}
                 <div className="md:col-span-4">
-                    <div className="bg-white p-8 rounded-[30px] border border-gray-100 shadow-sm">
-                        <h2 className="font-inter font-bold text-[#E6B220] text-[16px] md:text-[24px] xl:text-[40px] leading-[130%] mb-8">Order Total</h2>
-                        <OrderSummary />
+                    <div className="bg-white p-8 rounded-[30px] border border-gray-100 shadow-sm h-full flex flex-col">
+                        <h2 className="font-inter font-bold text-[#E6B220] text-[16px] md:text-[24px] xl:text-[40px] leading-[130%] mb-6 md:mb-14">Order Total</h2>
+                        <div className="flex-1 flex flex-col">
+                            <OrderSummary />
+                        </div>
                     </div>
                 </div>
             </section>
