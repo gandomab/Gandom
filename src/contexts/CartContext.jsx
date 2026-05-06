@@ -9,6 +9,8 @@ export const CartProvider = ({ children }) => {
         return savedCart ? JSON.parse(savedCart) : [];
     });
 
+    const [deliveryFee, setDeliveryFee] = useState(30.00);
+
     useEffect(() => {
         localStorage.setItem('localCart', JSON.stringify(cart));
     }, [cart]);
@@ -33,14 +35,33 @@ export const CartProvider = ({ children }) => {
         );
     };
 
+    // this function is used to remove a product from the cart
     const removeFromCart = (id) => {
         setCart((prev) => prev.filter((item) => item.id !== id));
     };
 
+    // Logic to calculate sub total
     const totalCost = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
 
+    // Free delivery rule logic
+    useEffect(() => {
+        const FREE_SHIPPING_THRESHOLD = 500; // Change this value for the free delivery rule.
+
+        if (totalCost >= FREE_SHIPPING_THRESHOLD) {
+            setDeliveryFee(0.00);
+        } else {
+            setDeliveryFee(30.00);
+        }
+    }, [totalCost]);
+
+    // this function is used to clear the cart
+    const clearCart = () => {
+        setCart([]);
+    };
+
+
     return (
-        <CartContext.Provider value={{ cart, addToCart, updateQuantity, removeFromCart, totalCost }}>
+        <CartContext.Provider value={{ cart, addToCart, updateQuantity, removeFromCart, clearCart, totalCost, deliveryFee }}>
             {children}
         </CartContext.Provider>
     );
