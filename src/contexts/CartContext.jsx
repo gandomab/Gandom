@@ -47,12 +47,14 @@ export const CartProvider = ({ children }) => {
     useEffect(() => {
         const FREE_SHIPPING_THRESHOLD = 500; // Change this value for the free delivery rule.
 
-        if (totalCost >= FREE_SHIPPING_THRESHOLD) {
+        if (cart.length === 0) {
+            setDeliveryFee(0.00);
+        } else if (totalCost >= FREE_SHIPPING_THRESHOLD) {
             setDeliveryFee(0.00);
         } else {
             setDeliveryFee(30.00);
         }
-    }, [totalCost]);
+    }, [totalCost, cart.length]);
 
     // this function is used to clear the cart
     const clearCart = () => {
