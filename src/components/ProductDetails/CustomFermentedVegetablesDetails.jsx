@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { productdetailsdata } from "../../data/productdetailsdata";
+import { useCart } from "../../contexts/CartContext";
 
+// this is custom fermented vegetables details component with responsive checkbox and suggestion inputs on product details page
 const CustomFermentedVegetablesDetails = ({ productdish }) => {
     if (!productdish || productdish.id !== 403) return null;
     // find the product details from the productdetailsdata array by id
@@ -10,6 +12,34 @@ const CustomFermentedVegetablesDetails = ({ productdish }) => {
     // Track selections for checkboxes
     const [selectedOptions, setSelectedOptions] = useState({});
     const [suggestionTexts, setSuggestionTexts] = useState({});
+    const { addToCart } = useCart();
+
+    // this function is for adding the product to the cart
+    const handleAddToCart = () => {
+        const selectedLabels = [];
+
+        details.customizationCategories.forEach((category) => {
+            // standard options
+            category.options.forEach((opt, index) => {
+                if (selectedOptions[`${category.id}-${index}`]) {
+                    selectedLabels.push(opt);
+                }
+            });
+
+            // suggestions
+            if (selectedOptions[`${category.id}-sugg-1`] && suggestionTexts[`${category.id}-sugg-1`]) {
+                selectedLabels.push(suggestionTexts[`${category.id}-sugg-1`]);
+            }
+            if (selectedOptions[`${category.id}-sugg-2`] && suggestionTexts[`${category.id}-sugg-2`]) {
+                selectedLabels.push(suggestionTexts[`${category.id}-sugg-2`]);
+            }
+        });
+        // add the product to the cart
+        addToCart({
+            ...productdish,
+            selectedCustomizations: selectedLabels,
+        });
+    };
 
     // this function is for toggle the checkboxes
     const handleToggle = (categoryId, optionIndex) => {
@@ -169,7 +199,7 @@ const CustomFermentedVegetablesDetails = ({ productdish }) => {
                 </div>
 
                 <div className="flex justify-end pt-4 md:pt-8 xl:pt-10">
-                    <button className="bg-[#E6B220] text-white font-inter font-bold text-[10px] md:text-[14px] xl:text-[28px] leading-[130%] 
+                    <button onClick={handleAddToCart} className="bg-[#E6B220] text-white font-inter font-bold text-[10px] md:text-[14px] xl:text-[28px] leading-[130%] 
                                 md:px-4 md:py-2 xl:px-8 xl:py-3 w-[74px] h-[33px] md:w-[123px] md:h-[38px]  xl:w-[259px] xl:h-[67px] rounded-[23px] md:rounded-[10px] xl:rounded-[20px]">
                         Add to cart
                     </button>

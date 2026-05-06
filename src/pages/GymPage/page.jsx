@@ -1,9 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import GymPageHeroSection from "../../../components/GymPageHeroSection/GymPageHeroSection";
-import Image1 from "../../../assets/Images/7.Gym/Gymwafel.png";
-import Image2 from "../../../assets/Images/7.Gym/machine.png";
-import Image3 from "../../../assets/Images/7.Gym/soupgym.png";
+import GymPageHeroSection from "../../components/GymPageHeroSection/GymPageHeroSection";
+import Image1 from "../../assets/Images/7.Gym/Gymwafel.png";
+import Image2 from "../../assets/Images/7.Gym/machine.png";
+import Image3 from "../../assets/Images/7.Gym/soupgym.png";
 
 const GymPage = () => {
 

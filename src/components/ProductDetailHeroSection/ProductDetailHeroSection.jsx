@@ -2,12 +2,16 @@ import React, { useState } from "react";
 import { FaStar, FaHeart, FaArrowLeft, FaArrowRight, FaArrowDown } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import BestSellerBadge from "../../assets/Images/2.Dishes/BestSellerBadge.svg";
+import { useCart } from "../../contexts/CartContext";
+
+// this is product detail page hero section with responsive images
 const ProductDetailHeroSection = ({ productdish }) => {
     const rating = productdish.ratingnum;
     const fillPercentage = (rating / 5) * 100;
     const navigate = useNavigate();
+    const { addToCart } = useCart();
     const product = productdish || {};
-
+    // track selected options for checkboxes
     const [selectedOptions, setSelectedOptions] = useState(() => {
         const init = {};
         (product.customizations || []).forEach((opt) => {
@@ -35,21 +39,14 @@ const ProductDetailHeroSection = ({ productdish }) => {
     const prevImage = () => {
         setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
     };
-    // const handleAddToCart = () => {
-    //     const selected = Object.keys(selectedOptions).filter((id) => selectedOptions[id]);
-    //     const cartItem = { ...product, selectedCustomizations: selected };
+    // this function is for adding the product to the cart
+    const handleAddToCart = () => {
+        const selected = Object.keys(selectedOptions).filter((id) => selectedOptions[id]);
+        const cartItem = { ...product, selectedCustomizations: selected };
 
-    //     try {
-    //         const existing = JSON.parse(localStorage.getItem("cart") || "[]");
-    //         existing.push(cartItem);
-    //         localStorage.setItem("cart", JSON.stringify(existing));
-    //     } catch (e) {
-    //         console.error("Failed to save cart:", e);
-    //     }
+        addToCart(cartItem);
 
-    //     setAdded(true);
-    //     setTimeout(() => setAdded(false), 1800);
-    // };
+    };
 
     return (
         <section className="w-full flex flex-col items-center mt-12 px-2 md:px-5">
@@ -164,7 +161,7 @@ const ProductDetailHeroSection = ({ productdish }) => {
                         {/* Mobile Buttons */}
                         {productdish?.id !== 403 && (
                             <div className="flex md:hidden flex-col gap-3">
-                                <button className="bg-[#E6B220] text-white font-inter font-bold text-[10px] leading-[130%] w-[74px] h-[33px] rounded-[23px]">
+                                <button onClick={handleAddToCart} className="bg-[#E6B220] text-white font-inter font-bold text-[10px] leading-[130%] w-[74px] h-[33px] rounded-[23px]">
                                     Add to cart
                                 </button>
                                 <button
@@ -226,7 +223,7 @@ const ProductDetailHeroSection = ({ productdish }) => {
                     {/* Buttons */}
                     {productdish?.id !== 403 && (
                         <div className="hidden md:flex mt-2 md:mt-1 xl:mt-2 gap-6">
-                            <button className="bg-[#E6B220] text-white font-inter font-bold text-[10px] md:text-[14px] xl:text-[28px] leading-[130%] 
+                            <button onClick={handleAddToCart} className="bg-[#E6B220] text-white font-inter font-bold text-[10px] md:text-[14px] xl:text-[28px] leading-[130%] 
                                 md:px-4 md:py-2 xl:px-8 xl:py-3 w-[74px] h-[33px] md:w-[123px] md:h-[38px]  xl:w-[259px] xl:h-[67px] rounded-[23px] md:rounded-[10px] xl:rounded-[20px]">
                                 Add to cart
                             </button>

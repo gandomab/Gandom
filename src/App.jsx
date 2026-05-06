@@ -4,13 +4,9 @@ import Footer from "./components/Footer";
 import HealthySection from "./components/HealthyDishes";
 import AboutUsSection from "./components/AboutUs/AboutUs";
 import EventsSpecialpromotions from "./components/EventsSpecialpromotions";
-import GymPage from "./pages/Dishes/GymPage/page.jsx";
+import GymPage from "./pages/GymPage/page.jsx";
 import GymHealthy from "./components/Gym/GymHealthy.jsx";
 import Hero from "./components/Hero/Hero";
-import SoupsPage from "./pages/Dishes/SoupsPage/page.jsx";
-import DessertsPage from "./pages/Dishes/DessertsPage/page.jsx"
-import WafflesPage from "./pages/Dishes/WafflesPage/page.jsx";
-import SidedishesPage from "./pages/Dishes/SidedishesPage/page.jsx";
 import Delivery from "./components/Delivery";
 import DeliveryOrderPage from "./pages/Delivery/DeliveryOrderPage/page.jsx";
 import CreateBoxMenuPage from "./pages/Delivery/CreateBoxMenu/page.jsx";
@@ -60,10 +56,6 @@ function App() {
           {/* Dishes pages */}
           <Route path="/productsPage" element={<ProductsPage />} />
           <Route path="/productdetail/:productTitle" element={<ProductDetailPage />} />
-          {/* <Route path="/dishes/soups" element={<SoupsPage />} />
-          <Route path="/dishes/desserts" element={<DessertsPage />} />
-          <Route path="/dishes/waffles" element={<WafflesPage />} />
-          <Route path="/dishes/sidedishes" element={<SidedishesPage />} /> */}
 
           {/* Delivery pages */}
           <Route path="/delivery/order" element={<DeliveryOrderPage />} />
