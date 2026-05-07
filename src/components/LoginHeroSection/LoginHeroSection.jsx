@@ -27,8 +27,8 @@ const LoginHeroSection = () => {
                         </span>
                         <span className="block font-santa font-normal text-[#426B1F] leading-[132%] tracking-[-2%] whitespace-nowrap
                                     text-[32px] md:text-[50px] lg:text-[60px] xl:text-[94px]
-                                    w-[160px] h-[42px] md:w-[248px] md:h-[64px] xl:w-[484px] xl:h-[124px]
-                                   -mt-2 md:-mt-6 lg:-mt-8 xl:-mt-10 ml-12 md:ml-16 lg:ml-24 xl:ml-32 -rotate-[3.62deg]">
+                                    w-[160px] h-[42px] md:w-[248px] md:h-[64px] lg:w-[349px] lg:h-[83px] xl:w-[484px] xl:h-[124px]
+                                   -mt-2 md:-mt-6 lg:-mt-4 xl:-mt-10 ml-2 md:ml-20 lg:ml-12 xl:ml-28 -rotate-[3.62deg]">
                             Your Account
                         </span>
                     </h1>
