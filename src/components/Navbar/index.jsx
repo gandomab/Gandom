@@ -58,7 +58,7 @@ const Navbar = () => {
         </button>
         <button
           onClick={() => navigate("/login")}
-          className={`relative p-2 rounded hover:text-primary ${location.pathname === '/login' ? 'text-[#E6B220]' : 'text-black'}`}>
+          className={`relative p-2 rounded hover:text-primary ${location.pathname === '/login' || location.pathname === '/register' ? 'text-[#E6B220]' : 'text-black'}`}>
           <IoPerson className="w-[20px] h-[20px]" />
         </button>
       </div>
@@ -81,7 +81,7 @@ const Navbar = () => {
         </button>
         <button
           onClick={() => navigate("/login")}
-          className={`relative p-2 rounded hover:text-primary ${location.pathname === '/login' ? 'text-[#E6B220]' : 'text-black'}`}>
+          className={`relative p-2 rounded hover:text-primary ${location.pathname === '/login' || location.pathname === '/register' ? 'text-[#E6B220]' : 'text-black'}`}>
           <IoPerson className="w-[16px] h-[16px]" />
         </button>
         <button

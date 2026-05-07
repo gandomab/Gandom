@@ -13,7 +13,14 @@ const LoginForm = () => {
     const { login, setIsGuest } = useUser();
 
     // 1. Existing User: Sign In
-    const handleSignIn = () => {
+    const handleSignIn = (e) => {
+        e.preventDefault();
+
+        if (!email || !password) {
+            alert("Please enter both email and password.");
+            return;
+        }
+
         login("existing@user.com");
         navigate('/payment'); // Skips address because they are "existing"
         window.scrollTo(0, 0);
@@ -45,9 +52,10 @@ const LoginForm = () => {
                             <label className="block font-inter font-normal text-[12px] md:text-[16px] xl:text-[24px] leading-[130%] mb-2">Email</label>
                             <input
                                 type="email"
+                                required
                                 className="w-full bg-[#D9D9D9] p-4 rounded-2xl outline-none"
                                 value={email}
-                                onChange={(e) => setEmail(e.target.set)}
+                                onChange={(e) => setEmail(e.target.value)}
                             />
                         </div>
 
@@ -56,6 +64,7 @@ const LoginForm = () => {
                             <div className="relative">
                                 <input
                                     type={showPassword ? "text" : "password"}
+                                    required
                                     className="w-full bg-[#D9D9D9] p-4 rounded-2xl outline-none pr-12"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
@@ -75,7 +84,6 @@ const LoginForm = () => {
                         </p>
 
                         <button
-                            onClick={handleSignIn}
                             type="submit"
                             className="bg-[#E6B220] hover:opacity-90 transition text-[#F2EDE0] px-10 py-3 rounded-xl font-inter font-bold text-[10px] md:text-[15px] xl:text-[22px] leading-[150%]"
                         >

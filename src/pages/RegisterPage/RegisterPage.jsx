@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import RegisterHeroSection from "../../components/RegisterHeroSection/RegisterHeroSection";
-// import RegisterForm from "../../components/RegisterFormSection/RegisterForm";
+import RegisterForm from "../../components/RegisterFormSection/RegisterForm";
 
 
 const RegisterPage = () => {
@@ -21,9 +21,9 @@ const RegisterPage = () => {
                 </div>
 
             </section>
-            {/* <section className="mb-14">
+            <section className="mb-14">
                 <RegisterForm />
-            </section> */}
+            </section>
         </div>
     );
 };
