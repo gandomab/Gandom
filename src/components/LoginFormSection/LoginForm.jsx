@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PiEyeLight, PiEyeSlash } from 'react-icons/pi';
-import { useUser } from '../../contexts/UserContextSimulate';// remove/upadte this when connected to backend
+import { useUser } from '../../contexts/UserContextSimulate';// remove/update this when connected to backend
 
 const LoginForm = () => {
     const navigate = useNavigate();
@@ -16,17 +16,20 @@ const LoginForm = () => {
     const handleSignIn = () => {
         login("existing@user.com");
         navigate('/payment'); // Skips address because they are "existing"
+        window.scrollTo(0, 0);
     };
 
     // 2. New User: Register
     const handleRegisterClick = () => {
         navigate('/register');
+        window.scrollTo(0, 0);
     };
 
     // 3. New User: Guest
     const handleGuestClick = () => {
         setIsGuest(true);
         navigate('/address'); // Guests must provide an address
+        window.scrollTo(0, 0);
     };
 
     return (
