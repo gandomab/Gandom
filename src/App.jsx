@@ -23,6 +23,7 @@ import ProductDetailPage from "./pages/ProductDetailPage/page.jsx";
 import SubscribeSection from "./components/SubscribeSection/SubscribeSection.jsx";
 import InfiniteMarquee from "./components/InfiniteMarquee/InfiniteMarquee.jsx";
 import HomeIconSection from "./components/HomeIconSection/HomeIconSection.jsx";
+import LoginPage from "./pages/LoginPage/LoginPage.jsx";
 
 function App() {
   return (
@@ -67,6 +68,7 @@ function App() {
           <Route path="/your-cart" element={<YourCart />} />
           <Route path="/events" element={<EventsPage />} />
           <Route path="/gym" element={<GymPage />} />
+          <Route path="/login" element={<LoginPage />} />
 
 
         </Routes>

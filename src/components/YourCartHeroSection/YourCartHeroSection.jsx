@@ -10,7 +10,7 @@ const YourCartHeroSection = () => {
                     <div className="relative w-[75%] h-full">
                         <img
                             src={coverImage}
-                            alt="About Us"
+                            alt="Your Cart"
                             className="w-full h-full object-cover"
                         />
                         <div className="absolute inset-y-0 left-0 w-[45%] bg-gradient-to-r from-[#F7F3EB] to-transparent" />
