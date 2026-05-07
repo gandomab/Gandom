@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PiEyeLight, PiEyeSlash } from 'react-icons/pi';
-import { useUser } from '../../contexts/UserContextSimulate';// remove this when connected to backend
+import { useUser } from '../../contexts/UserContextSimulate';// remove/upadte this when connected to backend
 
 const LoginForm = () => {
     const navigate = useNavigate();

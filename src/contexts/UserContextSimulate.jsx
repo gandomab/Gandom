@@ -1,5 +1,5 @@
 // this is a temporary file to simulate the user context
-// this file will be removed in the future
+// this file will be removed or updated when connected to the backend
 
 import { createContext, useContext, useState } from 'react';
 
