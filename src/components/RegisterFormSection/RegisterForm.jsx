@@ -42,51 +42,51 @@ const RegisterForm = () => {
 
     return (
         <div className="flex justify-center px-4 md:px-8 lg:px-12 w-full">
-            <form onSubmit={handleSubmit} className="bg-[#FAF9F6] p-8 md:p-12 lg:p-16 rounded-[20px] max-w-5xl w-full space-y-6 md:space-y-8 font-inter">
+            <form onSubmit={handleSubmit} className="bg-[#FAF9F6] p-8 md:p-12 lg:p-16 rounded-[20px] max-w-6xl w-full space-y-6 md:space-y-8 font-inter">
 
                 {/* Name & Surname Section */}
-                <div className="space-y-6 md:space-y-8 max-w-3xl">
-                    <div className="w-full">
+                <div className="space-y-6 md:space-y-8">
+                    <div className="w-full md:max-w-[451px] lg:max-w-[745px]">
                         <label className="block font-inter font-normal text-[10px] md:text-[14px] xl:text-[24px] leading-[130%] mb-2">
                             <span className="text-[#CC0000]">*</span> Name :
                         </label>
-                        <input type="text" name="name" onChange={handleChange} required className="w-full bg-[#D9D9D9] p-4 rounded-[20px] outline-none" />
+                        <input type="text" name="name" onChange={handleChange} required className="w-full h-[20px] md:h-[41px] lg:h-[69px] bg-[#D9D9D9] p-4 md:p-5 rounded-[6px] md:rounded-[12px] lg:rounded-[20px] outline-none" />
                     </div>
-                    <div className="w-full">
+                    <div className="w-full md:max-w-[451px] lg:max-w-[745px]">
                         <label className="block font-inter font-normal text-[10px] md:text-[14px] xl:text-[24px] leading-[130%] mb-2">
                             <span className="text-[#CC0000]">*</span> Surname :
                         </label>
-                        <input type="text" name="surname" onChange={handleChange} required className="w-full bg-[#D9D9D9] p-4 rounded-[20px] outline-none" />
+                        <input type="text" name="surname" onChange={handleChange} required className="w-full h-[20px] md:h-[41px] lg:h-[69px] bg-[#D9D9D9] p-4 md:p-5 rounded-[6px] md:rounded-[12px] lg:rounded-[20px] outline-none" />
                     </div>
-                    <div className="w-full">
+                    <div className="w-full md:max-w-[451px] lg:max-w-[745px]">
                         <label className="block font-inter font-normal text-[10px] md:text-[14px] xl:text-[24px] leading-[130%] mb-2">
                             <span className="text-[#CC0000]">*</span> Email :
                         </label>
-                        <input type="email" name="email" onChange={handleChange} required className="w-full bg-[#D9D9D9] p-4 rounded-[20px] outline-none" />
+                        <input type="email" name="email" onChange={handleChange} required className="w-full h-[20px] md:h-[41px] lg:h-[69px] bg-[#D9D9D9] p-4 md:p-5 rounded-[6px] md:rounded-[12px] lg:rounded-[20px] outline-none" />
                     </div>
                 </div>
 
                 {/* Password Section */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 max-w-3xl">
-                    <div className="w-full">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-28 lg:gap-2 w-full max-w-[1000px]  pt-2">
+                    <div className="w-full md:max-w-[257px] lg:max-w-[326px]">
                         <label className="block font-inter font-normal text-[10px] md:text-[14px] xl:text-[24px] leading-[130%] mb-2">
                             <span className="text-[#CC0000]">*</span> Password
                         </label>
-                        <input type="password" name="password" onChange={handleChange} required className="w-full bg-[#D9D9D9] p-4 rounded-[20px] outline-none" />
+                        <input type="password" name="password" onChange={handleChange} required className="w-full h-[20px] md:h-[41px] lg:h-[69px] bg-[#D9D9D9] p-4 md:p-5 rounded-[6px] md:rounded-[12px] lg:rounded-[20px] outline-none" />
                     </div>
-                    <div className="w-full">
+                    <div className="w-full md:max-w-[257px] lg:max-w-[326px]">
                         <label className="block font-inter font-normal text-[10px] md:text-[14px] xl:text-[24px] leading-[130%] mb-2">
                             <span className="text-[#CC0000]">*</span> confirm password
                         </label>
-                        <input type="password" name="confirmPassword" onChange={handleChange} required className="w-full bg-[#D9D9D9] p-4 rounded-[20px] outline-none" />
+                        <input type="password" name="confirmPassword" onChange={handleChange} required className="w-full h-[20px] md:h-[41px] lg:h-[69px] bg-[#D9D9D9] p-4 md:p-5 rounded-[6px] md:rounded-[12px] lg:rounded-[20px] outline-none" />
                     </div>
                 </div>
 
                 {/* Address Section */}
                 <div className="space-y-4 max-w-3xl">
                     <label className="block font-inter font-normal text-[10px] md:text-[14px] xl:text-[24px] leading-[130%] mb-2"><span className="text-red-500">*</span> Address:</label>
-                    <input name="addressLine1" onChange={handleChange} className="w-full bg-[#D9D9D9] p-4 rounded-[20px] outline-none" required />
-                    <input name="addressLine2" onChange={handleChange} className="w-full bg-[#D9D9D9] p-4 rounded-[20px] outline-none" />
+                    <input name="addressLine1" onChange={handleChange} className="w-full h-[20px] md:h-[41px] lg:h-[69px] bg-[#D9D9D9] p-4 md:p-5 rounded-[6px] md:rounded-[12px] lg:rounded-[20px] outline-none" required />
+                    <input name="addressLine2" onChange={handleChange} className="w-full h-[20px] md:h-[41px] lg:h-[69px] bg-[#D9D9D9] p-4 md:p-5 rounded-[6px] md:rounded-[12px] lg:rounded-[20px] outline-none" />
                 </div>
 
                 {/* Postal & Town */}
@@ -95,13 +95,13 @@ const RegisterForm = () => {
                         <label className="block font-inter font-normal text-[10px] md:text-[14px] xl:text-[24px] leading-[130%] mb-2">
                             <span className="text-[#CC0000]">*</span> Postal code:
                         </label>
-                        <input type="text" name="postalCode" onChange={handleChange} required className="w-full bg-[#D9D9D9] p-4 rounded-[20px] outline-none" />
+                        <input type="text" name="postalCode" onChange={handleChange} required className="w-full h-[20px] md:h-[41px] lg:h-[69px] bg-[#D9D9D9] p-4 md:p-5 rounded-[6px] md:rounded-[12px] lg:rounded-[20px] outline-none" />
                     </div>
                     <div className="w-full">
                         <label className="block font-inter font-normal text-[10px] md:text-[14px] xl:text-[24px] leading-[130%] mb-2">
                             <span className="text-[#CC0000]">*</span> Town:
                         </label>
-                        <input type="text" name="town" onChange={handleChange} required className="w-full bg-[#D9D9D9] p-4 rounded-[20px] outline-none" />
+                        <input type="text" name="town" onChange={handleChange} required className="w-full h-[20px] md:h-[41px] lg:h-[69px] bg-[#D9D9D9] p-4 md:p-5 rounded-[6px] md:rounded-[12px] lg:rounded-[20px] outline-none" />
                     </div>
                 </div>
 
@@ -111,16 +111,16 @@ const RegisterForm = () => {
                         <label className="block font-inter font-normal text-[10px] md:text-[14px] xl:text-[24px] leading-[130%] mb-2">
                             <span className="text-[#CC0000]">*</span> Province
                         </label>
-                        <input name="province" value="stockholm" disabled className=" bg-[#D9D9D9] p-4 rounded-[20px] text-[#808080] cursor-not-allowed" />
+                        <input name="province" value="stockholm" disabled className="w-full h-[20px] md:h-[41px] lg:h-[69px] bg-[#D9D9D9] p-4 md:p-5 rounded-[6px] md:rounded-[12px] lg:rounded-[20px] outline-none text-[#808080] cursor-not-allowed" />
                     </div>
                     <div className="w-full flex gap-3">
                         <div className="w-[60px] md:w-[70px] shrink-0">
                             <label className="block font-inter font-normal text-[10px] md:text-[14px] xl:text-[24px] leading-[130%] mb-2">Prefix</label>
-                            <input name="prefix" onChange={handleChange} className="w-full bg-[#D9D9D9] p-4 rounded-[20px] outline-none text-center" />
+                            <input name="prefix" onChange={handleChange} className="w-full h-[20px] md:h-[41px] lg:h-[69px] bg-[#D9D9D9] p-4 md:p-5 rounded-[6px] md:rounded-[12px] lg:rounded-[20px] outline-none text-center" />
                         </div>
                         <div className="w-full">
                             <label className="block font-inter font-normal text-[10px] md:text-[14px] xl:text-[24px] leading-[130%] mb-2">Phone</label>
-                            <input name="phone" onChange={handleChange} className="w-full bg-[#D9D9D9] p-4 rounded-[20px] outline-none" />
+                            <input name="phone" onChange={handleChange} className="w-full h-[20px] md:h-[41px] lg:h-[69px] bg-[#D9D9D9] p-4 md:p-5 rounded-[6px] md:rounded-[12px] lg:rounded-[20px] outline-none" />
                         </div>
                     </div>
                 </div>
@@ -128,9 +128,9 @@ const RegisterForm = () => {
                 <p className="font-inter font-semibold text-[10px] md:text-[14px] xl:text-[24px] leading-[130%] mt-4">NB: currently we are only at stockholm län</p>
 
                 {/* Special Notes */}
-                <div className="max-w-4xl">
+                <div className="w-full md:max-w-[451px] lg:max-w-[745px]">
                     <label className="block font-inter font-normal text-[10px] md:text-[14px] xl:text-[24px] leading-[130%] mb-2">Special notes</label>
-                    <textarea name="specialNotes" onChange={handleChange} className="w-full bg-[#D9D9D9] p-4 rounded-[20px] h-32 md:h-40 outline-none resize-none" />
+                    <textarea name="specialNotes" onChange={handleChange} className="w-full h-[60px] md:h-[113px] lg:h-[187px] bg-[#D9D9D9] p-4 md:p-5 rounded-[6px] md:rounded-[12px] lg:rounded-[20px] outline-none resize-none" />
                 </div>
 
                 {/* Promotions Toggle */}
