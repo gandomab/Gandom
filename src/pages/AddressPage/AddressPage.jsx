@@ -44,19 +44,19 @@ const AddressPage = () => {
                         <label className="block font-inter font-normal text-[10px] md:text-[14px] xl:text-[24px] leading-[130%] mb-2">
                             <span className="text-[#CC0000]">*</span> Name :
                         </label>
-                        <input type="text" name="name" onChange={handleChange} required className="w-full bg-[#D9D9D9] p-4 md:p-5 rounded-[20px] outline-none" />
+                        <input type="text" name="name" onChange={handleChange} required className="w-full h-[20px] md:h-[41px] lg:h-[69px] bg-[#D9D9D9] p-4 md:p-5 rounded-[6px] md:rounded-[12px] lg:rounded-[20px] outline-none" />
                     </div>
                     <div className="w-full md:max-w-[451px] lg:max-w-[745px]">
                         <label className="block font-inter font-normal text-[10px] md:text-[14px] xl:text-[24px] leading-[130%] mb-2">
                             <span className="text-[#CC0000]">*</span> Surname :
                         </label>
-                        <input type="text" name="surname" onChange={handleChange} required className="w-full bg-[#D9D9D9] p-4 md:p-5 rounded-[20px] outline-none" />
+                        <input type="text" name="surname" onChange={handleChange} required className="w-full h-[20px] md:h-[41px] lg:h-[69px] bg-[#D9D9D9] p-4 md:p-5 rounded-[6px] md:rounded-[12px] lg:rounded-[20px] outline-none" />
                     </div>
                     <div className="w-full md:max-w-[451px] lg:max-w-[745px]">
                         <label className="block font-inter font-normal text-[10px] md:text-[14px] xl:text-[24px] leading-[130%] mb-2">
                             <span className="text-[#CC0000]">*</span> Email :
                         </label>
-                        <input type="email" name="email" onChange={handleChange} required className="w-full bg-[#D9D9D9] p-4 md:p-5 rounded-[20px] outline-none" />
+                        <input type="email" name="email" onChange={handleChange} required className="w-full h-[20px] md:h-[41px] lg:h-[69px] bg-[#D9D9D9] p-4 md:p-5 rounded-[6px] md:rounded-[12px] lg:rounded-[20px] outline-none" />
                     </div>
                 </div>
 
@@ -66,8 +66,8 @@ const AddressPage = () => {
                         <label className="block font-inter font-normal text-[10px] md:text-[14px] xl:text-[24px] leading-[130%] mb-2">
                             <span className="text-[#CC0000]">*</span> Address:
                         </label>
-                        <input name="addressLine1" onChange={handleChange} className="w-full bg-[#D9D9D9] p-4 md:p-5 rounded-[20px] outline-none mb-4 md:mb-8" required />
-                        <input name="addressLine2" onChange={handleChange} className="w-full bg-[#D9D9D9] p-4 md:p-5 rounded-[20px] outline-none" />
+                        <input name="addressLine1" onChange={handleChange} className="w-full h-[20px] md:h-[41px] lg:h-[69px] bg-[#D9D9D9] p-4 md:p-5 rounded-[6px] md:rounded-[12px] lg:rounded-[20px] outline-none mb-4 md:mb-8" required />
+                        <input name="addressLine2" onChange={handleChange} className="w-full h-[20px] md:h-[41px] lg:h-[69px] bg-[#D9D9D9] p-4 md:p-5 rounded-[6px] md:rounded-[12px] lg:rounded-[20px] outline-none" />
                     </div>
                 </div>
 
@@ -77,13 +77,13 @@ const AddressPage = () => {
                         <label className="block font-inter font-normal text-[10px] md:text-[14px] xl:text-[24px] leading-[130%] mb-2">
                             <span className="text-[#CC0000]">*</span> Postal code:
                         </label>
-                        <input type="text" name="postalCode" onChange={handleChange} required className="w-full bg-[#D9D9D9] p-4 md:p-5 rounded-[20px] outline-none" />
+                        <input type="text" name="postalCode" onChange={handleChange} required className="w-full h-[20px] md:h-[41px] lg:h-[69px] bg-[#D9D9D9] p-4 md:p-5 rounded-[6px] md:rounded-[12px] lg:rounded-[20px] outline-none" />
                     </div>
                     <div className="w-full md:max-w-[257px] lg:max-w-[424px]">
                         <label className="block font-inter font-normal text-[10px] md:text-[14px] xl:text-[24px] leading-[130%] mb-2">
                             <span className="text-[#CC0000]">*</span> Town:
                         </label>
-                        <input type="text" name="town" onChange={handleChange} required className="w-full bg-[#D9D9D9] p-4 md:p-5 rounded-[20px] outline-none" />
+                        <input type="text" name="town" onChange={handleChange} required className="w-full h-[20px] md:h-[41px] lg:h-[69px] bg-[#D9D9D9] p-4 md:p-5 rounded-[6px] md:rounded-[12px] lg:rounded-[20px] outline-none" />
                     </div>
                 </div>
 
@@ -93,7 +93,7 @@ const AddressPage = () => {
                         <label className="block font-inter font-normal text-[10px] md:text-[14px] xl:text-[24px] leading-[130%] mb-2">
                             <span className="text-[#CC0000]">*</span> Province
                         </label>
-                        <input name="province" value="stockholm" disabled className="w-full bg-[#D9D9D9] p-4 md:p-5 rounded-[20px] text-[#808080] cursor-not-allowed" />
+                        <input name="province" value="stockholm" disabled className="w-full h-[20px] md:h-[41px] lg:h-[69px] bg-[#D9D9D9] p-4 md:p-5 rounded-[6px] md:rounded-[12px] lg:rounded-[20px] text-[#808080] cursor-not-allowed" />
                     </div>
                 </div>
 
@@ -103,13 +103,13 @@ const AddressPage = () => {
                         <label className="block font-inter font-normal text-[10px] md:text-[14px] xl:text-[24px] leading-[130%] mb-2 whitespace-nowrap">
                             <span className="text-[#CC0000]">*</span> Prefix
                         </label>
-                        <input name="prefix" onChange={handleChange} required className="w-full bg-[#D9D9D9] px-2 py-4 md:p-5 rounded-[20px] outline-none text-center" />
+                        <input name="prefix" onChange={handleChange} required className="w-full h-[20px] md:h-[41px] lg:h-[69px] bg-[#D9D9D9] p-4 md:p-5 rounded-[6px] md:rounded-[12px] lg:rounded-[20px] outline-none text-center" />
                     </div>
                     <div className="w-full">
                         <label className="block font-inter font-normal text-[10px] md:text-[14px] xl:text-[24px] leading-[130%] mb-2">
                             <span className="text-[#CC0000]">*</span> Phone
                         </label>
-                        <input name="phone" onChange={handleChange} required className="w-full bg-[#D9D9D9] p-4 md:p-5 rounded-[20px] outline-none" />
+                        <input name="phone" onChange={handleChange} required className="w-full h-[20px] md:h-[41px] lg:h-[69px] bg-[#D9D9D9] p-4 md:p-5 rounded-[6px] md:rounded-[12px] lg:rounded-[20px] outline-none" />
                     </div>
                 </div>
 
@@ -118,7 +118,7 @@ const AddressPage = () => {
                     <label className="block font-inter font-normal text-[10px] md:text-[14px] xl:text-[24px] leading-[130%] mb-2">
                         <span className="text-[#CC0000]">*</span> Special notes
                     </label>
-                    <textarea name="specialNotes" onChange={handleChange} className="w-full bg-[#D9D9D9] p-4 md:p-5 rounded-[20px] h-32 md:h-48 outline-none resize-none" />
+                    <textarea name="specialNotes" onChange={handleChange} className="w-full h-[60px] md:h-[113px] lg:h-[187px] bg-[#D9D9D9] p-4 md:p-5 rounded-[6px] md:rounded-[12px] lg:rounded-[20px] outline-none resize-none" />
                 </div>
 
                 <p className="font-inter font-semibold text-[10px] md:text-[14px] xl:text-[24px] leading-[130%] mt-4">NB: currently we are only at stockholm län</p>
