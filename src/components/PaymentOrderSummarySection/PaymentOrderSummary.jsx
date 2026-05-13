@@ -48,7 +48,7 @@ const PaymentOrderSummary = () => {
 
             {/* Scheduled Delivery Card */}
             <div className="border border-[#000000] rounded-[13px] p-3 md:p-4 flex items-center">
-                <img src={DeliveryBikeIcon} alt="Delivery Bike Icon" className="w-[45px] h-[40px]" />
+                <img src={DeliveryBikeIcon} alt="Delivery Bike Icon" className="w-[30px] h-[25px] md:w-[35px] md:h-[30px] lg:w-[40px] lg:h-[35px] xl:w-[45px] xl:h-[40px]" />
                 <div className="ml-3 flex items-center flex-wrap gap-x-2 text-[11px] md:text-[12px] lg:text-[14px] xl:text-[20px] font-inter font-semibold text-[#000000] leading-[130%]">
                     <span>Scheduled <br className="hidden md:block" /> delivery</span>
                     <span className="px-1">:</span>
