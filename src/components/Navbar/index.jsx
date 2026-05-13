@@ -48,7 +48,7 @@ const Navbar = () => {
         ))}
         <button
           onClick={() => navigate("/your-cart")}
-          className={`relative p-2 rounded hover:text-primary ${location.pathname === '/your-cart' ? 'text-[#E6B220]' : 'text-black'}`}>
+          className={`relative p-2 rounded hover:text-primary ${location.pathname === '/your-cart' || location.pathname === '/pay' ? 'text-[#E6B220]' : 'text-black'}`}>
           <TiShoppingCart className="w-[27px] h-[24px]" />
           {totalItems > 0 && (
             <span className="absolute top-1 right-1 inline-flex items-center justify-center px-1.5 py-0.5 text-[10px] font-bold leading-none text-white transform translate-x-1/4 -translate-y-1/4 bg-[#E6B220] rounded-full">
@@ -70,7 +70,7 @@ const Navbar = () => {
             navigate("/your-cart");
             setMobileMenuOpen(false); // Close menu if open
           }}
-          className={`relative p-2 rounded hover:text-primary ${location.pathname === '/your-cart' ? 'text-[#E6B220]' : 'text-black'}`}
+          className={`relative p-2 rounded hover:text-primary ${location.pathname === '/your-cart' || location.pathname === '/pay' ? 'text-[#E6B220]' : 'text-black'}`}
         >
           <TiShoppingCart className="w-[27px] h-[24px]" />
           {totalItems > 0 && (
