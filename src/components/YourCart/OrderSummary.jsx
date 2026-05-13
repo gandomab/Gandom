@@ -12,6 +12,11 @@ const OrderSummary = () => {
         window.scrollTo(0, 0);
     };
 
+    const handleCheckout = () => {
+        navigate("/login");
+        window.scrollTo(0, 0);
+    };
+
     return (
         <div className="h-full flex flex-col">
             <div className="space-y-6">
@@ -53,7 +58,7 @@ const OrderSummary = () => {
                     </button>
                     <div className="flex flex-col gap-3">
                         <button
-                            className="bg-[#E6B220] hover:opacity-90 transition text-white px-8 py-2 rounded-full font-inter font-semibold text-[10px] leading-[130%]"
+                            className="bg-[#E6B220] hover:opacity-90 transition text-[#F2EDE0] px-8 py-2 rounded-full font-inter font-semibold text-[10px] leading-[130%]"
                             onClick={() => console.log("Proceeding with cart:", cart)}
                         >
                             Checkout
@@ -72,7 +77,7 @@ const OrderSummary = () => {
                 <div className="hidden md:flex flex-col items-center gap-4">
                     <button
                         className="w-full bg-[#E6B220] hover:opacity-90 transition text-[#F2EDE0] py-4 rounded-2xl font-inter font-semibold md:text-[20px] lg:text-[36px] leading-[130%] "
-                        onClick={() => console.log("Proceeding with cart:", cart)}
+                        onClick={handleCheckout}
                     >
                         Checkout
                     </button>

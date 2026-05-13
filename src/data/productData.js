@@ -5,8 +5,14 @@ import AsheReshteh4 from "../assets/Images/2.Dishes/Menu - Ashe Reshteh.png";
 import AsheAnar1 from "../assets/Images/2.Dishes/Ashe Anar 1.png";
 import AsheAnar2 from "../assets/Images/2.Dishes/Foodora - Ashe Anar.png";
 import AsheAnar3 from "../assets/Images/2.Dishes/Menu - Ashe Anar.png";
+import AsheAnar4 from "../assets/Images/2.Dishes/AsheAnar4.jpg";
+import AsheAnar5 from "../assets/Images/2.Dishes/AsheAnar5.png";
 import AsheDoogh1 from "../assets/Images/2.Dishes/Ashe Doogh 1.png";
+import AsheDoogh2 from "../assets/Images/2.Dishes/Foodora - Ashe Doogh.png";
+import AsheDoogh3 from "../assets/Images/2.Dishes/Menu - Ashe Doogh.png";
 import Abhgoosht from "../assets/Images/2.Dishes/Abgoosht1.png";
+import Abhgoosht2 from "../assets/Images/2.Dishes/Foodora - Abhgoosht.png";
+import Abhgoosht3 from "../assets/Images/2.Dishes/Menu - Abhgoosht.png";
 import Halim from "../assets/Images/2.Dishes/Halim.png";
 import SholeZard1 from "../assets/Images/2.Dishes/Shole Zard 1.png";
 import SoyWaffle from "../assets/Images/2.Dishes/Soy Waffle.png";
@@ -17,8 +23,12 @@ import WaffleBeetroot from "../assets/Images/2.Dishes/Waffle - Beetroot.png";
 import WaffleCarrot from "../assets/Images/2.Dishes/Waffle - Carrots.png";
 import WaffleMatcha from "../assets/Images/2.Dishes/Waffle - Matcha.png";
 import FermentedLemon from "../assets/Images/2.Dishes/Fermented Lemon.png";
+import FermentedLemon2 from "../assets/Images/2.Dishes/Kitchen Lemon with Honey.png";
 import HerbedMarinatedOlives from "../assets/Images/2.Dishes/sidedish2.png";
+import HerbedMarinatedOlives2 from "../assets/Images/2.Dishes/Kitchen Herbed.png";
 import CustomFermentedVegetables from "../assets/Images/2.Dishes/sidedish3.png";
+import CustomFermentedVegetables2 from "../assets/Images/2.Dishes/FermentedVegetables - 2.png";
+import CustomFermentedVegetables3 from "../assets/Images/2.Dishes/FermentedVegetables - 3.png";
 import MenuBox from "../assets/Images/2.Dishes/Menu Box.png";
 
 // this file contains the data for the products, which will be used to populate the product sections on the ProductsPage. 
@@ -43,7 +53,7 @@ export const productData = {
       title: "Ashe Anar",
       price: "15",
       ratingnum: "3.5",
-      images: [AsheAnar1, AsheAnar2, AsheAnar3],
+      images: [AsheAnar1, AsheAnar2, AsheAnar3, AsheAnar4, AsheAnar5],
       hoverimage: MenuBox,
       customizations: [
         { label: "Vegetarian", id: "vegetarian" },
@@ -55,7 +65,7 @@ export const productData = {
       title: "Ashe Doogh",
       price: "18",
       ratingnum: "5",
-      images: [AsheDoogh1],
+      images: [AsheDoogh1, AsheDoogh2, AsheDoogh3],
       hoverimage: MenuBox,
       customizations: [
         { label: "Lactose Free", id: "lactose" }
@@ -66,7 +76,7 @@ export const productData = {
       title: "Abhgoosht",
       price: "15",
       ratingnum: "4.2",
-      images: [Abhgoosht],
+      images: [Abhgoosht, Abhgoosht2, Abhgoosht3],
       hoverimage: MenuBox
     },
     {
@@ -147,7 +157,7 @@ export const productData = {
       title: "Fermented Lemon",
       price: "8",
       ratingnum: "4.5",
-      images: [FermentedLemon],
+      images: [FermentedLemon, FermentedLemon2],
       hoverimage: MenuBox
     },
     {
@@ -155,7 +165,7 @@ export const productData = {
       title: "Herbed Marinated Olives",
       price: "5",
       ratingnum: "4.5",
-      images: [HerbedMarinatedOlives],
+      images: [HerbedMarinatedOlives, HerbedMarinatedOlives2],
       hoverimage: MenuBox
     },
     {
@@ -163,7 +173,7 @@ export const productData = {
       title: "Custom Fermented Vegetables",
       price: "6",
       ratingnum: "4.5",
-      images: [CustomFermentedVegetables],
+      images: [CustomFermentedVegetables, CustomFermentedVegetables2, CustomFermentedVegetables3],
       hoverimage: MenuBox
     },
   ]

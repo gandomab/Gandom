@@ -23,6 +23,9 @@ import ProductDetailPage from "./pages/ProductDetailPage/page.jsx";
 import SubscribeSection from "./components/SubscribeSection/SubscribeSection.jsx";
 import InfiniteMarquee from "./components/InfiniteMarquee/InfiniteMarquee.jsx";
 import HomeIconSection from "./components/HomeIconSection/HomeIconSection.jsx";
+import LoginPage from "./pages/LoginPage/LoginPage.jsx";
+import RegisterPage from "./pages/RegisterPage/RegisterPage.jsx";
+import AddressPage from "./pages/AddressPage/AddressPage.jsx";
 
 function App() {
   return (
@@ -67,6 +70,11 @@ function App() {
           <Route path="/your-cart" element={<YourCart />} />
           <Route path="/events" element={<EventsPage />} />
           <Route path="/gym" element={<GymPage />} />
+
+          {/* Login/Register pages */}
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/address" element={<AddressPage />} />
 
 
         </Routes>
