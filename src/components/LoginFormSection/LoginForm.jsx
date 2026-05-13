@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PiEyeLight, PiEyeSlash } from 'react-icons/pi';
 import { useUser } from '../../contexts/UserContextSimulate';// remove/update this when connected to backend
@@ -8,6 +8,10 @@ const LoginForm = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [errors, setErrors] = useState({});
+
+    const emailRef = useRef(null);
+    const passwordRef = useRef(null);
 
     // User context to simulate the login, register and guest checkout
     const { login, setIsGuest } = useUser();
@@ -16,13 +20,33 @@ const LoginForm = () => {
     const handleSignIn = (e) => {
         e.preventDefault();
 
-        if (!email || !password) {
-            alert("Please enter both email and password.");
+        const newErrors = {};
+
+        if (!email.trim()) {
+            newErrors.email = "Email is required";
+        } else if (!/\S+@\S+\.\S+/.test(email)) {
+            newErrors.email = "Email format is invalid";
+        }
+
+        if (!password.trim()) {
+            newErrors.password = "Password is required";
+        } else if (password.length < 6) {
+            newErrors.password = "Password must be at least 6 characters long.";
+        }
+
+        if (Object.keys(newErrors).length > 0) {
+            setErrors(newErrors);
+
+            if (newErrors.email && emailRef.current) {
+                emailRef.current.focus();
+            } else if (newErrors.password && passwordRef.current) {
+                passwordRef.current.focus();
+            }
             return;
         }
 
         login("existing@user.com");
-        navigate('/payment'); // Skips address because they are "existing"
+        navigate('/pay'); // Skips address because they are "existing"
         window.scrollTo(0, 0);
     };
 
@@ -47,27 +71,36 @@ const LoginForm = () => {
                 <div className="flex flex-col">
                     <h1 className="font-inter font-bold text-[#000000] text-[20px] md:text-[32px] xl:text-[48px] leading-[150%] mb-4 md:mb-8">Log in</h1>
 
-                    <form onSubmit={handleSignIn} className="space-y-4 md:space-y-6">
+                    <form noValidate onSubmit={handleSignIn} className="space-y-4 md:space-y-6">
                         <div>
                             <label className="block font-inter font-normal text-[12px] md:text-[16px] xl:text-[24px] leading-[130%] mb-2">Email</label>
                             <input
+                                ref={emailRef}
                                 type="email"
                                 required
-                                className="w-full bg-[#D9D9D9] p-4 rounded-2xl outline-none"
+                                className={`w-full bg-[#D9D9D9] p-4 rounded-2xl outline-none ${errors.email ? 'border border-[#CC0000]' : ''}`}
                                 value={email}
-                                onChange={(e) => setEmail(e.target.value)}
+                                onChange={(e) => {
+                                    setEmail(e.target.value);
+                                    if (errors.email) setErrors({ ...errors, email: '' });
+                                }}
                             />
+                            {errors.email && <p className="text-[#CC0000] font-inter text-[10px] md:text-[12px] xl:text-[14px] mt-2">{errors.email}</p>}
                         </div>
 
                         <div>
                             <label className="block font-inter font-normal text-[12px] md:text-[16px] xl:text-[24px] leading-[130%] mb-2">Password</label>
                             <div className="relative">
                                 <input
+                                    ref={passwordRef}
                                     type={showPassword ? "text" : "password"}
                                     required
-                                    className="w-full bg-[#D9D9D9] p-4 rounded-2xl outline-none pr-12"
+                                    className={`w-full bg-[#D9D9D9] p-4 rounded-2xl outline-none pr-12 ${errors.password ? 'border border-[#CC0000]' : ''}`}
                                     value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
+                                    onChange={(e) => {
+                                        setPassword(e.target.value);
+                                        if (errors.password) setErrors({ ...errors, password: '' });
+                                    }}
                                 />
                                 <button
                                     type="button"
@@ -77,6 +110,7 @@ const LoginForm = () => {
                                     {showPassword ? <PiEyeLight size={24} /> : <PiEyeSlash size={24} />}
                                 </button>
                             </div>
+                            {errors.password && <p className="text-[#CC0000] font-inter text-[10px] md:text-[12px] xl:text-[14px] mt-2">{errors.password}</p>}
                         </div>
 
                         <p className="font-inter font-normal text-[12px] md:text-[16px] xl:text-[24px] leading-[130%]">
