@@ -28,7 +28,7 @@ const PaymentOptions = () => {
                         </div>
 
                         {/* Icon */}
-                        <img src={CreditDebitIcon} alt="Credit/Debit Card Icon" className="h-[55px] md:h-[65px] lg:h-[75px] xl:h-[108px] object-contain transition-all duration-300 hover:scale-[1.02] active:scale-95 hover:drop-shadow-[0_8px_15px_rgba(0,0,0,0.35)] cursor-pointer" />
+                        <img src={CreditDebitIcon} alt="Credit/Debit Card Icon" className="h-[55px] md:h-[65px] lg:h-[75px] xl:h-[108px] object-contain transition-all duration-300 hover:scale-[1.02] active:scale-95 hover:drop-shadow-[0_4px_6px_rgba(0,0,0,0.25)] cursor-pointer" />
                     </button>
                     {/* Future form container can go below */}
                 </div>
@@ -44,7 +44,7 @@ const PaymentOptions = () => {
                         </div>
 
                         {/* Icon */}
-                        <img src={SwishIcon} alt="Swish Icon" className="h-[55px] md:h-[65px] lg:h-[75px] xl:h-[108px] object-contain transition-all duration-300 hover:scale-[1.02] active:scale-95 hover:drop-shadow-[0_8px_15px_rgba(0,0,0,0.35)] cursor-pointer" />
+                        <img src={SwishIcon} alt="Swish Icon" className="h-[55px] md:h-[65px] lg:h-[75px] xl:h-[108px] object-contain transition-all duration-300 hover:scale-[1.02] active:scale-95 hover:drop-shadow-[0_4px_6px_rgba(0,0,0,0.25)] cursor-pointer" />
                     </button>
                     {/* Future form container can go below */}
                 </div>
