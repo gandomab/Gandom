@@ -39,7 +39,7 @@ const StripeCheckoutForm = () => {
             {errorMessage && <div className="text-red-500 text-sm mt-2">{errorMessage}</div>}
             <button
                 disabled={!stripe || isProcessing}
-                className="w-full bg-[#E6B220] hover:bg-[#D4A31D] text-black font-semibold text-[18px] py-4 rounded-[12px] transition-colors disabled:opacity-50 mt-4"
+                className="w-full  bg-[#DEA401] text-[#F2EDE0] text-inter font-semibold leading-[130%] whitespace-nowrap text-[18px] py-4 rounded-[12px] hover:opacity-90 transition mt-4"
             >
                 {isProcessing ? "Processing..." : "Pay Now"}
             </button>
