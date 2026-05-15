@@ -11,9 +11,22 @@ export const CartProvider = ({ children }) => {
 
     const [deliveryFee, setDeliveryFee] = useState(30.00);
 
+    const [scheduledDelivery, setScheduledDelivery] = useState(() => {
+        const savedSchedule = localStorage.getItem('localSchedule');
+        return savedSchedule ? JSON.parse(savedSchedule) : null;
+    });
+
     useEffect(() => {
         localStorage.setItem('localCart', JSON.stringify(cart));
     }, [cart]);
+
+    useEffect(() => {
+        if (scheduledDelivery) {
+            localStorage.setItem('localSchedule', JSON.stringify(scheduledDelivery));
+        } else {
+            localStorage.removeItem('localSchedule');
+        }
+    }, [scheduledDelivery]);
 
     const addToCart = (product) => {
         setCart((prev) => {
@@ -63,7 +76,7 @@ export const CartProvider = ({ children }) => {
 
 
     return (
-        <CartContext.Provider value={{ cart, addToCart, updateQuantity, removeFromCart, clearCart, totalCost, deliveryFee }}>
+        <CartContext.Provider value={{ cart, addToCart, updateQuantity, removeFromCart, clearCart, totalCost, deliveryFee, scheduledDelivery, setScheduledDelivery }}>
             {children}
         </CartContext.Provider>
     );
