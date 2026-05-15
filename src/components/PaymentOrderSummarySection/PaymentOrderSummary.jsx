@@ -3,7 +3,7 @@ import { useCart } from '../../contexts/CartContext';
 import DeliveryBikeIcon from '../../assets/Images/11.Pay/DeliveryBikeIcon.png';
 
 const PaymentOrderSummary = () => {
-    const { cart, totalCost, deliveryFee } = useCart();
+    const { cart, totalCost, deliveryFee, scheduledDelivery } = useCart();
 
     const grandTotal = totalCost + deliveryFee;
 
@@ -52,7 +52,11 @@ const PaymentOrderSummary = () => {
                 <div className="ml-3 flex items-center flex-wrap gap-x-2 text-[11px] md:text-[12px] lg:text-[14px] xl:text-[20px] font-inter font-semibold text-[#000000] leading-[130%]">
                     <span>Scheduled <br className="hidden md:block" /> delivery</span>
                     <span className="px-1">:</span>
-                    <span>November 23, 12.00-1.30 PM</span>
+                    <span>
+                        {scheduledDelivery
+                            ? `${scheduledDelivery.formattedDate}, ${scheduledDelivery.slotLabel}`
+                            : 'Not selected'}
+                    </span>
                 </div>
             </div>
         </div>

@@ -2,15 +2,36 @@ import React, { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import './CalenderCustomDesign.css';
+import { useCart } from '../../contexts/CartContext';
 
 const CalendarSection = () => {
+    const { scheduledDelivery, setScheduledDelivery } = useCart();
+
     const minDate = new Date();
     minDate.setDate(minDate.getDate() + 3);
 
-    const [selectedDate, setSelectedDate] = useState(minDate);
+    const [selectedDate, setSelectedDate] = useState(() => {
+        return scheduledDelivery?.date ? new Date(scheduledDelivery.date) : minDate;
+    });
     const [availableSlots, setAvailableSlots] = useState([]);
-    const [selectedSlotId, setSelectedSlotId] = useState(null);
+    const [selectedSlotId, setSelectedSlotId] = useState(scheduledDelivery?.slotId || null);
     const [loading, setLoading] = useState(false);
+
+    const handleDateChange = (date) => {
+        setSelectedDate(date);
+        setSelectedSlotId(null);
+        setScheduledDelivery(null);
+    };
+
+    const handleSlotSelection = (slot) => {
+        setSelectedSlotId(slot.id);
+        setScheduledDelivery({
+            date: selectedDate.toISOString(),
+            slotId: slot.id,
+            slotLabel: slot.label,
+            formattedDate: selectedDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric' })
+        });
+    };
 
     // Mock API Function
     const getMockSlots = (date) => {
@@ -41,7 +62,7 @@ const CalendarSection = () => {
                 {/* Calendar UI */}
                 <div className="bg-transparent border border-[#111] rounded-[20px] p-6 w-full max-w-md">
                     <Calendar
-                        onChange={setSelectedDate}
+                        onChange={handleDateChange}
                         value={selectedDate}
                         minDate={minDate}
                         className="border-none w-full"
@@ -70,7 +91,7 @@ const CalendarSection = () => {
                                     <div className="absolute top-0 bottom-0 -left-1 -right-1 md:-left-2 md:-right-2 bg-[#E6B22099] rounded-md -z-10"></div>
                                 )}
                                 <button
-                                    onClick={() => setSelectedSlotId(slot.id)}
+                                    onClick={() => handleSlotSelection(slot)}
                                     className={`relative z-10 w-full py-2 px-1 md:py-3 md:px-4 rounded-full border border-[#111] transition-all font-medium text-[12px] md:text-[15px] text-center whitespace-nowrap
                                         ${selectedSlotId === slot.id
                                             ? 'bg-[#E6B22099] text-[#111]'
