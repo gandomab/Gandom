@@ -29,7 +29,7 @@ const PaymentSuccessPage = () => {
                                     items-center 
                                     justify-end 
                                     pb-2 md:pb-0 md:pr-16 
-                                    top-4 mb-20
+                                    top-4 
                                     bg-[image:var(--bg-mobile)] md:bg-[image:var(--bg-tablet)] lg:bg-[image:var(--bg-desktop)]"
             style={{
                 '--bg-mobile': `url(${Covermob})`,
