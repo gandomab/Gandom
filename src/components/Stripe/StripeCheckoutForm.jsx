@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { PaymentElement, useStripe, useElements } from '@stripe/react-stripe-js';
+import { useNavigate } from 'react-router-dom';
+
 const StripeCheckoutForm = () => {
     const stripe = useStripe();
     const elements = useElements();
+    const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState(null);
     const [isProcessing, setIsProcessing] = useState(false);
     const handleSubmit = async (event) => {
@@ -28,8 +31,8 @@ const StripeCheckoutForm = () => {
         */
         // --- FOR NOW, SIMULATE SUBMISSION ---
         setTimeout(() => {
-            alert("Frontend is working! Waiting for backend to complete the actual payment.");
             setIsProcessing(false);
+            navigate('/payment-success');
         }, 1500);
     };
     return (
