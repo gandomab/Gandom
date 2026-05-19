@@ -52,9 +52,10 @@ const PaymentOptions = () => {
 
                 {/* Stripe Form container spans full width below the options */}
                 <div className="w-full">
-                    {selectedOption === 'card' && (
+                    {(selectedOption === 'card' || selectedOption === 'swish') && (
                         <div className="pt-6 animate-fadeIn">
-                            <StripeWrapper />
+                            {/* Pass the selection as a prop! */}
+                            <StripeWrapper selectedMethod={selectedOption} />
                         </div>
                     )}
                 </div>
