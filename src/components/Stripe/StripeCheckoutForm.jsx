@@ -37,7 +37,6 @@ const StripeCheckoutForm = () => {
     };
     return (
         <form onSubmit={handleSubmit} className="mt-2 flex flex-col gap-6">
-            {/* This renders Stripe's built-in, secure input fields for card details */}
             <PaymentElement />
             {errorMessage && <div className="text-red-500 text-sm mt-2">{errorMessage}</div>}
             <button

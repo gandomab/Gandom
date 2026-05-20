@@ -54,7 +54,6 @@ const PaymentOptions = () => {
                 <div className="w-full">
                     {(selectedOption === 'card' || selectedOption === 'swish') && (
                         <div className="pt-4">
-                            {/* Pass the selection as a prop! */}
                             <StripeWrapper selectedMethod={selectedOption} />
                         </div>
                     )}
