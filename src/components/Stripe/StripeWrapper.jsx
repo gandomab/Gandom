@@ -24,9 +24,9 @@ const StripeWrapper = ({ selectedMethod }) => {
             theme: 'stripe',
             variables: {
                 colorPrimary: '#E6B220',
-                colorBackground: '#ffffff',
+                colorBackground: '#FAFAF5',
                 colorText: '#000000',
-                borderRadius: '8px',
+                borderRadius: '15px',
             }
         },
     };
