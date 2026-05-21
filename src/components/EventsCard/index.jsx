@@ -34,16 +34,10 @@ const EventsCard = ({ title, image, description }) => {
 
       {/* Image Section */}
       <div className="flex flex-col w-full md:w-[199px] lg:w-[299px] xl:w-[354px] items-center">
-
-        {/* Title for Mobile */}
-        <h3 className="md:hidden font-inter font-semibold text-black text-[20px] leading-[130%] text-left mb-5 w-full pl-2">
-          {title}
-        </h3>
-
         <div
           ref={scrollRef}
           onScroll={handleScroll}
-          className="w-full md:w-[199px] md:h-[143px] lg:w-[299px] lg:h-[214px] xl:w-[354px] xl:h-[254px] flex flex-row gap-2 justify-center md:overflow-x-auto md:snap-x md:snap-mandatory rounded-[20px] hide-scrollbar scroll-smooth"
+          className="w-[168px] h-[120px] md:w-[199px] md:h-[143px] lg:w-[299px] lg:h-[214px] xl:w-[354px] xl:h-[254px] flex overflow-x-auto snap-x snap-mandatory rounded-[20px] hide-scrollbar scroll-smooth"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
           {images.map((imgSrc, idx) => (
@@ -51,14 +45,14 @@ const EventsCard = ({ title, image, description }) => {
               key={idx}
               src={imgSrc}
               alt={`${title} - image ${idx + 1}`}
-              className="w-[168px] h-[120px] md:w-full md:h-full object-cover shrink-0 md:snap-center rounded-[20px]"
+              className="w-full h-full object-cover shrink-0 snap-center rounded-[20px]"
             />
           ))}
         </div>
 
         {/* Dots - Only show if there is more than 1 image */}
         {images.length > 1 && (
-          <div className="hidden md:flex justify-center gap-2 mt-2 mb-2 md:mt-3 md:mb-5">
+          <div className="flex justify-center gap-2 mt-2 mb-2 md:mt-3 md:mb-5">
             {images.map((_, idx) => (
               <button
                 key={idx}
@@ -73,8 +67,8 @@ const EventsCard = ({ title, image, description }) => {
           </div>
         )}
 
-        {/* Title under dots for Desktop and Tablet */}
-        <h3 className="hidden md:block font-inter font-semibold text-black md:text-[15px] lg:text-[18px] xl:text-[24px] leading-[130%] text-left mt-2 mb-1 md:mt-3 md:mb-14 w-full pl-2">
+        {/* Title under dots */}
+        <h3 className="font-inter font-semibold text-black text-[13px] md:text-[15px] lg:text-[18px] xl:text-[24px] leading-[130%] text-left mt-2 mb-1 md:mt-3 md:mb-14 w-full pl-2">
           {title}
         </h3>
       </div>
