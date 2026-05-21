@@ -42,7 +42,7 @@ const EventsCard = ({ title, image, description }) => {
         <div
           ref={scrollRef}
           onScroll={handleScroll}
-          className="w-[168px] h-[120px] md:w-[199px] md:h-[143px] lg:w-[299px] lg:h-[214px] xl:w-[354px] xl:h-[254px] flex overflow-x-auto snap-x snap-mandatory rounded-[20px] hide-scrollbar scroll-smooth"
+          className="w-full h-[120px] sm:h-[160px] md:w-[199px] md:h-[143px] lg:w-[299px] lg:h-[214px] xl:w-[354px] xl:h-[254px] flex flex-row gap-3 md:gap-0 md:overflow-x-auto md:snap-x md:snap-mandatory rounded-[20px] md:hide-scrollbar md:scroll-smooth"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
           {images.map((imgSrc, idx) => (
@@ -50,7 +50,7 @@ const EventsCard = ({ title, image, description }) => {
               key={idx}
               src={imgSrc}
               alt={`${title} - image ${idx + 1}`}
-              className="w-full h-full object-cover shrink-0 snap-center rounded-[20px]"
+              className="w-0 flex-1 md:flex-none h-full md:w-full object-cover md:shrink-0 md:snap-center rounded-[20px]"
             />
           ))}
         </div>
