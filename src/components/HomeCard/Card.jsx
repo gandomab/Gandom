@@ -2,8 +2,6 @@ import React, { useRef, useState } from "react";
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 import { reviews } from "../../data/customerreviewData";
 
-
-
 // this component is for the customer reviews section on the home page
 const Cards = () => {
     const scrollRef = useRef(null);
@@ -12,19 +10,53 @@ const Cards = () => {
     // Update the active dot based on scroll position
     const handleScroll = () => {
         if (scrollRef.current) {
-            const index = Math.round(
-                scrollRef.current.scrollLeft / scrollRef.current.offsetWidth
-            );
-            setActiveIndex(index);
+            const container = scrollRef.current;
+
+            // Edge case: scrolled all the way to the beginning (leftmost boundary)
+            if (container.scrollLeft <= 5) {
+                setActiveIndex(0);
+                return;
+            }
+
+            // Edge case: scrolled all the way to the end (rightmost boundary)
+            // Using a tolerance of 10px to account for browser subpixel rounding differences
+            if (container.scrollLeft + container.clientWidth >= container.scrollWidth - 10) {
+                setActiveIndex(container.children.length - 1);
+                return;
+            }
+
+            // center detection
+            const containerCenter = container.scrollLeft + container.offsetWidth / 2;
+            let closestIndex = 0;
+            let minDistance = Infinity;
+
+            // Find which card is closest to the viewport's center
+            Array.from(container.children).forEach((child, index) => {
+                const childCenter = child.offsetLeft + child.offsetWidth / 2;
+                const distance = Math.abs(containerCenter - childCenter);
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    closestIndex = index;
+                }
+            });
+
+            setActiveIndex(closestIndex);
         }
     };
 
     // Scroll to a specific card when clicking a dot
     const scrollTo = (index) => {
-        scrollRef.current.scrollTo({
-            left: index * scrollRef.current.offsetWidth,
-            behavior: 'smooth',
-        });
+        if (scrollRef.current && scrollRef.current.children[index]) {
+            const container = scrollRef.current;
+            const card = container.children[index];
+            // Perfectly align card to snap-center
+            const targetScrollLeft = card.offsetLeft - (container.offsetWidth - card.offsetWidth) / 2;
+
+            container.scrollTo({
+                left: targetScrollLeft,
+                behavior: 'smooth',
+            });
+        }
     };
 
     return (

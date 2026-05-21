@@ -6,18 +6,18 @@ const EventsPage = () => {
   return (
     <div className="w-full">
       {/* Hero section for the cart page */}
-      <section className="mt-4 mb-4">
+      <section className="mt-4">
         <EventPageHeroSection />
       </section>
-      <section className="w-full min-h-[calc(100vh-90px)] pb-16 sm:pb-20 md:pb-24">
 
+      <section className="mt-10 mb-10">
         {/* Events Cards Section */}
-        <div className="flex flex-col gap-12 px-4 sm:px-6 lg:px-24 py-16 max-w-7xl mx-auto">
+        <div className="flex flex-col gap-12 px-4 sm:px-6 lg:px-24 max-w-8xl mx-auto">
           {events.map((event, idx) => (
             <EventsCard
               key={idx}
               title={event.title}
-              image={event.image}
+              image={event.images}
               description={event.description}
               isSpecial={idx === 0 || idx === 1}
             />

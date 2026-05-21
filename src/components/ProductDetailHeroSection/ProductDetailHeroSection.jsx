@@ -30,7 +30,7 @@ const ProductDetailHeroSection = ({ productdish }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
 
     // Safety check: Fallback to an empty array if images don't exist
-    const images = product.images;
+    const images = product.images || [];
 
     const nextImage = () => {
         setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
