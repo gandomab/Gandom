@@ -30,7 +30,7 @@ const EventsCard = ({ title, image, description }) => {
   };
 
   return (
-    <div className="w-full md:bg-white md:rounded-2xl p-4 flex flex-col md:flex-row gap-4 md:gap-6 md:shadow-md">
+    <div className="w-full md:bg-[#FAFAF5] md:rounded-2xl p-4 flex flex-col md:flex-row gap-4 md:gap-6 md:shadow-md">
 
       {/* Title for Mobile */}
       <h3 className="md:hidden font-inter font-semibold text-black text-[20px] leading-[130%] text-left mb-5 w-full pl-2">
