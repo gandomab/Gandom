@@ -32,6 +32,11 @@ const EventsCard = ({ title, image, description }) => {
   return (
     <div className="w-full md:bg-white md:rounded-2xl p-4 flex flex-col md:flex-row gap-4 md:gap-6 md:shadow-md">
 
+      {/* Title for Mobile */}
+      <h3 className="md:hidden font-inter font-semibold text-black text-[20px] leading-[130%] text-left mb-5 w-full pl-2">
+        {title}
+      </h3>
+
       {/* Image Section */}
       <div className="flex flex-col w-full md:w-[199px] lg:w-[299px] xl:w-[354px] items-center">
         <div
@@ -67,8 +72,8 @@ const EventsCard = ({ title, image, description }) => {
           </div>
         )}
 
-        {/* Title under dots */}
-        <h3 className="font-inter font-semibold text-black text-[13px] md:text-[15px] lg:text-[18px] xl:text-[24px] leading-[130%] text-left mt-2 mb-1 md:mt-3 md:mb-14 w-full pl-2">
+        {/* Title under dots for Desktop and Tablet */}
+        <h3 className="hidden md:block font-inter font-semibold text-black md:text-[15px] lg:text-[18px] xl:text-[24px] leading-[130%] text-left mt-2 mb-1 md:mt-3 md:mb-14 w-full pl-2">
           {title}
         </h3>
       </div>
