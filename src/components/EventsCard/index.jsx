@@ -30,14 +30,14 @@ const EventsCard = ({ title, image, description }) => {
   };
 
   return (
-    <div className="w-full bg-white rounded-2xl p-4 flex flex-col md:flex-row gap-6 shadow-md">
+    <div className="w-full md:bg-white md:rounded-2xl p-4 flex flex-col md:flex-row gap-4 md:gap-6 md:shadow-md">
 
       {/* Image Section */}
-      <div className="flex flex-col md:w-[370px] items-center">
+      <div className="flex flex-col w-full md:w-[199px] lg:w-[299px] xl:w-[354px] items-center">
         <div
           ref={scrollRef}
           onScroll={handleScroll}
-          className="w-[370px] h-[276px] flex overflow-x-auto snap-x snap-mandatory rounded-xl hide-scrollbar scroll-smooth"
+          className="w-[168px] h-[120px] md:w-[199px] md:h-[143px] lg:w-[299px] lg:h-[214px] xl:w-[354px] xl:h-[254px] flex overflow-x-auto snap-x snap-mandatory rounded-[20px] hide-scrollbar scroll-smooth"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
           {images.map((imgSrc, idx) => (
@@ -45,14 +45,14 @@ const EventsCard = ({ title, image, description }) => {
               key={idx}
               src={imgSrc}
               alt={`${title} - image ${idx + 1}`}
-              className="w-[370px] h-[276px] object-cover shrink-0 snap-center rounded-xl"
+              className="w-full h-full object-cover shrink-0 snap-center rounded-[20px]"
             />
           ))}
         </div>
 
         {/* Dots - Only show if there is more than 1 image */}
         {images.length > 1 && (
-          <div className="flex justify-center gap-2 mt-3 mb-5">
+          <div className="flex justify-center gap-2 mt-2 mb-2 md:mt-3 md:mb-5">
             {images.map((_, idx) => (
               <button
                 key={idx}
@@ -68,13 +68,13 @@ const EventsCard = ({ title, image, description }) => {
         )}
 
         {/* Title under dots */}
-        <h3 className="font-inter font-semibold text-black text-[13px] md:text-[15px] lg:text-[18px] xl:text-[24px] leading-[130%] text-left mt-3 -mb-8 md:mb-14 w-full pl-2">
+        <h3 className="font-inter font-semibold text-black text-[13px] md:text-[15px] lg:text-[18px] xl:text-[24px] leading-[130%] text-left mt-2 mb-1 md:mt-3 md:mb-14 w-full pl-2">
           {title}
         </h3>
       </div>
 
       {/* Text Section */}
-      <div className="font-inter font-medium text-[#1E1E1E] text-[11px] md:text-[13px] lg:text-[15px] xl:text-[18px] leading-[150%] tracking-[-1.1%] flex-1 whitespace-pre-line p-5">
+      <div className="font-inter font-medium text-[#1E1E1E] text-[11px] md:text-[13px] lg:text-[15px] xl:text-[18px] leading-[150%] tracking-[-1.1%] flex-1 whitespace-pre-line p-1">
         {description}
       </div>
     </div>
