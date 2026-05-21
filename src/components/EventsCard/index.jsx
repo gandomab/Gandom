@@ -52,14 +52,14 @@ const EventsCard = ({ title, image, description }) => {
 
         {/* Dots - Only show if there is more than 1 image */}
         {images.length > 1 && (
-          <div className="flex justify-center gap-2 mt-3">
+          <div className="flex justify-center gap-2 mt-3 mb-5">
             {images.map((_, idx) => (
               <button
                 key={idx}
                 onClick={() => scrollTo(idx)}
                 className={`transition-all duration-300 rounded-full ${activeIndex === idx
-                    ? "w-3 h-3 bg-gray-500"
-                    : "w-3 h-3 bg-gray-300"
+                  ? "w-2 h-2 md:w-3 md:h-3 bg-gray-500"
+                  : "w-2 h-2 md:w-3 md:h-3 bg-gray-300"
                   }`}
                 aria-label={`Go to slide ${idx + 1}`}
               />
@@ -68,13 +68,13 @@ const EventsCard = ({ title, image, description }) => {
         )}
 
         {/* Title under dots */}
-        <h3 className="text-black font-semibold text-lg mt-3 mb-14 text-left w-full pl-2">
+        <h3 className="font-inter font-semibold text-black text-[13px] md:text-[15px] lg:text-[18px] xl:text-[24px] leading-[130%] text-left mt-3 -mb-8 md:mb-14 w-full pl-2">
           {title}
         </h3>
       </div>
 
       {/* Text Section */}
-      <div className="font-inter text-base leading-normal tracking-[-1.1%] flex-1 text-[#333] whitespace-pre-line p-5">
+      <div className="font-inter font-medium text-[#1E1E1E] text-[11px] md:text-[13px] lg:text-[15px] xl:text-[18px] leading-[150%] tracking-[-1.1%] flex-1 whitespace-pre-line p-5">
         {description}
       </div>
     </div>
