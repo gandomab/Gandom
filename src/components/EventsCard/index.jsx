@@ -57,7 +57,7 @@ const EventsCard = ({ title, image, description }) => {
 
         {/* Dots - Only show if there is more than 1 image */}
         {images.length > 1 && (
-          <div className="flex justify-center gap-2 mt-2 mb-2 md:mt-3 md:mb-5">
+          <div className="hidden md:flex justify-center gap-2 mt-2 mb-2 md:mt-3 md:mb-5">
             {images.map((_, idx) => (
               <button
                 key={idx}
