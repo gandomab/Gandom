@@ -41,12 +41,13 @@ function App() {
               <>
                 <Hero />
                 <HomeIconSection />
+                <Delivery />
                 <HealthySection />
                 <InfiniteMarquee />
                 <HomeEvents />
                 <GymHealthy />
                 <SubscribeSection />
-                <Delivery />
+
                 <AboutUsSection />
                 <HomeCard />
               </>
