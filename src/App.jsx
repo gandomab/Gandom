@@ -25,6 +25,7 @@ import HomeIconSection from "./components/HomeIconSection/HomeIconSection.jsx";
 import LoginPage from "./pages/LoginPage/LoginPage.jsx";
 import RegisterPage from "./pages/RegisterPage/RegisterPage.jsx";
 import AddressPage from "./pages/AddressPage/AddressPage.jsx";
+import WhatsAppButton from "./components/WhatsAppButton";
 
 function App() {
   return (
@@ -81,6 +82,7 @@ function App() {
       </main>
 
       <Footer />
+      <WhatsAppButton />
     </div>
 
   );
