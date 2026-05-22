@@ -7,7 +7,7 @@ const HealthySection = () => {
 
 
   return (
-    <section className="bg-beigebg text-center mt-0 md:mt-4 max-w-[1440px] mx-auto px-4 py-4">
+    <section className="bg-beigebg text-center mt-0 md:mt-4 max-w-[1440px] mx-auto px-4 py-12">
 
 
       {/* Heading */}
