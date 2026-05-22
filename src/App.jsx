@@ -7,8 +7,6 @@ import GymPage from "./pages/GymPage/page.jsx";
 import GymHealthy from "./components/Gym/GymHealthy.jsx";
 import Hero from "./components/Hero/Hero";
 import Delivery from "./components/Delivery";
-import DeliveryOrderPage from "./pages/Delivery/DeliveryOrderPage/page.jsx";
-import CreateBoxMenuPage from "./pages/Delivery/CreateBoxMenu/page.jsx";
 import AboutUsPage from "./pages/AboutUs/about-us.jsx";
 import PayPage from "./pages/Pay/PayPage";
 import PaymentSuccessPage from "./pages/PaymentSuccess/PaymentSuccessPage.jsx";
@@ -59,10 +57,6 @@ function App() {
           {/* Dishes pages */}
           <Route path="/productsPage" element={<ProductsPage />} />
           <Route path="/productdetail/:productTitle" element={<ProductDetailPage />} />
-
-          {/* Delivery pages */}
-          <Route path="/delivery/order" element={<DeliveryOrderPage />} />
-          <Route path="/delivery/createboxmenu" element={<CreateBoxMenuPage />} />
 
           {/* Other pages */}
           <Route path="/about-us" element={<AboutUsPage />} />

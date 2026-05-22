@@ -19,7 +19,6 @@ const Navbar = () => {
     { label: "About Us", href: "/about-us" },
     { label: "Gym", href: "/gym" },
     { label: "Events", href: "/events" },
-    { label: "Delivery", href: "/delivery/order" },
   ];
 
   const linkClasses = (href, isActive) => {
