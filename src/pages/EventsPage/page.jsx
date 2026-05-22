@@ -10,9 +10,9 @@ const EventsPage = () => {
         <EventPageHeroSection />
       </section>
 
+      {/* Events Cards Section */}
       <section className="mt-10 mb-10">
-        {/* Events Cards Section */}
-        <div className="flex flex-col gap-2 md:gap-12 px-4 md:px-6 lg:px-12 xl:px-24 max-w-8xl mx-auto">
+        <div className="flex flex-col gap-4 md:gap-6 lg:gap-8 xl:gap-12 px-4 md:px-6 lg:px-12 xl:px-24 max-w-8xl mx-auto">
           {events.map((event, idx) => (
             <EventsCard
               key={idx}
