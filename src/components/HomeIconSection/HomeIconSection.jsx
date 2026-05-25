@@ -54,7 +54,6 @@ const HomeIconSection = () => {
                     WHOLESOME FOOD INSPIRED BY AUTHENTIC RECIPES CRAFTED FOR TODAY’S GATHERING AND ENJOYMENT
                 </p>
             </div>
-            <div className="w-[345px] md:w-[705px] xl:w-[1246px] border-t-2 border-[#DEA401] mx-auto mt-14 md:mt-20 xl:mt-10"></div>
         </section>
 
     );

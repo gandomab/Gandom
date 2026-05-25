@@ -16,7 +16,7 @@ const YourCart = () => {
                 <YourCartHeroSection />
             </section>
             {/* Cart item section */}
-            <section className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-12 gap-8 mt-4 mb-4">
+            <section className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-12 gap-8 mt-4 md:mt-8 mb-4">
                 <div className="md:col-span-8 space-y-8">
                     {/* LEFT COLUMN: Ordered Items & Date Selection */}
                     <div className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100">

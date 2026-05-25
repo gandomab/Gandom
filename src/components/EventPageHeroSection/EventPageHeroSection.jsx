@@ -1,6 +1,6 @@
 import React from "react";
-import coverImage from "../../assets/Images/9.YourCart/YourCartCover.png";
-const YourCartHeroSection = () => {
+import coverImage from "../../assets/Images/4.Events/EventsCover.png";
+const EventPageHeroSection = () => {
     return (
         <section className="w-full flex h-[208px] md:h-[326px] lg:h-[474px]">
             <div className="relative w-full overflow-hidden">
@@ -22,14 +22,14 @@ const YourCartHeroSection = () => {
                     <h1 className=" leading-tight text-left">
                         <span className="block font-inter font-bold text-[#DEA401] leading-[120%] tracking-[-2.2%] 
                                     w-[122px] h-[38px] md:w-[211px] md:h-[67px] xl:w-[335px] xl:h-[106px]
-                                    text-[40px] md:text-[50px] lg:text-[60px] xl:text-[88px] mt-2 md:mt-6 lg:mt-8 xl:mt-8">
-                            Your
+                                    text-[32px] md:text-[42px] lg:text-[52px] xl:text-[88px] mt-2 -mr-4 md:-ml-6 lg:-ml-6 xl:-ml-16 whitespace-nowrap">
+                            Events and
                         </span>
-                        <span className="block font-santa font-normal text-[#FFC943] leading-[132%] tracking-[-2%] 
-                                    text-[40px] md:text-[50px] lg:text-[60px] xl:text-[94px]
+                        <span className="block font-santa font-normal text-[#E9610C] leading-[132%] tracking-[-2%] 
+                                    text-[32px] md:text-[42px] lg:text-[52px] xl:text-[88px]
                                     w-[67px] h-[42px] md:w-[212px] md:h-[78px] xl:w-[338px] xl:h-[124px]
-                                   -mt-2 md:-mt-6 lg:-mt-8 xl:-mt-8 ml-12 md:ml-16 lg:ml-24 xl:ml-30 rotate-[3.62deg]">
-                            Cart
+                                   -mt-2 md:-mt-3 lg:-mt-1 xl:-mt-2 -ml-13 md:-ml-14 lg:-ml-12 xl:-ml-28 rotate-[-3.70deg] whitespace-nowrap">
+                            Special Promotions
                         </span>
                     </h1>
                 </div>
@@ -38,4 +38,4 @@ const YourCartHeroSection = () => {
     );
 };
 
-export default YourCartHeroSection;
+export default EventPageHeroSection;
