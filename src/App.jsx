@@ -18,7 +18,6 @@ import HomeCard from "./components/HomeCard/Card.jsx";
 import ProductsPage from "./pages/ProductsPage/ProductsPage.jsx";
 import ProductDetailPage from "./pages/ProductDetailPage/page.jsx";
 import SubscribeSection from "./components/SubscribeSection/SubscribeSection.jsx";
-import InfiniteMarquee from "./components/InfiniteMarquee/InfiniteMarquee.jsx";
 import HomeIconSection from "./components/HomeIconSection/HomeIconSection.jsx";
 import LoginPage from "./pages/LoginPage/LoginPage.jsx";
 import RegisterPage from "./pages/RegisterPage/RegisterPage.jsx";
@@ -43,11 +42,9 @@ function App() {
                 <HomeIconSection />
                 <Delivery />
                 <HealthySection />
-                <InfiniteMarquee />
                 <HomeEvents />
                 <GymHealthy />
                 <SubscribeSection />
-
                 <AboutUsSection />
                 <HomeCard />
               </>

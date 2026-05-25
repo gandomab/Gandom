@@ -36,7 +36,7 @@ const Delivery = () => {
             font-inter font-semibold
             text-[20px] sm:text-[28px] md:text-[34px] lg:text-[40px]
             leading-[150%] tracking-[-0.022em]
-            text-primary text-center
+            text-[#426B1F] text-center
           "
         >
           You can place your order through one of the channels below.
@@ -59,7 +59,7 @@ const Delivery = () => {
             "
             onClick={() => navigate('/delivery/order')}
           />
-          <p className="font-inter font-medium leading-[130%] text-center justify-center items-center text-[8px] sm:text-[11px] md:text-[13px] lg:text-[16px]">
+          <p className="font-inter font-medium leading-[130%] text-[#426B1F] text-center justify-center items-center text-[8px] sm:text-[11px] md:text-[13px] lg:text-[16px]">
             Place your Gandom order for 5+ dishes or <br /> catering starting at 10 dishes.
           </p>
         </div>
@@ -79,7 +79,7 @@ const Delivery = () => {
               window.open('https://www.foodora.se/en/restaurant/cph5/gandom', '_blank')
             }
           />
-          <p className="font-inter font-medium leading-[130%] text-center justify-center items-center text-[8px] sm:text-[11px] md:text-[13px] lg:text-[16px]">
+          <p className="font-inter font-medium leading-[130%] text-[#426B1F] text-center justify-center items-center text-[8px] sm:text-[11px] md:text-[13px] lg:text-[16px]">
             For single orders (under 5 items) <br /> please order via Foodora.
           </p>
         </div>
