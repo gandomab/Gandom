@@ -59,9 +59,16 @@ const Delivery = () => {
             "
             onClick={() => navigate('/delivery/order')}
           />
-          <p className="font-inter font-medium leading-[130%] text-[#426B1F] text-center justify-center items-center text-[8px] sm:text-[11px] md:text-[13px] lg:text-[16px]">
-            Place your Gandom order for 5+ dishes or <br /> catering starting at 10 dishes.
-          </p>
+          <div className="font-inter font-bold leading-[130%] text-[#426B1F] text-center justify-center items-center text-[12px] md:text-[16px] lg:text-[20px] xl:text-[24px]">
+            You’re in the right place for:
+            <ul className="list-none font-medium">
+              <li>Orders placed at least two days in advance.</li>
+              <li>Party orders</li>
+              <li>Catering orders</li>
+              <li>Event orders</li>
+              <li>Keep scrolling for more information.</li>
+            </ul>
+          </div>
         </div>
 
         <div className="flex flex-col items-center gap-3 text-left w-full sm:w-auto">
@@ -79,8 +86,10 @@ const Delivery = () => {
               window.open('https://www.foodora.se/en/restaurant/cph5/gandom', '_blank')
             }
           />
-          <p className="font-inter font-medium leading-[130%] text-[#426B1F] text-center justify-center items-center text-[8px] sm:text-[11px] md:text-[13px] lg:text-[16px]">
-            For single orders (under 5 items) <br /> please order via Foodora.
+          <p className="font-inter font-bold leading-[130%] text-[#426B1F] text-center justify-center items-center text-[12px] md:text-[16px] lg:text-[20px] xl:text-[24px]">
+            Ordering for today?
+            <br />
+            <span className='font-medium'>Please click here to visit our Foodora portal <br /> and check our daily availability.</span>
           </p>
         </div>
       </div>
