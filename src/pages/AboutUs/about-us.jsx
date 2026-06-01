@@ -1,8 +1,4 @@
 import React from "react";
-
-import img1 from "../../assets/Images/3.About Us/Sakineh 1.png";
-import img2 from "../../assets/Images/3.About Us/Sakineh 2.png";
-import img3 from "../../assets/Images/3.About Us/Sakineh 3.png";
 import iranFlag from "../../assets/Images/3.About Us/Flags/Captura de pantalla 2025-09-24 a la(s) 13.32.40.png";
 import turkeyFlag from "../../assets/Images/3.About Us/Flags/Captura de pantalla 2025-09-24 a la(s) 13.30.42.png";
 import georgiaFlag from "../../assets/Images/3.About Us/Flags/Captura de pantalla 2025-09-24 a la(s) 13.31.13.png";
@@ -13,6 +9,9 @@ import cambodiaFlag from "../../assets/Images/3.About Us/Flags/Captura de pantal
 import vietnamFlag from "../../assets/Images/3.About Us/Flags/Captura de pantalla 2025-09-24 a la(s) 13.32.12.png";
 import kenyaFlag from "../../assets/Images/3.About Us/Flags/Captura de pantalla 2025-09-24 a la(s) 13.32.23.png";
 import africa from "../../assets/Images/3.About Us/Flags/Captura de pantalla 2025-09-24 a la(s) 13.32.39.png";
+import AboutUsHeroSection from "../../components/AboutUsHeroSection/AboutUsHeroSection";
+import AboutUsMainContent from "../../components/AboutUsMainContent/AboutUsMainContent";
+import { useNavigate } from "react-router-dom";
 
 const flags = [
     iranFlag,
@@ -28,78 +27,40 @@ const flags = [
 ];
 
 const AboutUsPage = () => {
+    const navigate = useNavigate();
+    const handleClick = () => {
+        navigate("/");
+        window.scrollTo(0, 0);
+    };
     return (
-        <div className="w-full bg-[#F7F4EF]">
-            <div className="relative max-w-[1100px] mx-auto px-6 md:px-10 pt-14 pb-20">
-
-                <div className="py-8 text-center">
-                    <h2 className="font-santa font-normal text-primary text-[40px] md:text-[52px] lg:text-[64px] mb-12">
-                        How we Born
-                    </h2>
+        <div className="w-full">
+            <section className="mt-4">
+                <AboutUsHeroSection />
+            </section>
+            <section className="mt-4">
+                <AboutUsMainContent />
+            </section>
+            <section className="my-4 md:my-8">
+                <p className="font-inter font-semibold text-[12px] md:text-[16px] xl:text-[24px] leading-[160%] text-center mb-3">Countries through which she traveled learning the secrets of each cuisine.</p>
+                <div className="flex flex-wrap items-center justify-center gap-2 w-[271px] h-[75px] md:w-[550px] md:h-[32px] xl:w-[752px] xl:h-[45px] mx-auto ">
+                    {flags.map((flag, idx) => (
+                        <img
+                            key={idx}
+                            src={flag}
+                            alt={`flag-${idx}`}
+                            className="w-[47px] h-[32px] md:w-[47px] md:h-[32px] xl:w-[65px] xl:h-[44px]"
+                        />
+                    ))}
                 </div>
-
-                <img
-                    src={img1}
-                    alt="Sakineh"
-                    className="hidden lg:block absolute top-40 -left-4 w-[230px] rounded-xl shadow-lg rotate-[-4deg]"
-                />
-                <img
-                    src={img2}
-                    alt="Sakineh"
-                    className="hidden lg:block absolute top-[420px] -left-10 w-[230px] rounded-xl shadow-lg rotate-[3deg]"
-                />
-                <img
-                    src={img3}
-                    alt="Sakineh"
-                    className="hidden lg:block absolute top-56 -right-6 w-[230px] rounded-xl shadow-lg rotate-[5deg]"
-                />
-
-                {/* متن اصلی */}
-                <div className="mx-auto max-w-[620px] text-center">
-                    <p className="text-[#111] text-[15px] leading-7 mb-4 text-left md:text-center">
-                        Our co-founder, Sakineh, has always been deeply passionate about
-                        food that not only delights the senses but truly nourishes the body.
-                        From a young age, she was fascinated by the connection between
-                        nutrition, flavor, and well-being, which led her to formally study
-                        dietetics, culinary arts, and baking. Yet, Sakineh’s journey was
-                        never confined to the classroom.
-                    </p>
-
-                    <p className="text-[#111] text-[15px] leading-7 mb-4 text-left md:text-center">
-                        Driven by curiosity and a desire to experience authentic food
-                        cultures firsthand, she traveled extensively across countries,
-                        immersing herself in the local way of life. During her travels, she
-                        volunteered in community kitchens, learning the secrets behind
-                        traditional recipes and discovering how simple, natural ingredients
-                        can create extraordinary flavors.
-                    </p>
-
-                    <p className="text-[#111] text-[15px] leading-7 mb-6 text-left md:text-center">
-                        Through these experiences, Sakineh cultivated a unique approach to
-                        cooking—one that blends health-conscious principles with the rich,
-                        aromatic tastes of traditional cuisines. Her dedication and
-                        creativity culminated in the development of the distinctive,
-                        flavorful recipes that today form the heart and soul of Gandom’s
-                        menu.
-                    </p>
-
-                    <p className="text-sm text-gray-700 mb-4 text-left md:text-center">
-                        Countries through which she traveled learning the secrets of each
-                        cuisine.
-                    </p>
-
-                    <div className="flex flex-wrap items-center justify-center gap-2">
-                        {flags.map((flag, idx) => (
-                            <img
-                                key={idx}
-                                src={flag}
-                                alt={`flag-${idx}`}
-                                className="h-7 w-auto rounded-sm border border-[#ddd] bg-white"
-                            />
-                        ))}
-                    </div>
+                <div className="md:hidden mt-8 w-full flex justify-end pr-4">
+                    <button
+                        onClick={handleClick}
+                        className="w-[80px] h-[32px] bg-[#DEA401] flex justify-center items-center text-[#FFFFFF] text-[13px] font-semibold leading-[150%] tracking-[-1.1%] rounded-full">
+                        Home
+                    </button>
                 </div>
-            </div>
+            </section>
+
         </div>
     );
 };

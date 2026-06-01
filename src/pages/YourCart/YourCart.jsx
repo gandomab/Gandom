@@ -1,127 +1,68 @@
-import React from "react";
-import Coverimage from "../../assets/Images/5.Delivery/_Cover Delivery.png";
-import img1 from "../../assets/Images/5.Delivery/ash.png";
+import React, { useState } from "react";
+import YourCartHeroSection from "../../components/YourCartHeroSection/YourCartHeroSection";
+import CartItem from "../../components/YourCart/CartItem";
+import CalenderSection from "../../components/YourCart/CalenderSection";
+import OrderSummary from "../../components/YourCart/OrderSummary";
+import { useCart } from "../../contexts/CartContext";
 
 const YourCart = () => {
+    const { cart } = useCart();
+    const [isCalendarOpen, setIsCalendarOpen] = useState(true);
+
     return (
-        <div className="w-full min-h-screen bg-[#F7F4EF]">
+        <div className="w-full">
+            {/* Hero section for the cart page */}
+            <section className="mt-4 mb-4">
+                <YourCartHeroSection />
+            </section>
+            {/* Cart item section */}
+            <section className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-12 gap-8 mt-4 md:mt-8 mb-4">
+                <div className="md:col-span-8 space-y-8">
+                    {/* LEFT COLUMN: Ordered Items & Date Selection */}
+                    <div className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100">
+                        <h2 className="font-inter font-bold text-[#E6B220] text-[16px] md:text-[24px] xl:text-[40px] leading-[130%] mb-6">Ordered Items</h2>
+                        {cart.length > 0 ? (
+                            cart.map((productdish) => (
+                                <CartItem key={productdish.id} productdish={productdish} />
+                            ))
+                        ) : (
+                            <p className="text-gray-500">Your cart is empty.</p>
+                        )}
+                    </div>
+                    <div className="md:bg-white md:p-8 md:rounded-3xl md:shadow-sm md:border md:border-gray-100">
+                        {/* Mobile Accordion Header */}
+                        <button
+                            onClick={() => setIsCalendarOpen(!isCalendarOpen)}
+                            className="w-full flex justify-between items-center bg-white p-4 md:hidden rounded-xl shadow-sm mb-4"
+                        >
+                            <h2 className="font-inter font-bold text-[#E6B220] text-[16px] leading-[130%] mb-6">choose your date & time</h2>
+                            <div className="bg-gray-100 p-1 rounded-full">
+                                <svg className={`w-4 h-4 transition-transform ${isCalendarOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </div>
+                        </button>
 
-            {/* COVER */}
-            <section className="relative w-full flex justify-end bg-[#F7F4EF] pt-[16px]">
-                <div className="relative w-[1005px]">
+                        {/* Desktop Header */}
+                        <h2 className="hidden md:block font-inter font-bold text-[#E6B220] text-[16px] md:text-[24px] xl:text-[40px] leading-[130%] mb-6">choose your date & time</h2>
 
-                    {/* Cover Image */}
-                    <img
-                        src={Coverimage}
-                        alt="Your cart cover"
-                        className="w-full h-auto block"
-                    />
-
-                    {/* Left Gradient */}
-                    <div
-                        className="pointer-events-none absolute inset-y-0 left-0 w-[45%]
-                        bg-gradient-to-r from-[#F7F4EF] via-[#F7F4EF]/80 to-transparent"
-                    />
-
-                    {/* Title */}
-                    <div className="absolute -left-[180px] top-[150px]">
-                        <h1 className="leading-tight text-left">
-
-                            <span className="block text-[#F5C242] font-semibold text-[64px]">
-                                Your
-                            </span>
-
-                            {/* Cart aligned under "u" */}
-                            <span className="block font-santa text-[#F5C242] text-[64px] -mt-3 pl-[32px]">
-                                Cart
-                            </span>
-
-                        </h1>
+                        {/* Calendar Content */}
+                        <div className={`md:block ${isCalendarOpen ? 'block' : 'hidden'}`}>
+                            <CalenderSection />
+                        </div>
+                    </div>
+                </div>
+                {/* RIGHT COLUMN: Order Total */}
+                <div className="md:col-span-4">
+                    <div className="bg-white p-8 rounded-[30px] border border-gray-100 shadow-sm h-full flex flex-col">
+                        <h2 className="font-inter font-bold text-[#E6B220] text-[16px] md:text-[24px] xl:text-[40px] leading-[130%] mb-6 md:mb-14">Order Total</h2>
+                        <div className="flex-1 flex flex-col">
+                            <OrderSummary />
+                        </div>
                     </div>
                 </div>
             </section>
 
-
-            {/* CONTENT */}
-            <div className="relative max-w-[1005px] mx-auto px-6 md:px-0 pt-16 pb-24">
-
-                {/* Header */}
-                <div className="flex items-center justify-between mb-8">
-                    <h2 className="text-[22px] font-semibold text-[#F5C242]">Your Cart</h2>
-                    <button className="text-sm font-medium text-[#0B8EDD] hover:underline">
-                        Continue shopping
-                    </button>
-                </div>
-
-                {/* Table Header */}
-                <div className="grid grid-cols-[minmax(0,3fr)_minmax(0,1fr)_minmax(0,1fr)] text-xs md:text-sm font-semibold text-[#111] mb-3">
-                    <span>Product</span>
-                    <span className="text-center">Quantity</span>
-                    <span className="text-right">Total</span>
-                </div>
-
-                {/* Item */}
-                <div className="w-full border border-[#E5E5E5] rounded-[16px] px-5 py-5 flex items-center justify-between gap-6 mb-10 bg-white shadow-sm">
-
-                    <div className="flex items-center gap-4 flex-[3]">
-                        <img
-                            src={img1}
-                            alt="Ashe Reshteh"
-                            className="w-[96px] h-[96px] rounded-[18px] object-cover"
-                        />
-                        <div>
-                            <p className="text-[15px] font-medium text-[#111]">Ashe Reshteh</p>
-                            <p className="text-xs text-[#777] mt-1">62.50 SEK</p>
-                        </div>
-                    </div>
-
-                    <div className="flex-1 flex items-center justify-center">
-                        <div className="flex items-center gap-4 border border-[#DADADA] rounded-full px-6 py-2 bg-[#F7F4EF]">
-                            <button className="text-sm font-semibold text-[#555]">−</button>
-                            <span className="text-[15px] font-medium text-[#111]">1</span>
-                            <button className="text-sm font-semibold text-[#555]">+</button>
-                        </div>
-                    </div>
-
-                    <div className="flex-1 flex justify-end">
-                        <span className="text-[15px] font-semibold text-[#111]">
-                            60.50 SEK
-                        </span>
-                    </div>
-                </div>
-
-                {/* Divider */}
-                <div className="border-t border-[#D9D4CB] mb-10" />
-
-                {/* Total + Notes */}
-                <div className="flex flex-col md:flex-row gap-10 items-start">
-
-                    <div className="flex-1 w-full">
-                        <p className="text-sm font-medium text-[#333] mb-3">
-                            Order special instructions
-                        </p>
-                        <div className="w-full max-w-[380px] h-[110px] rounded-[10px] bg-[#EDEAE4] border border-[#D9D4CB]" />
-                    </div>
-
-                    <div className="flex-1 flex flex-col items-center md:items-end gap-4">
-                        <div className="text-right">
-                            <p className="text-sm font-semibold text-[#333]">
-                                Estimated total{" "}
-                                <span className="ml-2 text-[15px] font-semibold">
-                                    60.50 SEK
-                                </span>
-                            </p>
-                            <p className="text-[11px] text-[#777] mt-1 leading-4 max-w-[260px]">
-                                Tax included and shipping and discounts calculated at checkout.
-                            </p>
-                        </div>
-
-                        <button className="mt-2 w-[220px] h-[48px] rounded-full bg-[#FFC94B] text-[15px] font-semibold text-[#111] shadow-sm hover:brightness-95 transition">
-                            Check out
-                        </button>
-                    </div>
-                </div>
-            </div>
         </div>
     );
 };
