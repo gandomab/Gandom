@@ -1,7 +1,7 @@
 import React from 'react';
 import whatsapplogo from '../../assets/Images/1.Home Page/logos_whatsapp-icon.png';
 
-const WhatsAppButton = ({ phoneNumber = "1234567899" }) => {
+const WhatsAppButton = ({ phoneNumber = "46703382691" }) => {
 
   const whatsappUrl = `https://wa.me/${phoneNumber}`;
 
