@@ -7,10 +7,21 @@ const CartItem = ({ productdish }) => {
     return (
         <div className="flex items-center justify-between bg-white p-2 md:p-4 w-full gap-2 md:gap-4">
             <div className="flex items-center gap-2 md:gap-4 min-w-0 flex-1">
-                <img src={productdish.images?.[0]} className="shrink-0 w-[83px] h-[59px] md:w-[104px] md:h-[73px] xl:w-[180px] xl:h-[128px] rounded-lg object-cover" alt={productdish.title} />
+                <img 
+                    src={productdish.primary_image || (typeof productdish.images?.[0] === "string" ? productdish.images[0] : productdish.images?.[0]?.image)} 
+                    className="shrink-0 w-[83px] h-[59px] md:w-[104px] md:h-[73px] xl:w-[180px] xl:h-[128px] rounded-lg object-cover" 
+                    alt={productdish.name || productdish.title} 
+                />
                 <div className="min-w-0">
-                    <h4 className="font-inter font-semibold text-[10px] md:text-[14px] xl:text-[20px] leading-[130%] line-clamp-2">{productdish.title}</h4>
+                    <h4 className="font-inter font-semibold text-[10px] md:text-[14px] xl:text-[20px] leading-[130%] line-clamp-2">{productdish.name || productdish.title}</h4>
                     <p className="font-inter font-semibold text-[#426B1F] text-[9px] md:text-[12px] xl:text-[16px] leading-[130%] mt-0.5 md:mt-1">{productdish.price} SEK</p>
+                    {productdish.selectedCustomizations && productdish.selectedCustomizations.length > 0 && (
+                        <div className="text-[8px] md:text-[10px] xl:text-[14px] text-gray-500 mt-1 space-y-0.5 font-normal leading-[120%]">
+                            {productdish.selectedCustomizations.map((customization, idx) => (
+                                <p key={idx} className="capitalize">{customization}</p>
+                            ))}
+                        </div>
+                    )}
                 </div>
             </div>
 

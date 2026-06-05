@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaStar, FaHeart, FaArrowLeft, FaArrowRight, FaArrowDown } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import BestSellerBadge from "../../assets/Images/2.Dishes/BestSellerBadge.svg";
@@ -12,21 +12,98 @@ const ProductDetailHeroSection = ({ product }) => {
     const fillPercentage = (rating / 5) * 100;
     const navigate = useNavigate();
     const { addToCart } = useCart();
-    
-    // track selected options for checkboxes
-    const [selectedOptions, setSelectedOptions] = useState(() => {
+
+    // track selected options for option groups and sub-options
+    const [selectedGroups, setSelectedGroups] = useState(() => {
         const init = {};
-        (product.customizations || []).forEach((opt) => {
-            init[opt.id] = false;
+        (product.option_groups || []).forEach((group) => {
+            init[group.id] = false;
         });
         return init;
     });
 
+    const [selectedSubOptions, setSelectedSubOptions] = useState(() => {
+        const init = {};
+        (product.option_groups || []).forEach((group) => {
+            (group.options || []).forEach((subOpt) => {
+                init[subOpt.id] = false;
+            });
+        });
+        return init;
+    });
+
+    // Reset selection state when the product changes
+    useEffect(() => {
+        const groupInit = {};
+        const subOptInit = {};
+        if (product && product.option_groups) {
+            product.option_groups.forEach((group) => {
+                groupInit[group.id] = false;
+                (group.options || []).forEach((subOpt) => {
+                    subOptInit[subOpt.id] = false;
+                });
+            });
+        }
+        setSelectedGroups(groupInit);
+        setSelectedSubOptions(subOptInit);
+    }, [product]);
+
     const [added, setAdded] = useState(false);
     const [isFavorite, setIsFavorite] = useState(false);
 
-    const handleToggle = (id) => {
-        setSelectedOptions((prev) => ({ ...prev, [id]: !prev[id] }));
+    const handleGroupToggle = (groupId) => {
+        setSelectedGroups((prev) => {
+            const nextVal = !prev[groupId];
+            // If group is unchecked, clear its sub-options
+            if (!nextVal) {
+                const group = (product.option_groups || []).find(g => g.id === groupId);
+                if (group) {
+                    setSelectedSubOptions((subPrev) => {
+                        const updated = { ...subPrev };
+                        (group.options || []).forEach((subOpt) => {
+                            updated[subOpt.id] = false;
+                        });
+                        return updated;
+                    });
+                }
+            }
+            return { ...prev, [groupId]: nextVal };
+        });
+    };
+
+    const handleSubOptionToggle = (groupId, subOptionId) => {
+        const group = (product.option_groups || []).find(g => g.id === groupId);
+        if (!group) return;
+
+        setSelectedSubOptions((prev) => {
+            const isCurrentlyChecked = prev[subOptionId];
+
+            if (isCurrentlyChecked) {
+                return { ...prev, [subOptionId]: false };
+            }
+
+            const maxSelect = group.max_select;
+            if (maxSelect === 1) {
+                // Uncheck all other sub-options in this group
+                const updated = { ...prev };
+                (group.options || []).forEach((subOpt) => {
+                    updated[subOpt.id] = (subOpt.id === subOptionId);
+                });
+                return updated;
+            } else if (maxSelect > 1) {
+                // Count current checked sub-options in this group
+                let checkedCount = 0;
+                (group.options || []).forEach((subOpt) => {
+                    if (prev[subOpt.id]) checkedCount++;
+                });
+
+                if (checkedCount >= maxSelect) {
+                    return prev; // ignore check
+                }
+            }
+
+            return { ...prev, [subOptionId]: true };
+        });
     };
 
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -52,11 +129,47 @@ const ProductDetailHeroSection = ({ product }) => {
     const prevImage = () => {
         setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
     };
-    
+
+    // Calculate dynamic displayed price based on selected customizations
+    const basePrice = parseFloat(product.price) || 0;
+    let extraPrice = 0;
+    if (product.option_groups && Array.isArray(product.option_groups)) {
+        product.option_groups.forEach((group) => {
+            if (selectedGroups[group.id]) {
+                (group.options || []).forEach((subOpt) => {
+                    if (selectedSubOptions[subOpt.id]) {
+                        extraPrice += parseFloat(subOpt.price_modifier || 0);
+                    }
+                });
+            }
+        });
+    }
+    const displayedPrice = (basePrice + extraPrice).toFixed(2);
+
     // this function is for adding the product to the cart
     const handleAddToCart = () => {
-        const selected = Object.keys(selectedOptions).filter((id) => selectedOptions[id]);
-        const cartItem = { ...product, selectedCustomizations: selected };
+        const selectedLabels = [];
+        let totalExtraPrice = 0;
+        if (product.option_groups && Array.isArray(product.option_groups)) {
+            product.option_groups.forEach((group) => {
+                if (selectedGroups[group.id]) {
+                    (group.options || []).forEach((subOpt) => {
+                        if (selectedSubOptions[subOpt.id]) {
+                            selectedLabels.push(`${group.name}: ${subOpt.name}`);
+                            totalExtraPrice += parseFloat(subOpt.price_modifier || 0);
+                        }
+                    });
+                }
+            });
+        }
+
+        const finalPrice = (basePrice + totalExtraPrice).toFixed(2);
+
+        const cartItem = {
+            ...product,
+            price: finalPrice,
+            selectedCustomizations: selectedLabels
+        };
         addToCart(cartItem);
     };
 
@@ -105,7 +218,7 @@ const ProductDetailHeroSection = ({ product }) => {
                                     <div className="font-inter font-semibold text-[13px] leading-[130%]">{product.rating}</div>
                                 </div>
                             </div>
-                            <p className="font-inter font-semibold text-[#426B1F] text-[16px] md:text-[20px] xl:text-[36px] leading-[130%]">{product.price} <span>{product.currency}</span></p>
+                            <p className="font-inter font-semibold text-[#426B1F] text-[16px] md:text-[20px] xl:text-[36px] leading-[130%]">{displayedPrice} <span>{product.currency}</span></p>
                             <p className="font-inter font-normal text-[12px] md:text-[20px] xl:text-[36px] leading-[130%]">(Include all taxes)</p>
 
                         </div>
@@ -146,20 +259,55 @@ const ProductDetailHeroSection = ({ product }) => {
                         <div className="w-auto">
                             {product?.id !== 403 && (
                                 <>
-                                    {product.customizations?.length > 0 ? (
+                                    {product.option_groups?.length > 0 ? (
                                         <>
                                             <h3 className="font-inter font-semibold text-[13px] md:text-[15px] xl:text-[24px] leading-[130%] mb-3">Customize your Dish</h3>
-                                            <div className="space-y-1 md:space-y-0.5 xl:space-y-1">
-                                                {product.customizations.map((option) => (
-                                                    <label key={option.id} className="flex items-center justify-between w-[125px] md:w-[150px] xl:w-[200px] cursor-pointer group">
-                                                        <span className="font-inter font-normal text-[#6D6D6D] text-[12px] md:text-[14px] xl:text-[20px] leading-[150%]">{option.label}</span>
+                                            <div className="space-y-4">
+                                                {product.option_groups.map((group) => (
+                                                    <div key={group.id} className="mb-4">
+                                                        {/* Group Header Checkbox */}
                                                         <div
-                                                            onClick={() => handleToggle(option.id)}
-                                                            className="w-[12px] h-[12px] md:w-[14px] md:h-[14px] xl:w-[16px] xl:h-[16px] bg-[#D9D9D9] flex items-center justify-center transition-colors shrink-0"
+                                                            onClick={() => handleGroupToggle(group.id)}
+                                                            className="flex items-center justify-between w-[250px] md:w-[300px] xl:w-[400px] cursor-pointer group mb-2"
                                                         >
-                                                            {selectedOptions[option.id] && <span className="text-[16px] md:text-[20px] xl:text-[24px] text-[#00DD00] font-black pointer-events-none mb-1 ml-1">✓</span>}
+                                                            <span className="font-inter font-semibold text-black text-[13px] md:text-[15px] xl:text-[24px] leading-[130%] capitalize">
+                                                                {group.name} {group.required && <span className="text-red-500">*</span>}
+                                                            </span>
+                                                            <div
+                                                                className="w-[14px] h-[14px] md:w-[16px] md:h-[16px] xl:w-[20px] xl:h-[20px] bg-[#D9D9D9] flex items-center justify-center transition-colors shrink-0"
+                                                            >
+                                                                {selectedGroups[group.id] && <span className="text-[16px] md:text-[20px] xl:text-[24px] text-[#00DD00] font-black pointer-events-none mb-1 ml-1">✓</span>}
+                                                            </div>
                                                         </div>
-                                                    </label>
+
+                                                        {/* Sub-options List */}
+                                                        {selectedGroups[group.id] && (
+                                                            <div className="pl-4 space-y-1.5 md:space-y-1 xl:space-y-1.5 mt-2">
+                                                                {(group.options || []).map((subOpt) => {
+                                                                    const priceMod = parseFloat(subOpt.price_modifier || 0);
+                                                                    const displayLabel = priceMod > 0
+                                                                        ? `${subOpt.name} (+${priceMod.toFixed(2)} ${product.currency || 'SEK'})`
+                                                                        : subOpt.name;
+                                                                    return (
+                                                                        <div
+                                                                            key={subOpt.id}
+                                                                            onClick={() => handleSubOptionToggle(group.id, subOpt.id)}
+                                                                            className="flex items-center justify-between w-[220px] md:w-[260px] xl:w-[350px] cursor-pointer group"
+                                                                        >
+                                                                            <span className="font-inter font-normal text-[#6D6D6D] text-[12px] md:text-[14px] xl:text-[20px] leading-[150%] capitalize">
+                                                                                {displayLabel}
+                                                                            </span>
+                                                                            <div
+                                                                                className="w-[12px] h-[12px] md:w-[14px] md:h-[14px] xl:w-[16px] xl:h-[16px] bg-[#D9D9D9] flex items-center justify-center transition-colors shrink-0"
+                                                                            >
+                                                                                {selectedSubOptions[subOpt.id] && <span className="text-[16px] md:text-[20px] xl:text-[24px] text-[#00DD00] font-black pointer-events-none mb-1 ml-1">✓</span>}
+                                                                            </div>
+                                                                        </div>
+                                                                    );
+                                                                })}
+                                                            </div>
+                                                        )}
+                                                    </div>
                                                 ))}
                                             </div>
                                         </>
