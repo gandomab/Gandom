@@ -1,16 +1,43 @@
-import { productData } from "../../data/productData.js";
 import ProductCard from "../../components/ProductCard/ProductCard.jsx";
 import { HashLink } from "react-router-hash-link";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { productService } from "../../services/api.js";
 
 // This page is the main products page, which will display all the products in different sections (soups, desserts, waffles, side dishes). Each section will have a heading and a grid of product cards.
 //  The product data is imported from the productData file, which contains arrays of products for each category.
 //  The page also includes a mobile category navigation at the top, which allows users to quickly jump to different sections of the page.
 
 const ProductsPage = () => {
-  const category = Object.keys(productData);
+  const [productData, setProductData] = useState({});
   const { hash } = useLocation();
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const data = await productService.getAll();
+        const groupedData = data.reduce((acc, product) => {
+          const cat = product.category
+            ? (product.category.slug || product.category.name || "other")
+            : "other";
+
+          if (!acc[cat]) acc[cat] = [];
+          acc[cat].push(product);
+          return acc;
+        }, {});
+
+        setProductData(groupedData);
+      } catch (err) {
+        console.error("Failed to fetch products:", err);
+        setError("Unable to load the menu at this time.");
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  const category = Object.keys(productData);
+
   // Handle the jump from the Home Page cards
   useEffect(() => {
     if (hash) {
@@ -24,7 +51,7 @@ const ProductsPage = () => {
         }
       }, 100);
     }
-  }, [hash]); // Runs whenever the URL hash changes
+  }, [hash, category.length]);
 
 
   return (
@@ -55,13 +82,13 @@ const ProductsPage = () => {
           {/* Section Header with Decorative Lines */}
           <div className="flex items-center w-full mb-8 gap-4">
             <div className="w-20 border-t-8 border-[#DEA401]"></div>
-            <h2 className="font-santa font-normal text-3xl md:text-4xl lg:text-5xl text-[#DEA401] text-center leading-tight mx-4 capitalize">{category}</h2>
+            <h2 className="font-santa font-normal text-3xl md:text-4xl lg:text-5xl text-[#DEA401] text-center leading-tight mx-4 capitalize">{productdishes[0]?.category?.name || category}</h2>
             <div className="flex-grow border-t-8 border-[#DEA401]"></div>
           </div>
           {/* Product Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
-            {productdishes.map(productdish => (
-              <ProductCard key={productdish.id} productdish={productdish} />
+            {productdishes.map(product => (
+              <ProductCard key={product.id} product={product} />
             ))}
           </div>
         </section>
