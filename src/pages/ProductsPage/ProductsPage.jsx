@@ -40,18 +40,27 @@ const ProductsPage = () => {
 
   // Handle the jump from the Home Page cards
   useEffect(() => {
-    if (hash) {
-      // Small timeout gives the data a split second to render
-      setTimeout(() => {
-        const id = hash.replace("#", ""); // Remove the '#' from the hash to get the id
-        const element = document.getElementById(id); // Find the element with the corresponding id
-        // Scroll to the element smoothly
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
+    if (!hash || category.length === 0) return;
+
+    const timer = setTimeout(() => {
+      const decodedHash = decodeURIComponent(hash.replace("#", ""));
+      let element = document.getElementById(decodedHash);
+      if (!element) {
+        const target = decodedHash.toLowerCase().replace(/[\s-_]+/g, "");
+        const matchedKey = category.find(
+          (cat) => cat.toLowerCase().replace(/[\s-_]+/g, "") === target
+        );
+        if (matchedKey) {
+          element = document.getElementById(matchedKey);
         }
-      }, 100);
-    }
-  }, [hash, category.length]);
+      }
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, [hash, category]);
 
 
   return (
