@@ -5,12 +5,14 @@ import BestSellerBadge from "../../assets/Images/2.Dishes/BestSellerBadge.svg";
 import { useCart } from "../../contexts/CartContext";
 
 // this is product detail page hero section with responsive images
-const ProductDetailHeroSection = ({ productdish }) => {
-    const rating = productdish.ratingnum;
+const ProductDetailHeroSection = ({ product }) => {
+    if (!product) return null;
+
+    const rating = product.rating || 0;
     const fillPercentage = (rating / 5) * 100;
     const navigate = useNavigate();
     const { addToCart } = useCart();
-    const product = productdish || {};
+    
     // track selected options for checkboxes
     const [selectedOptions, setSelectedOptions] = useState(() => {
         const init = {};
@@ -29,8 +31,19 @@ const ProductDetailHeroSection = ({ productdish }) => {
 
     const [currentIndex, setCurrentIndex] = useState(0);
 
-    // Safety check: Fallback to an empty array if images don't exist
-    const images = product.images || [];
+    // Build a flat list of all image URLs (primary image first, followed by others)
+    const images = [];
+    if (product.primary_image) {
+        images.push(product.primary_image);
+    }
+    if (product.images && Array.isArray(product.images)) {
+        product.images.forEach(imgObj => {
+            const url = typeof imgObj === "string" ? imgObj : imgObj.image;
+            if (url && !images.includes(url)) {
+                images.push(url);
+            }
+        });
+    }
 
     const nextImage = () => {
         setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
@@ -39,13 +52,12 @@ const ProductDetailHeroSection = ({ productdish }) => {
     const prevImage = () => {
         setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
     };
+    
     // this function is for adding the product to the cart
     const handleAddToCart = () => {
         const selected = Object.keys(selectedOptions).filter((id) => selectedOptions[id]);
         const cartItem = { ...product, selectedCustomizations: selected };
-
         addToCart(cartItem);
-
     };
 
     return (
@@ -53,7 +65,7 @@ const ProductDetailHeroSection = ({ productdish }) => {
             <div className="flex flex-col md:flex-row md:gap-10 lg:gap-24 xl:gap-24 p-6 space-y-5 md:space-y-0 w-full md:items-stretch">
                 {/* Image Section */}
                 <div className="relative shrink-0 mx-auto md:mx-0 w-full max-w-[342px] aspect-[342/245] md:max-w-none md:w-[350px] md:h-[251px] md:aspect-auto xl:w-[615px] xl:h-[441px]">
-                    <img src={images[currentIndex]} className="rounded-[14px] md:rounded-[20px] xl:rounded-[34px] w-full h-full object-cover" alt={product.name || "product"} />
+                    <img src={images[currentIndex] || product.primary_image} className="rounded-[14px] md:rounded-[20px] xl:rounded-[34px] w-full h-full object-cover" alt={product.name || "product"} />
                     {images.length > 1 && (
                         <>
                             {/* Left Icon (Previous) */}
@@ -77,7 +89,7 @@ const ProductDetailHeroSection = ({ productdish }) => {
                     <div className="flex justify-between items-start w-full gap-4">
                         <div className="flex-1 flex flex-col space-y-1 min-w-0">
                             <div className="inline-block md:block items-center gap-x-2">
-                                <h1 className="font-inter font-semibold text-[16px] md:text-[27px] xl:text-[48px] leading-[130%] inline word-break">{product.title}</h1>
+                                <h1 className="font-inter font-semibold text-[16px] md:text-[27px] xl:text-[48px] leading-[130%] inline word-break">{product.name}</h1>
                                 {" "}
                                 {/* Mobile Rating */}
                                 <div className="inline-flex md:hidden items-center gap-1 text-lg font-bold mt-0.5">
@@ -90,10 +102,10 @@ const ProductDetailHeroSection = ({ productdish }) => {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="font-inter font-semibold text-[13px] leading-[130%]">{productdish.ratingnum}</div>
+                                    <div className="font-inter font-semibold text-[13px] leading-[130%]">{product.rating}</div>
                                 </div>
                             </div>
-                            <p className="font-inter font-semibold text-[#426B1F] text-[16px] md:text-[20px] xl:text-[36px] leading-[130%]">{product.price} SEK</p>
+                            <p className="font-inter font-semibold text-[#426B1F] text-[16px] md:text-[20px] xl:text-[36px] leading-[130%]">{product.price} <span>{product.currency}</span></p>
                             <p className="font-inter font-normal text-[12px] md:text-[20px] xl:text-[36px] leading-[130%]">(Include all taxes)</p>
 
                         </div>
@@ -112,7 +124,7 @@ const ProductDetailHeroSection = ({ productdish }) => {
                     </div>
 
                     {/* Mobile ID 403 customise block */}
-                    {productdish?.id === 403 && (
+                    {product?.id === 403 && (
                         <div className="flex md:hidden justify-between items-center w-full mt-2">
                             <div className="font-inter font-medium text-black text-[13px] flex items-center gap-1.5">
                                 <p className="font-inter font-medium text-black text-[12px] md:text-[13px] xl:text-[24px] whitespace-nowrap">customise and order</p>
@@ -132,7 +144,7 @@ const ProductDetailHeroSection = ({ productdish }) => {
                     {/* Dynamic Customization List */}
                     <div className="flex justify-between items-start w-full mt-2 md:mt-1 xl:mt-2">
                         <div className="w-auto">
-                            {productdish?.id !== 403 && (
+                            {product?.id !== 403 && (
                                 <>
                                     {product.customizations?.length > 0 ? (
                                         <>
@@ -159,7 +171,7 @@ const ProductDetailHeroSection = ({ productdish }) => {
                         </div>
 
                         {/* Mobile Buttons */}
-                        {productdish?.id !== 403 && (
+                        {product?.id !== 403 && (
                             <div className="flex md:hidden flex-col gap-3">
                                 <button onClick={handleAddToCart} className="bg-[#E6B220] text-white font-inter font-bold text-[10px] leading-[130%] w-[74px] h-[33px] rounded-[23px]">
                                     Add to cart
@@ -175,7 +187,7 @@ const ProductDetailHeroSection = ({ productdish }) => {
                     </div>
 
                     {/* Rating */}
-                    {productdish?.id === 403 ? (
+                    {product?.id === 403 ? (
                         <div className="hidden md:flex items-end gap-10 xl:gap-16 md:mt-1 xl:mt-2">
                             <div className="flex flex-col items-start gap-1">
                                 <div className="flex items-center gap-2 text-lg font-bold">
@@ -188,7 +200,7 @@ const ProductDetailHeroSection = ({ productdish }) => {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="font-inter font-semibold md:text-[15px] xl:text-[20px] leading-[130%]">{productdish.ratingnum}</div>
+                                    <div className="font-inter font-semibold md:text-[15px] xl:text-[20px] leading-[130%]">{product.rating}</div>
                                 </div>
                                 <div className="font-inter font-medium text-black text-[12px] md:text-[14px] xl:text-[16px] leading-[130%] flex items-center gap-1.5 ml-1">
                                     <span className="whitespace-nowrap">customise and order</span>
@@ -216,12 +228,12 @@ const ProductDetailHeroSection = ({ productdish }) => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="font-inter font-semibold md:text-[15px] xl:text-[20px] leading-[130%]">{productdish.ratingnum}</div>
+                            <div className="font-inter font-semibold md:text-[15px] xl:text-[20px] leading-[130%]">{product.rating}</div>
                         </div>
                     )}
 
                     {/* Buttons */}
-                    {productdish?.id !== 403 && (
+                    {product.id !== 403 && (
                         <div className="hidden md:flex mt-2 md:mt-1 xl:mt-2 gap-6">
                             <button onClick={handleAddToCart} className="bg-[#E6B220] text-white font-inter font-bold text-[10px] md:text-[14px] xl:text-[28px] leading-[130%] 
                                 md:px-4 md:py-2 xl:px-8 xl:py-3 w-[74px] h-[33px] md:w-[123px] md:h-[38px]  xl:w-[259px] xl:h-[67px] rounded-[23px] md:rounded-[10px] xl:rounded-[20px]">
