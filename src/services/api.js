@@ -21,5 +21,12 @@ export const productService = {
     }
 };
 
+// delivery slots service api
+export const deliveryService = {
+    getSlots: async (date) => {
+        const response = await api.get(`/api/delivery/slots/?date=${date}`);
+        return response.data;
+    }
+};
 
 export default api;

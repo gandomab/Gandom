@@ -1,13 +1,6 @@
-//import { productdetailsdata } from "../../data/productdetailsdata";
 // this is product details of each product on product details page
 const ProductDetails = ({ product }) => {
     if (!product) return null;
-
-    // Find details for the specific product
-    const details = product;
-
-    // If no details exist, render nothing (or you can add a fallback message here)
-    if (!details) return null;
 
     return (
         <section className="w-full flex flex-col items-center mt-2 md:mt-6 xl:mt-12 mb-12 px-8 md:px-12">
@@ -20,25 +13,25 @@ const ProductDetails = ({ product }) => {
                 {/* Product Description */}
                 <div className="space-y-2">
                     <h4 className="font-inter text-[12px] md:text-[18px] xl:text-[20px] font-bold leading-[130%]">
-                        {details.heading} <span className="font-inter text-[12px] md:text-[18px] xl:text-[20px] font-normal leading-[130%]">{details.subheading}</span>
+                        {product.heading} <span className="font-inter text-[12px] md:text-[18px] xl:text-[20px] font-normal leading-[130%]">{product.subheading}</span>
                     </h4>
                     <p className="font-inter text-[12px] md:text-[18px] xl:text-[20px] font-normal leading-[130%]">
-                        {details.description}
+                        {product.description}
                     </p>
                 </div>
 
                 {/* Ingredients Section */}
                 <div className="space-y-1">
-                    <h5 className="font-inter text-[12px] md:text-[18px] xl:text-[20px] font-bold leading-[130%]">{details.ingredientsLabel}</h5>
+                    <h5 className="font-inter text-[12px] md:text-[18px] xl:text-[20px] font-bold leading-[130%]">{product.ingredientsLabel}</h5>
                     <p className="font-inter text-[12px] md:text-[18px] xl:text-[20px] font-normal leading-[130%]">
-                        {details.ingredientsBody}
+                        {product.ingredientsBody}
                     </p>
                 </div>
 
                 {/* Dynamic Footnotes */}
-                {details.footnotes && details.footnotes.length > 0 && (
+                {product.footnotes && product.footnotes.length > 0 && (
                     <div className="pt-0 md:pt-4 space-y-1">
-                        {details.footnotes.map((note, index) => (
+                        {product.footnotes.map((note, index) => (
                             <p key={index} className="font-inter text-[12px] md:text-[18px] xl:text-[20px] font-normal leading-[130%]">
                                 {note}
                             </p>
