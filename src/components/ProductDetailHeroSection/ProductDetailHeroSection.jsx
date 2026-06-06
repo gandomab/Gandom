@@ -14,14 +14,6 @@ const ProductDetailHeroSection = ({ product }) => {
     const { addToCart } = useCart();
 
     // track selected options for option groups and sub-options
-    const [selectedGroups, setSelectedGroups] = useState(() => {
-        const init = {};
-        (product.option_groups || []).forEach((group) => {
-            init[group.id] = false;
-        });
-        return init;
-    });
-
     const [selectedSubOptions, setSelectedSubOptions] = useState(() => {
         const init = {};
         (product.option_groups || []).forEach((group) => {
@@ -34,42 +26,19 @@ const ProductDetailHeroSection = ({ product }) => {
 
     // Reset selection state when the product changes
     useEffect(() => {
-        const groupInit = {};
         const subOptInit = {};
         if (product && product.option_groups) {
             product.option_groups.forEach((group) => {
-                groupInit[group.id] = false;
                 (group.options || []).forEach((subOpt) => {
                     subOptInit[subOpt.id] = false;
                 });
             });
         }
-        setSelectedGroups(groupInit);
         setSelectedSubOptions(subOptInit);
     }, [product]);
 
     const [added, setAdded] = useState(false);
     const [isFavorite, setIsFavorite] = useState(false);
-
-    const handleGroupToggle = (groupId) => {
-        setSelectedGroups((prev) => {
-            const nextVal = !prev[groupId];
-            // If group is unchecked, clear its sub-options
-            if (!nextVal) {
-                const group = (product.option_groups || []).find(g => g.id === groupId);
-                if (group) {
-                    setSelectedSubOptions((subPrev) => {
-                        const updated = { ...subPrev };
-                        (group.options || []).forEach((subOpt) => {
-                            updated[subOpt.id] = false;
-                        });
-                        return updated;
-                    });
-                }
-            }
-            return { ...prev, [groupId]: nextVal };
-        });
-    };
 
     const handleSubOptionToggle = (groupId, subOptionId) => {
         const group = (product.option_groups || []).find(g => g.id === groupId);
@@ -135,13 +104,11 @@ const ProductDetailHeroSection = ({ product }) => {
     let extraPrice = 0;
     if (product.option_groups && Array.isArray(product.option_groups)) {
         product.option_groups.forEach((group) => {
-            if (selectedGroups[group.id]) {
-                (group.options || []).forEach((subOpt) => {
-                    if (selectedSubOptions[subOpt.id]) {
-                        extraPrice += parseFloat(subOpt.price_modifier || 0);
-                    }
-                });
-            }
+            (group.options || []).forEach((subOpt) => {
+                if (selectedSubOptions[subOpt.id]) {
+                    extraPrice += parseFloat(subOpt.price_modifier || 0);
+                }
+            });
         });
     }
     const displayedPrice = (basePrice + extraPrice).toFixed(2);
@@ -152,14 +119,12 @@ const ProductDetailHeroSection = ({ product }) => {
         let totalExtraPrice = 0;
         if (product.option_groups && Array.isArray(product.option_groups)) {
             product.option_groups.forEach((group) => {
-                if (selectedGroups[group.id]) {
-                    (group.options || []).forEach((subOpt) => {
-                        if (selectedSubOptions[subOpt.id]) {
-                            selectedLabels.push(`${group.name}: ${subOpt.name}`);
-                            totalExtraPrice += parseFloat(subOpt.price_modifier || 0);
-                        }
-                    });
-                }
+                (group.options || []).forEach((subOpt) => {
+                    if (selectedSubOptions[subOpt.id]) {
+                        selectedLabels.push(`${group.name}: ${subOpt.name}`);
+                        totalExtraPrice += parseFloat(subOpt.price_modifier || 0);
+                    }
+                });
             });
         }
 
@@ -267,41 +232,38 @@ const ProductDetailHeroSection = ({ product }) => {
                                                     <div key={group.id} className="mb-4">
                                                         {/* Group Header Checkbox */}
                                                         <div
-                                                            onClick={() => handleGroupToggle(group.id)}
-                                                            className="flex items-center justify-between w-[250px] md:w-[300px] xl:w-[400px] cursor-pointer group mb-2"
+                                                            className="flex items-center justify-between w-[250px] md:w-[300px] xl:w-[400px] mb-2"
                                                         >
-                                                            <span className="font-inter font-semibold text-black text-[13px] md:text-[15px] xl:text-[24px] leading-[130%] capitalize">
+                                                            <span className="font-inter font-semibold text-black text-[10px] md:text-[16px] xl:text-[22px] leading-[130%] capitalize">
                                                                 {group.name}
                                                             </span>
                                                         </div>
 
                                                         {/* Sub-options List */}
-                                                        {selectedGroups[group.id] && (
-                                                            <div className="pl-4 space-y-1.5 md:space-y-1 xl:space-y-1.5 mt-2">
-                                                                {(group.options || []).map((subOpt) => {
-                                                                    const priceMod = parseFloat(subOpt.price_modifier || 0);
-                                                                    const displayLabel = priceMod > 0
-                                                                        ? `${subOpt.name} (+${priceMod.toFixed(2)} ${product.currency || 'SEK'})`
-                                                                        : subOpt.name;
-                                                                    return (
+                                                        <div className="pl-4 space-y-1.5 md:space-y-1 xl:space-y-1.5 mt-2">
+                                                            {(group.options || []).map((subOpt) => {
+                                                                const priceMod = parseFloat(subOpt.price_modifier || 0);
+                                                                const displayLabel = priceMod > 0
+                                                                    ? `${subOpt.name} (+${priceMod.toFixed(2)} ${product.currency || 'SEK'})`
+                                                                    : subOpt.name;
+                                                                return (
+                                                                    <div
+                                                                        key={subOpt.id}
+                                                                        onClick={() => handleSubOptionToggle(group.id, subOpt.id)}
+                                                                        className="flex items-center justify-between w-[220px] md:w-[260px] xl:w-[350px] cursor-pointer group"
+                                                                    >
+                                                                        <span className="font-inter font-normal text-[#6D6D6D] text-[12px] md:text-[14px] xl:text-[20px] leading-[150%] capitalize">
+                                                                            {displayLabel}
+                                                                        </span>
                                                                         <div
-                                                                            key={subOpt.id}
-                                                                            onClick={() => handleSubOptionToggle(group.id, subOpt.id)}
-                                                                            className="flex items-center justify-between w-[220px] md:w-[260px] xl:w-[350px] cursor-pointer group"
+                                                                            className="w-[12px] h-[12px] md:w-[14px] md:h-[14px] xl:w-[16px] xl:h-[16px] bg-[#D9D9D9] flex items-center justify-center transition-colors shrink-0"
                                                                         >
-                                                                            <span className="font-inter font-normal text-[#6D6D6D] text-[12px] md:text-[14px] xl:text-[20px] leading-[150%] capitalize">
-                                                                                {displayLabel}
-                                                                            </span>
-                                                                            <div
-                                                                                className="w-[12px] h-[12px] md:w-[14px] md:h-[14px] xl:w-[16px] xl:h-[16px] bg-[#D9D9D9] flex items-center justify-center transition-colors shrink-0"
-                                                                            >
-                                                                                {selectedSubOptions[subOpt.id] && <span className="text-[16px] md:text-[20px] xl:text-[24px] text-[#00DD00] font-black pointer-events-none mb-1 ml-1">✓</span>}
-                                                                            </div>
+                                                                            {selectedSubOptions[subOpt.id] && <span className="text-[16px] md:text-[20px] xl:text-[24px] text-[#00DD00] font-black pointer-events-none mb-1 ml-1">✓</span>}
                                                                         </div>
-                                                                    );
-                                                                })}
-                                                            </div>
-                                                        )}
+                                                                    </div>
+                                                                );
+                                                            })}
+                                                        </div>
                                                     </div>
                                                 ))}
                                             </div>
