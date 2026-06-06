@@ -271,13 +271,8 @@ const ProductDetailHeroSection = ({ product }) => {
                                                             className="flex items-center justify-between w-[250px] md:w-[300px] xl:w-[400px] cursor-pointer group mb-2"
                                                         >
                                                             <span className="font-inter font-semibold text-black text-[13px] md:text-[15px] xl:text-[24px] leading-[130%] capitalize">
-                                                                {group.name} {group.required && <span className="text-red-500">*</span>}
+                                                                {group.name}
                                                             </span>
-                                                            <div
-                                                                className="w-[14px] h-[14px] md:w-[16px] md:h-[16px] xl:w-[20px] xl:h-[20px] bg-[#D9D9D9] flex items-center justify-center transition-colors shrink-0"
-                                                            >
-                                                                {selectedGroups[group.id] && <span className="text-[16px] md:text-[20px] xl:text-[24px] text-[#00DD00] font-black pointer-events-none mb-1 ml-1">✓</span>}
-                                                            </div>
                                                         </div>
 
                                                         {/* Sub-options List */}

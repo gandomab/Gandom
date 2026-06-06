@@ -27,11 +27,11 @@ const CartItem = ({ productdish }) => {
 
             <div className="flex items-center gap-2 md:gap-4 xl:gap-8 shrink-0">
                 <div className="flex items-center border rounded-md md:rounded-lg border-[#000000] px-1 md:px-3 py-0.5 md:py-1">
-                    <button onClick={() => updateQuantity(productdish.id, -1)} className="px-1.5 md:px-2 text-[12px] md:text-sm xl:text-lg">-</button>
+                    <button onClick={() => updateQuantity(productdish.cartItemId, -1)} className="px-1.5 md:px-2 text-[12px] md:text-sm xl:text-lg">-</button>
                     <span className="px-2 md:px-3 font-bold text-[10px] md:text-sm xl:text-lg">{productdish.quantity}</span>
-                    <button onClick={() => updateQuantity(productdish.id, 1)} className="px-1.5 md:px-2 text-[12px] md:text-sm xl:text-lg">+</button>
+                    <button onClick={() => updateQuantity(productdish.cartItemId, 1)} className="px-1.5 md:px-2 text-[12px] md:text-sm xl:text-lg">+</button>
                 </div>
-                <button onClick={() => removeFromCart(productdish.id)} className="text-[#000000] hover:text-red-500">
+                <button onClick={() => removeFromCart(productdish.cartItemId)} className="text-[#000000] hover:text-red-500">
                     <FaRegTrashAlt className="w-3.5 h-3.5 md:w-4 md:h-4 xl:w-6 xl:h-6" />
                 </button>
             </div>
