@@ -63,7 +63,7 @@ const ProductDetailPage = () => {
                 <ProductDetailHeroSection product={product} />
             </div>
             <div className="max-w-[1440px] mx-auto">
-                <ProductDetails productdish={product} />
+                <ProductDetails product={product} />
                 {product?.id === 403 && (
                     <CustomFermentedVegetablesDetails productdish={product} />
                 )}

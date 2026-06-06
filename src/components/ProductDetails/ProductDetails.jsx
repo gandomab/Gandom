@@ -1,10 +1,10 @@
-import { productdetailsdata } from "../../data/productdetailsdata";
+//import { productdetailsdata } from "../../data/productdetailsdata";
 // this is product details of each product on product details page
-const ProductDetails = ({ productdish }) => {
-    if (!productdish) return null;
+const ProductDetails = ({ product }) => {
+    if (!product) return null;
 
     // Find details for the specific product
-    const details = productdetailsdata.find((item) => item.id === productdish.id);
+    const details = product;
 
     // If no details exist, render nothing (or you can add a fallback message here)
     if (!details) return null;
@@ -14,7 +14,7 @@ const ProductDetails = ({ productdish }) => {
             <div className="space-y-6">
                 {/* Section Title with Underline */}
                 <div className="border-b-4 border-black inline-block pb-1">
-                    <h3 className=" font-inter text-[14px] md:text-[20px] xl:text-[24px] font-bold leading-[130%]">{details.title}</h3>
+                    <h3 className=" font-inter text-[14px] md:text-[20px] xl:text-[24px] font-bold leading-[130%]">Product Details</h3>
                 </div>
 
                 {/* Product Description */}
@@ -47,12 +47,12 @@ const ProductDetails = ({ productdish }) => {
                 )}
 
                 {/* Nutritional Table Image */}
-                {details.nutritionImage && (
+                {product.nutrition_image && (
                     <div className="pt-2 md:pt-4 space-y-6">
                         <h3 className="font-inter text-[14px] md:text-[20px] xl:text-[32px] font-bold leading-[130%]">Nutritional Information</h3>
                         <div className="pt-1 w-full max-w-[1440px] mx-auto">
                             <img
-                                src={details.nutritionImage}
+                                src={product.nutrition_image}
                                 alt="Nutritional Information"
                                 className="w-full h-auto object-contain"
                             />
