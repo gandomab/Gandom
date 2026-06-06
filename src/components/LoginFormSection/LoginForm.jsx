@@ -46,7 +46,7 @@ const LoginForm = () => {
         }
 
         login("existing@user.com");
-        navigate('/pay'); // Skips address because they are "existing"
+        navigate('/address');
         window.scrollTo(0, 0);
     };
 
