@@ -59,7 +59,7 @@ const OrderSummary = () => {
                     <div className="flex flex-col gap-3">
                         <button
                             className="bg-[#E6B220] hover:opacity-90 transition text-[#F2EDE0] px-8 py-2 rounded-full font-inter font-semibold text-[10px] leading-[130%]"
-                            onClick={() => console.log("Proceeding with cart:", cart)}
+                            onClick={handleCheckout}
                         >
                             Checkout
                         </button>

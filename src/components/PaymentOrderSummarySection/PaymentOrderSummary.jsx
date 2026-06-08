@@ -17,7 +17,7 @@ const PaymentOrderSummary = () => {
             <div className="space-y-4 mb-6">
                 {cart.map((item, index) => (
                     <div key={index} className="flex justify-between items-center font-inter font-semibold text-[11px] md:text-[12px] lg:text-[14px] xl:text-[20px] leading-[130%] text-[#000000]">
-                        <span className="w-1/2 truncate pr-2">{item.title}</span>
+                        <span className="w-1/2 truncate pr-2">{item.name}</span>
                         <span className="w-1/4 text-center">x {item.quantity}</span>
                         <span className="w-1/4 text-right text-[#426B1F]">{(item.price * item.quantity).toFixed(2)} SEK</span>
                     </div>
