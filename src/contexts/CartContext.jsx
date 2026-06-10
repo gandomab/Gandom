@@ -46,6 +46,19 @@ export const CartProvider = ({ children }) => {
         return savedSchedule ? JSON.parse(savedSchedule) : null;
     });
 
+    const [createdOrderId, setCreatedOrderIdState] = useState(() => {
+        return localStorage.getItem('createdOrderId') || null;
+    });
+
+    const setCreatedOrderId = (id) => {
+        setCreatedOrderIdState(id);
+        if (id) {
+            localStorage.setItem('createdOrderId', id);
+        } else {
+            localStorage.removeItem('createdOrderId');
+        }
+    };
+
     useEffect(() => {
         localStorage.setItem('localCart', JSON.stringify(cart));
     }, [cart]);
@@ -132,11 +145,12 @@ export const CartProvider = ({ children }) => {
     // this function is used to clear the cart
     const clearCart = () => {
         setCart([]);
+        setCreatedOrderId(null);
     };
 
 
     return (
-        <CartContext.Provider value={{ cart, addToCart, updateQuantity, removeFromCart, clearCart, totalCost, deliveryFee, scheduledDelivery, setScheduledDelivery }}>
+        <CartContext.Provider value={{ cart, addToCart, updateQuantity, removeFromCart, clearCart, totalCost, deliveryFee, scheduledDelivery, setScheduledDelivery, createdOrderId, setCreatedOrderId }}>
             {children}
         </CartContext.Provider>
     );

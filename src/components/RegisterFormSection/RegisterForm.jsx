@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useUser } from '../../contexts/UserContextSimulate';
+import { useUser } from '../../contexts/UserContext';
 
 const RegisterForm = () => {
     const navigate = useNavigate();
@@ -24,6 +24,7 @@ const RegisterForm = () => {
     });
 
     const [errors, setErrors] = useState({});
+    const [isLoading, setIsLoading] = useState(false);
     const nameRef = useRef(null);
     const surnameRef = useRef(null);
     const emailRef = useRef(null);
@@ -46,7 +47,7 @@ const RegisterForm = () => {
         }
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const newErrors = {};
 
@@ -59,8 +60,14 @@ const RegisterForm = () => {
             newErrors.email = "Email format is invalid";
         }
 
-        if (formData.password.length < 6) {
-            newErrors.password = "Password must be at least 6 characters long.";
+        if (!formData.password) {
+            newErrors.password = "Password is required";
+        } else if (formData.password.length < 8) {
+            newErrors.password = "This password is too short. It must contain at least 8 characters.";
+        } else if (/^\d+$/.test(formData.password)) {
+            newErrors.password = "This password is entirely numeric.";
+        } else if (["password", "12345678", "qwertyuiop", "123456789", "gandom123"].includes(formData.password.toLowerCase())) {
+            newErrors.password = "This password is too common.";
         }
 
         if (formData.password !== formData.confirmPassword) {
@@ -118,9 +125,55 @@ const RegisterForm = () => {
             return;
         }
 
-        register(formData);
-        navigate('/login');
-        window.scrollTo(0, 0);
+        const payload = {
+            email: formData.email,
+            password: formData.password,
+            confirm_password: formData.confirmPassword,
+            first_name: formData.name,
+            last_name: formData.surname,
+            phone_prefix: formData.prefix,
+            phone: formData.phone,
+            receive_promotions: formData.receivePromotions === 'yes',
+            address: {
+                house_name: formData.addressLine2 || "",
+                street_address: formData.addressLine1 || "",
+                town: formData.town || "",
+                postal_code: formData.postalCode || "",
+                province: formData.province ? (formData.province.charAt(0).toUpperCase() + formData.province.slice(1)) : "Stockholm",
+                additional_notes: formData.specialNotes || ""
+            }
+        };
+
+        setIsLoading(true);
+        try {
+            await register(payload);
+            navigate('/login');
+            window.scrollTo(0, 0);
+        } catch (err) {
+            console.error("Registration failed:", err);
+            if (err.response?.data) {
+                const data = err.response.data;
+                const fieldErrors = {};
+                if (data.email) fieldErrors.email = Array.isArray(data.email) ? data.email[0] : data.email;
+                if (data.password) fieldErrors.password = Array.isArray(data.password) ? data.password[0] : data.password;
+                if (data.confirm_password) fieldErrors.confirmPassword = Array.isArray(data.confirm_password) ? data.confirm_password[0] : data.confirm_password;
+                if (data.first_name) fieldErrors.name = Array.isArray(data.first_name) ? data.first_name[0] : data.first_name;
+                if (data.last_name) fieldErrors.surname = Array.isArray(data.last_name) ? data.last_name[0] : data.last_name;
+                if (data.phone) fieldErrors.phone = Array.isArray(data.phone) ? data.phone[0] : data.phone;
+                if (data.phone_prefix) fieldErrors.prefix = Array.isArray(data.phone_prefix) ? data.phone_prefix[0] : data.phone_prefix;
+                
+                if (data.non_field_errors) {
+                    fieldErrors.submit = Array.isArray(data.non_field_errors) ? data.non_field_errors[0] : data.non_field_errors;
+                } else if (Object.keys(fieldErrors).length === 0) {
+                    fieldErrors.submit = data.detail || data.message || "Registration failed. Please check details and try again.";
+                }
+                setErrors(fieldErrors);
+            } else {
+                setErrors({ submit: "Registration failed. Please check details and try again." });
+            }
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     return (
@@ -256,9 +309,14 @@ const RegisterForm = () => {
                 </div>
 
                 {/* Submit */}
-                <div className="flex justify-end pt-4">
-                    <button type="submit" className="bg-[#E6B220] text-[#F2EDE0] font-inter px-12 py-3 md:py-4 rounded-[8px] font-semibold text-[10px] md:text-[14px] xl:text-[20px] leading-[130%] hover:opacity-90 transition">
-                        Continue
+                <div className="flex flex-col items-end pt-4 gap-4">
+                    {errors.submit && <p className="text-[#CC0000] font-inter text-[12px] md:text-[14px] xl:text-[18px]">{errors.submit}</p>}
+                    <button
+                        type="submit"
+                        disabled={isLoading}
+                        className={`bg-[#E6B220] text-[#F2EDE0] font-inter px-12 py-3 md:py-4 rounded-[8px] font-semibold text-[10px] md:text-[14px] xl:text-[20px] leading-[130%] hover:opacity-90 transition ${isLoading ? 'opacity-70 cursor-not-allowed' : ''}`}
+                    >
+                        {isLoading ? "Submitting..." : "Continue"}
                     </button>
                 </div>
             </form>

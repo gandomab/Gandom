@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PiEyeLight, PiEyeSlash } from 'react-icons/pi';
-import { useUser } from '../../contexts/UserContextSimulate';// remove/update this when connected to backend
+import { useUser } from '../../contexts/UserContext';
 
 const LoginForm = () => {
     const navigate = useNavigate();
@@ -9,15 +9,16 @@ const LoginForm = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState({});
+    const [isLoading, setIsLoading] = useState(false);
 
     const emailRef = useRef(null);
     const passwordRef = useRef(null);
 
-    // User context to simulate the login, register and guest checkout
+    // User context to manage login, register and guest checkout
     const { login, setIsGuest } = useUser();
 
     // 1. Existing User: Sign In
-    const handleSignIn = (e) => {
+    const handleSignIn = async (e) => {
         e.preventDefault();
 
         const newErrors = {};
@@ -45,9 +46,31 @@ const LoginForm = () => {
             return;
         }
 
-        login("existing@user.com");
-        navigate('/address');
-        window.scrollTo(0, 0);
+        setIsLoading(true);
+        try {
+            await login(email, password);
+            navigate('/address');
+            window.scrollTo(0, 0);
+        } catch (err) {
+            console.error("Login error:", err);
+            if (err.response?.data) {
+                const data = err.response.data;
+                const fieldErrors = {};
+                if (data.email) fieldErrors.email = Array.isArray(data.email) ? data.email[0] : data.email;
+                if (data.password) fieldErrors.password = Array.isArray(data.password) ? data.password[0] : data.password;
+                
+                if (data.non_field_errors) {
+                    fieldErrors.submit = Array.isArray(data.non_field_errors) ? data.non_field_errors[0] : data.non_field_errors;
+                } else if (Object.keys(fieldErrors).length === 0) {
+                    fieldErrors.submit = data.detail || data.message || "Invalid email or password.";
+                }
+                setErrors(fieldErrors);
+            } else {
+                setErrors({ submit: "Invalid email or password." });
+            }
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     // 2. New User: Register
@@ -117,11 +140,14 @@ const LoginForm = () => {
                             Forgot your password?
                         </p>
 
+                        {errors.submit && <p className="text-[#CC0000] font-inter text-[12px] md:text-[14px] xl:text-[18px] mt-2">{errors.submit}</p>}
+
                         <button
                             type="submit"
-                            className="bg-[#E6B220] hover:opacity-90 transition text-[#F2EDE0] px-10 py-3 rounded-xl font-inter font-bold text-[10px] md:text-[15px] xl:text-[22px] leading-[150%]"
+                            disabled={isLoading}
+                            className={`bg-[#E6B220] hover:opacity-90 transition text-[#F2EDE0] px-10 py-3 rounded-xl font-inter font-bold text-[10px] md:text-[15px] xl:text-[22px] leading-[150%] ${isLoading ? 'opacity-70 cursor-not-allowed' : ''}`}
                         >
-                            Sign in
+                            {isLoading ? "Signing in..." : "Sign in"}
                         </button>
                     </form>
                 </div>
