@@ -35,10 +35,12 @@ const ProductDetailHeroSection = ({ product }) => {
             });
         }
         setSelectedSubOptions(subOptInit);
+        setValidationError("");
     }, [product]);
 
     const [added, setAdded] = useState(false);
     const [isFavorite, setIsFavorite] = useState(false);
+    const [validationError, setValidationError] = useState("");
 
     const handleSubOptionToggle = (groupId, subOptionId) => {
         const group = (product.option_groups || []).find(g => g.id === groupId);
@@ -58,6 +60,7 @@ const ProductDetailHeroSection = ({ product }) => {
                 (group.options || []).forEach((subOpt) => {
                     updated[subOpt.id] = (subOpt.id === subOptionId);
                 });
+                setValidationError(""); // Clear error since selection has been made
                 return updated;
             } else if (maxSelect > 1) {
                 // Count current checked sub-options in this group
@@ -71,6 +74,7 @@ const ProductDetailHeroSection = ({ product }) => {
                 }
             }
 
+            setValidationError(""); // Clear error since selection has been made
             return { ...prev, [subOptionId]: true };
         });
     };
@@ -115,13 +119,28 @@ const ProductDetailHeroSection = ({ product }) => {
 
     // this function is for adding the product to the cart
     const handleAddToCart = () => {
+        if (product.option_groups && Array.isArray(product.option_groups)) {
+            for (const group of product.option_groups) {
+                if (group.required) {
+                    const groupOptionIds = (group.options || []).map(o => o.id);
+                    const hasSelection = groupOptionIds.some(id => selectedSubOptions[id]);
+                    if (!hasSelection) {
+                        setValidationError(`Please select an option`);
+                        return; // Block addition to cart
+                    }
+                }
+            }
+        }
+
         const selectedLabels = [];
+        const selectedOptionIds = [];
         let totalExtraPrice = 0;
         if (product.option_groups && Array.isArray(product.option_groups)) {
             product.option_groups.forEach((group) => {
                 (group.options || []).forEach((subOpt) => {
                     if (selectedSubOptions[subOpt.id]) {
                         selectedLabels.push(`${group.name}: ${subOpt.name}`);
+                        selectedOptionIds.push(subOpt.id);
                         totalExtraPrice += parseFloat(subOpt.price_modifier || 0);
                     }
                 });
@@ -133,7 +152,8 @@ const ProductDetailHeroSection = ({ product }) => {
         const cartItem = {
             ...product,
             price: finalPrice,
-            selectedCustomizations: selectedLabels
+            selectedCustomizations: selectedLabels,
+            options: selectedOptionIds
         };
         addToCart(cartItem);
     };
@@ -278,6 +298,11 @@ const ProductDetailHeroSection = ({ product }) => {
                         {/* Mobile Buttons */}
                         {product?.id !== 403 && (
                             <div className="flex md:hidden flex-col gap-3">
+                                {validationError && (
+                                    <p className="text-[#CC0000] font-inter text-[10px] text-center mb-1">
+                                        {validationError}
+                                    </p>
+                                )}
                                 <button onClick={handleAddToCart} className="bg-[#E6B220] text-white font-inter font-bold text-[10px] leading-[130%] w-[74px] h-[33px] rounded-[23px]">
                                     Add to cart
                                 </button>
@@ -339,18 +364,25 @@ const ProductDetailHeroSection = ({ product }) => {
 
                     {/* Buttons */}
                     {product.id !== 403 && (
-                        <div className="hidden md:flex mt-2 md:mt-1 xl:mt-2 gap-6">
-                            <button onClick={handleAddToCart} className="bg-[#E6B220] text-white font-inter font-bold text-[10px] md:text-[14px] xl:text-[28px] leading-[130%] 
-                                md:px-4 md:py-2 xl:px-8 xl:py-3 w-[74px] h-[33px] md:w-[123px] md:h-[38px]  xl:w-[259px] xl:h-[67px] rounded-[23px] md:rounded-[10px] xl:rounded-[20px]">
-                                Add to cart
-                            </button>
-                            <button
-                                onClick={() => navigate("/productsPage")}
-                                className="text-[#E6B220] border border-gray-300 font-inter font-bold text-[9px] md:text-[13px] xl:text-[28px] leading-[130%]
-                                md:px-4 md:py-2 xl:px-8 xl:py-3 w-[74px] h-[33px] md:w-[123px] md:h-[38px]  xl:w-[259px] xl:h-[67px] rounded-[23px] md:rounded-[13px] xl:rounded-[20px]"
-                            >
-                                Back to menu
-                            </button>
+                        <div className="hidden md:flex flex-col mt-2 md:mt-1 xl:mt-2 gap-2">
+                            {validationError && (
+                                <p className="text-[#CC0000] font-inter text-[10px] md:text-[14px] xl:text-[18px]">
+                                    {validationError}
+                                </p>
+                            )}
+                            <div className="flex gap-6">
+                                <button onClick={handleAddToCart} className="bg-[#E6B220] text-white font-inter font-bold text-[10px] md:text-[14px] xl:text-[28px] leading-[130%] 
+                                    md:px-4 md:py-2 xl:px-8 xl:py-3 w-[74px] h-[33px] md:w-[123px] md:h-[38px]  xl:w-[259px] xl:h-[67px] rounded-[23px] md:rounded-[10px] xl:rounded-[20px]">
+                                    Add to cart
+                                </button>
+                                <button
+                                    onClick={() => navigate("/productsPage")}
+                                    className="text-[#E6B220] border border-gray-300 font-inter font-bold text-[9px] md:text-[13px] xl:text-[28px] leading-[130%]
+                                    md:px-4 md:py-2 xl:px-8 xl:py-3 w-[74px] h-[33px] md:w-[123px] md:h-[38px]  xl:w-[259px] xl:h-[67px] rounded-[23px] md:rounded-[13px] xl:rounded-[20px]"
+                                >
+                                    Back to menu
+                                </button>
+                            </div>
                         </div>
                     )}
                 </div>

@@ -27,6 +27,7 @@ const AddressPage = () => {
     const [loadingAddress, setLoadingAddress] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [saveAddressDefault, setSaveAddressDefault] = useState(false);
+    const [initialAddress, setInitialAddress] = useState(null);
 
     const nameRef = useRef(null);
     const surnameRef = useRef(null);
@@ -79,6 +80,7 @@ const AddressPage = () => {
                 try {
                     const savedAddress = await addressService.getSavedAddress();
                     if (savedAddress && Object.keys(savedAddress).length > 0) {
+                        setInitialAddress(savedAddress);
                         setFormData(prev => ({
                             ...prev,
                             addressLine1: savedAddress.street_address || "",
@@ -124,7 +126,15 @@ const AddressPage = () => {
             !formData.postalCode.trim() && 
             !formData.town.trim();
 
-        const shouldValidateAddress = isGuest || !addressIsEmpty;
+        const hasValidSavedAddress = initialAddress &&
+            initialAddress.street_address &&
+            initialAddress.street_address.trim() &&
+            initialAddress.postal_code &&
+            initialAddress.postal_code.trim() &&
+            initialAddress.town &&
+            initialAddress.town.trim();
+
+        const shouldValidateAddress = isGuest || !hasValidSavedAddress || !addressIsEmpty;
 
         if (!formData.prefix.trim()) newErrors.prefix = "Prefix is required";
         if (!formData.phone.trim()) newErrors.phone = "Phone is required";
@@ -207,8 +217,21 @@ const AddressPage = () => {
                 };
                 orderPayload.address = addressObj;
             } else {
-                // Logged-in checkout uses saved address by default, but can send a custom address
-                if (!addressIsEmpty) {
+                // Logged-in checkout: omit customer, and omit address if it has not been modified
+                let isAddressModified = false;
+                if (!initialAddress) {
+                    isAddressModified = !addressIsEmpty;
+                } else {
+                    isAddressModified =
+                        (addressObj.street_address !== (initialAddress.street_address || "")) ||
+                        (addressObj.house_name !== (initialAddress.house_name || "")) ||
+                        (addressObj.town !== (initialAddress.town || "")) ||
+                        (addressObj.province.toLowerCase() !== (initialAddress.province || "stockholm").toLowerCase()) ||
+                        (addressObj.postal_code !== (initialAddress.postal_code || "")) ||
+                        (addressObj.additional_notes !== (initialAddress.additional_notes || ""));
+                }
+
+                if (isAddressModified) {
                     orderPayload.address = addressObj;
                 }
             }
@@ -226,55 +249,48 @@ const AddressPage = () => {
         } catch (err) {
             console.error("Order creation failed:", err);
             if (err.response?.data) {
+                console.error("Order creation validation errors:", err.response.data);
                 const data = err.response.data;
                 const fieldErrors = {};
 
+                const parseError = (errValue) => {
+                    if (!errValue) return "";
+                    if (Array.isArray(errValue)) {
+                        return parseError(errValue[0]);
+                    }
+                    if (typeof errValue === 'object') {
+                        const keys = Object.keys(errValue);
+                        if (keys.length > 0) {
+                            return `${keys[0]}: ${parseError(errValue[keys[0]])}`;
+                        }
+                        return JSON.stringify(errValue);
+                    }
+                    return String(errValue);
+                };
+
                 // 1. Map customer field errors
                 if (data.customer) {
-                    if (typeof data.customer === 'object') {
-                        const custErrs = [];
-                        if (data.customer.first_name) custErrs.push(`First name: ${data.customer.first_name}`);
-                        if (data.customer.last_name) custErrs.push(`Last name: ${data.customer.last_name}`);
-                        if (data.customer.email) custErrs.push(`Email: ${data.customer.email}`);
-                        if (data.customer.phone) custErrs.push(`Phone: ${data.customer.phone}`);
-                        fieldErrors.submit = custErrs.join(", ");
-                    } else {
-                        fieldErrors.submit = data.customer;
-                    }
+                    fieldErrors.submit = parseError(data.customer);
                 }
 
                 // 2. Map address field errors
                 if (data.address) {
-                    if (typeof data.address === 'object') {
-                        const addrErrs = [];
-                        if (data.address.street_address) addrErrs.push(`Street address: ${data.address.street_address}`);
-                        if (data.address.postal_code) addrErrs.push(`Postal code: ${data.address.postal_code}`);
-                        if (data.address.town) addrErrs.push(`Town: ${data.address.town}`);
-                        fieldErrors.addressLine1 = addrErrs.join(", ");
-                    } else {
-                        fieldErrors.addressLine1 = data.address;
-                    }
+                    fieldErrors.addressLine1 = parseError(data.address);
                 }
 
                 // 3. Map delivery errors
                 if (data.delivery) {
-                    if (typeof data.delivery === 'object') {
-                        fieldErrors.submit = data.delivery.slot_id || data.delivery.date || JSON.stringify(data.delivery);
-                    } else {
-                        fieldErrors.submit = Array.isArray(data.delivery) ? data.delivery[0] : data.delivery;
-                    }
+                    fieldErrors.submit = parseError(data.delivery);
                 }
 
                 // 4. Map item stock errors
                 if (data.items) {
-                    fieldErrors.submit = Array.isArray(data.items) 
-                        ? (typeof data.items[0] === 'object' ? JSON.stringify(data.items[0]) : data.items[0])
-                        : JSON.stringify(data.items);
+                    fieldErrors.submit = parseError(data.items);
                 }
 
                 // 5. Non-field/general validation errors
                 if (data.non_field_errors) {
-                    fieldErrors.submit = Array.isArray(data.non_field_errors) ? data.non_field_errors[0] : data.non_field_errors;
+                    fieldErrors.submit = parseError(data.non_field_errors);
                 }
 
                 // Fallback

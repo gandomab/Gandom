@@ -12,10 +12,18 @@ const CalendarSection = () => {
     minDate.setDate(minDate.getDate() + 3);
 
     const [selectedDate, setSelectedDate] = useState(() => {
-        return scheduledDelivery?.date ? new Date(scheduledDelivery.date) : minDate;
+        if (scheduledDelivery?.date) {
+            const cleanDateStr = scheduledDelivery.date.split('T')[0];
+            const parts = cleanDateStr.split('-');
+            if (parts.length === 3) {
+                return new Date(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10));
+            }
+        }
+        return minDate;
     });
     const [availableSlots, setAvailableSlots] = useState([]);
     const [selectedSlotId, setSelectedSlotId] = useState(scheduledDelivery?.slotId || null);
+    const [fetchedDate, setFetchedDate] = useState(null);
     const [loading, setLoading] = useState(false);
     const [reasonMessage, setReasonMessage] = useState(null);
     const [errorMessage, setErrorMessage] = useState(null);
@@ -24,17 +32,34 @@ const CalendarSection = () => {
         setSelectedDate(date);
         setSelectedSlotId(null);
         setScheduledDelivery(null);
+        setFetchedDate(null);
         setReasonMessage(null);
         setErrorMessage(null);
     };
 
     const handleSlotSelection = (slot) => {
+        const year = selectedDate.getFullYear();
+        const month = String(selectedDate.getMonth() + 1).padStart(2, '0');
+        const day = String(selectedDate.getDate()).padStart(2, '0');
+        const localDateStr = `${year}-${month}-${day}`;
+
+        // Use the date returned by the API (fetchedDate) if available, otherwise fall back to local calendar date
+        const deliveryDate = fetchedDate || localDateStr;
+
+        let dateForFormatting = selectedDate;
+        if (fetchedDate) {
+            const parts = fetchedDate.split('-');
+            if (parts.length === 3) {
+                dateForFormatting = new Date(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10));
+            }
+        }
+
         setSelectedSlotId(slot.id);
         setScheduledDelivery({
-            date: selectedDate.toISOString(),
+            date: deliveryDate,
             slotId: slot.id,
             slotLabel: slot.label,
-            formattedDate: selectedDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric' })
+            formattedDate: dateForFormatting.toLocaleDateString('en-US', { month: 'long', day: 'numeric' })
         });
     };
 
@@ -60,9 +85,11 @@ const CalendarSection = () => {
                 if (data.is_available === false) {
                     setReasonMessage(data.reason || "Delivery is not available for this date.");
                     setAvailableSlots([]);
+                    setFetchedDate(null);
                 } else {
                     const activeSlots = (data.slots || []).filter(slot => slot.available === true);
                     setAvailableSlots(activeSlots);
+                    setFetchedDate(data.date);
                 }
             } catch (err) {
                 console.error("Error fetching delivery slots:", err);

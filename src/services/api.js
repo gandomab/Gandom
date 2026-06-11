@@ -11,12 +11,38 @@ const api = axios.create({
 api.interceptors.request.use(
     (config) => {
         const token = localStorage.getItem("accessToken");
-        if (token) {
+        const isPublicEndpoint = 
+            config.url && (
+                config.url.includes("/api/products/") || 
+                config.url.includes("/api/delivery/slots/") ||
+                config.url.includes("/api/accounts/login/") ||
+                config.url.includes("/api/accounts/register/")
+            );
+
+        if (token && !isPublicEndpoint) {
             config.headers['Authorization'] = `Bearer ${token}`;
         }
         return config;
     },
     (error) => {
+        return Promise.reject(error);
+    }
+);
+
+// Response interceptor to clear credentials on unauthorized/forbidden errors
+api.interceptors.response.use(
+    (response) => response,
+    (error) => {
+        if (error.response?.status === 401 || error.response?.status === 403) {
+            // Expired or invalid token detected - clear credentials
+            localStorage.removeItem('accessToken');
+            localStorage.removeItem('refreshToken');
+            localStorage.removeItem('userProfile');
+            localStorage.removeItem('isGuest');
+            
+            // Redirect to login page
+            window.location.href = '/login';
+        }
         return Promise.reject(error);
     }
 );
