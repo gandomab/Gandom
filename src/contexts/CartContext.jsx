@@ -134,7 +134,7 @@ export const CartProvider = ({ children }) => {
         if (cart.length === 0) {
             setDeliveryFee(0.00);
         } else {
-            setDeliveryFee(30.00);
+            setDeliveryFee(50.00);
         }
     }, [cart.length]);
 

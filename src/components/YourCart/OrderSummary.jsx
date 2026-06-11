@@ -25,24 +25,15 @@ const OrderSummary = () => {
                     <span>{totalCost.toFixed(2)}</span>
                 </div>
 
-                <div className="flex justify-between font-inter font-semibold text-[12px] md:text-[14px] xl:text-[20px] leading-[130%]">
-                    <span>Delivery</span>
-                    <span>{deliveryFee.toFixed(2)}</span>
-                </div>
-
-                {/* Optional Message */}
-                {/* {deliveryFee > 0 && (
-                    <p className="text-xs text-gray-500 italic">
-                        Add {remainingForFree.toFixed(2)} SEK more for FREE delivery!
-                    </p>
-                )} */}
-
                 <div className="pt-6 border-t border-gray-50">
                     <div className="flex justify-between items-center md:block">
                         <p className="font-inter font-semibold text-[14px] md:text-[16px] xl:text-[24px] leading-[130%]">Estimated Total</p>
-                        <p className="font-inter font-semibold text-[14px] md:text-[16px] xl:text-[24px] leading-[130%]">{(totalCost + deliveryFee).toFixed(2)} SEK</p>
+                        <p className="font-inter font-semibold text-[14px] md:text-[16px] xl:text-[24px] leading-[130%]">{totalCost.toFixed(2)} SEK</p>
                     </div>
                     <p className="font-inter font-medium text-[10px] md:text-[12px] xl:text-[16px] text-gray-500 leading-[130%] mt-1 md:mt-2">Tax Included</p>
+                    <p className="font-inter font-normal text-[9px] md:text-[11px] xl:text-[14px] text-gray-400 leading-[130%] mt-1 md:mt-2">
+                        Delivery charges will be calculated and added during checkout.
+                    </p>
                 </div>
             </div>
 
