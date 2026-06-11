@@ -240,6 +240,7 @@ const AddressPage = () => {
             
             const orderId = response.id;
             localStorage.setItem('createdOrderId', orderId);
+            localStorage.setItem('createdOrderDetails', JSON.stringify(response));
             if (setCreatedOrderId) {
                 setCreatedOrderId(orderId);
             }

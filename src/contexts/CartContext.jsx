@@ -39,7 +39,7 @@ export const CartProvider = ({ children }) => {
         });
     });
 
-    const [deliveryFee, setDeliveryFee] = useState(30.00);
+    const [deliveryFee, setDeliveryFee] = useState(50.00);
 
     const [scheduledDelivery, setScheduledDelivery] = useState(() => {
         const savedSchedule = localStorage.getItem('localSchedule');
@@ -84,7 +84,7 @@ export const CartProvider = ({ children }) => {
     const getCartItemId = (product) => {
         const isCustomizable = isProductCustomizable(product);
         const customizations = product.selectedCustomizations || [];
-        
+
         if (isCustomizable) {
             if (customizations.length > 0) {
                 const sortedCustomizations = [...customizations].sort().join('|');
@@ -142,6 +142,7 @@ export const CartProvider = ({ children }) => {
     const clearCart = () => {
         setCart([]);
         setCreatedOrderId(null);
+        localStorage.removeItem('createdOrderDetails');
     };
 
 
