@@ -143,6 +143,7 @@ export const CartProvider = ({ children }) => {
         setCart([]);
         setCreatedOrderId(null);
         localStorage.removeItem('createdOrderDetails');
+        localStorage.removeItem('createdOrderCheckoutToken');
     };
 
 

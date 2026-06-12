@@ -11,9 +11,9 @@ const api = axios.create({
 api.interceptors.request.use(
     (config) => {
         const token = localStorage.getItem("accessToken");
-        const isPublicEndpoint = 
+        const isPublicEndpoint =
             config.url && (
-                config.url.includes("/api/products/") || 
+                config.url.includes("/api/products/") ||
                 config.url.includes("/api/delivery/slots/") ||
                 config.url.includes("/api/accounts/login/") ||
                 config.url.includes("/api/accounts/register/")
@@ -39,7 +39,7 @@ api.interceptors.response.use(
             localStorage.removeItem('refreshToken');
             localStorage.removeItem('userProfile');
             localStorage.removeItem('isGuest');
-            
+
             // Redirect to login page
             window.location.href = '/login';
         }
@@ -97,6 +97,13 @@ export const addressService = {
 export const orderService = {
     createOrder: async (orderData) => {
         const response = await api.post("/api/orders/create/", orderData);
+        return response.data;
+    }
+};
+// Payment service api
+export const paymentService = {
+    createPayment: async (paymentData) => {
+        const response = await api.post("/api/payments/create/", paymentData);
         return response.data;
     }
 };
