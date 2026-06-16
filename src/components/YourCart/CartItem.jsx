@@ -2,7 +2,11 @@ import React from "react";
 import { useCart } from "../../contexts/CartContext";
 import { FaRegTrashAlt } from "react-icons/fa";
 const CartItem = ({ productdish }) => {
-    const { updateQuantity, removeFromCart } = useCart();
+    const { updateQuantity, removeFromCart, cart } = useCart();
+
+    const totalQuantityInCart = cart
+        ? cart.filter(item => item.id === productdish.id).reduce((sum, item) => sum + item.quantity, 0)
+        : 0;
 
     return (
         <div className="flex items-center justify-between bg-white p-2 md:p-4 w-full gap-2 md:gap-4">
@@ -22,6 +26,11 @@ const CartItem = ({ productdish }) => {
                             ))}
                         </div>
                     )}
+                    {productdish.stock_status === "few_left" && totalQuantityInCart >= productdish.stock_quantity && (
+                        <p className="text-[#CC0000] text-[8px] md:text-[10px] xl:text-[14px] font-semibold mt-1">
+                            Maximum stock reached
+                        </p>
+                    )}
                 </div>
             </div>
 
@@ -29,7 +38,12 @@ const CartItem = ({ productdish }) => {
                 <div className="flex items-center border rounded-md md:rounded-lg border-[#000000] px-1 md:px-3 py-0.5 md:py-1">
                     <button onClick={() => updateQuantity(productdish.cartItemId, -1)} className="px-1.5 md:px-2 text-[12px] md:text-sm xl:text-lg">-</button>
                     <span className="px-2 md:px-3 font-bold text-[10px] md:text-sm xl:text-lg">{productdish.quantity}</span>
-                    <button onClick={() => updateQuantity(productdish.cartItemId, 1)} className="px-1.5 md:px-2 text-[12px] md:text-sm xl:text-lg">+</button>
+                    <button 
+                        onClick={() => updateQuantity(productdish.cartItemId, 1)} 
+                        disabled={productdish.stock_status === "few_left" && totalQuantityInCart >= productdish.stock_quantity}
+                        className={`px-1.5 md:px-2 text-[12px] md:text-sm xl:text-lg ${productdish.stock_status === "few_left" && totalQuantityInCart >= productdish.stock_quantity ? "opacity-30 cursor-not-allowed" : ""}`}>
+                        +
+                    </button>
                 </div>
                 <button onClick={() => removeFromCart(productdish.cartItemId)} className="text-[#000000] hover:text-red-500">
                     <FaRegTrashAlt className="w-3.5 h-3.5 md:w-4 md:h-4 xl:w-6 xl:h-6" />

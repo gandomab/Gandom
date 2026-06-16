@@ -15,22 +15,25 @@ const ProductDetailPage = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        // If we already have the correct product from state, skip fetching
+        // Initialize state with product from transition state to prevent visual loading flicker
         if (location.state?.product && location.state.product.slug === productTitle) {
             setProduct(location.state.product);
             setLoading(false);
-            return;
+        } else {
+            setLoading(true);
         }
 
         const fetchProduct = async () => {
             try {
-                setLoading(true);
                 const data = await productService.getBySlug(productTitle);
                 setProduct(data);
                 setError(null);
             } catch (err) {
                 console.error("Failed to fetch product details:", err);
-                setError("Product not found");
+                // Only show full page error if we don't already have valid cached product data
+                if (!location.state?.product || location.state.product.slug !== productTitle) {
+                    setError("Product not found");
+                }
             } finally {
                 setLoading(false);
             }

@@ -103,6 +103,17 @@ export const CartProvider = ({ children }) => {
         const cartItemId = getCartItemId(product);
         const productWithCartId = { ...product, cartItemId };
         setCart((prev) => {
+            if (product.stock_status === "out_of_stock" || (product.stock_quantity !== undefined && product.stock_quantity <= 0)) {
+                return prev;
+            }
+            if (product.stock_status === "few_left") {
+                const totalQuantityInCart = prev
+                    .filter((item) => item.id === product.id)
+                    .reduce((sum, item) => sum + item.quantity, 0);
+                if (totalQuantityInCart + 1 > product.stock_quantity) {
+                    return prev;
+                }
+            }
             const existing = prev.find((item) => item.cartItemId === cartItemId);
             if (existing) {
                 return prev.map((item) =>
@@ -114,11 +125,23 @@ export const CartProvider = ({ children }) => {
     };
 
     const updateQuantity = (cartItemId, amount) => {
-        setCart((prev) =>
-            prev.map((item) =>
+        setCart((prev) => {
+            const targetItem = prev.find((item) => item.cartItemId === cartItemId);
+            if (!targetItem) return prev;
+            if (amount > 0) {
+                if (targetItem.stock_status === "few_left") {
+                    const totalQuantityInCart = prev
+                        .filter((item) => item.id === targetItem.id)
+                        .reduce((sum, item) => sum + item.quantity, 0);
+                    if (totalQuantityInCart + amount > targetItem.stock_quantity) {
+                        return prev;
+                    }
+                }
+            }
+            return prev.map((item) =>
                 item.cartItemId === cartItemId ? { ...item, quantity: Math.max(1, item.quantity + amount) } : item
-            )
-        );
+            );
+        });
     };
 
     // this function is used to remove a product from the cart
