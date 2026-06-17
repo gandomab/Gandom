@@ -49,7 +49,7 @@ const OrderSummary = () => {
                     </button>
                     <div className="flex flex-col gap-3">
                         <button
-                            className="bg-[#E6B220] hover:opacity-90 transition text-[#F2EDE0] px-8 py-2 rounded-full font-inter font-semibold text-[10px] leading-[130%]"
+                            className="w-[110px] bg-[#E6B220] hover:opacity-90 transition text-[#F2EDE0] py-2 border border-transparent rounded-full font-inter font-semibold text-[10px] leading-[130%]"
                             onClick={handleCheckout}
                         >
                             Checkout
@@ -57,7 +57,7 @@ const OrderSummary = () => {
 
                         <button
                             onClick={clearCart}
-                            className="px-8 py-2 border border-[#000000] rounded-full text-[#6D6D6D] font-inter font-normal text-[10px] leading-[130%] hover:bg-gray-50 transition-colors"
+                            className="w-[110px] py-2 border border-[#000000] rounded-full text-[#6D6D6D] font-inter font-normal text-[10px] leading-[130%] hover:bg-gray-50 transition-colors"
                         >
                             Cancel Order
                         </button>
