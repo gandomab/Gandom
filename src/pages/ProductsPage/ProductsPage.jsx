@@ -89,9 +89,9 @@ const ProductsPage = () => {
           id={category}
           className="mb-20 mt-6 lg:px-4 pt-1 scroll-mt-[160px]">
           {/* Section Header with Decorative Lines */}
-          <div className="flex items-center w-full mb-8 gap-4">
-            <div className="w-20 border-t-8 border-[#DEA401]"></div>
-            <h2 className="font-santa font-normal text-3xl md:text-4xl lg:text-5xl text-[#DEA401] text-center leading-tight mx-4 capitalize">{productdishes[0]?.category?.name || category}</h2>
+          <div className="flex items-center mb-8 gap-2 md:gap-4 -mx-4 w-[calc(100%+2rem)] md:mx-0 md:w-full">
+            <div className="w-12 md:w-20 border-t-8 border-[#DEA401]"></div>
+            <h2 className="font-santa font-normal text-3xl md:text-4xl lg:text-5xl text-[#DEA401] text-center leading-tight mx-2 md:mx-4 capitalize">{productdishes[0]?.category?.name || category}</h2>
             <div className="flex-grow border-t-8 border-[#DEA401]"></div>
           </div>
           {/* Product Grid */}
