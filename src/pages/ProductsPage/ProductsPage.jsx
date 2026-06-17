@@ -74,9 +74,9 @@ const ProductsPage = () => {
               key={cate}
               smooth
               to={`#${cate}`}
-              className="font-inter w-[77.33px] h-[28.74px] text-[11px] grid place-items-center text-center text-[#FAFAF5] font-medium p-4 py-2 rounded-full bg-[#DEA401]  hover:bg-transparent hover:border hover:border-[#DEA401] hover:text-[#DEA401] transition-colors whitespace-nowrap"
+              className="font-inter px-4 h-[28.74px] text-[11px] grid place-items-center text-center text-[#FAFAF5] font-medium rounded-full bg-[#DEA401]  hover:bg-transparent hover:border hover:border-[#DEA401] hover:text-[#DEA401] transition-colors whitespace-nowrap"
             >
-              {cate.charAt(0).toUpperCase() + cate.slice(1)}
+              {cate.replace(/-/g, " ").replace(/\b\w/g, l => l.toUpperCase())}
             </HashLink>
           ))}
         </div>
