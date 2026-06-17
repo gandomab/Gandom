@@ -29,7 +29,7 @@ const CustomFermentedVegetablesDetails = ({ productdish }) => {
             .filter(item => item.id === productdish.id)
             .reduce((sum, item) => sum + item.quantity, 0);
 
-        if (isFewLeft && cartQuantity + 1 > productdish.stock_quantity) {
+        if (productdish.stock_quantity !== undefined && productdish.stock_quantity !== null && cartQuantity + 1 > productdish.stock_quantity) {
             setValidationError(`Cannot add more items. Only ${productdish.stock_quantity} left in stock.`);
             return;
         }

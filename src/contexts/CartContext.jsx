@@ -103,10 +103,10 @@ export const CartProvider = ({ children }) => {
         const cartItemId = getCartItemId(product);
         const productWithCartId = { ...product, cartItemId };
         setCart((prev) => {
-            if (product.stock_status === "out_of_stock" || (product.stock_quantity !== undefined && product.stock_quantity <= 0)) {
+            if (product.stock_status === "out_of_stock" || (product.stock_quantity !== undefined && product.stock_quantity !== null && product.stock_quantity <= 0)) {
                 return prev;
             }
-            if (product.stock_status === "few_left") {
+            if (product.stock_quantity !== undefined && product.stock_quantity !== null) {
                 const totalQuantityInCart = prev
                     .filter((item) => item.id === product.id)
                     .reduce((sum, item) => sum + item.quantity, 0);
@@ -129,7 +129,7 @@ export const CartProvider = ({ children }) => {
             const targetItem = prev.find((item) => item.cartItemId === cartItemId);
             if (!targetItem) return prev;
             if (amount > 0) {
-                if (targetItem.stock_status === "few_left") {
+                if (targetItem.stock_quantity !== undefined && targetItem.stock_quantity !== null) {
                     const totalQuantityInCart = prev
                         .filter((item) => item.id === targetItem.id)
                         .reduce((sum, item) => sum + item.quantity, 0);

@@ -131,7 +131,7 @@ const ProductDetailHeroSection = ({ product }) => {
             .filter(item => item.id === product.id)
             .reduce((sum, item) => sum + item.quantity, 0);
 
-        if (isFewLeft && cartQuantity + 1 > product.stock_quantity) {
+        if (product.stock_quantity !== undefined && product.stock_quantity !== null && cartQuantity + 1 > product.stock_quantity) {
             setValidationError(`Cannot add more items. Only ${product.stock_quantity} left in stock.`);
             return;
         }
@@ -316,22 +316,22 @@ const ProductDetailHeroSection = ({ product }) => {
                         {product?.id !== 403 && (
                             <div className="flex md:hidden flex-col gap-3">
                                 {isOutOfStock && (
-                                    <p className="text-[#CC0000] font-bold font-inter text-[12px] text-center mb-1">
+                                    <p className="text-[#CC0000] font-bold font-inter text-[8px] text-center mb-1">
                                         Out of Stock
                                     </p>
                                 )}
                                 {isFewLeft && (
-                                    <p className="text-[#E6B220] font-semibold font-inter text-[11px] text-center mb-1">
+                                    <p className="text-[#E6B220] font-semibold font-inter text-[8px] text-center mb-1">
                                         Few left ({product.stock_quantity} remaining)
                                     </p>
                                 )}
                                 {validationError && (
-                                    <p className="text-[#CC0000] font-inter text-[10px] text-center mb-1">
+                                    <p className="text-[#CC0000] font-inter text-[8px] text-center mb-1">
                                         {validationError}
                                     </p>
                                 )}
-                                <button 
-                                    onClick={handleAddToCart} 
+                                <button
+                                    onClick={handleAddToCart}
                                     disabled={isOutOfStock}
                                     className={`font-inter font-bold text-[10px] leading-[130%] w-[74px] h-[33px] rounded-[23px] ${isOutOfStock ? "bg-gray-400 text-white cursor-not-allowed opacity-50" : "bg-[#E6B220] text-white"}`}>
                                     Add to cart
@@ -396,23 +396,23 @@ const ProductDetailHeroSection = ({ product }) => {
                     {product.id !== 403 && (
                         <div className="hidden md:flex flex-col mt-2 md:mt-1 xl:mt-2 gap-2">
                             {isOutOfStock && (
-                                <p className="text-[#CC0000] font-bold font-inter text-[12px] md:text-[16px] xl:text-[20px] mb-1">
+                                <p className="text-[#CC0000] font-bold font-inter text-[8px] md:text-[10px] xl:text-[14px] mb-1">
                                     Out of Stock
                                 </p>
                             )}
                             {isFewLeft && (
-                                <p className="text-[#E6B220] font-semibold font-inter text-[12px] md:text-[16px] xl:text-[20px] mb-1">
+                                <p className="text-[#E6B220] font-semibold font-inter text-[8px] md:text-[10px] xl:text-[14px] mb-1">
                                     Few left ({product.stock_quantity} remaining)
                                 </p>
                             )}
                             {validationError && (
-                                <p className="text-[#CC0000] font-inter text-[10px] md:text-[14px] xl:text-[18px]">
+                                <p className="text-[#CC0000] font-inter text-[8px] md:text-[10px] xl:text-[14px]">
                                     {validationError}
                                 </p>
                             )}
                             <div className="flex gap-6">
-                                <button 
-                                    onClick={handleAddToCart} 
+                                <button
+                                    onClick={handleAddToCart}
                                     disabled={isOutOfStock}
                                     className={`font-inter font-bold text-[10px] md:text-[14px] xl:text-[28px] leading-[130%] 
                                     md:px-4 md:py-2 xl:px-8 xl:py-3 w-[74px] h-[33px] md:w-[123px] md:h-[38px] xl:w-[259px] xl:h-[67px] rounded-[23px] md:rounded-[10px] xl:rounded-[20px] ${isOutOfStock ? "bg-gray-400 text-white cursor-not-allowed opacity-50" : "bg-[#E6B220] text-white"}`}>

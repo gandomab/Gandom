@@ -26,7 +26,7 @@ const CartItem = ({ productdish }) => {
                             ))}
                         </div>
                     )}
-                    {productdish.stock_status === "few_left" && totalQuantityInCart >= productdish.stock_quantity && (
+                    {productdish.stock_quantity !== undefined && productdish.stock_quantity !== null && totalQuantityInCart >= productdish.stock_quantity && (
                         <p className="text-[#CC0000] text-[8px] md:text-[10px] xl:text-[14px] font-semibold mt-1">
                             Maximum stock reached
                         </p>
@@ -40,8 +40,8 @@ const CartItem = ({ productdish }) => {
                     <span className="px-2 md:px-3 font-bold text-[10px] md:text-sm xl:text-lg">{productdish.quantity}</span>
                     <button 
                         onClick={() => updateQuantity(productdish.cartItemId, 1)} 
-                        disabled={productdish.stock_status === "few_left" && totalQuantityInCart >= productdish.stock_quantity}
-                        className={`px-1.5 md:px-2 text-[12px] md:text-sm xl:text-lg ${productdish.stock_status === "few_left" && totalQuantityInCart >= productdish.stock_quantity ? "opacity-30 cursor-not-allowed" : ""}`}>
+                        disabled={productdish.stock_quantity !== undefined && productdish.stock_quantity !== null && totalQuantityInCart >= productdish.stock_quantity}
+                        className={`px-1.5 md:px-2 text-[12px] md:text-sm xl:text-lg ${productdish.stock_quantity !== undefined && productdish.stock_quantity !== null && totalQuantityInCart >= productdish.stock_quantity ? "opacity-30 cursor-not-allowed" : ""}`}>
                         +
                     </button>
                 </div>
