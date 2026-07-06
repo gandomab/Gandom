@@ -23,6 +23,6 @@ export const items = [
     name: "Side Dishes",
     subName: "Pickles and Snacks",
     img: SideDishesImg,
-    linkId: "sideDishes",
+    linkId: "side-dishes",
   },
 ];

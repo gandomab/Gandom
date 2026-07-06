@@ -7,7 +7,7 @@ const LogoGandom = () => {
         <img
           src={logo}
           alt="LogoGandom"
-          className="h-[80px] w-auto object-contain"
+          className="h-[38px] md:h-[48px] lg:h-[58px] xl:h-[68px]  w-auto object-contain"
         />
       </a>
     </div>

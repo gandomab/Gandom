@@ -5,7 +5,14 @@ import DeliveryBikeIcon from '../../assets/Images/11.Pay/DeliveryBikeIcon.png';
 const PaymentOrderSummary = () => {
     const { cart, totalCost, deliveryFee, scheduledDelivery } = useCart();
 
-    const grandTotal = totalCost + deliveryFee;
+    const savedOrderDetails = localStorage.getItem('createdOrderDetails');
+    const orderDetails = savedOrderDetails ? JSON.parse(savedOrderDetails) : null;
+
+    const displayDeliveryFee = orderDetails ? parseFloat(orderDetails.delivery_fee) : deliveryFee;
+    const displaySubtotal = orderDetails 
+        ? (parseFloat(orderDetails.total_amount) - parseFloat(orderDetails.delivery_fee))
+        : totalCost;
+    const displayGrandTotal = orderDetails ? parseFloat(orderDetails.total_amount) : (totalCost + deliveryFee);
 
     return (
         <div className="bg-[#FAF8F5] p-6 md:p-8 rounded-[20px] border border-[#EBEBEB] shadow-sm font-inter">
@@ -17,7 +24,7 @@ const PaymentOrderSummary = () => {
             <div className="space-y-4 mb-6">
                 {cart.map((item, index) => (
                     <div key={index} className="flex justify-between items-center font-inter font-semibold text-[11px] md:text-[12px] lg:text-[14px] xl:text-[20px] leading-[130%] text-[#000000]">
-                        <span className="w-1/2 truncate pr-2">{item.title}</span>
+                        <span className="w-1/2 truncate pr-2">{item.name}</span>
                         <span className="w-1/4 text-center">x {item.quantity}</span>
                         <span className="w-1/4 text-right text-[#426B1F]">{(item.price * item.quantity).toFixed(2)} SEK</span>
                     </div>
@@ -30,11 +37,11 @@ const PaymentOrderSummary = () => {
             <div className="space-y-4 mb-6 text-[11px] md:text-[12px] lg:text-[14px] xl:text-[20px] font-inter font-normal leading-[150%] text-[#6D6D6D]">
                 <div className="flex justify-between items-center">
                     <span>Subtotal</span>
-                    <span>{totalCost.toFixed(2)} SEK</span>
+                    <span>{displaySubtotal.toFixed(2)} SEK</span>
                 </div>
                 <div className="flex justify-between items-center">
                     <span>Standard delivery</span>
-                    <span>{deliveryFee.toFixed(2)} SEK</span>
+                    <span>{displayDeliveryFee.toFixed(2)} SEK</span>
                 </div>
             </div>
 
@@ -43,7 +50,7 @@ const PaymentOrderSummary = () => {
             {/* Total */}
             <div className="flex justify-between items-center mb-8">
                 <span className="font-inter font-bold text-[#000000] text-[20px] md:text-[23px] lg:text-[25px] xl:text-[36px] leading-[130%]">Total</span>
-                <span className="font-inter font-bold text-[#E6B220] text-[20px] md:text-[23px] lg:text-[25px] xl:text-[36px] leading-[130%]">{grandTotal.toFixed(2)} SEK</span>
+                <span className="font-inter font-bold text-[#E6B220] text-[20px] md:text-[23px] lg:text-[25px] xl:text-[36px] leading-[130%]">{displayGrandTotal.toFixed(2)} SEK</span>
             </div>
 
             {/* Scheduled Delivery Card */}
