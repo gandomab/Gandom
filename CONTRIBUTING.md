@@ -77,8 +77,7 @@ npm run preview
 
 To transition the production environment from mock data towards the live production backend:
 1. Locate the service connectors in [src/services/api.js](file:///c:/Repositories/Gandom/src/services/api.js).
-2. Replace static JSON imports or hardcoded local files (like those found in [src/data/](file:///c:/Repositories/Gandom/src/data)) with direct calls to `productService.getAll()`.
-3. Provide the production backend API URL in the environment configuration `.env.production`:
+2. Provide the production backend API URL in the environment configuration `.env.production`:
    ```env
    VITE_API_URL=https://gandom-backend-production-url.net
    VITE_USE_MOCK_DATA=false
@@ -106,13 +105,4 @@ All new API methods **must** be introduced through the central service layer. Fo
 
 ---
 
-## 5. Strict Coding Rules & Contribution Standards
 
-To maintain alignment and avoid regression, all contributions must obey the following repository guidelines:
-
-- **No Hardcoding**: Configuration, endpoints, credentials, or keys must never be hardcoded. Raise questions on how to structure them.
-- **Compact & Well-Commented**: Keep solutions compact and clean. Avoid over-complicating logic. Add comments describing any complex workflows.
-- **Strict UI Design**: The interface design is strict. Do not change colors, paddings, fonts, sizes, or layouts unless explicitly consulted. No additional improvements or deviations are permitted during bug fixes.
-- **Changelog Maintenance**: If a major bug fix or development task is done, document the modifications immediately inside [CHANGELOG.md](file:///c:/Repositories/Gandom/CHANGELOG.md).
-- **Guided Sessions**: This is a guided development workspace. Do not request automated browser sessions; instead, request manual verification from the supervisor once the task runs locally.
-- **Use Implementation Plans**: Highlight potential code risks in the implementation plan before making modifications, aligning on feedback before committing edits.

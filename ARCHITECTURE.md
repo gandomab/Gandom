@@ -6,7 +6,7 @@ This document provides a comprehensive overview of the architecture, tech stack,
 
 ## 1. Project Overview
 
-**Gandom** is a modern, responsive React-based food delivery and restaurant website. It enables users to browse menus (soups, desserts, waffles, side dishes), customize products (e.g., adding lactose-free or vegan options), select delivery dates and times, manage carts, authentication (via JWT login/registration), manage saved shipping addresses, and complete transactions using Stripe.
+**Gandom** It enables users to browse menus (soups, desserts, waffles, side dishes), customize products (e.g., adding lactose-free or vegan options), select delivery dates and times, manage carts, authentication (via JWT login/registration), manage saved shipping addresses, and complete transactions using Stripe.
 
 ---
 
@@ -28,20 +28,6 @@ The project uses the following technology stack:
 
 The application styling is declared in [tailwind.config.js](file:///c:/Repositories/Gandom/tailwind.config.js) and injected via [index.css](file:///c:/Repositories/Gandom/src/index.css):
 
-### Typography & Fonts
-- **Lexend**: Main body font, loaded locally via TTF files in `src/assets/fonts/`.
-- **Roboto**: Secondary font, loaded locally.
-- **Santa Catalina**: Cursive decorative heading font, loaded locally.
-- **Inter**: Neutral sans-serif font.
-- **Merriweather**: Decorative serif font.
-
-### Custom Colors
-- `primary`: `#E6B220` (warm yellow)
-- `secondary`: `#6A8358` (olive green)
-- `beigebg`: `#F7F3EB` (page background tint)
-- `white`: `#FAFAF5` (light cream background / text)
-- `black`: `#000000`
-- `grayLight`: `#F2EDE0` / `grayMedium`: `#D9D9D9` / `grayDark`: `#1E1E1E`
 
 ### Micro-Animations
 - **Infinite Marquee**: Customized CSS keyframes in Tailwind (`marquee` animation) for sliding promotional elements.
@@ -55,7 +41,7 @@ Below is the directory view mapping of Gandom's frontend project tree:
 ```
 c:\Repositories\Gandom\
 ├── .github/
-│   └── copilot-instructions.md    # Instructions for AI assistants
+│   └── instructions.md   
 ├── public/
 │   └── vite.svg                   # Static public assets
 ├── src/
