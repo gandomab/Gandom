@@ -42,6 +42,15 @@ const ProductDetailHeroSection = ({ product }) => {
     }, [product]);
 
     const [added, setAdded] = useState(false);
+    useEffect(() => {
+        if (!added) return;
+
+        const timer = setTimeout(() => {
+            setAdded(false);
+        }, 3500);
+
+        return () => clearTimeout(timer);
+    }, [added]);
     const [isFavorite, setIsFavorite] = useState(false);
     const [validationError, setValidationError] = useState("");
 
@@ -173,10 +182,34 @@ const ProductDetailHeroSection = ({ product }) => {
             options: selectedOptionIds
         };
         addToCart(cartItem);
+        setValidationError("");
+        setAdded(true);
     };
 
     return (
         <section className="w-full flex flex-col items-center mt-12 px-2 md:px-5">
+            {added && (
+    <div
+        role="status"
+        className="fixed top-5 right-5 z-50 bg-white shadow-lg border border-green-200 rounded-xl p-4 flex items-center gap-4"
+    >
+        <div>
+            <p className="font-semibold text-green-700">
+                ✓ Added to your cart!
+            </p>
+            <p className="text-sm text-gray-600">
+                {product.name} has been added successfully.
+            </p>
+        </div>
+
+        <button
+            onClick={() => navigate("/your-cart")}
+            className="text-sm font-semibold text-[#DEA401] underline"
+        >
+            View Cart
+        </button>
+    </div>
+)}
             <div className="flex flex-col md:flex-row md:gap-10 lg:gap-24 xl:gap-24 p-6 space-y-5 md:space-y-0 w-full md:items-stretch">
                 {/* Image Section */}
                 <div className="relative shrink-0 mx-auto md:mx-0 w-full max-w-[342px] aspect-[342/245] md:max-w-none md:w-[350px] md:h-[251px] md:aspect-auto xl:w-[615px] xl:h-[441px]">
