@@ -15,9 +15,9 @@ const ProductDetails = ({ product }) => {
                     <h4 className="font-inter text-[12px] md:text-[18px] xl:text-[20px] font-bold leading-[130%]">
                         {product.heading} <span className="font-inter text-[12px] md:text-[18px] xl:text-[20px] font-normal leading-[130%]">{product.subheading}</span>
                     </h4>
-                    <p className="font-inter text-[12px] md:text-[18px] xl:text-[20px] font-normal leading-[130%]">
-                        {product.description}
-                    </p>
+                    <p className="font-inter text-[12px] md:text-[18px] xl:text-[20px] font-normal leading-[130%] whitespace-pre-line">
+    {product.description}
+</p>
                 </div>
 
                 {/* Ingredients Section */}
