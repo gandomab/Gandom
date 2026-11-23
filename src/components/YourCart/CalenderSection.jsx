@@ -9,7 +9,6 @@ const CalendarSection = () => {
     const { scheduledDelivery, setScheduledDelivery } = useCart();
 
     const minDate = new Date();
-    minDate.setDate(minDate.getDate() + 3);
 
     const [selectedDate, setSelectedDate] = useState(() => {
         if (scheduledDelivery?.date) {
@@ -79,7 +78,7 @@ const CalendarSection = () => {
                 const formattedDate = `${year}-${month}-${day}`;
 
                 const data = await deliveryService.getSlots(formattedDate);
-                
+
                 if (!isMounted) return;
 
                 if (data.is_available === false) {
@@ -120,6 +119,7 @@ const CalendarSection = () => {
                         onChange={handleDateChange}
                         value={selectedDate}
                         minDate={minDate}
+                        calendarType="gregory"
                         className="border-none w-full"
                         prev2Label={null}
                         next2Label={null}
