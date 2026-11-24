@@ -1,8 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { FaMapMarkerAlt } from 'react-icons/fa';
 import { useUser } from '../../contexts/UserContext';
 import { useCart } from '../../contexts/CartContext';
 import { addressService, orderService } from '../../services/api';
+import TransitionPopup from '../../components/TransitionPopup/TransitionPopup';
 
 const AddressPage = () => {
     const navigate = useNavigate();
@@ -17,7 +19,7 @@ const AddressPage = () => {
         addressLine2: '',
         postalCode: '',
         town: '',
-        province: 'stockholm',
+        province: 'Stockholm',
         prefix: '',
         phone: '',
         specialNotes: '',
@@ -28,6 +30,7 @@ const AddressPage = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [saveAddressDefault, setSaveAddressDefault] = useState(false);
     const [initialAddress, setInitialAddress] = useState(null);
+    const [showPayPopup, setShowPayPopup] = useState(false);
 
     const nameRef = useRef(null);
     const surnameRef = useRef(null);
@@ -87,7 +90,9 @@ const AddressPage = () => {
                             addressLine2: savedAddress.house_name || "",
                             postalCode: savedAddress.postal_code || "",
                             town: savedAddress.town || "",
-                            province: savedAddress.province || "stockholm",
+                            province: savedAddress.province
+                                ? savedAddress.province.charAt(0).toUpperCase() + savedAddress.province.slice(1)
+                                : "Stockholm",
                             specialNotes: savedAddress.additional_notes || ""
                         }));
                     }
@@ -208,7 +213,6 @@ const AddressPage = () => {
             };
 
             if (!user) {
-                // Guest checkout requires customer details and address
                 orderPayload.customer = {
                     first_name: formData.name.trim(),
                     last_name: formData.surname.trim(),
@@ -217,7 +221,6 @@ const AddressPage = () => {
                 };
                 orderPayload.address = addressObj;
             } else {
-                // Logged-in checkout: omit customer, and omit address if it has not been modified
                 let isAddressModified = false;
                 if (!initialAddress) {
                     isAddressModified = !addressIsEmpty;
@@ -226,7 +229,7 @@ const AddressPage = () => {
                         (addressObj.street_address !== (initialAddress.street_address || "")) ||
                         (addressObj.house_name !== (initialAddress.house_name || "")) ||
                         (addressObj.town !== (initialAddress.town || "")) ||
-                        (addressObj.province.toLowerCase() !== (initialAddress.province || "stockholm").toLowerCase()) ||
+                        (addressObj.province.toLowerCase() !== (initialAddress.province || "Stockholm").toLowerCase()) ||
                         (addressObj.postal_code !== (initialAddress.postal_code || "")) ||
                         (addressObj.additional_notes !== (initialAddress.additional_notes || ""));
                 }
@@ -248,8 +251,11 @@ const AddressPage = () => {
                 setCreatedOrderId(orderId);
             }
 
-            navigate('/pay');
-            window.scrollTo(0, 0);
+            setShowPayPopup(true);
+            setTimeout(() => {
+                navigate('/pay');
+                window.scrollTo(0, 0);
+            }, 1500);
         } catch (err) {
             console.error("Order creation failed:", err);
             if (err.response?.data) {
@@ -272,32 +278,22 @@ const AddressPage = () => {
                     return String(errValue);
                 };
 
-                // 1. Map customer field errors
                 if (data.customer) {
                     fieldErrors.submit = parseError(data.customer);
                 }
-
-                // 2. Map address field errors
                 if (data.address) {
                     fieldErrors.addressLine1 = parseError(data.address);
                 }
-
-                // 3. Map delivery errors
                 if (data.delivery) {
                     fieldErrors.submit = parseError(data.delivery);
                 }
-
-                // 4. Map item stock errors
                 if (data.items) {
                     fieldErrors.submit = parseError(data.items);
                 }
-
-                // 5. Non-field/general validation errors
                 if (data.non_field_errors) {
                     fieldErrors.submit = parseError(data.non_field_errors);
                 }
 
-                // Fallback
                 if (Object.keys(fieldErrors).length === 0) {
                     fieldErrors.submit = data.detail || data.message || "Failed to create order. Please check details and try again.";
                 }
@@ -311,7 +307,13 @@ const AddressPage = () => {
     };
 
     return (
-        <div className="flex justify-center px-1 md:px-8 lg:px-12 w-full py-2md:py-4 lg:py-6 xl:py-8">
+        <div className="flex justify-center px-1 md:px-8 lg:px-12 w-full py-2 md:py-4 lg:py-6 xl:py-8">
+            <TransitionPopup
+                isOpen={showPayPopup}
+                title="Address Confirmed!"
+                message="Proceeding to payment options..."
+            />
+
             <form noValidate onSubmit={handleSubmit} className="p-8 md:p-12 lg:p-16 rounded-[20px] max-w-[1440px] w-full space-y-6 md:space-y-8 font-inter">
 
                 {/* Title */}
@@ -359,7 +361,7 @@ const AddressPage = () => {
                 </div>
 
                 {/* Postal & Town */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-28 lg:gap-36 w-full max-w-[1000px]  pt-2">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-28 lg:gap-36 w-full max-w-[1000px] pt-2">
                     <div className="w-full md:max-w-[257px] lg:max-w-[424px]">
                         <label className="block font-inter font-normal text-[10px] md:text-[14px] xl:text-[24px] leading-[130%] mb-2">
                             <span className="text-[#CC0000]">*</span> Postal code:
@@ -382,7 +384,7 @@ const AddressPage = () => {
                         <label className="block font-inter font-normal text-[10px] md:text-[14px] xl:text-[24px] leading-[130%] mb-2">
                             <span className="text-[#CC0000]">*</span> Province
                         </label>
-                        <input name="province" value="stockholm" disabled className="w-full h-[20px] md:h-[41px] lg:h-[69px] bg-[#D9D9D9] p-4 md:p-5 rounded-[6px] md:rounded-[12px] lg:rounded-[20px] text-[#808080] cursor-not-allowed" />
+                        <input name="province" value="Stockholm" disabled className="w-full h-[20px] md:h-[41px] lg:h-[69px] bg-[#D9D9D9] p-4 md:p-5 rounded-[6px] md:rounded-[12px] lg:rounded-[20px] text-[#808080] cursor-not-allowed" />
                     </div>
                 </div>
 
@@ -404,6 +406,12 @@ const AddressPage = () => {
                     </div>
                 </div>
 
+                {/* Stockholm Availability Notice */}
+                <div className="w-full md:max-w-[451px] lg:max-w-[745px] flex items-center gap-2 font-inter font-semibold text-[10px] md:text-[14px] xl:text-[20px] leading-[130%] pt-1">
+                    <FaMapMarkerAlt className="text-[#E6B220] shrink-0" />
+                    <span>We currently deliver only within Stockholm County (Stockholms län).</span>
+                </div>
+
                 {/* Special Notes */}
                 <div className="w-full md:max-w-[451px] lg:max-w-[745px] pt-4">
                     <label className="block font-inter font-normal text-[10px] md:text-[14px] xl:text-[24px] leading-[130%] mb-2">
@@ -411,8 +419,6 @@ const AddressPage = () => {
                     </label>
                     <textarea name="specialNotes" value={formData.specialNotes} onChange={handleChange} className="w-full h-[60px] md:h-[113px] lg:h-[187px] bg-[#D9D9D9] p-4 md:p-5 rounded-[6px] md:rounded-[12px] lg:rounded-[20px] outline-none resize-none" />
                 </div>
-
-                <p className="font-inter font-semibold text-[10px] md:text-[14px] xl:text-[24px] leading-[130%] mt-4">NB: currently we are only at stockholm län</p>
 
                 {/* Save Address Default Checkbox (Only for Logged-In Users) */}
                 {user && (
