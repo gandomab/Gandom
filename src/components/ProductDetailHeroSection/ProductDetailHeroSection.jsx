@@ -11,7 +11,7 @@ const ProductDetailHeroSection = ({ product }) => {
     const rating = product.rating || 0;
     const fillPercentage = (rating / 5) * 100;
     const navigate = useNavigate();
-    const { addToCart, cart } = useCart();
+    const { addToCart, updateQuantity, removeFromCart, cart } = useCart();
 
     const isOutOfStock = product.stock_status === "out_of_stock" || (product.stock_quantity !== undefined && product.stock_quantity <= 0);
     const isFewLeft = product.stock_status === "few_left";
@@ -42,6 +42,46 @@ const ProductDetailHeroSection = ({ product }) => {
     }, [product]);
 
     const [added, setAdded] = useState(false);
+    const [isAdding, setIsAdding] = useState(false);
+    const [activeCartItemId, setActiveCartItemId] = useState(null);
+    const activeCartItem = (cart || []).find(
+    (item) => item.cartItemId === activeCartItemId
+);
+const handleIncreaseQuantity = () => {
+    if (!activeCartItem) return;
+
+    const cartQuantity = (cart || [])
+        .filter((item) => item.id === product.id)
+        .reduce((sum, item) => sum + item.quantity, 0);
+
+    if (
+        product.stock_quantity !== undefined &&
+        product.stock_quantity !== null &&
+        cartQuantity + 1 > product.stock_quantity
+    ) {
+        setValidationError(
+            `Cannot add more items. Only ${product.stock_quantity} left in stock.`
+        );
+        return;
+    }
+
+    updateQuantity(activeCartItemId, 1);
+    setValidationError("");
+};
+
+const handleDecreaseQuantity = () => {
+    if (!activeCartItem) return;
+
+    if (activeCartItem.quantity <= 1) {
+        removeFromCart(activeCartItemId);
+        setActiveCartItemId(null);
+        setAdded(false);
+    } else {
+        updateQuantity(activeCartItemId, -1);
+    }
+
+    setValidationError("");
+};
     useEffect(() => {
         if (!added) return;
 
@@ -130,29 +170,49 @@ const ProductDetailHeroSection = ({ product }) => {
     const displayedPrice = (basePrice + extraPrice).toFixed(2);
 
     // this function is for adding the product to the cart
-    const handleAddToCart = () => {
-        if (isOutOfStock) {
-            setValidationError("This product is out of stock.");
-            return;
-        }
+    // this function is for adding the product to the cart
+
+const handleAddToCart = async () => {
+    if (isAdding) return;
+
+    if (isOutOfStock) {
+        setValidationError("This product is out of stock.");
+        return;
+    }
+
+    setIsAdding(true);
+
+    try {
+        await new Promise((resolve) => setTimeout(resolve, 500));
 
         const cartQuantity = (cart || [])
-            .filter(item => item.id === product.id)
+            .filter((item) => item.id === product.id)
             .reduce((sum, item) => sum + item.quantity, 0);
 
-        if (product.stock_quantity !== undefined && product.stock_quantity !== null && cartQuantity + 1 > product.stock_quantity) {
-            setValidationError(`Cannot add more items. Only ${product.stock_quantity} left in stock.`);
+        if (
+            product.stock_quantity !== undefined &&
+            product.stock_quantity !== null &&
+            cartQuantity + 1 > product.stock_quantity
+        ) {
+            setValidationError(
+                `Cannot add more items. Only ${product.stock_quantity} left in stock.`
+            );
             return;
         }
 
         if (product.option_groups && Array.isArray(product.option_groups)) {
             for (const group of product.option_groups) {
                 if (group.required) {
-                    const groupOptionIds = (group.options || []).map(o => o.id);
-                    const hasSelection = groupOptionIds.some(id => selectedSubOptions[id]);
+                    const groupOptionIds = (group.options || []).map(
+                        (o) => o.id
+                    );
+                    const hasSelection = groupOptionIds.some(
+                        (id) => selectedSubOptions[id]
+                    );
+
                     if (!hasSelection) {
-                        setValidationError(`Please select an option`);
-                        return; // Block addition to cart
+                        setValidationError("Please select an option");
+                        return;
                     }
                 }
             }
@@ -161,13 +221,18 @@ const ProductDetailHeroSection = ({ product }) => {
         const selectedLabels = [];
         const selectedOptionIds = [];
         let totalExtraPrice = 0;
+
         if (product.option_groups && Array.isArray(product.option_groups)) {
             product.option_groups.forEach((group) => {
                 (group.options || []).forEach((subOpt) => {
                     if (selectedSubOptions[subOpt.id]) {
-                        selectedLabels.push(`${group.name}: ${subOpt.name}`);
+                        selectedLabels.push(
+                            `${group.name}: ${subOpt.name}`
+                        );
                         selectedOptionIds.push(subOpt.id);
-                        totalExtraPrice += parseFloat(subOpt.price_modifier || 0);
+                        totalExtraPrice += parseFloat(
+                            subOpt.price_modifier || 0
+                        );
                     }
                 });
             });
@@ -181,11 +246,18 @@ const ProductDetailHeroSection = ({ product }) => {
             selectedCustomizations: selectedLabels,
             options: selectedOptionIds
         };
-        addToCart(cartItem);
+        const cartItemId = addToCart(cartItem);
+        setActiveCartItemId(cartItemId);
         setValidationError("");
         setAdded(true);
-    };
 
+        setIsAdding(false);
+
+        } finally {
+        setIsAdding(false);
+    }
+
+        };
     return (
         <section className="w-full flex flex-col items-center mt-12 px-2 md:px-5">
             {added && (
@@ -300,14 +372,7 @@ const ProductDetailHeroSection = ({ product }) => {
                                             <div className="space-y-4">
                                                 {product.option_groups.map((group) => (
                                                     <div key={group.id} className="mb-4">
-                                                        {/* Group Header Checkbox */}
-                                                        <div
-                                                            className="flex items-center justify-between w-[250px] md:w-[300px] xl:w-[400px] mb-2"
-                                                        >
-                                                            <span className="font-inter font-semibold text-black text-[10px] md:text-[16px] xl:text-[22px] leading-[130%] capitalize">
-                                                                {group.name}
-                                                            </span>
-                                                        </div>
+                                        
 
                                                         {/* Sub-options List */}
                                                         <div className="pl-4 space-y-1.5 md:space-y-1 xl:space-y-1.5 mt-2">
@@ -363,12 +428,45 @@ const ProductDetailHeroSection = ({ product }) => {
                                         {validationError}
                                     </p>
                                 )}
-                                <button
-                                    onClick={handleAddToCart}
-                                    disabled={isOutOfStock}
-                                    className={`font-inter font-bold text-[10px] leading-[130%] w-[74px] h-[33px] rounded-[23px] ${isOutOfStock ? "bg-gray-400 text-white cursor-not-allowed opacity-50" : "bg-[#E6B220] text-white"}`}>
-                                    Add to cart
-                                </button>
+                                {activeCartItem ? (
+    <div className="w-[259px] h-[67px] flex items-center justify-center gap-4 rounded-[20px] bg-[#E6B220]">
+        <span className="text-white font-bold text-lg">
+            Added ✓
+        </span>
+
+        <button
+            onClick={handleDecreaseQuantity}
+            className="w-10 h-10 rounded-full bg-white text-[#E6B220] font-bold text-2xl"
+            aria-label="Decrease quantity"
+        >
+            −
+        </button>
+
+        <span className="text-white font-bold text-xl">
+            {activeCartItem.quantity}
+        </span>
+
+        <button
+            onClick={handleIncreaseQuantity}
+            className="w-10 h-10 rounded-full bg-white text-[#E6B220] font-bold text-2xl"
+            aria-label="Increase quantity"
+        >
+            +
+        </button>
+    </div>
+) : (
+    <button
+        onClick={handleAddToCart}
+        disabled={isOutOfStock}
+        className={`font-inter font-bold text-[10px] leading-[130%] w-[74px] h-[33px] rounded-[23px] ${
+            isOutOfStock
+                ? "bg-gray-400 text-white cursor-not-allowed opacity-50"
+                : "bg-[#E6B220] text-white"
+        }`}
+    >
+        Add to cart
+    </button>
+)}
                                 <button
                                     onClick={() => navigate("/productsPage")}
                                     className="text-[#E6B220] border border-gray-300 font-inter font-bold text-[9px] leading-[130%] w-[74px] h-[33px] rounded-[23px]"
@@ -444,13 +542,44 @@ const ProductDetailHeroSection = ({ product }) => {
                                 </p>
                             )}
                             <div className="flex gap-6">
-                                <button
-                                    onClick={handleAddToCart}
-                                    disabled={isOutOfStock}
-                                    className={`font-inter font-bold text-[10px] md:text-[14px] xl:text-[28px] leading-[130%] 
-                                    md:px-4 md:py-2 xl:px-8 xl:py-3 w-[74px] h-[33px] md:w-[123px] md:h-[38px] xl:w-[259px] xl:h-[67px] rounded-[23px] md:rounded-[10px] xl:rounded-[20px] ${isOutOfStock ? "bg-gray-400 text-white cursor-not-allowed opacity-50" : "bg-[#E6B220] text-white"}`}>
-                                    Add to cart
-                                </button>
+                                {activeCartItem ? (
+<div className="flex items-center justify-center gap-5 bg-[#E6B220] rounded-[23px] md:rounded-[13px] xl:rounded-[20px] w-[74px] h-[33px] md:w-[123px] md:h-[38px] xl:w-[259px] xl:h-[67px] shrink-0">
+        <button
+            onClick={handleDecreaseQuantity}
+className="w-5 h-5 md:w-6 md:h-6 xl:w-10 xl:h-10 rounded-full border-2 border-white bg-transparent text-white font-bold text-sm xl:text-2xl flex items-center justify-center shrink-0"        >
+            −
+        </button>
+
+        <span className="text-white font-bold text-sm md:text-base xl:text-2xl">
+            {activeCartItem.quantity}
+        </span>
+
+        <button
+            onClick={handleIncreaseQuantity}
+className="w-5 h-5 md:w-6 md:h-6 xl:w-10 xl:h-10 rounded-full border-2 border-white bg-transparent text-white font-bold text-sm xl:text-2xl flex items-center justify-center shrink-0"        >
+            +
+        </button>
+    </div>
+) : (
+    <button
+        onClick={handleAddToCart}
+        disabled={isOutOfStock}
+        className={`font-inter font-bold text-[10px] md:text-[14px] xl:text-[28px] leading-[130%] md:px-4 md:py-2 xl:px-8 xl:py-3 w-[74px] h-[33px] md:w-[123px] md:h-[38px] xl:w-[259px] xl:h-[67px] rounded-[23px] md:rounded-[10px] xl:rounded-[20px] ${
+            isOutOfStock
+                ? "bg-gray-400 text-white cursor-not-allowed opacity-50"
+                : "bg-[#E6B220] text-white"
+        }`}
+    >
+        {isAdding ? (
+    <span className="flex items-center justify-center gap-2">
+        <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+        Adding...
+    </span>
+) : (
+    "Add to cart"
+)}
+    </button>
+)}
                                 <button
                                     onClick={() => navigate("/productsPage")}
                                     className="text-[#E6B220] border border-gray-300 font-inter font-bold text-[9px] md:text-[13px] xl:text-[28px] leading-[130%]

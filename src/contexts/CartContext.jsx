@@ -122,6 +122,7 @@ export const CartProvider = ({ children }) => {
             }
             return [...prev, { ...productWithCartId, quantity: 1 }];
         });
+        return cartItemId;
     };
 
     const updateQuantity = (cartItemId, amount) => {
