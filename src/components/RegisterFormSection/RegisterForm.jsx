@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaMapMarkerAlt } from 'react-icons/fa';
+import { PiEyeLight, PiEyeSlash } from 'react-icons/pi';
 import { useUser } from '../../contexts/UserContext';
 import TransitionPopup from '../TransitionPopup/TransitionPopup';
 
@@ -29,6 +30,8 @@ const RegisterForm = () => {
     const [errors, setErrors] = useState({});
     const [isLoading, setIsLoading] = useState(false);
     const [showRedirectPopup, setShowRedirectPopup] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
     const nameRef = useRef(null);
     const surnameRef = useRef(null);
@@ -206,14 +209,46 @@ const RegisterForm = () => {
                         <label className="block font-inter font-normal text-[10px] md:text-[14px] xl:text-[24px] leading-[130%] mb-2">
                             <span className="text-[#CC0000]">*</span> Password
                         </label>
-                        <input ref={passwordRef} type="password" name="password" onChange={handleChange} required className={`w-full h-[20px] md:h-[41px] lg:h-[69px] bg-[#D9D9D9] p-4 md:p-5 rounded-[6px] md:rounded-[12px] lg:rounded-[20px] outline-none ${errors.password ? 'border border-[#CC0000]' : ''}`} />
+                        <div className="relative w-full">
+                            <input
+                                ref={passwordRef}
+                                type={showPassword ? "text" : "password"}
+                                name="password"
+                                onChange={handleChange}
+                                required
+                                className={`w-full h-[20px] md:h-[41px] lg:h-[69px] bg-[#D9D9D9] p-4 md:p-5 pr-12 rounded-[6px] md:rounded-[12px] lg:rounded-[20px] outline-none ${errors.password ? 'border border-[#CC0000]' : ''}`}
+                            />
+                            <button
+                                type="button"
+                                onClick={() => setShowPassword((prev) => !prev)}
+                                className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-600 cursor-pointer"
+                            >
+                                {showPassword ? <PiEyeLight size={24} /> : <PiEyeSlash size={24} />}
+                            </button>
+                        </div>
                         {errors.password && <p className="text-[#CC0000] font-inter text-[10px] md:text-[12px] xl:text-[14px] mt-2">{errors.password}</p>}
                     </div>
                     <div className="w-full md:max-w-[257px] lg:max-w-[326px]">
                         <label className="block font-inter font-normal text-[10px] md:text-[14px] xl:text-[24px] leading-[130%] mb-2">
                             <span className="text-[#CC0000]">*</span> confirm password
                         </label>
-                        <input ref={confirmPasswordRef} type="password" name="confirmPassword" onChange={handleChange} required className={`w-full h-[20px] md:h-[41px] lg:h-[69px] bg-[#D9D9D9] p-4 md:p-5 rounded-[6px] md:rounded-[12px] lg:rounded-[20px] outline-none ${errors.confirmPassword ? 'border border-[#CC0000]' : ''}`} />
+                        <div className="relative w-full">
+                            <input
+                                ref={confirmPasswordRef}
+                                type={showConfirmPassword ? "text" : "password"}
+                                name="confirmPassword"
+                                onChange={handleChange}
+                                required
+                                className={`w-full h-[20px] md:h-[41px] lg:h-[69px] bg-[#D9D9D9] p-4 md:p-5 pr-12 rounded-[6px] md:rounded-[12px] lg:rounded-[20px] outline-none ${errors.confirmPassword ? 'border border-[#CC0000]' : ''}`}
+                            />
+                            <button
+                                type="button"
+                                onClick={() => setShowConfirmPassword((prev) => !prev)}
+                                className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-600 cursor-pointer"
+                            >
+                                {showConfirmPassword ? <PiEyeLight size={24} /> : <PiEyeSlash size={24} />}
+                            </button>
+                        </div>
                         {errors.confirmPassword && <p className="text-[#CC0000] font-inter text-[10px] md:text-[12px] xl:text-[14px] mt-2">{errors.confirmPassword}</p>}
                     </div>
                 </div>
