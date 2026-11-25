@@ -2,8 +2,8 @@ import { useCart } from "../../contexts/CartContext";
 import { useNavigate } from "react-router-dom";
 
 const OrderSummary = () => {
-    const { totalCost, deliveryFee, clearCart, cart } = useCart();
-    const navigate = useNavigate();
+const { totalCost, deliveryFee, clearCart, cart, scheduledDelivery } = useCart();    
+const navigate = useNavigate();
     const FREE_SHIPPING_THRESHOLD = 500;
     const remainingForFree = FREE_SHIPPING_THRESHOLD - totalCost;
 
@@ -35,6 +35,23 @@ const OrderSummary = () => {
                         Delivery charges will be calculated and added during checkout.
                     </p>
                 </div>
+                {/* Scheduled Delivery */}
+<div className="mt-6 pt-4 border-t border-gray-200">
+    <p className="font-inter font-semibold text-[12px] md:text-[14px] mb-2">
+        Scheduled Delivery
+    </p>
+
+    {scheduledDelivery ? (
+        <div className="text-gray-600 text-[12px] md:text-[14px]">
+            <p>{scheduledDelivery.formattedDate}</p>
+            <p>{scheduledDelivery.slotLabel}</p>
+        </div>
+    ) : (
+        <p className="text-gray-400 text-[12px] md:text-[14px]">
+            Please select a delivery date and time.
+        </p>
+    )}
+</div>
             </div>
 
             {/* Action Buttons */}
