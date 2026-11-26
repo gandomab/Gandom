@@ -76,8 +76,8 @@ const SubscriptionPage = () => {
       return;
     }
 
-    // మీ backend endpoint లేదా form service ఉన్నప్పుడు ఇక్కడ POST request పంపవచ్చు
-    // ఉదాహరణ: await api.post("/subscriptions/", formData);
+    // When your backend endpoint or form service is ready, you can send a POST request here
+    // Example: await api.post("/subscriptions/", formData);
     setSubmitted(true);
   };
 
