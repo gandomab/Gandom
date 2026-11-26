@@ -3,7 +3,10 @@ import { productdetailsdata } from "../../data/productdetailsdata";
 import { useCart } from "../../contexts/CartContext";
 
 // this is custom fermented vegetables details component with responsive checkbox and suggestion inputs on product details page
-const CustomFermentedVegetablesDetails = ({ productdish }) => {
+const CustomFermentedVegetablesDetails = ({ productdish,
+    onOptionModified,
+    onAddedToCart,
+ }) => {
     if (!productdish || productdish.id !== 403) return null;
     // find the product details from the productdetailsdata array by id
     const details = productdetailsdata.find((item) => item.id === 403);
@@ -59,12 +62,14 @@ const CustomFermentedVegetablesDetails = ({ productdish }) => {
             ...productdish,
             selectedCustomizations: selectedLabels,
         });
+        onAddedToCart?.();
     };
 
     // this function is for toggle the checkboxes
     const handleToggle = (categoryId, optionIndex) => {
         const key = `${categoryId}-${optionIndex}`;
         setSelectedOptions((prev) => ({ ...prev, [key]: !prev[key] }));
+        onOptionModified?.();
     };
 
     // this function is for toggle the suggestion checkboxes
@@ -85,6 +90,7 @@ const CustomFermentedVegetablesDetails = ({ productdish }) => {
         if (!text.trim()) {
             setSelectedOptions(prev => prev[key] ? { ...prev, [key]: false } : prev);
         }
+        onOptionModified?.();
     };
 
     // sub-component for render the suggestion inputs

@@ -23,6 +23,8 @@ import LoginPage from "./pages/LoginPage/LoginPage.jsx";
 import RegisterPage from "./pages/RegisterPage/RegisterPage.jsx";
 import AddressPage from "./pages/AddressPage/AddressPage.jsx";
 import WhatsAppButton from "./components/WhatsAppButton";
+import SubscriptionPage from "./pages/SubscriptionPage/SubscriptionPage.jsx";
+
 
 function App() {
   return (
@@ -63,6 +65,7 @@ function App() {
           <Route path="/your-cart" element={<YourCart />} />
           <Route path="/events" element={<EventsPage />} />
           <Route path="/gym" element={<GymPage />} />
+          <Route path="/subscription" element={<SubscriptionPage />} />
 
           {/* Login/Register pages */}
           <Route path="/login" element={<LoginPage />} />

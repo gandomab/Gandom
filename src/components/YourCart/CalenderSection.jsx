@@ -120,6 +120,10 @@ const CalendarSection = () => {
                         onChange={handleDateChange}
                         value={selectedDate}
                         minDate={minDate}
+                        tileDisabled={({ date, view }) =>
+                            view === 'month' && date.getDay() === 0
+}
+                        calendarType="gregory"
                         className="border-none w-full"
                         prev2Label={null}
                         next2Label={null}

@@ -19,6 +19,7 @@ const Navbar = () => {
     { label: "About Us", href: "/about-us" },
     { label: "Gym", href: "/gym" },
     { label: "Events", href: "/events" },
+    { label: "Subscription", href: "/subscription" },
   ];
 
   const linkClasses = (href, isActive) => {

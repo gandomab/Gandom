@@ -4,12 +4,12 @@ import DiscoverMoreButton from "../DiscoverMoreButton/DiscoverMoreButton";
 
 // this component is for the subscribe section on the home page
 const SubscribeSection = () => {
-    //const navigate = useNavigate();
+    const navigate = useNavigate();
 
-    // const handleClick = () => {
-    //     navigate("/subscription");
-    //     window.scrollTo(0, 0);
-    // };
+    const handleClick = () => {
+        navigate("/subscription");
+        window.scrollTo(0, 0);
+    };
 
     return (
         <section className="w-full flex h-[208px] md:h-[326px] lg:h-[463px] mt-8 md:mt-10 lg:mt-16">
@@ -36,7 +36,7 @@ const SubscribeSection = () => {
                             Eat Better Every Week
                         </h2>
 
-                        <DiscoverMoreButton title="Subscribe" />
+                        <DiscoverMoreButton title="Subscribe" onClick={handleClick} />
                     </div>
                 </div>
 
