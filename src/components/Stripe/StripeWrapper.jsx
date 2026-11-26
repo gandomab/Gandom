@@ -1,25 +1,75 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import StripeCheckoutForm from './StripeCheckoutForm';
 import { useCart } from '../../contexts/CartContext';
+import { paymentService } from '../../services/api';
 
-// Replace with your actual key from your project owner
-const stripePromise = loadStripe('pk_test_51TYj1dKFcfXGfZDkvAFTi06qweDHOfJHBgv9rEIQSZwOswyWNckdQEeN9BgNC17mPM9LDXS203QXNPfrjoZhGZrW00tSTaAMPA');
 const StripeWrapper = ({ selectedMethod }) => {
-    const { totalCost, deliveryFee } = useCart();
-    const grandTotal = totalCost + deliveryFee;
+    const { createdOrderId } = useCart();
+    const [stripePromise, setStripePromise] = useState(null);
+    const [clientSecret, setClientSecret] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
-    // Math.round to prevent any weird decimals like 50000.00000001 from crashing Stripe.
-    const stripeAmount = Math.round(grandTotal * 100);
-    // Stripe has a minimum charge requirement (usually ~5 SEK). 
-    // We provide a fallback just in case the cart is empty while testing the UI.
-    const finalAmount = stripeAmount > 0 ? stripeAmount : 500;
+    useEffect(() => {
+        const orderId = createdOrderId || localStorage.getItem('createdOrderId');
+        if (!orderId) {
+            setError("No order ID found. Please create an order first.");
+            return;
+        }
+
+        const fetchPaymentDetails = async () => {
+            setLoading(true);
+            setError(null);
+            try {
+                const isGuest = !localStorage.getItem('accessToken');
+                const payload = {
+                    order_id: parseInt(orderId, 10)
+                };
+                if (isGuest) {
+                    const checkoutToken = localStorage.getItem('createdOrderCheckoutToken');
+                    if (checkoutToken) {
+                        payload.checkout_token = checkoutToken;
+                    }
+                }
+
+                const data = await paymentService.createPayment(payload);
+                setClientSecret(data.client_secret);
+                setStripePromise(() => loadStripe(data.publishable_key));
+            } catch (err) {
+                console.error("Failed to initialize payment details:", err);
+                setError(err.response?.data?.message || err.response?.data?.detail || "Failed to initialize payment.");
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchPaymentDetails();
+    }, [createdOrderId]);
+
+    if (loading) {
+        return (
+            <div className="flex items-center justify-center p-6 text-[#E6B220] font-semibold font-inter animate-pulse">
+                Initializing secure payment...
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="text-red-500 font-semibold font-inter text-center p-6">
+                {error}
+            </div>
+        );
+    }
+
+    if (!stripePromise || !clientSecret) {
+        return null;
+    }
+
     const options = {
-        mode: 'payment',
-        amount: finalAmount,
-        currency: 'sek',
-        paymentMethodTypes: [selectedMethod],
+        clientSecret: clientSecret,
         appearance: {
             theme: 'stripe',
             variables: {
@@ -30,10 +80,12 @@ const StripeWrapper = ({ selectedMethod }) => {
             }
         },
     };
+
     return (
         <Elements stripe={stripePromise} options={options}>
-            <StripeCheckoutForm />
+            <StripeCheckoutForm clientSecret={clientSecret} />
         </Elements>
     );
 };
+
 export default StripeWrapper;

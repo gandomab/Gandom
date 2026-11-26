@@ -29,7 +29,7 @@ const EventsSection = () => {
         </div>
 
         {/* Text + Button */}
-        <div className="relative z-10 flex h-full items-center pl-10 md:pl-20 lg:pl-30 xl:pl-60">
+        <div className="relative z-10 flex h-full items-center pl-14 md:pl-28 lg:pl-32 xl:pl-72">
           <div className="space-y-4 text-center">
 
             <h2 className=" font-inter font-bold text-[#DE7202]  

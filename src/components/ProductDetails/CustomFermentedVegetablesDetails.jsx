@@ -12,10 +12,30 @@ const CustomFermentedVegetablesDetails = ({ productdish }) => {
     // Track selections for checkboxes
     const [selectedOptions, setSelectedOptions] = useState({});
     const [suggestionTexts, setSuggestionTexts] = useState({});
-    const { addToCart } = useCart();
+    const { addToCart, cart } = useCart();
+    const [validationError, setValidationError] = useState("");
+
+    const isOutOfStock = productdish.stock_status === "out_of_stock" || (productdish.stock_quantity !== undefined && productdish.stock_quantity <= 0);
+    const isFewLeft = productdish.stock_status === "few_left";
 
     // this function is for adding the product to the cart
     const handleAddToCart = () => {
+        if (isOutOfStock) {
+            setValidationError("This product is out of stock.");
+            return;
+        }
+
+        const cartQuantity = (cart || [])
+            .filter(item => item.id === productdish.id)
+            .reduce((sum, item) => sum + item.quantity, 0);
+
+        if (productdish.stock_quantity !== undefined && productdish.stock_quantity !== null && cartQuantity + 1 > productdish.stock_quantity) {
+            setValidationError(`Cannot add more items. Only ${productdish.stock_quantity} left in stock.`);
+            return;
+        }
+
+        setValidationError(""); // Clear validation error on successful addition attempt
+
         const selectedLabels = [];
 
         details.customizationCategories.forEach((category) => {
@@ -198,9 +218,27 @@ const CustomFermentedVegetablesDetails = ({ productdish }) => {
                     })}
                 </div>
 
-                <div className="flex justify-end pt-4 md:pt-8 xl:pt-10">
-                    <button onClick={handleAddToCart} className="bg-[#E6B220] text-white font-inter font-bold text-[10px] md:text-[14px] xl:text-[28px] leading-[130%] 
-                                md:px-4 md:py-2 xl:px-8 xl:py-3 w-[74px] h-[33px] md:w-[123px] md:h-[38px]  xl:w-[259px] xl:h-[67px] rounded-[23px] md:rounded-[10px] xl:rounded-[20px]">
+                <div className="flex flex-col items-end gap-2 pt-4 md:pt-8 xl:pt-10">
+                    {isOutOfStock && (
+                        <p className="text-[#CC0000] font-bold font-inter text-[12px] md:text-[16px] xl:text-[20px]">
+                            Out of Stock
+                        </p>
+                    )}
+                    {isFewLeft && (
+                        <p className="text-[#E6B220] font-semibold font-inter text-[12px] md:text-[16px] xl:text-[20px]">
+                            Few left ({productdish.stock_quantity} remaining)
+                        </p>
+                    )}
+                    {validationError && (
+                        <p className="text-[#CC0000] font-inter text-[10px] md:text-[14px] xl:text-[18px]">
+                            {validationError}
+                        </p>
+                    )}
+                    <button 
+                        onClick={handleAddToCart} 
+                        disabled={isOutOfStock}
+                        className={`font-inter font-bold text-[10px] md:text-[14px] xl:text-[28px] leading-[130%] 
+                                    md:px-4 md:py-2 xl:px-8 xl:py-3 w-[74px] h-[33px] md:w-[123px] md:h-[38px] xl:w-[259px] xl:h-[67px] rounded-[23px] md:rounded-[10px] xl:rounded-[20px] ${isOutOfStock ? "bg-gray-400 text-white cursor-not-allowed opacity-50" : "bg-[#E6B220] text-white"}`}>
                         Add to cart
                     </button>
                 </div>

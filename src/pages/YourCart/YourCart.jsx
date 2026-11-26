@@ -23,7 +23,7 @@ const YourCart = () => {
                         <h2 className="font-inter font-bold text-[#E6B220] text-[16px] md:text-[24px] xl:text-[40px] leading-[130%] mb-6">Ordered Items</h2>
                         {cart.length > 0 ? (
                             cart.map((productdish) => (
-                                <CartItem key={productdish.id} productdish={productdish} />
+                                <CartItem key={productdish.cartItemId} productdish={productdish} />
                             ))
                         ) : (
                             <p className="text-gray-500">Your cart is empty.</p>

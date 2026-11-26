@@ -2,6 +2,7 @@ import React from "react";
 import PayPageHeroSection from "../../components/PayPageHeroSection/PayPageHeroSection";
 import PaymentOrderSummary from "../../components/PaymentOrderSummarySection/PaymentOrderSummary";
 import PaymentOptions from "../../components/PaymentOptionsSection/PaymentOptions";
+import { productService } from "../../services/api";
 
 const PayPage = () => {
     return (

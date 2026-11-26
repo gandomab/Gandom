@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { TiShoppingCart } from "react-icons/ti";
-import { RxHamburgerMenu } from "react-icons/rx";
+import { RxHamburgerMenu, RxCross2 } from "react-icons/rx";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useCart } from "../../contexts/CartContext";
 import { IoPerson } from "react-icons/io5";
@@ -37,7 +37,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="flex items-center justify-end gap-6 relative">
+    <div className="flex items-center justify-end gap-6 relative  xl:translate-y-[9px]">
       {/* Desktop Navbar */}
       <div className="hidden lg:flex items-center gap-6">
         {links.map((link) => (
@@ -58,12 +58,12 @@ const Navbar = () => {
         <button
           onClick={() => navigate("/login")}
           className={`relative p-2 rounded hover:text-primary ${location.pathname === '/login' || location.pathname === '/register' ? 'text-[#E6B220]' : 'text-black'}`}>
-          <IoPerson className="w-[20px] h-[20px]" />
+          <IoPerson className="w-[19px] h-[24px]" />
         </button>
       </div>
 
       {/* Tablet & Mobile Hamburger + Cart */}
-      <div className="flex lg:hidden items-center gap-2">
+      <div className="flex lg:hidden items-center gap-2 translate-y-[6px] md:translate-y-[7px] lg:translate-y-[8px]">
         <button
           onClick={() => {
             navigate("/your-cart");
@@ -71,7 +71,7 @@ const Navbar = () => {
           }}
           className={`relative p-2 rounded hover:text-primary ${location.pathname === '/your-cart' || location.pathname === '/pay' ? 'text-[#E6B220]' : 'text-black'}`}
         >
-          <TiShoppingCart className="w-[27px] h-[24px]" />
+          <TiShoppingCart className="w-[24px] h-[21px] md:w-[32px] md:h-[29px] lg:w-[27px] lg:h-[24px]" />
           {totalItems > 0 && (
             <span className="absolute top-1 right-1 inline-flex items-center justify-center px-1.5 py-0.5 text-[10px] font-bold leading-none text-white transform translate-x-1/4 -translate-y-1/4 bg-[#E6B220] rounded-full">
               {totalItems}
@@ -81,13 +81,17 @@ const Navbar = () => {
         <button
           onClick={() => navigate("/login")}
           className={`relative p-2 rounded hover:text-primary ${location.pathname === '/login' || location.pathname === '/register' ? 'text-[#E6B220]' : 'text-black'}`}>
-          <IoPerson className="w-[16px] h-[16px]" />
+          <IoPerson className="w-[18px] h-[16px] md:w-[28px] md:h-[24px] lg:w-[24px] lg:h-[20px]" />
         </button>
         <button
-          className="p-2 rounded hover:text-primary"
+          className={`p-2 rounded hover:text-primary ${isMobileMenuOpen ? 'text-primary' : 'text-black'}`}
           onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}
         >
-          <RxHamburgerMenu className="w-[27px] h-[27px]" />
+          {isMobileMenuOpen ? (
+            <RxCross2 className="w-[22px] h-[22px] md:w-[27px] md:h-[27px]" />
+          ) : (
+            <RxHamburgerMenu className="w-[22px] h-[22px] md:w-[27px] md:h-[27px]" />
+          )}
         </button>
       </div>
 
