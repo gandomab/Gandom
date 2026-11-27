@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PiEyeLight, PiEyeSlash } from 'react-icons/pi';
 import { useUser } from '../../contexts/UserContext';
+import TransitionPopup from '../TransitionPopup/TransitionPopup';
 
 const LoginForm = () => {
     const navigate = useNavigate();
@@ -10,14 +11,13 @@ const LoginForm = () => {
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState({});
     const [isLoading, setIsLoading] = useState(false);
+    const [popupInfo, setPopupInfo] = useState({ isOpen: false, title: "", message: "" });
 
     const emailRef = useRef(null);
     const passwordRef = useRef(null);
 
-    // User context to manage login, register and guest checkout
     const { login, setIsGuest } = useUser();
 
-    // 1. Existing User: Sign In
     const handleSignIn = async (e) => {
         e.preventDefault();
 
@@ -37,20 +37,23 @@ const LoginForm = () => {
 
         if (Object.keys(newErrors).length > 0) {
             setErrors(newErrors);
-
-            if (newErrors.email && emailRef.current) {
-                emailRef.current.focus();
-            } else if (newErrors.password && passwordRef.current) {
-                passwordRef.current.focus();
-            }
+            if (newErrors.email && emailRef.current) emailRef.current.focus();
+            else if (newErrors.password && passwordRef.current) passwordRef.current.focus();
             return;
         }
 
         setIsLoading(true);
         try {
             await login(email, password);
-            navigate('/address');
-            window.scrollTo(0, 0);
+            setPopupInfo({
+                isOpen: true,
+                title: "Welcome back!",
+                message: "Confirming your delivery address..."
+            });
+            setTimeout(() => {
+                navigate('/address');
+                window.scrollTo(0, 0);
+            }, 1500);
         } catch (err) {
             console.error("Login error:", err);
             if (err.response?.data) {
@@ -58,7 +61,7 @@ const LoginForm = () => {
                 const fieldErrors = {};
                 if (data.email) fieldErrors.email = Array.isArray(data.email) ? data.email[0] : data.email;
                 if (data.password) fieldErrors.password = Array.isArray(data.password) ? data.password[0] : data.password;
-                
+
                 if (data.non_field_errors) {
                     fieldErrors.submit = Array.isArray(data.non_field_errors) ? data.non_field_errors[0] : data.non_field_errors;
                 } else if (Object.keys(fieldErrors).length === 0) {
@@ -73,23 +76,33 @@ const LoginForm = () => {
         }
     };
 
-    // 2. New User: Register
     const handleRegisterClick = () => {
         navigate('/register');
         window.scrollTo(0, 0);
     };
 
-    // 3. New User: Guest
     const handleGuestClick = () => {
         setIsGuest(true);
-        navigate('/address'); // Guests must provide an address
-        window.scrollTo(0, 0);
+        setPopupInfo({
+            isOpen: true,
+            title: "Continuing as Guest",
+            message: "Going to delivery address page..."
+        });
+        setTimeout(() => {
+            navigate('/address');
+            window.scrollTo(0, 0);
+        }, 1200);
     };
 
     return (
         <div className="md:min-h-[80vh] flex items-center justify-center py-12 px-8 md:p-12 lg:p-10 xl:p-6">
-            <div className="max-w-5xl w-full grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-10 lg:gap-20 xl:gap-36">
+            <TransitionPopup
+                isOpen={popupInfo.isOpen}
+                title={popupInfo.title}
+                message={popupInfo.message}
+            />
 
+            <div className="max-w-5xl w-full grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-10 lg:gap-20 xl:gap-36">
                 {/* LEFT SIDE: LOG IN */}
                 <div className="flex flex-col">
                     <h1 className="font-inter font-bold text-[#000000] text-[20px] md:text-[32px] xl:text-[48px] leading-[150%] mb-4 md:mb-8">Log in</h1>
@@ -178,7 +191,6 @@ const LoginForm = () => {
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     );

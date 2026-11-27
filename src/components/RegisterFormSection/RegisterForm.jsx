@@ -1,6 +1,10 @@
 import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { FaMapMarkerAlt } from 'react-icons/fa';
+import { PiEyeLight, PiEyeSlash } from 'react-icons/pi';
 import { useUser } from '../../contexts/UserContext';
+import TransitionPopup from '../TransitionPopup/TransitionPopup';
+
 
 const RegisterForm = () => {
     const navigate = useNavigate();
@@ -16,15 +20,19 @@ const RegisterForm = () => {
         addressLine2: '',
         postalCode: '',
         town: '',
-        province: 'stockholm',
+        province: 'Stockholm',
         prefix: '',
         phone: '',
         specialNotes: '',
-        receivePromotions: null // 'yes' or 'no'
+        receivePromotions: null
     });
 
     const [errors, setErrors] = useState({});
     const [isLoading, setIsLoading] = useState(false);
+    const [showRedirectPopup, setShowRedirectPopup] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
     const nameRef = useRef(null);
     const surnameRef = useRef(null);
     const emailRef = useRef(null);
@@ -34,10 +42,8 @@ const RegisterForm = () => {
     const addressLine2Ref = useRef(null);
     const postalCodeRef = useRef(null);
     const townRef = useRef(null);
-    const provinceRef = useRef(null);
     const prefixRef = useRef(null);
     const phoneRef = useRef(null);
-    const specialNotesRef = useRef(null);
     const promotionsRef = useRef(null);
 
     const handleChange = (e) => {
@@ -86,42 +92,26 @@ const RegisterForm = () => {
 
         if (Object.keys(newErrors).length > 0) {
             setErrors(newErrors);
-
-            // Scroll to the first error
-            if (newErrors.name && nameRef.current) {
-                nameRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                nameRef.current.focus();
-            } else if (newErrors.surname && surnameRef.current) {
-                surnameRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                surnameRef.current.focus();
-            } else if (newErrors.email && emailRef.current) {
-                emailRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                emailRef.current.focus();
-            } else if (newErrors.password && passwordRef.current) {
-                passwordRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                passwordRef.current.focus();
-            } else if (newErrors.confirmPassword && confirmPasswordRef.current) {
-                confirmPasswordRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                confirmPasswordRef.current.focus();
-            } else if (newErrors.addressLine1 && addressLine1Ref.current) {
-                addressLine1Ref.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                addressLine1Ref.current.focus();
-            } else if (newErrors.postalCode && postalCodeRef.current) {
-                postalCodeRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                postalCodeRef.current.focus();
-            } else if (newErrors.town && townRef.current) {
-                townRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                townRef.current.focus();
-            } else if (newErrors.prefix && prefixRef.current) {
-                prefixRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                prefixRef.current.focus();
-            } else if (newErrors.phone && phoneRef.current) {
-                phoneRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                phoneRef.current.focus();
-            } else if (newErrors.receivePromotions && promotionsRef.current) {
-                promotionsRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            const refs = [
+                [newErrors.name, nameRef],
+                [newErrors.surname, surnameRef],
+                [newErrors.email, emailRef],
+                [newErrors.password, passwordRef],
+                [newErrors.confirmPassword, confirmPasswordRef],
+                [newErrors.addressLine1, addressLine1Ref],
+                [newErrors.postalCode, postalCodeRef],
+                [newErrors.town, townRef],
+                [newErrors.prefix, prefixRef],
+                [newErrors.phone, phoneRef],
+                [newErrors.receivePromotions, promotionsRef],
+            ];
+            for (const [err, ref] of refs) {
+                if (err && ref.current) {
+                    ref.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    if (ref.current.focus) ref.current.focus();
+                    break;
+                }
             }
-
             return;
         }
 
@@ -147,8 +137,11 @@ const RegisterForm = () => {
         setIsLoading(true);
         try {
             await register(payload);
-            navigate('/login');
-            window.scrollTo(0, 0);
+            setShowRedirectPopup(true);
+            setTimeout(() => {
+                navigate('/login');
+                window.scrollTo(0, 0);
+            }, 1800);
         } catch (err) {
             console.error("Registration failed:", err);
             if (err.response?.data) {
@@ -161,7 +154,7 @@ const RegisterForm = () => {
                 if (data.last_name) fieldErrors.surname = Array.isArray(data.last_name) ? data.last_name[0] : data.last_name;
                 if (data.phone) fieldErrors.phone = Array.isArray(data.phone) ? data.phone[0] : data.phone;
                 if (data.phone_prefix) fieldErrors.prefix = Array.isArray(data.phone_prefix) ? data.phone_prefix[0] : data.phone_prefix;
-                
+
                 if (data.non_field_errors) {
                     fieldErrors.submit = Array.isArray(data.non_field_errors) ? data.non_field_errors[0] : data.non_field_errors;
                 } else if (Object.keys(fieldErrors).length === 0) {
@@ -178,47 +171,84 @@ const RegisterForm = () => {
 
     return (
         <div className="flex justify-center px-4 md:px-8 lg:px-12 w-full">
-            <form noValidate onSubmit={handleSubmit} className="bg-[#FAF9F6] p-8 md:p-12 lg:p-16 rounded-[20px] max-w-6xl w-full space-y-6 md:space-y-8 font-inter">
+            <TransitionPopup
+                isOpen={showRedirectPopup}
+                title="Account Created!"
+                message="Your account has been created successfully!"
+            />
 
+            <form noValidate onSubmit={handleSubmit} className="bg-[#FAF9F6] p-8 md:p-12 lg:p-16 rounded-[20px] max-w-6xl w-full space-y-6 md:space-y-8 font-inter">
                 {/* Name & Surname Section */}
                 <div className="space-y-6 md:space-y-8">
                     <div className="w-full md:max-w-[451px] lg:max-w-[745px]">
                         <label className="block font-inter font-normal text-[10px] md:text-[14px] xl:text-[24px] leading-[130%] mb-2">
                             <span className="text-[#CC0000]">*</span> Name :
                         </label>
-                        <input type="text" name="name" onChange={handleChange} required className={`w-full h-[20px] md:h-[41px] lg:h-[69px] bg-[#D9D9D9] p-4 md:p-5 rounded-[6px] md:rounded-[12px] lg:rounded-[20px] outline-none ${errors.name ? 'border border-[#CC0000]' : ''}`} />
+                        <input ref={nameRef} type="text" name="name" onChange={handleChange} required className={`w-full h-[20px] md:h-[41px] lg:h-[69px] bg-[#D9D9D9] p-4 md:p-5 rounded-[6px] md:rounded-[12px] lg:rounded-[20px] outline-none ${errors.name ? 'border border-[#CC0000]' : ''}`} />
                         {errors.name && <p className="text-[#CC0000] font-inter text-[10px] md:text-[12px] xl:text-[14px] mt-2">{errors.name}</p>}
                     </div>
                     <div className="w-full md:max-w-[451px] lg:max-w-[745px]">
                         <label className="block font-inter font-normal text-[10px] md:text-[14px] xl:text-[24px] leading-[130%] mb-2">
                             <span className="text-[#CC0000]">*</span> Surname :
                         </label>
-                        <input type="text" name="surname" onChange={handleChange} required className={`w-full h-[20px] md:h-[41px] lg:h-[69px] bg-[#D9D9D9] p-4 md:p-5 rounded-[6px] md:rounded-[12px] lg:rounded-[20px] outline-none ${errors.surname ? 'border border-[#CC0000]' : ''}`} />
+                        <input ref={surnameRef} type="text" name="surname" onChange={handleChange} required className={`w-full h-[20px] md:h-[41px] lg:h-[69px] bg-[#D9D9D9] p-4 md:p-5 rounded-[6px] md:rounded-[12px] lg:rounded-[20px] outline-none ${errors.surname ? 'border border-[#CC0000]' : ''}`} />
                         {errors.surname && <p className="text-[#CC0000] font-inter text-[10px] md:text-[12px] xl:text-[14px] mt-2">{errors.surname}</p>}
                     </div>
                     <div className="w-full md:max-w-[451px] lg:max-w-[745px]">
                         <label className="block font-inter font-normal text-[10px] md:text-[14px] xl:text-[24px] leading-[130%] mb-2">
                             <span className="text-[#CC0000]">*</span> Email :
                         </label>
-                        <input type="email" name="email" onChange={handleChange} required className={`w-full h-[20px] md:h-[41px] lg:h-[69px] bg-[#D9D9D9] p-4 md:p-5 rounded-[6px] md:rounded-[12px] lg:rounded-[20px] outline-none ${errors.email ? 'border border-[#CC0000]' : ''}`} />
+                        <input ref={emailRef} type="email" name="email" onChange={handleChange} required className={`w-full h-[20px] md:h-[41px] lg:h-[69px] bg-[#D9D9D9] p-4 md:p-5 rounded-[6px] md:rounded-[12px] lg:rounded-[20px] outline-none ${errors.email ? 'border border-[#CC0000]' : ''}`} />
                         {errors.email && <p className="text-[#CC0000] font-inter text-[10px] md:text-[12px] xl:text-[14px] mt-2">{errors.email}</p>}
                     </div>
                 </div>
 
                 {/* Password Section */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-28 lg:gap-2 w-full max-w-[1000px]  pt-2">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-28 lg:gap-2 w-full max-w-[1000px] pt-2">
                     <div className="w-full md:max-w-[257px] lg:max-w-[326px]">
                         <label className="block font-inter font-normal text-[10px] md:text-[14px] xl:text-[24px] leading-[130%] mb-2">
                             <span className="text-[#CC0000]">*</span> Password
                         </label>
-                        <input ref={passwordRef} type="password" name="password" onChange={handleChange} required className={`w-full h-[20px] md:h-[41px] lg:h-[69px] bg-[#D9D9D9] p-4 md:p-5 rounded-[6px] md:rounded-[12px] lg:rounded-[20px] outline-none ${errors.password ? 'border border-[#CC0000]' : ''}`} />
+                        <div className="relative w-full">
+                            <input
+                                ref={passwordRef}
+                                type={showPassword ? "text" : "password"}
+                                name="password"
+                                onChange={handleChange}
+                                required
+                                className={`w-full h-[20px] md:h-[41px] lg:h-[69px] bg-[#D9D9D9] p-4 md:p-5 pr-12 rounded-[6px] md:rounded-[12px] lg:rounded-[20px] outline-none ${errors.password ? 'border border-[#CC0000]' : ''}`}
+                            />
+                            <button
+                                type="button"
+                                onClick={() => setShowPassword((prev) => !prev)}
+                                className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-600 cursor-pointer"
+                            >
+                                {showPassword ? <PiEyeLight size={24} /> : <PiEyeSlash size={24} />}
+                            </button>
+                        </div>
                         {errors.password && <p className="text-[#CC0000] font-inter text-[10px] md:text-[12px] xl:text-[14px] mt-2">{errors.password}</p>}
                     </div>
                     <div className="w-full md:max-w-[257px] lg:max-w-[326px]">
                         <label className="block font-inter font-normal text-[10px] md:text-[14px] xl:text-[24px] leading-[130%] mb-2">
                             <span className="text-[#CC0000]">*</span> confirm password
                         </label>
-                        <input ref={confirmPasswordRef} type="password" name="confirmPassword" onChange={handleChange} required className={`w-full h-[20px] md:h-[41px] lg:h-[69px] bg-[#D9D9D9] p-4 md:p-5 rounded-[6px] md:rounded-[12px] lg:rounded-[20px] outline-none ${errors.confirmPassword ? 'border border-[#CC0000]' : ''}`} />
+                        <div className="relative w-full">
+                            <input
+                                ref={confirmPasswordRef}
+                                type={showConfirmPassword ? "text" : "password"}
+                                name="confirmPassword"
+                                onChange={handleChange}
+                                required
+                                className={`w-full h-[20px] md:h-[41px] lg:h-[69px] bg-[#D9D9D9] p-4 md:p-5 pr-12 rounded-[6px] md:rounded-[12px] lg:rounded-[20px] outline-none ${errors.confirmPassword ? 'border border-[#CC0000]' : ''}`}
+                            />
+                            <button
+                                type="button"
+                                onClick={() => setShowConfirmPassword((prev) => !prev)}
+                                className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-600 cursor-pointer"
+                            >
+                                {showConfirmPassword ? <PiEyeLight size={24} /> : <PiEyeSlash size={24} />}
+                            </button>
+                        </div>
                         {errors.confirmPassword && <p className="text-[#CC0000] font-inter text-[10px] md:text-[12px] xl:text-[14px] mt-2">{errors.confirmPassword}</p>}
                     </div>
                 </div>
@@ -226,10 +256,9 @@ const RegisterForm = () => {
                 {/* Address Section */}
                 <div className="space-y-4 max-w-3xl">
                     <label className="block font-inter font-normal text-[10px] md:text-[14px] xl:text-[24px] leading-[130%] mb-2"><span className="text-red-500">*</span> Address:</label>
-                    <input name="addressLine1" onChange={handleChange} className={`w-full h-[20px] md:h-[41px] lg:h-[69px] bg-[#D9D9D9] p-4 md:p-5 rounded-[6px] md:rounded-[12px] lg:rounded-[20px] outline-none ${errors.addressLine1 ? 'border border-[#CC0000]' : ''}`} required />
-                    <input name="addressLine2" onChange={handleChange} className={`w-full h-[20px] md:h-[41px] lg:h-[69px] bg-[#D9D9D9] p-4 md:p-5 rounded-[6px] md:rounded-[12px] lg:rounded-[20px] outline-none ${errors.addressLine2 ? 'border border-[#CC0000]' : ''}`} />
+                    <input ref={addressLine1Ref} name="addressLine1" onChange={handleChange} className={`w-full h-[20px] md:h-[41px] lg:h-[69px] bg-[#D9D9D9] p-4 md:p-5 rounded-[6px] md:rounded-[12px] lg:rounded-[20px] outline-none ${errors.addressLine1 ? 'border border-[#CC0000]' : ''}`} required />
+                    <input ref={addressLine2Ref} name="addressLine2" onChange={handleChange} className={`w-full h-[20px] md:h-[41px] lg:h-[69px] bg-[#D9D9D9] p-4 md:p-5 rounded-[6px] md:rounded-[12px] lg:rounded-[20px] outline-none ${errors.addressLine2 ? 'border border-[#CC0000]' : ''}`} />
                     {errors.addressLine1 && <p className="text-[#CC0000] font-inter text-[10px] md:text-[12px] xl:text-[14px] mt-2">{errors.addressLine1}</p>}
-                    {errors.addressLine2 && <p className="text-[#CC0000] font-inter text-[10px] md:text-[12px] xl:text-[14px] mt-2">{errors.addressLine2}</p>}
                 </div>
 
                 {/* Postal & Town */}
@@ -238,14 +267,14 @@ const RegisterForm = () => {
                         <label className="block font-inter font-normal text-[10px] md:text-[14px] xl:text-[24px] leading-[130%] mb-2">
                             <span className="text-[#CC0000]">*</span> Postal code:
                         </label>
-                        <input type="text" name="postalCode" onChange={handleChange} required className={`w-full h-[20px] md:h-[41px] lg:h-[69px] bg-[#D9D9D9] p-4 md:p-5 rounded-[6px] md:rounded-[12px] lg:rounded-[20px] outline-none ${errors.postalCode ? 'border border-[#CC0000]' : ''}`} />
+                        <input ref={postalCodeRef} type="text" name="postalCode" onChange={handleChange} required className={`w-full h-[20px] md:h-[41px] lg:h-[69px] bg-[#D9D9D9] p-4 md:p-5 rounded-[6px] md:rounded-[12px] lg:rounded-[20px] outline-none ${errors.postalCode ? 'border border-[#CC0000]' : ''}`} />
                         {errors.postalCode && <p className="text-[#CC0000] font-inter text-[10px] md:text-[12px] xl:text-[14px] mt-2">{errors.postalCode}</p>}
                     </div>
                     <div className="w-full">
                         <label className="block font-inter font-normal text-[10px] md:text-[14px] xl:text-[24px] leading-[130%] mb-2">
                             <span className="text-[#CC0000]">*</span> Town:
                         </label>
-                        <input type="text" name="town" onChange={handleChange} required className={`w-full h-[20px] md:h-[41px] lg:h-[69px] bg-[#D9D9D9] p-4 md:p-5 rounded-[6px] md:rounded-[12px] lg:rounded-[20px] outline-none ${errors.town ? 'border border-[#CC0000]' : ''}`} />
+                        <input ref={townRef} type="text" name="town" onChange={handleChange} required className={`w-full h-[20px] md:h-[41px] lg:h-[69px] bg-[#D9D9D9] p-4 md:p-5 rounded-[6px] md:rounded-[12px] lg:rounded-[20px] outline-none ${errors.town ? 'border border-[#CC0000]' : ''}`} />
                         {errors.town && <p className="text-[#CC0000] font-inter text-[10px] md:text-[12px] xl:text-[14px] mt-2">{errors.town}</p>}
                     </div>
                 </div>
@@ -256,23 +285,27 @@ const RegisterForm = () => {
                         <label className="block font-inter font-normal text-[10px] md:text-[14px] xl:text-[24px] leading-[130%] mb-2">
                             <span className="text-[#CC0000]">*</span> Province
                         </label>
-                        <input name="province" value="stockholm" disabled className="w-full h-[20px] md:h-[41px] lg:h-[69px] bg-[#D9D9D9] p-4 md:p-5 rounded-[6px] md:rounded-[12px] lg:rounded-[20px] outline-none text-[#808080] cursor-not-allowed" />
+                        <input name="province" value="Stockholm" disabled className="w-full h-[20px] md:h-[41px] lg:h-[69px] bg-[#D9D9D9] p-4 md:p-5 rounded-[6px] md:rounded-[12px] lg:rounded-[20px] outline-none text-[#808080] cursor-not-allowed" />
                     </div>
                     <div className="w-full flex gap-3">
                         <div className="w-[60px] md:w-[70px] shrink-0">
                             <label className="block font-inter font-normal text-[10px] md:text-[14px] xl:text-[24px] leading-[130%] mb-2">Prefix</label>
-                            <input name="prefix" onChange={handleChange} className={`w-full h-[20px] md:h-[41px] lg:h-[69px] bg-[#D9D9D9] p-4 md:p-5 rounded-[6px] md:rounded-[12px] lg:rounded-[20px] outline-none text-center ${errors.prefix ? 'border border-[#CC0000]' : ''}`} />
+                            <input ref={prefixRef} name="prefix" onChange={handleChange} className={`w-full h-[20px] md:h-[41px] lg:h-[69px] bg-[#D9D9D9] p-4 md:p-5 rounded-[6px] md:rounded-[12px] lg:rounded-[20px] outline-none text-center ${errors.prefix ? 'border border-[#CC0000]' : ''}`} />
                             {errors.prefix && <p className="text-[#CC0000] font-inter text-[10px] md:text-[12px] xl:text-[14px] mt-2">{errors.prefix}</p>}
                         </div>
                         <div className="w-full">
                             <label className="block font-inter font-normal text-[10px] md:text-[14px] xl:text-[24px] leading-[130%] mb-2">Phone</label>
-                            <input name="phone" onChange={handleChange} className={`w-full h-[20px] md:h-[41px] lg:h-[69px] bg-[#D9D9D9] p-4 md:p-5 rounded-[6px] md:rounded-[12px] lg:rounded-[20px] outline-none ${errors.phone ? 'border border-[#CC0000]' : ''}`} />
+                            <input ref={phoneRef} name="phone" onChange={handleChange} className={`w-full h-[20px] md:h-[41px] lg:h-[69px] bg-[#D9D9D9] p-4 md:p-5 rounded-[6px] md:rounded-[12px] lg:rounded-[20px] outline-none ${errors.phone ? 'border border-[#CC0000]' : ''}`} />
                             {errors.phone && <p className="text-[#CC0000] font-inter text-[10px] md:text-[12px] xl:text-[14px] mt-2">{errors.phone}</p>}
                         </div>
                     </div>
                 </div>
 
-                <p className="font-inter font-semibold text-[10px] md:text-[14px] xl:text-[24px] leading-[130%] mt-4">NB: currently we are only at stockholm län</p>
+                {/* Stockholm Availability Notice */}
+                <div className="max-w-3xl flex items-center gap-2 font-inter font-semibold text-[10px] md:text-[14px] xl:text-[20px] leading-[130%] pt-1">
+                    <FaMapMarkerAlt className="text-[#E6B220] shrink-0" />
+                    <span>We currently deliver only within Stockholm County (Stockholms län).</span>
+                </div>
 
                 {/* Special Notes */}
                 <div className="w-full md:max-w-[451px] lg:max-w-[745px]">
